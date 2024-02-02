@@ -59,6 +59,8 @@
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.box_dotEsp = new System.Windows.Forms.CheckBox();
+            this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
             this.Notes = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -66,8 +68,6 @@
             this.timer_teleporting = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.box_esp = new System.Windows.Forms.CheckBox();
-            this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -391,6 +391,28 @@
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // box_dotEsp
+            // 
+            this.box_dotEsp.AutoSize = true;
+            this.box_dotEsp.Location = new System.Drawing.Point(7, 61);
+            this.box_dotEsp.Name = "box_dotEsp";
+            this.box_dotEsp.Size = new System.Drawing.Size(107, 17);
+            this.box_dotEsp.TabIndex = 25;
+            this.box_dotEsp.Text = "Velocity Indicator";
+            this.box_dotEsp.UseVisualStyleBackColor = true;
+            this.box_dotEsp.CheckedChanged += new System.EventHandler(this.box_dotEsp_CheckedChanged);
+            // 
+            // box_esp
+            // 
+            this.box_esp.AutoSize = true;
+            this.box_esp.Location = new System.Drawing.Point(7, 38);
+            this.box_esp.Name = "box_esp";
+            this.box_esp.Size = new System.Drawing.Size(81, 17);
+            this.box_esp.TabIndex = 24;
+            this.box_esp.Text = "Target ESP";
+            this.box_esp.UseVisualStyleBackColor = true;
+            this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
+            // 
             // lbl_tab2Title
             // 
             this.lbl_tab2Title.AutoSize = true;
@@ -442,28 +464,6 @@
             // 
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
-            // 
-            // box_esp
-            // 
-            this.box_esp.AutoSize = true;
-            this.box_esp.Location = new System.Drawing.Point(7, 38);
-            this.box_esp.Name = "box_esp";
-            this.box_esp.Size = new System.Drawing.Size(81, 17);
-            this.box_esp.TabIndex = 24;
-            this.box_esp.Text = "Target ESP";
-            this.box_esp.UseVisualStyleBackColor = true;
-            this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
-            // 
-            // box_dotEsp
-            // 
-            this.box_dotEsp.AutoSize = true;
-            this.box_dotEsp.Location = new System.Drawing.Point(7, 61);
-            this.box_dotEsp.Name = "box_dotEsp";
-            this.box_dotEsp.Size = new System.Drawing.Size(107, 17);
-            this.box_dotEsp.TabIndex = 25;
-            this.box_dotEsp.Text = "Velocity Indicator";
-            this.box_dotEsp.UseVisualStyleBackColor = true;
-            this.box_dotEsp.CheckedChanged += new System.EventHandler(this.box_dotEsp_CheckedChanged);
             // 
             // Form1
             // 
