@@ -1,0 +1,15 @@
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\SWTOR-External.exe.config
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\SWTOR-External.exe
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\SWTOR-External.pdb
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\Memory.xml
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\Debug\WindowsInput.xml
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.csproj.AssemblyReference.cache
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR_External.Form1.resources
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR_External.Properties.Resources.resources
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.csproj.GenerateResource.cache
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.csproj.CoreCompileInputs.cache
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.csproj.Fody.CopyLocal.cache
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.csproj.CopyComplete
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.exe
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\Debug\SWTOR-External.pdb
