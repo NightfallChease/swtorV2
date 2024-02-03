@@ -66,6 +66,8 @@ namespace SWTOR_External
         private string cameraZAOB = "89 87 30 02 00 00 F3";
         private string nofallAOB = "F3 44 0F 10 4F 10 44 0F 28 DF";
         private string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
+        private string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
+        private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
         private string cameraAddress = "";
         private string cameraYAddress = "";
         private string cameraZAddress = "";
@@ -78,6 +80,8 @@ namespace SWTOR_External
         private string xAddrString = "";
         private string yAddrString = "";
         private string zAddrString = "";
+        private string devESPAddrString = "";
+        private string velocityIndAddrStr = "";
         private string xCamAddrString = "";
         private string yCamAddrString = "";
         private string zCamAddrString = "";
@@ -370,12 +374,12 @@ namespace SWTOR_External
         {
             if (!devEspEnabled)
             {
-                m.WriteMemory("swtor.exe+0x01B6E270,0xB8,0x298,0x18,0x90,0xC", "int", "1");
+                m.WriteMemory($"{devESPAddrString}", "bytes", "0F 85");
                 devEspEnabled = true;
             }
             else
             {
-                m.WriteMemory("swtor.exe+0x01B6E270,0xB8,0x298,0x18,0x90,0xC", "int", "0");
+                m.WriteMemory($"{devESPAddrString}", "bytes", "0F 84");
                 devEspEnabled = false;
             }
         }
@@ -383,14 +387,13 @@ namespace SWTOR_External
         {
             if (!devVelEnabled)
             {
-                string espAddr = convertUintToHexString(EspUint);
-                m.WriteMemory($"{espAddr}+0x68EC334", "int", "1");
+                m.WriteMemory($"{velocityIndAddrStr}", "bytes", "75 1F B9");
                 devVelEnabled = true;
             }
             else
             {
                 string espAddr = convertUintToHexString(EspUint);
-                m.WriteMemory($"{espAddr}+0x68EC334", "int", "0");
+                m.WriteMemory($"{velocityIndAddrStr}", "bytes", "74 1F B9");
                 devVelEnabled = false;
             }
         }
@@ -407,6 +410,9 @@ namespace SWTOR_External
                 cameraYAddress = m.AoBScan(cameraYAOB).Result.Sum().ToString("X2");
                 nofallAddrString = m.AoBScan(nofallAOB).Result.Sum().ToString("X2");
                 speedHackAddrString = m.AoBScan(speedHackAOB).Result.Sum().ToString("X2");
+                devESPAddrString = m.AoBScan(devESPAob).Result.Sum().ToString("X2");
+                velocityIndAddrStr = m.AoBScan(velocityIndicatorAOB).Result.Sum().ToString("X2");
+
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -847,6 +853,10 @@ namespace SWTOR_External
             Cursor.Current = Cursors.Default;
 
         }
+        private void logToConsole(string textToLog)
+        {
+            log_console.Text = log_console.Text + $"\r\n{textToLog}";
+        }
 
         //Trackbars
         private void trckbr_speed_Scroll(object sender, EventArgs e)
@@ -940,6 +950,10 @@ namespace SWTOR_External
         {
             tpflag = false;
             nofallFunction();
+        }
+        private void btn_hotkeys_Click(object sender, EventArgs e)
+        {
+            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:       Num3\r\n");
         }
     }
 }

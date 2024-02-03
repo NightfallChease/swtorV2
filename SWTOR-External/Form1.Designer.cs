@@ -48,7 +48,6 @@
             this.box_camAttach = new System.Windows.Forms.CheckBox();
             this.box_nofall = new System.Windows.Forms.CheckBox();
             this.btn_tpToCam = new System.Windows.Forms.Button();
-            this.lbl_tp_instructions = new System.Windows.Forms.Label();
             this.box_Freecam = new System.Windows.Forms.CheckBox();
             this.lbl_tabOneTitle = new System.Windows.Forms.Label();
             this.btn_clearConsole = new System.Windows.Forms.Button();
@@ -68,6 +67,8 @@
             this.timer_teleporting = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
+            this.btn_hotkeys = new System.Windows.Forms.Button();
+            this.lbl_CusCoord = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -120,6 +121,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.lbl_CusCoord);
+            this.tabPage1.Controls.Add(this.btn_hotkeys);
             this.tabPage1.Controls.Add(this.lbl_Speed);
             this.tabPage1.Controls.Add(this.trckbr_speed);
             this.tabPage1.Controls.Add(this.btn_cancelTP);
@@ -133,7 +136,6 @@
             this.tabPage1.Controls.Add(this.box_camAttach);
             this.tabPage1.Controls.Add(this.box_nofall);
             this.tabPage1.Controls.Add(this.btn_tpToCam);
-            this.tabPage1.Controls.Add(this.lbl_tp_instructions);
             this.tabPage1.Controls.Add(this.box_Freecam);
             this.tabPage1.Controls.Add(this.lbl_tabOneTitle);
             this.tabPage1.Controls.Add(this.btn_clearConsole);
@@ -193,7 +195,7 @@
             // 
             // btn_saveCustomCoords
             // 
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(144, 279);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(34, 270);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(55, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
@@ -204,7 +206,7 @@
             // lbl_saveCoords
             // 
             this.lbl_saveCoords.AutoSize = true;
-            this.lbl_saveCoords.Location = new System.Drawing.Point(121, 204);
+            this.lbl_saveCoords.Location = new System.Drawing.Point(11, 195);
             this.lbl_saveCoords.Name = "lbl_saveCoords";
             this.lbl_saveCoords.Size = new System.Drawing.Size(17, 65);
             this.lbl_saveCoords.TabIndex = 18;
@@ -212,21 +214,21 @@
             // 
             // txt_ZBox
             // 
-            this.txt_ZBox.Location = new System.Drawing.Point(144, 253);
+            this.txt_ZBox.Location = new System.Drawing.Point(34, 244);
             this.txt_ZBox.Name = "txt_ZBox";
             this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
             // 
             // txt_YBox
             // 
-            this.txt_YBox.Location = new System.Drawing.Point(144, 227);
+            this.txt_YBox.Location = new System.Drawing.Point(34, 218);
             this.txt_YBox.Name = "txt_YBox";
             this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
             // 
             // txt_XBox
             // 
-            this.txt_XBox.Location = new System.Drawing.Point(144, 201);
+            this.txt_XBox.Location = new System.Drawing.Point(34, 192);
             this.txt_XBox.Name = "txt_XBox";
             this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
@@ -273,16 +275,6 @@
             this.btn_tpToCam.Text = "TP";
             this.btn_tpToCam.UseVisualStyleBackColor = true;
             this.btn_tpToCam.Click += new System.EventHandler(this.btn_tpToCam_Click);
-            // 
-            // lbl_tp_instructions
-            // 
-            this.lbl_tp_instructions.AutoSize = true;
-            this.lbl_tp_instructions.Location = new System.Drawing.Point(6, 173);
-            this.lbl_tp_instructions.Name = "lbl_tp_instructions";
-            this.lbl_tp_instructions.Size = new System.Drawing.Size(88, 104);
-            this.lbl_tp_instructions.TabIndex = 10;
-            this.lbl_tp_instructions.Text = "Hotkeys:\r\nX: Num8 / Num5\r\nY: Num7 / Num4\r\nZ: Num9 / Num6\r\n\r\nFreecam:   Num1\r\nTpTo" +
-    "Cam: Num2\r\nNofall:       Num3";
             // 
             // box_Freecam
             // 
@@ -465,6 +457,25 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
+            // btn_hotkeys
+            // 
+            this.btn_hotkeys.Location = new System.Drawing.Point(144, 195);
+            this.btn_hotkeys.Name = "btn_hotkeys";
+            this.btn_hotkeys.Size = new System.Drawing.Size(55, 23);
+            this.btn_hotkeys.TabIndex = 24;
+            this.btn_hotkeys.Text = "Hotkeys";
+            this.btn_hotkeys.UseVisualStyleBackColor = true;
+            this.btn_hotkeys.Click += new System.EventHandler(this.btn_hotkeys_Click);
+            // 
+            // lbl_CusCoord
+            // 
+            this.lbl_CusCoord.AutoSize = true;
+            this.lbl_CusCoord.Location = new System.Drawing.Point(6, 176);
+            this.lbl_CusCoord.Name = "lbl_CusCoord";
+            this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
+            this.lbl_CusCoord.TabIndex = 25;
+            this.lbl_CusCoord.Text = "Custom Coords:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,7 +520,6 @@
         private System.Windows.Forms.CheckBox box_Freecam;
         private System.Windows.Forms.Label lbl_tabOneTitle;
         private System.Windows.Forms.Label lbl_tab2Title;
-        private System.Windows.Forms.Label lbl_tp_instructions;
         private System.Windows.Forms.Timer timer_teleporting;
         private System.Windows.Forms.Button btn_tpToCam;
         private System.Windows.Forms.CheckBox box_nofall;
@@ -531,6 +541,8 @@
         private System.Windows.Forms.Timer timer_getBase;
         private System.Windows.Forms.CheckBox box_esp;
         private System.Windows.Forms.CheckBox box_dotEsp;
+        private System.Windows.Forms.Label lbl_CusCoord;
+        private System.Windows.Forms.Button btn_hotkeys;
     }
 }
 
