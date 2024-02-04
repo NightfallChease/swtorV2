@@ -27,7 +27,7 @@ namespace SWTOR_External
         InputSimulator sim = new InputSimulator();
 
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version5.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version6.sw";
         private string PlayerBaseAddress = "";
         private string CamBaseAddress = "";
         private UIntPtr playerBaseUInt;
@@ -68,6 +68,9 @@ namespace SWTOR_External
         private string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
         private string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
         private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
+        private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
+        private string glideAddrString;
+        private bool glideEnabled = false;
         private string cameraAddress = "";
         private string cameraYAddress = "";
         private string cameraZAddress = "";
@@ -105,6 +108,8 @@ namespace SWTOR_External
         private UIntPtr cameraYUInt;
         private UIntPtr cameraZUInt;
         private UIntPtr yVelocityAddr;
+        private UIntPtr heightAddr;
+        private string heightAddrString;
         private string yVelocityAddrString;
         private bool tpflag = false;
         private bool saveflag = false;
@@ -116,6 +121,7 @@ namespace SWTOR_External
         private float yVelocity;
         private UIntPtr pbasecaveAddr;
         string mainModule = "";
+        public float playerHeight;
 
 
         /*
@@ -202,11 +208,17 @@ namespace SWTOR_External
             yawAddr = camBaseUInt + 0x238;
             yawAddrString = convertUintToHexString(yawAddr);
 
+            heightAddr = playerBaseUInt + 0x84;
+            heightAddrString = convertUintToHexString(heightAddr);
+
             EspUint = m.Get64BitCode("swtor.exe+0x01B6E270,0xB8,0x298,0x18,0x90,0xC");
 
             xCoord = m.ReadFloat(xAddrString);
             yCoord = m.ReadFloat(yAddrString);
             zCoord = m.ReadFloat(zAddrString);
+
+            playerHeight = m.ReadFloat(heightAddrString);
+
 
             lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
 
@@ -227,6 +239,7 @@ namespace SWTOR_External
             bool isNumpad1Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD1);
             bool isNumpad2Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD2);
             bool isNumpad3Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD3);
+            bool isNumpad0Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD0);
 
             if (isNumpad1Pressed)
             {
@@ -252,6 +265,17 @@ namespace SWTOR_External
                 else
                 {
                     box_nofall.CheckState = CheckState.Unchecked;
+                }
+            }
+            if (isNumpad0Pressed)
+            {
+                if (box_glide.CheckState == CheckState.Unchecked)
+                {
+                    box_glide.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    box_glide.CheckState = CheckState.Unchecked;
                 }
             }
 
@@ -397,6 +421,23 @@ namespace SWTOR_External
                 devVelEnabled = false;
             }
         }
+        private void box_glide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!glideEnabled)
+            {
+                glideEnabled = true;
+
+                m.WriteMemory(glideAddrString, "bytes", "90 90 90 90 90 90");
+            }
+            else
+            {
+                glideEnabled = false;
+
+                m.WriteMemory(glideAddrString, "bytes", glideAOB);
+            }
+
+
+        }
 
         //Functions
         private void scanAOB()
@@ -412,7 +453,7 @@ namespace SWTOR_External
                 speedHackAddrString = m.AoBScan(speedHackAOB).Result.Sum().ToString("X2");
                 devESPAddrString = m.AoBScan(devESPAob).Result.Sum().ToString("X2");
                 velocityIndAddrStr = m.AoBScan(velocityIndicatorAOB).Result.Sum().ToString("X2");
-
+                glideAddrString = m.AoBScan(glideAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -744,13 +785,19 @@ namespace SWTOR_External
                 if (noclipPatched)
                 {
                     m.WriteBytes(noclipAddress, noclipBytes);
-                    ////log_console.Text = log_console.Text + "\r\n\r\nUnhooked";
+                    log_console.Invoke((MethodInvoker)delegate
+                    {
+                        log_console.Text = log_console.Text + "\r\n\r\nUnhooked";
+                    });
                     noclipPatched = false;
                 }
                 else
                 {
                     m.WriteBytes(noclipAddress, noclipPatchedBytes);
-                    ////log_console.Text = log_console.Text + "\r\n\r\nRe-hooked";
+                    log_console.Invoke((MethodInvoker)delegate
+                    {
+                        log_console.Text = log_console.Text + "\r\n\r\nRe-Hooked";
+                    });
                     noclipPatched = true;
                 }
 
@@ -855,7 +902,7 @@ namespace SWTOR_External
         }
         private void logToConsole(string textToLog)
         {
-            log_console.Text = log_console.Text + $"\r\n{textToLog}";
+            log_console.Text = log_console.Text + $"\r\n\r\n{textToLog}";
         }
 
         //Trackbars
@@ -867,6 +914,24 @@ namespace SWTOR_External
             log_console.ScrollToCaret();
             log_console.SelectionLength = 0;
             //BottomScroll
+        }
+
+        //InputFields
+        private void box_playerHeight_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (box_playerHeight.Text == "")
+                {
+                    return;
+                }
+
+                m.WriteMemory(heightAddrString, "float", $"{box_playerHeight.Text}");
+            }
+            catch
+            {
+                logToConsole("Invalid player height");
+            }
         }
 
         //Buttons
@@ -953,7 +1018,7 @@ namespace SWTOR_External
         }
         private void btn_hotkeys_Click(object sender, EventArgs e)
         {
-            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:       Num3\r\n");
+            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:       Num3\r\n  Glide:       Num0\r\n");
         }
     }
 }

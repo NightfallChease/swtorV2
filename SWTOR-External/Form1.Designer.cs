@@ -35,6 +35,8 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbl_CusCoord = new System.Windows.Forms.Label();
+            this.btn_hotkeys = new System.Windows.Forms.Button();
             this.lbl_Speed = new System.Windows.Forms.Label();
             this.trckbr_speed = new System.Windows.Forms.TrackBar();
             this.btn_cancelTP = new System.Windows.Forms.Button();
@@ -58,6 +60,8 @@
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.box_playerHeight = new System.Windows.Forms.TextBox();
+            this.lbl_HeightNormal = new System.Windows.Forms.Label();
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
@@ -67,8 +71,7 @@
             this.timer_teleporting = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.btn_hotkeys = new System.Windows.Forms.Button();
-            this.lbl_CusCoord = new System.Windows.Forms.Label();
+            this.box_glide = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -121,6 +124,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.box_glide);
             this.tabPage1.Controls.Add(this.lbl_CusCoord);
             this.tabPage1.Controls.Add(this.btn_hotkeys);
             this.tabPage1.Controls.Add(this.lbl_Speed);
@@ -153,6 +157,25 @@
             this.tabPage1.Size = new System.Drawing.Size(368, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
+            // 
+            // lbl_CusCoord
+            // 
+            this.lbl_CusCoord.AutoSize = true;
+            this.lbl_CusCoord.Location = new System.Drawing.Point(6, 176);
+            this.lbl_CusCoord.Name = "lbl_CusCoord";
+            this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
+            this.lbl_CusCoord.TabIndex = 25;
+            this.lbl_CusCoord.Text = "Custom Coords:";
+            // 
+            // btn_hotkeys
+            // 
+            this.btn_hotkeys.Location = new System.Drawing.Point(144, 195);
+            this.btn_hotkeys.Name = "btn_hotkeys";
+            this.btn_hotkeys.Size = new System.Drawing.Size(55, 23);
+            this.btn_hotkeys.TabIndex = 24;
+            this.btn_hotkeys.Text = "Hotkeys";
+            this.btn_hotkeys.UseVisualStyleBackColor = true;
+            this.btn_hotkeys.Click += new System.EventHandler(this.btn_hotkeys_Click);
             // 
             // lbl_Speed
             // 
@@ -258,7 +281,7 @@
             // box_nofall
             // 
             this.box_nofall.AutoSize = true;
-            this.box_nofall.Location = new System.Drawing.Point(9, 124);
+            this.box_nofall.Location = new System.Drawing.Point(9, 121);
             this.box_nofall.Name = "box_nofall";
             this.box_nofall.Size = new System.Drawing.Size(97, 17);
             this.box_nofall.TabIndex = 12;
@@ -341,9 +364,9 @@
             this.lbl_cons.AutoSize = true;
             this.lbl_cons.Location = new System.Drawing.Point(211, 44);
             this.lbl_cons.Name = "lbl_cons";
-            this.lbl_cons.Size = new System.Drawing.Size(48, 13);
+            this.lbl_cons.Size = new System.Drawing.Size(33, 13);
             this.lbl_cons.TabIndex = 4;
-            this.lbl_cons.Text = "Console:";
+            this.lbl_cons.Text = "Logs:";
             // 
             // log_console
             // 
@@ -370,6 +393,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.box_playerHeight);
+            this.tabPage2.Controls.Add(this.lbl_HeightNormal);
             this.tabPage2.Controls.Add(this.box_dotEsp);
             this.tabPage2.Controls.Add(this.box_esp);
             this.tabPage2.Controls.Add(this.lbl_tab2Title);
@@ -382,6 +407,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // box_playerHeight
+            // 
+            this.box_playerHeight.Location = new System.Drawing.Point(48, 87);
+            this.box_playerHeight.Name = "box_playerHeight";
+            this.box_playerHeight.Size = new System.Drawing.Size(40, 20);
+            this.box_playerHeight.TabIndex = 27;
+            this.box_playerHeight.Text = "1";
+            this.box_playerHeight.TextChanged += new System.EventHandler(this.box_playerHeight_TextChanged);
+            // 
+            // lbl_HeightNormal
+            // 
+            this.lbl_HeightNormal.AutoSize = true;
+            this.lbl_HeightNormal.Location = new System.Drawing.Point(4, 90);
+            this.lbl_HeightNormal.Name = "lbl_HeightNormal";
+            this.lbl_HeightNormal.Size = new System.Drawing.Size(152, 13);
+            this.lbl_HeightNormal.TabIndex = 26;
+            this.lbl_HeightNormal.Text = "Height:                  (1 = Normal)";
             // 
             // box_dotEsp
             // 
@@ -457,24 +500,16 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // btn_hotkeys
+            // box_glide
             // 
-            this.btn_hotkeys.Location = new System.Drawing.Point(144, 195);
-            this.btn_hotkeys.Name = "btn_hotkeys";
-            this.btn_hotkeys.Size = new System.Drawing.Size(55, 23);
-            this.btn_hotkeys.TabIndex = 24;
-            this.btn_hotkeys.Text = "Hotkeys";
-            this.btn_hotkeys.UseVisualStyleBackColor = true;
-            this.btn_hotkeys.Click += new System.EventHandler(this.btn_hotkeys_Click);
-            // 
-            // lbl_CusCoord
-            // 
-            this.lbl_CusCoord.AutoSize = true;
-            this.lbl_CusCoord.Location = new System.Drawing.Point(6, 176);
-            this.lbl_CusCoord.Name = "lbl_CusCoord";
-            this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
-            this.lbl_CusCoord.TabIndex = 25;
-            this.lbl_CusCoord.Text = "Custom Coords:";
+            this.box_glide.AutoSize = true;
+            this.box_glide.Location = new System.Drawing.Point(9, 143);
+            this.box_glide.Name = "box_glide";
+            this.box_glide.Size = new System.Drawing.Size(68, 17);
+            this.box_glide.TabIndex = 26;
+            this.box_glide.Text = "Freeze Y";
+            this.box_glide.UseVisualStyleBackColor = true;
+            this.box_glide.CheckedChanged += new System.EventHandler(this.box_glide_CheckedChanged);
             // 
             // Form1
             // 
@@ -543,6 +578,9 @@
         private System.Windows.Forms.CheckBox box_dotEsp;
         private System.Windows.Forms.Label lbl_CusCoord;
         private System.Windows.Forms.Button btn_hotkeys;
+        private System.Windows.Forms.Label lbl_HeightNormal;
+        private System.Windows.Forms.TextBox box_playerHeight;
+        private System.Windows.Forms.CheckBox box_glide;
     }
 }
 
