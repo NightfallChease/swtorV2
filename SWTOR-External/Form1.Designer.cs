@@ -470,9 +470,9 @@
             this.box_dotEsp.AutoSize = true;
             this.box_dotEsp.Location = new System.Drawing.Point(7, 61);
             this.box_dotEsp.Name = "box_dotEsp";
-            this.box_dotEsp.Size = new System.Drawing.Size(146, 17);
+            this.box_dotEsp.Size = new System.Drawing.Size(107, 17);
             this.box_dotEsp.TabIndex = 25;
-            this.box_dotEsp.Text = "Velocity Indicator (Buggy)";
+            this.box_dotEsp.Text = "Velocity Indicator";
             this.box_dotEsp.UseVisualStyleBackColor = true;
             this.box_dotEsp.CheckedChanged += new System.EventHandler(this.box_dotEsp_CheckedChanged);
             // 

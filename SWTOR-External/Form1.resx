@@ -120,34 +120,6 @@
   <metadata name="mainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Update 6:
-• Added PlayerHeight changer
-• Added Freeze Y
-• Added Window-Opacity modifier
-
-Update 5:
-• Added TargetESP
-• Added Velocity Indicator
-• Improved general performance (no laggy gui)
-
-Update 4:
-• Fixed general crashes while using
-• Applied new speed to cams and tp
-
-Update 3:
-• Fixed planet switch bug (now you don't have to re-enable the script)
-• Improved general performance
-
-Update 2:
-• Added Freecam &amp; Speed
-• Fixed Teleport
-
-Update 1:
-• Added custom coords system
-• Fixed after new update
-</value>
-  </data>
   <metadata name="imageListMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>273, 17</value>
   </metadata>
@@ -327,6 +299,34 @@ Update 1:
         2nxI9SF9/W1JDiTJaXKzVkF+m3yxpiLXcM371//W68j3ibfIs2gz2v13R97+ChLjJF+a9M2VJ6jYeyxP
         kUUxOc15xWD5LSdS5B+mJIZ/lNd3kNPUcZ3/EyQGUwckhGUKOZeK9lTsrOXwOpllsIri/nEj/S/9g4n5
         yV/8n1d/MW3evDnQ+Pn/kDTtfwBE7bvDaVnWNgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Update 6:
+• Added PlayerHeight changer
+• Added Freeze Y
+• Added Window-Opacity modifier
+
+Update 5:
+• Added TargetESP
+• Added Velocity Indicator
+• Improved general performance (no laggy gui)
+
+Update 4:
+• Fixed general crashes while using
+• Applied new speed to cams and tp
+
+Update 3:
+• Fixed planet switch bug (now you don't have to re-enable the script)
+• Improved general performance
+
+Update 2:
+• Added Freecam &amp; Speed
+• Fixed Teleport
+
+Update 1:
+• Added custom coords system
+• Fixed after new update
 </value>
   </data>
   <metadata name="timer_teleporting.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
