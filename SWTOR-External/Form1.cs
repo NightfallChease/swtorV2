@@ -550,18 +550,7 @@ namespace SWTOR_External
                 m.WriteMemory(yAddrString, "float", (savedY).ToString());
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString());
                 isArrived = true;
-                if (!nofallEnabled)
-                {
-                    nofallFunction();
-                    nofallEnabled = true;
-                }
                 doglide();
-                Thread.Sleep(3000);
-                if (nofallEnabled)
-                {
-                    nofallFunction();
-                    nofallEnabled = false;
-                }
             }
             else if (distance > 1.0f)
             {
@@ -1014,13 +1003,13 @@ namespace SWTOR_External
             saveflag = true;
 
             tpflag = true;
-            nofallFunction();
+            box_nofall.Checked = true;
 
         }
         private void btn_teleport_Click(object sender, EventArgs e)
         {
             tpflag = true;
-            nofallFunction();
+            box_nofall.Checked = true;
             //BottomScroll
             log_console.Focus();
             log_console.ScrollToCaret();
