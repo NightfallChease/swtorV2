@@ -128,10 +128,7 @@ namespace SWTOR_External
 
         /*
         Todo:
-        Glide / Nop Y
         Fly [Backspace highjump]
-        SpeedTrackbar
-        SpeedGlide
         MouseTP (only if stable)
          */
 
@@ -950,6 +947,11 @@ namespace SWTOR_External
             log_console.ScrollToCaret();
             log_console.SelectionLength = 0;
             //BottomScroll
+        }
+        private void trck_opcacity_Scroll(object sender, EventArgs e)
+        {
+            float newOpacity = (float)(trck_opcacity.Value) / 100;
+            this.Opacity = newOpacity;
         }
 
         //InputFields

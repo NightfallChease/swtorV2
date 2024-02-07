@@ -61,6 +61,8 @@
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.trck_opcacity = new System.Windows.Forms.TrackBar();
+            this.lbl_opacity = new System.Windows.Forms.Label();
             this.box_playerHeight = new System.Windows.Forms.TextBox();
             this.lbl_HeightNormal = new System.Windows.Forms.Label();
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
@@ -77,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
             this.Notes.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -404,6 +407,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.trck_opcacity);
+            this.tabPage2.Controls.Add(this.lbl_opacity);
             this.tabPage2.Controls.Add(this.box_playerHeight);
             this.tabPage2.Controls.Add(this.lbl_HeightNormal);
             this.tabPage2.Controls.Add(this.box_dotEsp);
@@ -418,6 +423,29 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // trck_opcacity
+            // 
+            this.trck_opcacity.AutoSize = false;
+            this.trck_opcacity.BackColor = System.Drawing.Color.White;
+            this.trck_opcacity.Location = new System.Drawing.Point(7, 274);
+            this.trck_opcacity.Maximum = 100;
+            this.trck_opcacity.Minimum = 10;
+            this.trck_opcacity.Name = "trck_opcacity";
+            this.trck_opcacity.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trck_opcacity.Size = new System.Drawing.Size(24, 104);
+            this.trck_opcacity.TabIndex = 29;
+            this.trck_opcacity.Value = 100;
+            this.trck_opcacity.Scroll += new System.EventHandler(this.trck_opcacity_Scroll);
+            // 
+            // lbl_opacity
+            // 
+            this.lbl_opacity.AutoSize = true;
+            this.lbl_opacity.Location = new System.Drawing.Point(6, 258);
+            this.lbl_opacity.Name = "lbl_opacity";
+            this.lbl_opacity.Size = new System.Drawing.Size(85, 13);
+            this.lbl_opacity.TabIndex = 28;
+            this.lbl_opacity.Text = "Window-Opacity";
             // 
             // box_playerHeight
             // 
@@ -520,6 +548,7 @@
             this.Controls.Add(this.lbl_title);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.Sizable = false;
@@ -531,6 +560,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
             this.Notes.ResumeLayout(false);
             this.Notes.PerformLayout();
             this.ResumeLayout(false);
@@ -582,6 +612,8 @@
         private System.Windows.Forms.Label lbl_HeightNormal;
         private System.Windows.Forms.TextBox box_playerHeight;
         private System.Windows.Forms.CheckBox box_glide;
+        private System.Windows.Forms.Label lbl_opacity;
+        private System.Windows.Forms.TrackBar trck_opcacity;
     }
 }
 
