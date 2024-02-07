@@ -122,6 +122,8 @@ namespace SWTOR_External
         private UIntPtr pbasecaveAddr;
         string mainModule = "";
         public float playerHeight;
+        private bool isPVPEnabled = false;
+        private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
 
 
         /*
@@ -139,6 +141,7 @@ namespace SWTOR_External
             InitializeComponent();
 
             Thread aobThread = new Thread(scanAOB);
+            //Thread pvpThread = new Thread(checkForPvP) { IsBackground = true , Priority = ThreadPriority.Lowest};
 
             //Design stuff 
             MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.WHITE);
@@ -423,20 +426,7 @@ namespace SWTOR_External
         }
         private void box_glide_CheckedChanged(object sender, EventArgs e)
         {
-            if (!glideEnabled)
-            {
-                glideEnabled = true;
-
-                m.WriteMemory(glideAddrString, "bytes", "90 90 90 90 90 90");
-            }
-            else
-            {
-                glideEnabled = false;
-
-                m.WriteMemory(glideAddrString, "bytes", glideAOB);
-            }
-
-
+            doglide();
         }
 
         //Functions
@@ -543,6 +533,11 @@ namespace SWTOR_External
 
             bool isArrived = false;
 
+            if (!glideEnabled)
+            {
+                doglide();
+            }
+
             if (savedX == 0 || savedY == 0 || savedZ == 0)
             {
                 log_console.Text = log_console.Text + "\n\r\n\rInvalid Value!";
@@ -558,6 +553,18 @@ namespace SWTOR_External
                 m.WriteMemory(yAddrString, "float", (savedY).ToString());
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString());
                 isArrived = true;
+                if (!nofallEnabled)
+                {
+                    nofallFunction();
+                    nofallEnabled = true;
+                }
+                doglide();
+                Thread.Sleep(3000);
+                if (nofallEnabled)
+                {
+                    nofallFunction();
+                    nofallEnabled = false;
+                }
             }
             else if (distance > 1.0f)
             {
@@ -580,10 +587,8 @@ namespace SWTOR_External
             // Optionally: You can use the isArrived flag for further actions or checks.
             if (isArrived)
             {
-                nofallFunction(); //disable
                 isArrived = false;
                 tpflag = false;
-
             }
         }
         private void teleportNumpad()
@@ -641,7 +646,6 @@ namespace SWTOR_External
         }
         private void nofallFunction()
         {
-
             if (!nofallEnabled)
             {
                 if (!nofallPatched)
@@ -658,7 +662,6 @@ namespace SWTOR_External
                     m.WriteBytes(nofallAddr, gotoCaveBytes);
                     nofallEnabled = true;
                 }
-
             }
             else
             {
@@ -903,6 +906,39 @@ namespace SWTOR_External
         private void logToConsole(string textToLog)
         {
             log_console.Text = log_console.Text + $"\r\n\r\n{textToLog}";
+        }
+        private void checkForPvP()
+        {
+            ////Takes up to much performance
+            
+            //while (!isPVPEnabled)
+            //{
+            //    Thread.Sleep(10000);
+
+            //    string aobScanResult = m.AoBScan(PVPAOB, true, false).Result.Sum().ToString("X2");
+
+            //    if (aobScanResult == "00")
+            //    {
+            //        isPVPEnabled = true;
+            //        MessageBox.Show("No PvP allowed ;)");
+            //        Environment.Exit(0);
+            //    }
+            //}
+        }
+        private void doglide()
+        {
+            if (!glideEnabled)
+            {
+                glideEnabled = true;
+
+                m.WriteMemory(glideAddrString, "bytes", "90 90 90 90 90 90");
+            }
+            else
+            {
+                glideEnabled = false;
+
+                m.WriteMemory(glideAddrString, "bytes", glideAOB);
+            }
         }
 
         //Trackbars

@@ -35,6 +35,7 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_glide = new System.Windows.Forms.CheckBox();
             this.lbl_CusCoord = new System.Windows.Forms.Label();
             this.btn_hotkeys = new System.Windows.Forms.Button();
             this.lbl_Speed = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.timer_teleporting = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.box_glide = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -157,6 +157,17 @@
             this.tabPage1.Size = new System.Drawing.Size(368, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
+            // 
+            // box_glide
+            // 
+            this.box_glide.AutoSize = true;
+            this.box_glide.Location = new System.Drawing.Point(9, 143);
+            this.box_glide.Name = "box_glide";
+            this.box_glide.Size = new System.Drawing.Size(68, 17);
+            this.box_glide.TabIndex = 26;
+            this.box_glide.Text = "Freeze Y";
+            this.box_glide.UseVisualStyleBackColor = true;
+            this.box_glide.CheckedChanged += new System.EventHandler(this.box_glide_CheckedChanged);
             // 
             // lbl_CusCoord
             // 
@@ -500,17 +511,6 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // box_glide
-            // 
-            this.box_glide.AutoSize = true;
-            this.box_glide.Location = new System.Drawing.Point(9, 143);
-            this.box_glide.Name = "box_glide";
-            this.box_glide.Size = new System.Drawing.Size(68, 17);
-            this.box_glide.TabIndex = 26;
-            this.box_glide.Text = "Freeze Y";
-            this.box_glide.UseVisualStyleBackColor = true;
-            this.box_glide.CheckedChanged += new System.EventHandler(this.box_glide_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +519,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lbl_title);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.Sizable = false;
