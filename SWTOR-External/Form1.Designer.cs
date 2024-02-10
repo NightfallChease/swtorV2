@@ -35,6 +35,7 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_speedhack = new System.Windows.Forms.CheckBox();
             this.box_glide = new System.Windows.Forms.CheckBox();
             this.lbl_CusCoord = new System.Windows.Forms.Label();
             this.btn_hotkeys = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.Notes = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
-            this.timer_teleporting = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
@@ -127,6 +127,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.box_speedhack);
             this.tabPage1.Controls.Add(this.box_glide);
             this.tabPage1.Controls.Add(this.lbl_CusCoord);
             this.tabPage1.Controls.Add(this.btn_hotkeys);
@@ -160,6 +161,18 @@
             this.tabPage1.Size = new System.Drawing.Size(368, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
+            // 
+            // box_speedhack
+            // 
+            this.box_speedhack.AutoSize = true;
+            this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.box_speedhack.Location = new System.Drawing.Point(119, 321);
+            this.box_speedhack.Name = "box_speedhack";
+            this.box_speedhack.Size = new System.Drawing.Size(43, 17);
+            this.box_speedhack.TabIndex = 27;
+            this.box_speedhack.Text = "Off";
+            this.box_speedhack.UseVisualStyleBackColor = true;
+            this.box_speedhack.CheckedChanged += new System.EventHandler(this.box_speedhack_CheckedChanged);
             // 
             // box_glide
             // 
@@ -232,7 +245,7 @@
             // 
             // btn_saveCustomCoords
             // 
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(34, 270);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(22, 270);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(55, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
@@ -530,10 +543,6 @@
             this.imageListMain.Images.SetKeyName(4, "");
             this.imageListMain.Images.SetKeyName(5, "");
             // 
-            // timer_teleporting
-            // 
-            this.timer_teleporting.Tick += new System.EventHandler(this.timer_teleporting_Tick);
-            // 
             // timer_getBase
             // 
             this.timer_getBase.Interval = 500;
@@ -586,7 +595,6 @@
         private System.Windows.Forms.CheckBox box_Freecam;
         private System.Windows.Forms.Label lbl_tabOneTitle;
         private System.Windows.Forms.Label lbl_tab2Title;
-        private System.Windows.Forms.Timer timer_teleporting;
         private System.Windows.Forms.Button btn_tpToCam;
         private System.Windows.Forms.CheckBox box_nofall;
         private System.Windows.Forms.CheckBox box_camAttach;
@@ -614,6 +622,7 @@
         private System.Windows.Forms.CheckBox box_glide;
         private System.Windows.Forms.Label lbl_opacity;
         private System.Windows.Forms.TrackBar trck_opcacity;
+        private System.Windows.Forms.CheckBox box_speedhack;
     }
 }
 

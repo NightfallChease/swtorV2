@@ -124,6 +124,7 @@ namespace SWTOR_External
         public float playerHeight;
         private bool isPVPEnabled = false;
         private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        private bool isSpeedhackEnabled = false;
 
 
         /*
@@ -138,6 +139,8 @@ namespace SWTOR_External
             InitializeComponent();
 
             Thread aobThread = new Thread(scanAOB);
+            Thread NumpadTeleportThread = new Thread(teleportNumpad);
+            Thread HotkeyThread = new Thread(hotkeysFunction);
             //Thread pvpThread = new Thread(checkForPvP) { IsBackground = true , Priority = ThreadPriority.Lowest};
 
             //Design stuff 
@@ -171,6 +174,8 @@ namespace SWTOR_External
             }
 
             aobThread.Start();
+            NumpadTeleportThread.Start();
+            HotkeyThread.Start();
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
@@ -211,8 +216,6 @@ namespace SWTOR_External
             heightAddr = playerBaseUInt + 0x84;
             heightAddrString = convertUintToHexString(heightAddr);
 
-            EspUint = m.Get64BitCode("swtor.exe+0x01B6E270,0xB8,0x298,0x18,0x90,0xC");
-
             xCoord = m.ReadFloat(xAddrString);
             yCoord = m.ReadFloat(yAddrString);
             zCoord = m.ReadFloat(zAddrString);
@@ -232,58 +235,21 @@ namespace SWTOR_External
                 Freecam();
             }
         }
-        private void timer_teleporting_Tick(object sender, EventArgs e)
-        {
-            teleportNumpad();
-
-            bool isNumpad1Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD1);
-            bool isNumpad2Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD2);
-            bool isNumpad3Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD3);
-            bool isNumpad0Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD0);
-
-            if (isNumpad1Pressed)
-            {
-                if(box_Freecam.CheckState == CheckState.Unchecked)
-                {
-                    box_Freecam.CheckState = CheckState.Checked;
-                }
-                else
-                {
-                    box_Freecam.CheckState = CheckState.Unchecked;
-                }
-            }
-            if (isNumpad2Pressed)
-            {
-                btn_tpToCam.PerformClick();
-            }
-            if (isNumpad3Pressed)
-            {
-                if (box_nofall.CheckState == CheckState.Unchecked)
-                {
-                    box_nofall.CheckState = CheckState.Checked;
-                }
-                else
-                {
-                    box_nofall.CheckState = CheckState.Unchecked;
-                }
-            }
-            if (isNumpad0Pressed)
-            {
-                if (box_glide.CheckState == CheckState.Unchecked)
-                {
-                    box_glide.CheckState = CheckState.Checked;
-                }
-                else
-                {
-                    box_glide.CheckState = CheckState.Unchecked;
-                }
-            }
-
-        }
         private void timer_getBase_Tick(object sender, EventArgs e)
         {
             try
             {
+                //SpeedhackManagement
+                if (isSpeedhackEnabled)
+                {
+                    m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString());
+                }
+                //check if speedhack is disabled
+                if (!isSpeedhackEnabled)
+                {
+                    m.WriteMemory(speedValueUIntString, "float", "0");
+                }
+
                 ////PBASE
                 string caveAddrString = convertUintToHexString(pbasecaveAddr);
                 //log_console.Text = log_console.Text + "\r\n\r\nCaveAddr = " + caveAddrString;
@@ -304,7 +270,6 @@ namespace SWTOR_External
             {
 
             }
-            
         }
 
         //CheckBoxes
@@ -324,8 +289,6 @@ namespace SWTOR_External
             //MessageBox.Show("Try to not disable this function or it may cause errors");
             
             codeCaveThread.Start();
-
-            timer_teleporting.Start();
         }
         private void box_Freecam_CheckedChanged(object sender, EventArgs e)
         {
@@ -424,6 +387,10 @@ namespace SWTOR_External
         private void box_glide_CheckedChanged(object sender, EventArgs e)
         {
             doglide();
+        }
+        private void box_speedhack_CheckedChanged(object sender, EventArgs e)
+        {
+            speedhackFunction();
         }
 
         //Functions
@@ -579,41 +546,46 @@ namespace SWTOR_External
         }
         private void teleportNumpad()
         {
-            float playerXCoord = m.ReadFloat(xAddrString);
-            float playerYCoord = m.ReadFloat(yAddrString);
-            float playerZCoord = m.ReadFloat(zAddrString);
+            while (true)
+            {
+                float playerXCoord = m.ReadFloat(xAddrString);
+                float playerYCoord = m.ReadFloat(yAddrString);
+                float playerZCoord = m.ReadFloat(zAddrString);
 
-            bool isNumpadUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD7);
-            bool isNumpadDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD4);
-            bool isNumpadXUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD8);
-            bool isNumpadXDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD5);
-            bool isNumpadZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD9);
-            bool isNumpadZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD6);
+                bool isNumpadUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD7);
+                bool isNumpadDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD4);
+                bool isNumpadXUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD8);
+                bool isNumpadXDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD5);
+                bool isNumpadZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD9);
+                bool isNumpadZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD6);
 
-            if (isNumpadUpPressed)
-            {
-                m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString());
+                if (isNumpadUpPressed)
+                {
+                    m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString());
+                }
+                if (isNumpadDownPressed)
+                {
+                    m.WriteMemory(yAddrString, "float", (playerYCoord - 0.25f).ToString());
+                }
+                if (isNumpadXUpPressed)
+                {
+                    m.WriteMemory(xAddrString, "float", (playerXCoord + 0.25f).ToString());
+                }
+                if (isNumpadXDownPressed)
+                {
+                    m.WriteMemory(xAddrString, "float", (playerXCoord - 0.25f).ToString());
+                }
+                if (isNumpadZUpPressed)
+                {
+                    m.WriteMemory(zAddrString, "float", (playerZCoord + 0.25f).ToString());
+                }
+                if (isNumpadZDownPressed)
+                {
+                    m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString());
+                }
+                Thread.Sleep(200);
             }
-            if (isNumpadDownPressed)
-            {
-                m.WriteMemory(yAddrString, "float", (playerYCoord - 0.25f).ToString());
-            }
-            if (isNumpadXUpPressed)
-            {
-                m.WriteMemory(xAddrString, "float", (playerXCoord + 0.25f).ToString());
-            }
-            if (isNumpadXDownPressed)
-            {
-                m.WriteMemory(xAddrString, "float", (playerXCoord - 0.25f).ToString());
-            }
-            if (isNumpadZUpPressed)
-            {
-                m.WriteMemory(zAddrString, "float", (playerZCoord + 0.25f).ToString());
-            }
-            if (isNumpadZDownPressed)
-            {
-                m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString());
-            }
+            
 
         }
         private string convertUintToHexString(UIntPtr uintToConvert)
@@ -926,16 +898,97 @@ namespace SWTOR_External
                 m.WriteMemory(glideAddrString, "bytes", glideAOB);
             }
         }
+        private void speedhackFunction()
+        {
+            if (!isSpeedhackEnabled)
+            {
+                box_speedhack.Invoke((MethodInvoker)delegate
+                {
+                    box_speedhack.Text = "On";
+                });
+                isSpeedhackEnabled = true;
+            }
+            else
+            {
+                box_speedhack.Invoke((MethodInvoker)delegate
+                {
+                    box_speedhack.Text = "Off";
+                });
+                isSpeedhackEnabled = false;
+            }
+        }
+        private void hotkeysFunction()
+        {
+            while (true)
+            {
+                bool isNumpad1Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD1);
+                bool isNumpad2Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD2);
+                bool isNumpad3Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD3);
+                bool isNumpad0Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD0);
+                bool isShiftPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT);
+
+                if (isNumpad1Pressed)
+                {
+                    if (box_Freecam.CheckState == CheckState.Unchecked)
+                    {
+                        box_Freecam.CheckState = CheckState.Checked;
+                    }
+                    else
+                    {
+                        box_Freecam.CheckState = CheckState.Unchecked;
+                    }
+                    Thread.Sleep(200);
+                }
+                if (isNumpad2Pressed)
+                {
+                    btn_tpToCam.PerformClick();
+                    Thread.Sleep(200);
+                }
+                if (isNumpad3Pressed)
+                {
+                    if (box_nofall.CheckState == CheckState.Unchecked)
+                    {
+                        box_nofall.CheckState = CheckState.Checked;
+                    }
+                    else
+                    {
+                        box_nofall.CheckState = CheckState.Unchecked;
+                    }
+                    Thread.Sleep(200);
+
+                }
+                if (isNumpad0Pressed)
+                {
+                    if (box_glide.CheckState == CheckState.Unchecked)
+                    {
+                        box_glide.CheckState = CheckState.Checked;
+                    }
+                    else
+                    {
+                        box_glide.CheckState = CheckState.Unchecked;
+                    }
+                    Thread.Sleep(200);
+                }
+                if (isShiftPressed)
+                {
+                    speedhackFunction();
+                    Thread.Sleep(200);
+                }
+            }
+        }
 
         //Trackbars
         private void trckbr_speed_Scroll(object sender, EventArgs e)
         {
-            m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString());
-            //BottomScroll
-            log_console.Focus();
-            log_console.ScrollToCaret();
-            log_console.SelectionLength = 0;
-            //BottomScroll
+            if(isSpeedhackEnabled)
+            {
+                m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString());
+                //BottomScroll
+                log_console.Focus();
+                log_console.ScrollToCaret();
+                log_console.SelectionLength = 0;
+                //BottomScroll
+            }
         }
         private void trck_opcacity_Scroll(object sender, EventArgs e)
         {
