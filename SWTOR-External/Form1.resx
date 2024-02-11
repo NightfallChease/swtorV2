@@ -235,34 +235,6 @@
         yV/8n1d/MW3evDnQ+Pn/kDTtfwBE7bvDaVnWNgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Update 6:
-• Added PlayerHeight changer
-• Added Freeze Y
-• Added Window-Opacity modifier
-
-Update 5:
-• Added TargetESP
-• Added Velocity Indicator
-• Improved general performance (no laggy gui)
-
-Update 4:
-• Fixed general crashes while using
-• Applied new speed to cams and tp
-
-Update 3:
-• Fixed planet switch bug (now you don't have to re-enable the script)
-• Improved general performance
-
-Update 2:
-• Added Freecam &amp; Speed
-• Fixed Teleport
-
-Update 1:
-• Added custom coords system
-• Fixed after new update
-</value>
-  </data>
   <metadata name="imageListMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>273, 17</value>
   </metadata>
@@ -271,7 +243,7 @@ Update 1:
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAK
-        DQAAAk1TRnQBSQFMAgEBBgEAASABAQEgAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAASgBAQEoAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -327,6 +299,34 @@ Update 1:
         Af8CAAHAAQECwQL/AgABgAEBA8EB/wIAAYABAALBAcgB/wIAAYABAALBAeABfwQAAaABAgHkAT8EAAGQ
         AQUB8gEfBAAByAELAfEBDwIAAYEBwAHkARMB+AGDAgABgAFgAfIBIwH8AUECAAGCAUEB+QFTAf8BEAIA
         AcEBQQH8AbMB/wHAAgAB4AEDAf4BcwH/AfACAAHwAQcE/wIAAf4BHwL/Cw==
+</value>
+  </data>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Update 6:
+• Added PlayerHeight changer
+• Added Freeze Y
+• Added Window-Opacity modifier
+
+Update 5:
+• Added TargetESP
+• Added Velocity Indicator
+• Improved general performance (no laggy gui)
+
+Update 4:
+• Fixed general crashes while using
+• Applied new speed to cams and tp
+
+Update 3:
+• Fixed planet switch bug (now you don't have to re-enable the script)
+• Improved general performance
+
+Update 2:
+• Added Freecam &amp; Speed
+• Fixed Teleport
+
+Update 1:
+• Added custom coords system
+• Fixed after new update
 </value>
   </data>
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

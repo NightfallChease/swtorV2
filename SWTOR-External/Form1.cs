@@ -138,9 +138,9 @@ namespace SWTOR_External
         {
             InitializeComponent();
 
-            Thread aobThread = new Thread(scanAOB);
-            Thread NumpadTeleportThread = new Thread(teleportNumpad);
-            Thread HotkeyThread = new Thread(hotkeysFunction);
+            Thread aobThread = new Thread(scanAOB) { IsBackground = true};
+            Thread NumpadTeleportThread = new Thread(teleportNumpad) { IsBackground = true };
+            Thread HotkeyThread = new Thread(hotkeysFunction) { IsBackground = true };
             //Thread pvpThread = new Thread(checkForPvP) { IsBackground = true , Priority = ThreadPriority.Lowest};
 
             //Design stuff 
@@ -905,6 +905,7 @@ namespace SWTOR_External
                 box_speedhack.Invoke((MethodInvoker)delegate
                 {
                     box_speedhack.Text = "On";
+                    box_speedhack.Checked = true;
                 });
                 isSpeedhackEnabled = true;
             }
@@ -913,6 +914,7 @@ namespace SWTOR_External
                 box_speedhack.Invoke((MethodInvoker)delegate
                 {
                     box_speedhack.Text = "Off";
+                    box_speedhack.Checked = false;
                 });
                 isSpeedhackEnabled = false;
             }
@@ -1100,5 +1102,6 @@ namespace SWTOR_External
         {
             logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:       Num3\r\n  Glide:       Num0\r\n");
         }
+
     }
 }
