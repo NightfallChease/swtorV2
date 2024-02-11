@@ -1100,7 +1100,7 @@ namespace SWTOR_External
         }
         private void btn_hotkeys_Click(object sender, EventArgs e)
         {
-            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:       Num3\r\n  Glide:       Num0\r\n");
+            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:        Num3\r\n   Glide:        Num0\r\n  Speed:       Shift\r\n"); ;
         }
 
     }
