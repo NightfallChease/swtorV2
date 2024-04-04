@@ -38,7 +38,6 @@
             this.box_speedhack = new System.Windows.Forms.CheckBox();
             this.box_glide = new System.Windows.Forms.CheckBox();
             this.lbl_CusCoord = new System.Windows.Forms.Label();
-            this.btn_hotkeys = new System.Windows.Forms.Button();
             this.lbl_Speed = new System.Windows.Forms.Label();
             this.trckbr_speed = new System.Windows.Forms.TrackBar();
             this.btn_cancelTP = new System.Windows.Forms.Button();
@@ -62,6 +61,28 @@
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbl_speedKey = new System.Windows.Forms.Label();
+            this.txtbox_speedKey = new System.Windows.Forms.TextBox();
+            this.lbl_glideKey = new System.Windows.Forms.Label();
+            this.txtbox_glideKey = new System.Windows.Forms.TextBox();
+            this.lbl_TpToCamKey = new System.Windows.Forms.Label();
+            this.txtbox_tpToCamKey = new System.Windows.Forms.TextBox();
+            this.lbl_nofallKey = new System.Windows.Forms.Label();
+            this.txtbox_nofallKey = new System.Windows.Forms.TextBox();
+            this.lbl_freecamKey = new System.Windows.Forms.Label();
+            this.txtbox_freecamKey = new System.Windows.Forms.TextBox();
+            this.lbl_tpBackw = new System.Windows.Forms.Label();
+            this.txtbox_TPBackwardKey = new System.Windows.Forms.TextBox();
+            this.lbl_tpForward = new System.Windows.Forms.Label();
+            this.txtbox_TPForwardKey = new System.Windows.Forms.TextBox();
+            this.lbl_tpRight = new System.Windows.Forms.Label();
+            this.txtbox_TPRightKey = new System.Windows.Forms.TextBox();
+            this.lbl_tpLeft = new System.Windows.Forms.Label();
+            this.txtbox_TPLeftKey = new System.Windows.Forms.TextBox();
+            this.lbl_tpDown = new System.Windows.Forms.Label();
+            this.txtbox_TPDowNkey = new System.Windows.Forms.TextBox();
+            this.lbl_tpUp = new System.Windows.Forms.Label();
+            this.txtbox_TPUpKey = new System.Windows.Forms.TextBox();
             this.trck_opcacity = new System.Windows.Forms.TrackBar();
             this.lbl_opacity = new System.Windows.Forms.Label();
             this.box_playerHeight = new System.Windows.Forms.TextBox();
@@ -130,7 +151,6 @@
             this.tabPage1.Controls.Add(this.box_speedhack);
             this.tabPage1.Controls.Add(this.box_glide);
             this.tabPage1.Controls.Add(this.lbl_CusCoord);
-            this.tabPage1.Controls.Add(this.btn_hotkeys);
             this.tabPage1.Controls.Add(this.lbl_Speed);
             this.tabPage1.Controls.Add(this.trckbr_speed);
             this.tabPage1.Controls.Add(this.btn_cancelTP);
@@ -193,16 +213,6 @@
             this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
             this.lbl_CusCoord.TabIndex = 25;
             this.lbl_CusCoord.Text = "Custom Coords:";
-            // 
-            // btn_hotkeys
-            // 
-            this.btn_hotkeys.Location = new System.Drawing.Point(144, 195);
-            this.btn_hotkeys.Name = "btn_hotkeys";
-            this.btn_hotkeys.Size = new System.Drawing.Size(55, 23);
-            this.btn_hotkeys.TabIndex = 24;
-            this.btn_hotkeys.Text = "Hotkeys";
-            this.btn_hotkeys.UseVisualStyleBackColor = true;
-            this.btn_hotkeys.Click += new System.EventHandler(this.btn_hotkeys_Click);
             // 
             // lbl_Speed
             // 
@@ -420,6 +430,28 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbl_speedKey);
+            this.tabPage2.Controls.Add(this.txtbox_speedKey);
+            this.tabPage2.Controls.Add(this.lbl_glideKey);
+            this.tabPage2.Controls.Add(this.txtbox_glideKey);
+            this.tabPage2.Controls.Add(this.lbl_TpToCamKey);
+            this.tabPage2.Controls.Add(this.txtbox_tpToCamKey);
+            this.tabPage2.Controls.Add(this.lbl_nofallKey);
+            this.tabPage2.Controls.Add(this.txtbox_nofallKey);
+            this.tabPage2.Controls.Add(this.lbl_freecamKey);
+            this.tabPage2.Controls.Add(this.txtbox_freecamKey);
+            this.tabPage2.Controls.Add(this.lbl_tpBackw);
+            this.tabPage2.Controls.Add(this.txtbox_TPBackwardKey);
+            this.tabPage2.Controls.Add(this.lbl_tpForward);
+            this.tabPage2.Controls.Add(this.txtbox_TPForwardKey);
+            this.tabPage2.Controls.Add(this.lbl_tpRight);
+            this.tabPage2.Controls.Add(this.txtbox_TPRightKey);
+            this.tabPage2.Controls.Add(this.lbl_tpLeft);
+            this.tabPage2.Controls.Add(this.txtbox_TPLeftKey);
+            this.tabPage2.Controls.Add(this.lbl_tpDown);
+            this.tabPage2.Controls.Add(this.txtbox_TPDowNkey);
+            this.tabPage2.Controls.Add(this.lbl_tpUp);
+            this.tabPage2.Controls.Add(this.txtbox_TPUpKey);
             this.tabPage2.Controls.Add(this.trck_opcacity);
             this.tabPage2.Controls.Add(this.lbl_opacity);
             this.tabPage2.Controls.Add(this.box_playerHeight);
@@ -436,6 +468,204 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lbl_speedKey
+            // 
+            this.lbl_speedKey.AutoSize = true;
+            this.lbl_speedKey.Location = new System.Drawing.Point(253, 320);
+            this.lbl_speedKey.Name = "lbl_speedKey";
+            this.lbl_speedKey.Size = new System.Drawing.Size(41, 13);
+            this.lbl_speedKey.TabIndex = 51;
+            this.lbl_speedKey.Text = "Speed:";
+            // 
+            // txtbox_speedKey
+            // 
+            this.txtbox_speedKey.Location = new System.Drawing.Point(310, 317);
+            this.txtbox_speedKey.Name = "txtbox_speedKey";
+            this.txtbox_speedKey.ReadOnly = true;
+            this.txtbox_speedKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_speedKey.TabIndex = 50;
+            this.txtbox_speedKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_speedKey_KeyDown);
+            // 
+            // lbl_glideKey
+            // 
+            this.lbl_glideKey.AutoSize = true;
+            this.lbl_glideKey.Location = new System.Drawing.Point(267, 298);
+            this.lbl_glideKey.Name = "lbl_glideKey";
+            this.lbl_glideKey.Size = new System.Drawing.Size(34, 13);
+            this.lbl_glideKey.TabIndex = 49;
+            this.lbl_glideKey.Text = "Glide:";
+            // 
+            // txtbox_glideKey
+            // 
+            this.txtbox_glideKey.Location = new System.Drawing.Point(310, 295);
+            this.txtbox_glideKey.Name = "txtbox_glideKey";
+            this.txtbox_glideKey.ReadOnly = true;
+            this.txtbox_glideKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_glideKey.TabIndex = 48;
+            this.txtbox_glideKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_glideKey_KeyDown);
+            // 
+            // lbl_TpToCamKey
+            // 
+            this.lbl_TpToCamKey.AutoSize = true;
+            this.lbl_TpToCamKey.Location = new System.Drawing.Point(244, 246);
+            this.lbl_TpToCamKey.Name = "lbl_TpToCamKey";
+            this.lbl_TpToCamKey.Size = new System.Drawing.Size(60, 13);
+            this.lbl_TpToCamKey.TabIndex = 47;
+            this.lbl_TpToCamKey.Text = "TP to Cam:";
+            // 
+            // txtbox_tpToCamKey
+            // 
+            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(310, 243);
+            this.txtbox_tpToCamKey.Name = "txtbox_tpToCamKey";
+            this.txtbox_tpToCamKey.ReadOnly = true;
+            this.txtbox_tpToCamKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_tpToCamKey.TabIndex = 46;
+            this.txtbox_tpToCamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_tpToCamKey_KeyDown);
+            // 
+            // lbl_nofallKey
+            // 
+            this.lbl_nofallKey.AutoSize = true;
+            this.lbl_nofallKey.Location = new System.Drawing.Point(267, 272);
+            this.lbl_nofallKey.Name = "lbl_nofallKey";
+            this.lbl_nofallKey.Size = new System.Drawing.Size(37, 13);
+            this.lbl_nofallKey.TabIndex = 45;
+            this.lbl_nofallKey.Text = "Nofall:";
+            // 
+            // txtbox_nofallKey
+            // 
+            this.txtbox_nofallKey.Location = new System.Drawing.Point(310, 269);
+            this.txtbox_nofallKey.Name = "txtbox_nofallKey";
+            this.txtbox_nofallKey.ReadOnly = true;
+            this.txtbox_nofallKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_nofallKey.TabIndex = 44;
+            this.txtbox_nofallKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_nofallKey_KeyDown);
+            // 
+            // lbl_freecamKey
+            // 
+            this.lbl_freecamKey.AutoSize = true;
+            this.lbl_freecamKey.Location = new System.Drawing.Point(253, 220);
+            this.lbl_freecamKey.Name = "lbl_freecamKey";
+            this.lbl_freecamKey.Size = new System.Drawing.Size(51, 13);
+            this.lbl_freecamKey.TabIndex = 43;
+            this.lbl_freecamKey.Text = "Freecam:";
+            // 
+            // txtbox_freecamKey
+            // 
+            this.txtbox_freecamKey.Location = new System.Drawing.Point(310, 217);
+            this.txtbox_freecamKey.Name = "txtbox_freecamKey";
+            this.txtbox_freecamKey.ReadOnly = true;
+            this.txtbox_freecamKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_freecamKey.TabIndex = 42;
+            this.txtbox_freecamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_freecamKey_KeyDown);
+            // 
+            // lbl_tpBackw
+            // 
+            this.lbl_tpBackw.AutoSize = true;
+            this.lbl_tpBackw.Location = new System.Drawing.Point(111, 350);
+            this.lbl_tpBackw.Name = "lbl_tpBackw";
+            this.lbl_tpBackw.Size = new System.Drawing.Size(80, 13);
+            this.lbl_tpBackw.TabIndex = 41;
+            this.lbl_tpBackw.Text = "TP Backwards:";
+            // 
+            // txtbox_TPBackwardKey
+            // 
+            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(194, 347);
+            this.txtbox_TPBackwardKey.Name = "txtbox_TPBackwardKey";
+            this.txtbox_TPBackwardKey.ReadOnly = true;
+            this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPBackwardKey.TabIndex = 40;
+            this.txtbox_TPBackwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPBackwardKey_KeyDown);
+            // 
+            // lbl_tpForward
+            // 
+            this.lbl_tpForward.AutoSize = true;
+            this.lbl_tpForward.Location = new System.Drawing.Point(126, 324);
+            this.lbl_tpForward.Name = "lbl_tpForward";
+            this.lbl_tpForward.Size = new System.Drawing.Size(65, 13);
+            this.lbl_tpForward.TabIndex = 39;
+            this.lbl_tpForward.Text = "TP Forward:";
+            // 
+            // txtbox_TPForwardKey
+            // 
+            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(194, 321);
+            this.txtbox_TPForwardKey.Name = "txtbox_TPForwardKey";
+            this.txtbox_TPForwardKey.ReadOnly = true;
+            this.txtbox_TPForwardKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPForwardKey.TabIndex = 38;
+            this.txtbox_TPForwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPForwardKey_KeyDown);
+            // 
+            // lbl_tpRight
+            // 
+            this.lbl_tpRight.AutoSize = true;
+            this.lbl_tpRight.Location = new System.Drawing.Point(136, 298);
+            this.lbl_tpRight.Name = "lbl_tpRight";
+            this.lbl_tpRight.Size = new System.Drawing.Size(55, 13);
+            this.lbl_tpRight.TabIndex = 37;
+            this.lbl_tpRight.Text = "TP Right: ";
+            // 
+            // txtbox_TPRightKey
+            // 
+            this.txtbox_TPRightKey.Location = new System.Drawing.Point(194, 295);
+            this.txtbox_TPRightKey.Name = "txtbox_TPRightKey";
+            this.txtbox_TPRightKey.ReadOnly = true;
+            this.txtbox_TPRightKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPRightKey.TabIndex = 36;
+            this.txtbox_TPRightKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPRightKey_KeyDown);
+            // 
+            // lbl_tpLeft
+            // 
+            this.lbl_tpLeft.AutoSize = true;
+            this.lbl_tpLeft.Location = new System.Drawing.Point(143, 272);
+            this.lbl_tpLeft.Name = "lbl_tpLeft";
+            this.lbl_tpLeft.Size = new System.Drawing.Size(45, 13);
+            this.lbl_tpLeft.TabIndex = 35;
+            this.lbl_tpLeft.Text = "TP Left:";
+            // 
+            // txtbox_TPLeftKey
+            // 
+            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(194, 269);
+            this.txtbox_TPLeftKey.Name = "txtbox_TPLeftKey";
+            this.txtbox_TPLeftKey.ReadOnly = true;
+            this.txtbox_TPLeftKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPLeftKey.TabIndex = 34;
+            this.txtbox_TPLeftKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPLeftKey_KeyDown);
+            // 
+            // lbl_tpDown
+            // 
+            this.lbl_tpDown.AutoSize = true;
+            this.lbl_tpDown.Location = new System.Drawing.Point(133, 246);
+            this.lbl_tpDown.Name = "lbl_tpDown";
+            this.lbl_tpDown.Size = new System.Drawing.Size(55, 13);
+            this.lbl_tpDown.TabIndex = 33;
+            this.lbl_tpDown.Text = "TP Down:";
+            // 
+            // txtbox_TPDowNkey
+            // 
+            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(194, 243);
+            this.txtbox_TPDowNkey.Name = "txtbox_TPDowNkey";
+            this.txtbox_TPDowNkey.ReadOnly = true;
+            this.txtbox_TPDowNkey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPDowNkey.TabIndex = 32;
+            this.txtbox_TPDowNkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPDowNkey_KeyDown);
+            // 
+            // lbl_tpUp
+            // 
+            this.lbl_tpUp.AutoSize = true;
+            this.lbl_tpUp.Location = new System.Drawing.Point(147, 220);
+            this.lbl_tpUp.Name = "lbl_tpUp";
+            this.lbl_tpUp.Size = new System.Drawing.Size(41, 13);
+            this.lbl_tpUp.TabIndex = 31;
+            this.lbl_tpUp.Text = "TP Up:";
+            // 
+            // txtbox_TPUpKey
+            // 
+            this.txtbox_TPUpKey.Location = new System.Drawing.Point(194, 217);
+            this.txtbox_TPUpKey.Name = "txtbox_TPUpKey";
+            this.txtbox_TPUpKey.ReadOnly = true;
+            this.txtbox_TPUpKey.Size = new System.Drawing.Size(52, 20);
+            this.txtbox_TPUpKey.TabIndex = 30;
+            this.txtbox_TPUpKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TpUpHotkey_KeyDown);
             // 
             // trck_opcacity
             // 
@@ -616,13 +846,34 @@
         private System.Windows.Forms.CheckBox box_esp;
         private System.Windows.Forms.CheckBox box_dotEsp;
         private System.Windows.Forms.Label lbl_CusCoord;
-        private System.Windows.Forms.Button btn_hotkeys;
         private System.Windows.Forms.Label lbl_HeightNormal;
         private System.Windows.Forms.TextBox box_playerHeight;
         private System.Windows.Forms.CheckBox box_glide;
         private System.Windows.Forms.Label lbl_opacity;
         private System.Windows.Forms.TrackBar trck_opcacity;
         private System.Windows.Forms.CheckBox box_speedhack;
+        private System.Windows.Forms.TextBox txtbox_TPUpKey;
+        private System.Windows.Forms.Label lbl_tpBackw;
+        private System.Windows.Forms.TextBox txtbox_TPBackwardKey;
+        private System.Windows.Forms.Label lbl_tpForward;
+        private System.Windows.Forms.TextBox txtbox_TPForwardKey;
+        private System.Windows.Forms.Label lbl_tpRight;
+        private System.Windows.Forms.TextBox txtbox_TPRightKey;
+        private System.Windows.Forms.Label lbl_tpLeft;
+        private System.Windows.Forms.TextBox txtbox_TPLeftKey;
+        private System.Windows.Forms.Label lbl_tpDown;
+        private System.Windows.Forms.TextBox txtbox_TPDowNkey;
+        private System.Windows.Forms.Label lbl_tpUp;
+        private System.Windows.Forms.Label lbl_glideKey;
+        private System.Windows.Forms.TextBox txtbox_glideKey;
+        private System.Windows.Forms.Label lbl_TpToCamKey;
+        private System.Windows.Forms.TextBox txtbox_tpToCamKey;
+        private System.Windows.Forms.Label lbl_nofallKey;
+        private System.Windows.Forms.TextBox txtbox_nofallKey;
+        private System.Windows.Forms.Label lbl_freecamKey;
+        private System.Windows.Forms.TextBox txtbox_freecamKey;
+        private System.Windows.Forms.Label lbl_speedKey;
+        private System.Windows.Forms.TextBox txtbox_speedKey;
     }
 }
 

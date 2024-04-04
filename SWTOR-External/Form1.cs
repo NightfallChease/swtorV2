@@ -17,6 +17,7 @@ using MaterialSkin.Controls;
 using Memory;
 using Microsoft.Win32;
 using WindowsInput;
+using WindowsInput.Native;
 
 namespace SWTOR_External
 {
@@ -125,6 +126,17 @@ namespace SWTOR_External
         private bool isPVPEnabled = false;
         private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
         private bool isSpeedhackEnabled = false;
+        private VirtualKeyCode TPUpKey;
+        private VirtualKeyCode TPDownKey;        
+        private VirtualKeyCode TPLeftKey;
+        private VirtualKeyCode TPRightKey;
+        private VirtualKeyCode TPForwardKey;
+        private VirtualKeyCode TPBackwardKey;
+        private VirtualKeyCode FreecamKey;
+        private VirtualKeyCode TPToCamKey;
+        private VirtualKeyCode NofallKey;
+        private VirtualKeyCode GlideKey;
+        private VirtualKeyCode SpeedKey;
 
 
         /*
@@ -552,41 +564,39 @@ namespace SWTOR_External
                 float playerYCoord = m.ReadFloat(yAddrString);
                 float playerZCoord = m.ReadFloat(zAddrString);
 
-                bool isNumpadUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD7);
-                bool isNumpadDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD4);
-                bool isNumpadXUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD8);
-                bool isNumpadXDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD5);
-                bool isNumpadZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD9);
-                bool isNumpadZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD6);
+                bool isTPUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPUpKey);
+                bool isTPDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPDownKey);
+                bool isTPXUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPLeftKey);
+                bool isTPXDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPRightKey);
+                bool isTPZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPForwardKey);
+                bool isTPZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPBackwardKey);
 
-                if (isNumpadUpPressed)
+                if (isTPUpPressed)
                 {
                     m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString());
                 }
-                if (isNumpadDownPressed)
+                if (isTPDownPressed)
                 {
                     m.WriteMemory(yAddrString, "float", (playerYCoord - 0.25f).ToString());
                 }
-                if (isNumpadXUpPressed)
+                if (isTPXUpPressed)
                 {
                     m.WriteMemory(xAddrString, "float", (playerXCoord + 0.25f).ToString());
                 }
-                if (isNumpadXDownPressed)
+                if (isTPXDownPressed)
                 {
                     m.WriteMemory(xAddrString, "float", (playerXCoord - 0.25f).ToString());
                 }
-                if (isNumpadZUpPressed)
+                if (isTPZUpPressed)
                 {
                     m.WriteMemory(zAddrString, "float", (playerZCoord + 0.25f).ToString());
                 }
-                if (isNumpadZDownPressed)
+                if (isTPZDownPressed)
                 {
                     m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString());
                 }
                 Thread.Sleep(200);
             }
-            
-
         }
         private string convertUintToHexString(UIntPtr uintToConvert)
         {
@@ -919,63 +929,130 @@ namespace SWTOR_External
                 isSpeedhackEnabled = false;
             }
         }
+        private void tpToCam()
+        {
+            savedX = m.ReadFloat(xCamAddrString);
+            savedY = m.ReadFloat(yCamAddrString);
+            savedZ = m.ReadFloat(zCamAddrString);
+
+
+            log_console.Text = log_console.Text + $"\r\n\r\nTeleported to camera";
+            //BottomScroll
+            log_console.Focus();
+            log_console.ScrollToCaret();
+            log_console.SelectionLength = 0;
+            //BottomScroll
+
+            saveflag = true;
+
+            tpflag = true;
+            box_nofall.Checked = true;
+        }
         private void hotkeysFunction()
         {
             while (true)
             {
-                bool isNumpad1Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD1);
-                bool isNumpad2Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD2);
-                bool isNumpad3Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD3);
-                bool isNumpad0Pressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.NUMPAD0);
-                bool isShiftPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT);
+                bool isFreecamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(FreecamKey);
+                bool isTPToCamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(TPToCamKey);
+                bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
+                bool isGlideKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(GlideKey);
+                bool isSpeedKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(SpeedKey);
 
-                if (isNumpad1Pressed)
+                try
                 {
-                    if (box_Freecam.CheckState == CheckState.Unchecked)
+                    if (isFreecamKeyPressed)
                     {
-                        box_Freecam.CheckState = CheckState.Checked;
+                        ///////////FreecamCompabilityFix
+                        if (!cameraYPatched)
+                        {
+                            m.WriteBytes(cameraYUInt, cameraYPatchedBytes);
+                            //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Restored";
+                            cameraYPatched = true;
+                        }
+                        else
+                        {
+                            m.WriteBytes(cameraYUInt, cameraYBytes);
+                            //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Patched";
+                            cameraYPatched = false;
+                        }
+
+                        if (!cameraZPatched)
+                        {
+                            m.WriteBytes(cameraZUInt, cameraZPatchedBytes);
+                            //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Restored";
+                            cameraZPatched = true;
+                        }
+                        else
+                        {
+                            m.WriteBytes(cameraZUInt, cameraZBytes);
+                            //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Patched";
+                            cameraZPatched = false;
+                        }
+                        //Dont touch code above, important for freecam
+
+                        if (!freeCamEnabled)
+                        {
+                            freeCamEnabled = true;
+                        }
+                        else
+                        {
+                            freeCamEnabled = false;
+                        }
+                        ///////////FreecamCompabilityFix
+                        if (box_Freecam.CheckState == CheckState.Unchecked)
+                        {
+                            box_Freecam.CheckState = CheckState.Checked;
+                        }
+                        else
+                        {
+                            box_Freecam.CheckState = CheckState.Unchecked;
+                        }
+                        Thread.Sleep(200);
                     }
-                    else
+                    if (isTPToCamKeyPressed)
                     {
-                        box_Freecam.CheckState = CheckState.Unchecked;
+                        btn_tpToCam.PerformClick();
+                        Thread.Sleep(200);
                     }
-                    Thread.Sleep(200);
+                    if (isNofallKeyPressed)
+                    {
+                        nofallFunction();
+                        if (box_nofall.CheckState == CheckState.Unchecked)
+                        {
+                            box_nofall.CheckState = CheckState.Checked;
+                        }
+                        else
+                        {
+                            box_nofall.CheckState = CheckState.Unchecked;
+                        }
+                        Thread.Sleep(200);
+
+                    }
+                    if (isGlideKeyPressed)
+                    {
+                        doglide();
+                        if (box_glide.CheckState == CheckState.Unchecked)
+                        {
+                            box_glide.CheckState = CheckState.Checked;
+                        }
+                        else
+                        {
+                            box_glide.CheckState = CheckState.Unchecked;
+                        }
+                        Thread.Sleep(200);
+                    }
+                    if (isSpeedKeyPressed)
+                    {
+                        speedhackFunction();
+                        Thread.Sleep(200);
+                    }
                 }
-                if (isNumpad2Pressed)
+                catch
                 {
-                    btn_tpToCam.PerformClick();
-                    Thread.Sleep(200);
-                }
-                if (isNumpad3Pressed)
-                {
-                    if (box_nofall.CheckState == CheckState.Unchecked)
-                    {
-                        box_nofall.CheckState = CheckState.Checked;
-                    }
-                    else
-                    {
-                        box_nofall.CheckState = CheckState.Unchecked;
-                    }
-                    Thread.Sleep(200);
 
                 }
-                if (isNumpad0Pressed)
-                {
-                    if (box_glide.CheckState == CheckState.Unchecked)
-                    {
-                        box_glide.CheckState = CheckState.Checked;
-                    }
-                    else
-                    {
-                        box_glide.CheckState = CheckState.Unchecked;
-                    }
-                    Thread.Sleep(200);
-                }
-                if (isShiftPressed)
-                {
-                    speedhackFunction();
-                    Thread.Sleep(200);
-                }
+
+
             }
         }
 
@@ -1043,23 +1120,7 @@ namespace SWTOR_External
         }
         private void btn_tpToCam_Click(object sender, EventArgs e)
         {
-            savedX = m.ReadFloat(xCamAddrString);
-            savedY = m.ReadFloat(yCamAddrString);
-            savedZ = m.ReadFloat(zCamAddrString);
-
-
-            log_console.Text = log_console.Text + $"\r\n\r\nTeleported to camera";
-            //BottomScroll
-            log_console.Focus();
-            log_console.ScrollToCaret();
-            log_console.SelectionLength = 0;
-            //BottomScroll
-
-            saveflag = true;
-
-            tpflag = true;
-            box_nofall.Checked = true;
-
+            tpToCam();
         }
         private void btn_teleport_Click(object sender, EventArgs e)
         {
@@ -1098,10 +1159,62 @@ namespace SWTOR_External
             tpflag = false;
             nofallFunction();
         }
-        private void btn_hotkeys_Click(object sender, EventArgs e)
+        //Assign Hotkeys
+        private void txtbox_TpUpHotkey_KeyDown(object sender, KeyEventArgs e)
         {
-            logToConsole("Hotkeys:\r\n\r\n TP:\r\n  X: Num8 / Num5\r\n  Y: Num7 / Num4\r\n  Z: Num9 / Num6\r\n\r\n Freecam:\r\n  Forward:     ArrowUp\r\n  Backwards: ArrowDwn\r\n  Up:               Shift\r\n  Down:          Ctrl \r\n\r\n General:\r\n  Freecam:   Num1\r\n  TpToCam: Num2\r\n  Nofall:        Num3\r\n   Glide:        Num0\r\n  Speed:       Shift\r\n"); ;
+            //TPUpKey == VirtualKeyCode
+            TPUpKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPUpKey.Text = TPUpKey.ToString();
         }
-
+        private void txtbox_TPDowNkey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPDownKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPDowNkey.Text = TPDownKey.ToString();
+        }
+        private void txtbox_TPLeftKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPLeftKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPLeftKey.Text = TPLeftKey.ToString();
+        }
+        private void txtbox_TPRightKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPRightKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPRightKey.Text = TPRightKey.ToString();
+        }
+        private void txtbox_TPForwardKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPForwardKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPForwardKey.Text = TPForwardKey.ToString();
+        }
+        private void txtbox_TPBackwardKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPBackwardKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_TPBackwardKey.Text = TPBackwardKey.ToString();
+        }
+        private void txtbox_freecamKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            FreecamKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_freecamKey.Text = FreecamKey.ToString();
+        }
+        private void txtbox_tpToCamKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            TPToCamKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_tpToCamKey.Text = TPToCamKey.ToString();
+        }
+        private void txtbox_nofallKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            NofallKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_nofallKey.Text = NofallKey.ToString();
+        }
+        private void txtbox_glideKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            GlideKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_glideKey.Text = GlideKey.ToString();
+        }
+        private void txtbox_speedKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            SpeedKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_speedKey.Text = SpeedKey.ToString();
+        }
     }
 }
