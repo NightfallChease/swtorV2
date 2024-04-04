@@ -27,7 +27,7 @@ namespace SWTOR_External
         InputSimulator sim = new InputSimulator();
 
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version6.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.sw";
         private string PlayerBaseAddress = "";
         private string CamBaseAddress = "";
         private UIntPtr playerBaseUInt;

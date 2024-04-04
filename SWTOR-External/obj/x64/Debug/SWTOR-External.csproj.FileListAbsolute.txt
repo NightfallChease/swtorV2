@@ -8,8 +8,8 @@ C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTO
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.csproj.CoreCompileInputs.cache
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.exe
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.pdb
-C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.csproj.CopyComplete
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\x64\Debug\Memory.xml
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\x64\Debug\WindowsInput.xml
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.csproj.Fody.CopyLocal.cache
+C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-Ex.F4DBA39C.Up2Date
