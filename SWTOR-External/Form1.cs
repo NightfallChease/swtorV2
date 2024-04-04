@@ -28,7 +28,7 @@ namespace SWTOR_External
         InputSimulator sim = new InputSimulator();
 
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.1.sw";
         private string PlayerBaseAddress = "";
         private string CamBaseAddress = "";
         private UIntPtr playerBaseUInt;
@@ -670,7 +670,7 @@ namespace SWTOR_External
                 if (!response.IsSuccessStatusCode)
                 {
 
-                    MessageBox.Show("Your tool is outdated please dm nightfallct on discord");
+                    MessageBox.Show("Your tool is outdated. Please download a new version from the discord");
                     Environment.Exit(1);
                 }
                 else

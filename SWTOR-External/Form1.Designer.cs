@@ -95,6 +95,8 @@
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
+            this.lbl_customHks = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -102,6 +104,7 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
             this.Notes.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_about
@@ -430,28 +433,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lbl_speedKey);
-            this.tabPage2.Controls.Add(this.txtbox_speedKey);
-            this.tabPage2.Controls.Add(this.lbl_glideKey);
-            this.tabPage2.Controls.Add(this.txtbox_glideKey);
-            this.tabPage2.Controls.Add(this.lbl_TpToCamKey);
-            this.tabPage2.Controls.Add(this.txtbox_tpToCamKey);
-            this.tabPage2.Controls.Add(this.lbl_nofallKey);
-            this.tabPage2.Controls.Add(this.txtbox_nofallKey);
-            this.tabPage2.Controls.Add(this.lbl_freecamKey);
-            this.tabPage2.Controls.Add(this.txtbox_freecamKey);
-            this.tabPage2.Controls.Add(this.lbl_tpBackw);
-            this.tabPage2.Controls.Add(this.txtbox_TPBackwardKey);
-            this.tabPage2.Controls.Add(this.lbl_tpForward);
-            this.tabPage2.Controls.Add(this.txtbox_TPForwardKey);
-            this.tabPage2.Controls.Add(this.lbl_tpRight);
-            this.tabPage2.Controls.Add(this.txtbox_TPRightKey);
-            this.tabPage2.Controls.Add(this.lbl_tpLeft);
-            this.tabPage2.Controls.Add(this.txtbox_TPLeftKey);
-            this.tabPage2.Controls.Add(this.lbl_tpDown);
-            this.tabPage2.Controls.Add(this.txtbox_TPDowNkey);
-            this.tabPage2.Controls.Add(this.lbl_tpUp);
-            this.tabPage2.Controls.Add(this.txtbox_TPUpKey);
+            this.tabPage2.Controls.Add(this.panel1);
             this.tabPage2.Controls.Add(this.trck_opcacity);
             this.tabPage2.Controls.Add(this.lbl_opacity);
             this.tabPage2.Controls.Add(this.box_playerHeight);
@@ -472,7 +454,7 @@
             // lbl_speedKey
             // 
             this.lbl_speedKey.AutoSize = true;
-            this.lbl_speedKey.Location = new System.Drawing.Point(253, 320);
+            this.lbl_speedKey.Location = new System.Drawing.Point(145, 138);
             this.lbl_speedKey.Name = "lbl_speedKey";
             this.lbl_speedKey.Size = new System.Drawing.Size(41, 13);
             this.lbl_speedKey.TabIndex = 51;
@@ -480,7 +462,7 @@
             // 
             // txtbox_speedKey
             // 
-            this.txtbox_speedKey.Location = new System.Drawing.Point(310, 317);
+            this.txtbox_speedKey.Location = new System.Drawing.Point(202, 135);
             this.txtbox_speedKey.Name = "txtbox_speedKey";
             this.txtbox_speedKey.ReadOnly = true;
             this.txtbox_speedKey.Size = new System.Drawing.Size(52, 20);
@@ -490,7 +472,7 @@
             // lbl_glideKey
             // 
             this.lbl_glideKey.AutoSize = true;
-            this.lbl_glideKey.Location = new System.Drawing.Point(267, 298);
+            this.lbl_glideKey.Location = new System.Drawing.Point(159, 116);
             this.lbl_glideKey.Name = "lbl_glideKey";
             this.lbl_glideKey.Size = new System.Drawing.Size(34, 13);
             this.lbl_glideKey.TabIndex = 49;
@@ -498,7 +480,7 @@
             // 
             // txtbox_glideKey
             // 
-            this.txtbox_glideKey.Location = new System.Drawing.Point(310, 295);
+            this.txtbox_glideKey.Location = new System.Drawing.Point(202, 113);
             this.txtbox_glideKey.Name = "txtbox_glideKey";
             this.txtbox_glideKey.ReadOnly = true;
             this.txtbox_glideKey.Size = new System.Drawing.Size(52, 20);
@@ -508,7 +490,7 @@
             // lbl_TpToCamKey
             // 
             this.lbl_TpToCamKey.AutoSize = true;
-            this.lbl_TpToCamKey.Location = new System.Drawing.Point(244, 246);
+            this.lbl_TpToCamKey.Location = new System.Drawing.Point(136, 64);
             this.lbl_TpToCamKey.Name = "lbl_TpToCamKey";
             this.lbl_TpToCamKey.Size = new System.Drawing.Size(60, 13);
             this.lbl_TpToCamKey.TabIndex = 47;
@@ -516,7 +498,7 @@
             // 
             // txtbox_tpToCamKey
             // 
-            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(310, 243);
+            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(202, 61);
             this.txtbox_tpToCamKey.Name = "txtbox_tpToCamKey";
             this.txtbox_tpToCamKey.ReadOnly = true;
             this.txtbox_tpToCamKey.Size = new System.Drawing.Size(52, 20);
@@ -526,7 +508,7 @@
             // lbl_nofallKey
             // 
             this.lbl_nofallKey.AutoSize = true;
-            this.lbl_nofallKey.Location = new System.Drawing.Point(267, 272);
+            this.lbl_nofallKey.Location = new System.Drawing.Point(159, 90);
             this.lbl_nofallKey.Name = "lbl_nofallKey";
             this.lbl_nofallKey.Size = new System.Drawing.Size(37, 13);
             this.lbl_nofallKey.TabIndex = 45;
@@ -534,7 +516,7 @@
             // 
             // txtbox_nofallKey
             // 
-            this.txtbox_nofallKey.Location = new System.Drawing.Point(310, 269);
+            this.txtbox_nofallKey.Location = new System.Drawing.Point(202, 87);
             this.txtbox_nofallKey.Name = "txtbox_nofallKey";
             this.txtbox_nofallKey.ReadOnly = true;
             this.txtbox_nofallKey.Size = new System.Drawing.Size(52, 20);
@@ -544,7 +526,7 @@
             // lbl_freecamKey
             // 
             this.lbl_freecamKey.AutoSize = true;
-            this.lbl_freecamKey.Location = new System.Drawing.Point(253, 220);
+            this.lbl_freecamKey.Location = new System.Drawing.Point(145, 38);
             this.lbl_freecamKey.Name = "lbl_freecamKey";
             this.lbl_freecamKey.Size = new System.Drawing.Size(51, 13);
             this.lbl_freecamKey.TabIndex = 43;
@@ -552,7 +534,7 @@
             // 
             // txtbox_freecamKey
             // 
-            this.txtbox_freecamKey.Location = new System.Drawing.Point(310, 217);
+            this.txtbox_freecamKey.Location = new System.Drawing.Point(202, 35);
             this.txtbox_freecamKey.Name = "txtbox_freecamKey";
             this.txtbox_freecamKey.ReadOnly = true;
             this.txtbox_freecamKey.Size = new System.Drawing.Size(52, 20);
@@ -562,7 +544,7 @@
             // lbl_tpBackw
             // 
             this.lbl_tpBackw.AutoSize = true;
-            this.lbl_tpBackw.Location = new System.Drawing.Point(111, 350);
+            this.lbl_tpBackw.Location = new System.Drawing.Point(3, 168);
             this.lbl_tpBackw.Name = "lbl_tpBackw";
             this.lbl_tpBackw.Size = new System.Drawing.Size(80, 13);
             this.lbl_tpBackw.TabIndex = 41;
@@ -570,7 +552,7 @@
             // 
             // txtbox_TPBackwardKey
             // 
-            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(194, 347);
+            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(86, 165);
             this.txtbox_TPBackwardKey.Name = "txtbox_TPBackwardKey";
             this.txtbox_TPBackwardKey.ReadOnly = true;
             this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(52, 20);
@@ -580,7 +562,7 @@
             // lbl_tpForward
             // 
             this.lbl_tpForward.AutoSize = true;
-            this.lbl_tpForward.Location = new System.Drawing.Point(126, 324);
+            this.lbl_tpForward.Location = new System.Drawing.Point(18, 142);
             this.lbl_tpForward.Name = "lbl_tpForward";
             this.lbl_tpForward.Size = new System.Drawing.Size(65, 13);
             this.lbl_tpForward.TabIndex = 39;
@@ -588,7 +570,7 @@
             // 
             // txtbox_TPForwardKey
             // 
-            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(194, 321);
+            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(86, 139);
             this.txtbox_TPForwardKey.Name = "txtbox_TPForwardKey";
             this.txtbox_TPForwardKey.ReadOnly = true;
             this.txtbox_TPForwardKey.Size = new System.Drawing.Size(52, 20);
@@ -598,7 +580,7 @@
             // lbl_tpRight
             // 
             this.lbl_tpRight.AutoSize = true;
-            this.lbl_tpRight.Location = new System.Drawing.Point(136, 298);
+            this.lbl_tpRight.Location = new System.Drawing.Point(28, 116);
             this.lbl_tpRight.Name = "lbl_tpRight";
             this.lbl_tpRight.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpRight.TabIndex = 37;
@@ -606,7 +588,7 @@
             // 
             // txtbox_TPRightKey
             // 
-            this.txtbox_TPRightKey.Location = new System.Drawing.Point(194, 295);
+            this.txtbox_TPRightKey.Location = new System.Drawing.Point(86, 113);
             this.txtbox_TPRightKey.Name = "txtbox_TPRightKey";
             this.txtbox_TPRightKey.ReadOnly = true;
             this.txtbox_TPRightKey.Size = new System.Drawing.Size(52, 20);
@@ -616,7 +598,7 @@
             // lbl_tpLeft
             // 
             this.lbl_tpLeft.AutoSize = true;
-            this.lbl_tpLeft.Location = new System.Drawing.Point(143, 272);
+            this.lbl_tpLeft.Location = new System.Drawing.Point(35, 90);
             this.lbl_tpLeft.Name = "lbl_tpLeft";
             this.lbl_tpLeft.Size = new System.Drawing.Size(45, 13);
             this.lbl_tpLeft.TabIndex = 35;
@@ -624,7 +606,7 @@
             // 
             // txtbox_TPLeftKey
             // 
-            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(194, 269);
+            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(86, 87);
             this.txtbox_TPLeftKey.Name = "txtbox_TPLeftKey";
             this.txtbox_TPLeftKey.ReadOnly = true;
             this.txtbox_TPLeftKey.Size = new System.Drawing.Size(52, 20);
@@ -634,7 +616,7 @@
             // lbl_tpDown
             // 
             this.lbl_tpDown.AutoSize = true;
-            this.lbl_tpDown.Location = new System.Drawing.Point(133, 246);
+            this.lbl_tpDown.Location = new System.Drawing.Point(25, 64);
             this.lbl_tpDown.Name = "lbl_tpDown";
             this.lbl_tpDown.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpDown.TabIndex = 33;
@@ -642,7 +624,7 @@
             // 
             // txtbox_TPDowNkey
             // 
-            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(194, 243);
+            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(86, 61);
             this.txtbox_TPDowNkey.Name = "txtbox_TPDowNkey";
             this.txtbox_TPDowNkey.ReadOnly = true;
             this.txtbox_TPDowNkey.Size = new System.Drawing.Size(52, 20);
@@ -652,7 +634,7 @@
             // lbl_tpUp
             // 
             this.lbl_tpUp.AutoSize = true;
-            this.lbl_tpUp.Location = new System.Drawing.Point(147, 220);
+            this.lbl_tpUp.Location = new System.Drawing.Point(39, 38);
             this.lbl_tpUp.Name = "lbl_tpUp";
             this.lbl_tpUp.Size = new System.Drawing.Size(41, 13);
             this.lbl_tpUp.TabIndex = 31;
@@ -660,7 +642,7 @@
             // 
             // txtbox_TPUpKey
             // 
-            this.txtbox_TPUpKey.Location = new System.Drawing.Point(194, 217);
+            this.txtbox_TPUpKey.Location = new System.Drawing.Point(86, 35);
             this.txtbox_TPUpKey.Name = "txtbox_TPUpKey";
             this.txtbox_TPUpKey.ReadOnly = true;
             this.txtbox_TPUpKey.Size = new System.Drawing.Size(52, 20);
@@ -778,6 +760,47 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
+            // lbl_customHks
+            // 
+            this.lbl_customHks.AutoSize = true;
+            this.lbl_customHks.Location = new System.Drawing.Point(3, 9);
+            this.lbl_customHks.Name = "lbl_customHks";
+            this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
+            this.lbl_customHks.TabIndex = 52;
+            this.lbl_customHks.Text = "Custom Hotkeys:";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbl_speedKey);
+            this.panel1.Controls.Add(this.lbl_customHks);
+            this.panel1.Controls.Add(this.txtbox_speedKey);
+            this.panel1.Controls.Add(this.lbl_glideKey);
+            this.panel1.Controls.Add(this.txtbox_glideKey);
+            this.panel1.Controls.Add(this.lbl_TpToCamKey);
+            this.panel1.Controls.Add(this.txtbox_tpToCamKey);
+            this.panel1.Controls.Add(this.lbl_nofallKey);
+            this.panel1.Controls.Add(this.txtbox_nofallKey);
+            this.panel1.Controls.Add(this.lbl_freecamKey);
+            this.panel1.Controls.Add(this.txtbox_freecamKey);
+            this.panel1.Controls.Add(this.lbl_tpBackw);
+            this.panel1.Controls.Add(this.txtbox_TPBackwardKey);
+            this.panel1.Controls.Add(this.lbl_tpForward);
+            this.panel1.Controls.Add(this.txtbox_TPForwardKey);
+            this.panel1.Controls.Add(this.lbl_tpRight);
+            this.panel1.Controls.Add(this.txtbox_TPRightKey);
+            this.panel1.Controls.Add(this.lbl_tpLeft);
+            this.panel1.Controls.Add(this.txtbox_TPLeftKey);
+            this.panel1.Controls.Add(this.lbl_tpDown);
+            this.panel1.Controls.Add(this.txtbox_TPDowNkey);
+            this.panel1.Controls.Add(this.lbl_tpUp);
+            this.panel1.Controls.Add(this.txtbox_TPUpKey);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Location = new System.Drawing.Point(105, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(262, 197);
+            this.panel1.TabIndex = 53;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,6 +825,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
             this.Notes.ResumeLayout(false);
             this.Notes.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -874,6 +899,8 @@
         private System.Windows.Forms.TextBox txtbox_freecamKey;
         private System.Windows.Forms.Label lbl_speedKey;
         private System.Windows.Forms.TextBox txtbox_speedKey;
+        private System.Windows.Forms.Label lbl_customHks;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
