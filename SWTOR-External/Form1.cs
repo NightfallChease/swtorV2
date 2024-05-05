@@ -1,10 +1,13 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,9 +18,11 @@ using System.Windows.Forms.VisualStyles;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Memory;
+using Microsoft.CSharp;
 using Microsoft.Win32;
 using WindowsInput;
 using WindowsInput.Native;
+using Microsoft.CSharp;
 
 namespace SWTOR_External
 {
@@ -27,8 +32,9 @@ namespace SWTOR_External
         Mem m = new Mem();
         InputSimulator sim = new InputSimulator();
 
+        #region vars
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.1.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.2.sw";
         private string PlayerBaseAddress = "";
         private string CamBaseAddress = "";
         private UIntPtr playerBaseUInt;
@@ -137,7 +143,7 @@ namespace SWTOR_External
         private VirtualKeyCode NofallKey;
         private VirtualKeyCode GlideKey;
         private VirtualKeyCode SpeedKey;
-
+        #endregion
 
         /*
         Todo:
@@ -179,17 +185,22 @@ namespace SWTOR_External
                 m.OpenProcess(PID);
                 log_console.Text = log_console.Text + "\r\nConnected to PID: " + PID + "\r\n";
             }
-            else
-            {
-                MessageBox.Show("Process not found...");
-                Environment.Exit(0);
-            }
+            //else
+            //{
+            //    MessageBox.Show("Process not found...");
+            //    Environment.Exit(0);
+            //}
 
             aobThread.Start();
             NumpadTeleportThread.Start();
             HotkeyThread.Start();
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
+        }
+
+        public interface ICard
+        {
+            string GetCardInfo();
         }
 
         //Timer
@@ -1216,5 +1227,57 @@ namespace SWTOR_External
             SpeedKey = (VirtualKeyCode)e.KeyCode;
             txtbox_speedKey.Text = SpeedKey.ToString();
         }
+
+        private void btn_runScript_Click(object sender, EventArgs e)
+        {
+            string scriptCode = txtbox_script.Text;
+            // Execute the script code
+            ExecuteScript(scriptCode);
+        }
+
+        private void ExecuteScript(string scriptCode)
+{
+            try
+            {
+                // Wrap the script code inside a method
+                scriptCode = $"class ScriptClass {{ public static void ScriptMethod() {{ {scriptCode} }} }}";
+
+                // Inject the necessary using statements to the script code
+                scriptCode = "using System; using System.Windows.Forms; " + scriptCode;
+
+                // Compile the script code
+                var compilerResults = CodeDomProvider.CreateProvider("CSharp").CompileAssemblyFromSource(new System.CodeDom.Compiler.CompilerParameters()
+                {
+                    GenerateInMemory = true,
+                    GenerateExecutable = false,
+                    ReferencedAssemblies = { "System.Windows.Forms.dll", "Memory.dll" } // Explicitly reference the System.Windows.Forms assembly
+                }, scriptCode);
+
+                // Check for compilation errors
+                if (compilerResults.Errors.HasErrors)
+                {
+                    string errors = "Compilation failed:";
+                    foreach (System.CodeDom.Compiler.CompilerError error in compilerResults.Errors)
+                    {
+                        errors += "\n" + error.ErrorText;
+                    }
+                    MessageBox.Show(errors);
+                    return;
+                }
+
+                // Get the compiled assembly
+                Assembly assembly = compilerResults.CompiledAssembly;
+
+                // Execute the script code
+                var method = assembly.GetType("ScriptClass").GetMethod("ScriptMethod");
+                method.Invoke(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while executing the script: " + ex.Message);
+            }
+        }
+     
+
     }
 }

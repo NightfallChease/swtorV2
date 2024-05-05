@@ -33,7 +33,7 @@
             this.btn_about = new System.Windows.Forms.Button();
             this.lbl_title = new System.Windows.Forms.Label();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab_List = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.box_speedhack = new System.Windows.Forms.CheckBox();
             this.box_glide = new System.Windows.Forms.CheckBox();
@@ -61,7 +61,9 @@
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_speedKey = new System.Windows.Forms.Label();
+            this.lbl_customHks = new System.Windows.Forms.Label();
             this.txtbox_speedKey = new System.Windows.Forms.TextBox();
             this.lbl_glideKey = new System.Windows.Forms.Label();
             this.txtbox_glideKey = new System.Windows.Forms.TextBox();
@@ -90,21 +92,20 @@
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
-            this.Notes = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.lbl_customHks = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1.SuspendLayout();
+            this.tab_Scripts = new System.Windows.Forms.TabPage();
+            this.txtbox_script = new System.Windows.Forms.TextBox();
+            this.btn_runScript = new System.Windows.Forms.Button();
+            this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
-            this.Notes.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
+            this.tab_Scripts.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_about
@@ -135,18 +136,18 @@
             this.mainTimer.Interval = 10;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick_1);
             // 
-            // tabControl1
+            // tab_List
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.Notes);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.ImageList = this.imageListMain;
-            this.tabControl1.Location = new System.Drawing.Point(3, 24);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(376, 411);
-            this.tabControl1.TabIndex = 2;
+            this.tab_List.Controls.Add(this.tabPage1);
+            this.tab_List.Controls.Add(this.tabPage2);
+            this.tab_List.Controls.Add(this.tab_Scripts);
+            this.tab_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tab_List.ImageList = this.imageListMain;
+            this.tab_List.Location = new System.Drawing.Point(3, 24);
+            this.tab_List.Name = "tab_List";
+            this.tab_List.SelectedIndex = 0;
+            this.tab_List.Size = new System.Drawing.Size(376, 411);
+            this.tab_List.TabIndex = 2;
             // 
             // tabPage1
             // 
@@ -451,6 +452,38 @@
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbl_speedKey);
+            this.panel1.Controls.Add(this.lbl_customHks);
+            this.panel1.Controls.Add(this.txtbox_speedKey);
+            this.panel1.Controls.Add(this.lbl_glideKey);
+            this.panel1.Controls.Add(this.txtbox_glideKey);
+            this.panel1.Controls.Add(this.lbl_TpToCamKey);
+            this.panel1.Controls.Add(this.txtbox_tpToCamKey);
+            this.panel1.Controls.Add(this.lbl_nofallKey);
+            this.panel1.Controls.Add(this.txtbox_nofallKey);
+            this.panel1.Controls.Add(this.lbl_freecamKey);
+            this.panel1.Controls.Add(this.txtbox_freecamKey);
+            this.panel1.Controls.Add(this.lbl_tpBackw);
+            this.panel1.Controls.Add(this.txtbox_TPBackwardKey);
+            this.panel1.Controls.Add(this.lbl_tpForward);
+            this.panel1.Controls.Add(this.txtbox_TPForwardKey);
+            this.panel1.Controls.Add(this.lbl_tpRight);
+            this.panel1.Controls.Add(this.txtbox_TPRightKey);
+            this.panel1.Controls.Add(this.lbl_tpLeft);
+            this.panel1.Controls.Add(this.txtbox_TPLeftKey);
+            this.panel1.Controls.Add(this.lbl_tpDown);
+            this.panel1.Controls.Add(this.txtbox_TPDowNkey);
+            this.panel1.Controls.Add(this.lbl_tpUp);
+            this.panel1.Controls.Add(this.txtbox_TPUpKey);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Location = new System.Drawing.Point(105, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(262, 197);
+            this.panel1.TabIndex = 53;
+            // 
             // lbl_speedKey
             // 
             this.lbl_speedKey.AutoSize = true;
@@ -459,6 +492,15 @@
             this.lbl_speedKey.Size = new System.Drawing.Size(41, 13);
             this.lbl_speedKey.TabIndex = 51;
             this.lbl_speedKey.Text = "Speed:";
+            // 
+            // lbl_customHks
+            // 
+            this.lbl_customHks.AutoSize = true;
+            this.lbl_customHks.Location = new System.Drawing.Point(3, 9);
+            this.lbl_customHks.Name = "lbl_customHks";
+            this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
+            this.lbl_customHks.TabIndex = 52;
+            this.lbl_customHks.Text = "Custom Hotkeys:";
             // 
             // txtbox_speedKey
             // 
@@ -722,28 +764,6 @@
             this.lbl_tab2Title.TabIndex = 10;
             this.lbl_tab2Title.Text = "Misc";
             // 
-            // Notes
-            // 
-            this.Notes.Controls.Add(this.textBox1);
-            this.Notes.ImageKey = "feather_38326.ico";
-            this.Notes.Location = new System.Drawing.Point(4, 23);
-            this.Notes.Name = "Notes";
-            this.Notes.Padding = new System.Windows.Forms.Padding(3);
-            this.Notes.Size = new System.Drawing.Size(368, 384);
-            this.Notes.TabIndex = 2;
-            this.Notes.Text = "Notes";
-            this.Notes.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 6);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(356, 372);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
-            // 
             // imageListMain
             // 
             this.imageListMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListMain.ImageStream")));
@@ -760,53 +780,43 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // lbl_customHks
+            // tab_Scripts
             // 
-            this.lbl_customHks.AutoSize = true;
-            this.lbl_customHks.Location = new System.Drawing.Point(3, 9);
-            this.lbl_customHks.Name = "lbl_customHks";
-            this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
-            this.lbl_customHks.TabIndex = 52;
-            this.lbl_customHks.Text = "Custom Hotkeys:";
+            this.tab_Scripts.Controls.Add(this.btn_runScript);
+            this.tab_Scripts.Controls.Add(this.txtbox_script);
+            this.tab_Scripts.ImageIndex = 0;
+            this.tab_Scripts.Location = new System.Drawing.Point(4, 23);
+            this.tab_Scripts.Name = "tab_Scripts";
+            this.tab_Scripts.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Scripts.Size = new System.Drawing.Size(368, 384);
+            this.tab_Scripts.TabIndex = 3;
+            this.tab_Scripts.Text = "Scripts";
+            this.tab_Scripts.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // txtbox_script
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lbl_speedKey);
-            this.panel1.Controls.Add(this.lbl_customHks);
-            this.panel1.Controls.Add(this.txtbox_speedKey);
-            this.panel1.Controls.Add(this.lbl_glideKey);
-            this.panel1.Controls.Add(this.txtbox_glideKey);
-            this.panel1.Controls.Add(this.lbl_TpToCamKey);
-            this.panel1.Controls.Add(this.txtbox_tpToCamKey);
-            this.panel1.Controls.Add(this.lbl_nofallKey);
-            this.panel1.Controls.Add(this.txtbox_nofallKey);
-            this.panel1.Controls.Add(this.lbl_freecamKey);
-            this.panel1.Controls.Add(this.txtbox_freecamKey);
-            this.panel1.Controls.Add(this.lbl_tpBackw);
-            this.panel1.Controls.Add(this.txtbox_TPBackwardKey);
-            this.panel1.Controls.Add(this.lbl_tpForward);
-            this.panel1.Controls.Add(this.txtbox_TPForwardKey);
-            this.panel1.Controls.Add(this.lbl_tpRight);
-            this.panel1.Controls.Add(this.txtbox_TPRightKey);
-            this.panel1.Controls.Add(this.lbl_tpLeft);
-            this.panel1.Controls.Add(this.txtbox_TPLeftKey);
-            this.panel1.Controls.Add(this.lbl_tpDown);
-            this.panel1.Controls.Add(this.txtbox_TPDowNkey);
-            this.panel1.Controls.Add(this.lbl_tpUp);
-            this.panel1.Controls.Add(this.txtbox_TPUpKey);
-            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(105, 180);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 197);
-            this.panel1.TabIndex = 53;
+            this.txtbox_script.Location = new System.Drawing.Point(6, 6);
+            this.txtbox_script.Multiline = true;
+            this.txtbox_script.Name = "txtbox_script";
+            this.txtbox_script.Size = new System.Drawing.Size(356, 326);
+            this.txtbox_script.TabIndex = 0;
+            // 
+            // btn_runScript
+            // 
+            this.btn_runScript.Location = new System.Drawing.Point(148, 338);
+            this.btn_runScript.Name = "btn_runScript";
+            this.btn_runScript.Size = new System.Drawing.Size(75, 23);
+            this.btn_runScript.TabIndex = 1;
+            this.btn_runScript.Text = "Execute";
+            this.btn_runScript.UseVisualStyleBackColor = true;
+            this.btn_runScript.Click += new System.EventHandler(this.btn_runScript_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 438);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tab_List);
             this.Controls.Add(this.lbl_title);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -815,18 +825,18 @@
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.Sizable = false;
             this.Text = "swtool";
-            this.tabControl1.ResumeLayout(false);
+            this.tab_List.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
-            this.Notes.ResumeLayout(false);
-            this.Notes.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
+            this.tab_Scripts.ResumeLayout(false);
+            this.tab_Scripts.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -837,7 +847,7 @@
         private System.Windows.Forms.Button btn_about;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Timer mainTimer;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tab_List;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox cbox_noclip;
@@ -861,8 +871,6 @@
         private System.Windows.Forms.TextBox txt_XBox;
         private System.Windows.Forms.Button btn_saveCustomCoords;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TabPage Notes;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btn_cancelTP;
         private System.Windows.Forms.TrackBar trckbr_speed;
         private System.Windows.Forms.Label lbl_Speed;
@@ -901,6 +909,9 @@
         private System.Windows.Forms.TextBox txtbox_speedKey;
         private System.Windows.Forms.Label lbl_customHks;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tab_Scripts;
+        private System.Windows.Forms.Button btn_runScript;
+        private System.Windows.Forms.TextBox txtbox_script;
     }
 }
 

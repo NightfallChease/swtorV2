@@ -92,7 +92,7 @@
       <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Memory">
-      <HintPath>..\..\!Memory.dll.x64.1.2.24\Memory.dll.x64.1.2.24\Memory.dll.x64.1.2.24\lib\netstandard2.0\Memory.dll</HintPath>
+      <HintPath>..\..\..\!Memory.dll.x64.1.2.24\Memory.dll.x64.1.2.24\Memory.dll.x64.1.2.24\lib\netstandard2.0\Memory.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
