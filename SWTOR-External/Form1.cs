@@ -36,38 +36,49 @@ namespace SWTOR_External
 
         #region vars
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.2.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.3.sw";
+        private bool noclipPatched = false;
+        private bool cameraPatched = false;
+        private bool cameraZPatched = false;
+        private bool cameraYPatched = false;
+        private bool noclipCave = false;
+        private bool camCave = false;
+        private bool freeCamEnabled = false;
+        private bool attachToCamEnabled = false;
+        private bool nofallEnabled = false;
+        private bool nofallPatched = false;
+        private bool alwaysOnTop = false;
+        private bool devEspEnabled = false;
+        private bool devVelEnabled = false;
+        private string noclipAOB = "F3 44 0F 10 43 6C F3";
+        private string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
+        private string cameraYAOB = "F2 0F 11 87 28 02 00 00";
+        private string cameraZAOB = "89 87 30 02 00 00 F3";
+        private string nofallAOB = "F3 44 0F 10 4F 10 44 0F 28 DF";
+        private string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
+        private string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
+        private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
+        private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
+        private bool glideEnabled = false;
+        private VirtualKeyCode TPUpKey;
+        private VirtualKeyCode TPDownKey;
+        private VirtualKeyCode TPLeftKey;
+        private VirtualKeyCode TPRightKey;
+        private VirtualKeyCode TPForwardKey;
+        private VirtualKeyCode TPBackwardKey;
+        private VirtualKeyCode FreecamKey;
+        private VirtualKeyCode TPToCamKey;
+        private VirtualKeyCode NofallKey;
+        private VirtualKeyCode GlideKey;
+        private VirtualKeyCode SpeedKey;
         public string PlayerBaseAddress = "";
         public string CamBaseAddress = "";
         public UIntPtr playerBaseUInt;
         public UIntPtr camBaseUInt;
         public UIntPtr EspUint;
         public int baseAddr = 0;
-        public bool noclipPatched = false;
-        public bool cameraPatched = false;
-        public bool cameraZPatched = false;
-        public bool cameraYPatched = false;
-        public bool noclipCave = false;
-        public bool camCave = false;
-        public bool freeCamEnabled = false;
-        public bool attachToCamEnabled = false;
-        public bool nofallEnabled = false;
-        public bool nofallPatched = false;
-        public bool alwaysOnTop = false;
-        public bool devEspEnabled = false;
-        public bool devVelEnabled = false;
         public string noclipAddress = "";
-        public string noclipAOB = "F3 44 0F 10 43 6C F3";
-        public string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
-        public string cameraYAOB = "F2 0F 11 87 28 02 00 00";
-        public string cameraZAOB = "89 87 30 02 00 00 F3";
-        public string nofallAOB = "F3 44 0F 10 4F 10 44 0F 28 DF";
-        public string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
-        public string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
-        public string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
-        public string glideAOB = "F3 44 0F 11 43 14 F3 0F";
         public string glideAddrString;
-        public bool glideEnabled = false;
         public string cameraAddress = "";
         public string cameraYAddress = "";
         public string cameraZAddress = "";
@@ -110,27 +121,16 @@ namespace SWTOR_External
         public string yVelocityAddrString;
         public bool tpflag = false;
         public bool saveflag = false;
-        public string userName = Environment.UserName;
         public bool speedHackCave;
-        public UIntPtr speedValueUInt;
-        public byte[] speedPatchedBytes;
-        public bool speedPatched;
-        public UIntPtr pbasecaveAddr;
         public float playerHeight;
-        public bool isPVPEnabled = false;
-        public string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
-        public bool isSpeedhackEnabled = false;
-        private VirtualKeyCode TPUpKey;
-        private VirtualKeyCode TPDownKey;        
-        private VirtualKeyCode TPLeftKey;
-        private VirtualKeyCode TPRightKey;
-        private VirtualKeyCode TPForwardKey;
-        private VirtualKeyCode TPBackwardKey;
-        private VirtualKeyCode FreecamKey;
-        private VirtualKeyCode TPToCamKey;
-        private VirtualKeyCode NofallKey;
-        private VirtualKeyCode GlideKey;
-        private VirtualKeyCode SpeedKey;
+        private string userName = Environment.UserName;
+        private UIntPtr speedValueUInt;
+        private byte[] speedPatchedBytes;
+        private bool speedPatched;
+        private UIntPtr pbasecaveAddr;
+        private bool isPVPEnabled = false;
+        private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        private bool isSpeedhackEnabled = false;
         public byte[] noclipPatchedBytes = { };
         public byte[] cameraPatchedBytes = { };
         public byte[] cameraYPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
@@ -144,37 +144,15 @@ namespace SWTOR_External
         public byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] gotoCaveBytes = { };
         #endregion
-        string allVars = @"string PlayerBaseAddress 
+        string allVars = @"
+string PlayerBaseAddress 
 string CamBaseAddress 
 UIntPtr playerBaseUInt
 UIntPtr camBaseUInt
 UIntPtr EspUint
 int baseAddr 
-bool noclipPatched 
-bool cameraPatched 
-bool cameraZPatched 
-bool cameraYPatched 
-bool noclipCave 
-bool camCave 
-bool freeCamEnabled 
-bool attachToCamEnabled 
-bool nofallEnabled 
-bool nofallPatched 
-bool alwaysOnTop 
-bool devEspEnabled 
-bool devVelEnabled 
 string noclipAddress 
-string noclipAOB 
-string cameraAOB 
-string cameraYAOB 
-string cameraZAOB 
-string nofallAOB 
-string speedHackAOB 
-string devESPAob 
-string velocityIndicatorAOB 
-string glideAOB 
 string glideAddrString
-bool glideEnabled 
 string cameraAddress 
 string cameraYAddress 
 string cameraZAddress 
@@ -217,16 +195,8 @@ string heightAddrString
 string yVelocityAddrString
 bool tpflag 
 bool saveflag 
-string userName 
 bool speedHackCave
-UIntPtr speedValueUInt
-byte[
-bool speedPatched
-UIntPtr pbasecaveAddr
 float playerHeight
-bool isPVPEnabled 
-string PVPAOB 
-bool isSpeedhackEnabled 
 ";
         /*
         Todo:
@@ -1320,8 +1290,9 @@ bool isSpeedhackEnabled
         private void btn_runScript_Click(object sender, EventArgs e)
         {
             string scriptCode = txtbox_script.Text;
-            // Execute the script code
-            ExecuteScript(scriptCode);
+            // Create a new thread and pass the method to execute
+            Thread executeScriptThread = new Thread(() => ExecuteScript(scriptCode)) { IsBackground = true};
+            executeScriptThread.Start(); // Start the thread
         }
 
         /*
@@ -1424,7 +1395,7 @@ bool isSpeedhackEnabled
                 tool = this,
                 mem = new Mem()
             // Hier könnten auch weitere Variablen eingefügt werden
-        };
+            };
 
 
 

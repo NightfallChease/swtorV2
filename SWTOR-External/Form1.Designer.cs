@@ -93,15 +93,16 @@
             this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
             this.tab_Scripts = new System.Windows.Forms.TabPage();
+            this.btn_loadScript = new System.Windows.Forms.Button();
+            this.btn_saveScript = new System.Windows.Forms.Button();
+            this.btn_showVars = new System.Windows.Forms.Button();
             this.btn_example = new System.Windows.Forms.Button();
             this.btn_runScript = new System.Windows.Forms.Button();
             this.txtbox_script = new System.Windows.Forms.TextBox();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.btn_showVars = new System.Windows.Forms.Button();
-            this.btn_saveScript = new System.Windows.Forms.Button();
-            this.btn_loadScript = new System.Windows.Forms.Button();
+            this.lbl_version = new System.Windows.Forms.Label();
             this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -156,6 +157,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.lbl_version);
             this.tabPage1.Controls.Add(this.box_speedhack);
             this.tabPage1.Controls.Add(this.box_glide);
             this.tabPage1.Controls.Add(this.lbl_CusCoord);
@@ -785,6 +787,36 @@
             this.tab_Scripts.Text = "Scripts";
             this.tab_Scripts.UseVisualStyleBackColor = true;
             // 
+            // btn_loadScript
+            // 
+            this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_loadScript.Location = new System.Drawing.Point(313, 358);
+            this.btn_loadScript.Name = "btn_loadScript";
+            this.btn_loadScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_loadScript.TabIndex = 5;
+            this.btn_loadScript.Text = "Load";
+            this.btn_loadScript.UseVisualStyleBackColor = true;
+            // 
+            // btn_saveScript
+            // 
+            this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_saveScript.Location = new System.Drawing.Point(259, 358);
+            this.btn_saveScript.Name = "btn_saveScript";
+            this.btn_saveScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_saveScript.TabIndex = 4;
+            this.btn_saveScript.Text = "Save";
+            this.btn_saveScript.UseVisualStyleBackColor = true;
+            // 
+            // btn_showVars
+            // 
+            this.btn_showVars.Location = new System.Drawing.Point(100, 355);
+            this.btn_showVars.Name = "btn_showVars";
+            this.btn_showVars.Size = new System.Drawing.Size(38, 23);
+            this.btn_showVars.TabIndex = 3;
+            this.btn_showVars.Text = "Vars";
+            this.btn_showVars.UseVisualStyleBackColor = true;
+            this.btn_showVars.Click += new System.EventHandler(this.btn_showVars_Click);
+            // 
             // btn_example
             // 
             this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -837,33 +869,14 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // btn_showVars
+            // lbl_version
             // 
-            this.btn_showVars.Location = new System.Drawing.Point(100, 355);
-            this.btn_showVars.Name = "btn_showVars";
-            this.btn_showVars.Size = new System.Drawing.Size(38, 23);
-            this.btn_showVars.TabIndex = 3;
-            this.btn_showVars.Text = "Vars";
-            this.btn_showVars.UseVisualStyleBackColor = true;
-            this.btn_showVars.Click += new System.EventHandler(this.btn_showVars_Click);
-            // 
-            // btn_saveScript
-            // 
-            this.btn_saveScript.Location = new System.Drawing.Point(259, 358);
-            this.btn_saveScript.Name = "btn_saveScript";
-            this.btn_saveScript.Size = new System.Drawing.Size(52, 23);
-            this.btn_saveScript.TabIndex = 4;
-            this.btn_saveScript.Text = "Save";
-            this.btn_saveScript.UseVisualStyleBackColor = true;
-            // 
-            // btn_loadScript
-            // 
-            this.btn_loadScript.Location = new System.Drawing.Point(313, 358);
-            this.btn_loadScript.Name = "btn_loadScript";
-            this.btn_loadScript.Size = new System.Drawing.Size(52, 23);
-            this.btn_loadScript.TabIndex = 5;
-            this.btn_loadScript.Text = "Load";
-            this.btn_loadScript.UseVisualStyleBackColor = true;
+            this.lbl_version.AutoSize = true;
+            this.lbl_version.Location = new System.Drawing.Point(337, 369);
+            this.lbl_version.Name = "lbl_version";
+            this.lbl_version.Size = new System.Drawing.Size(28, 13);
+            this.lbl_version.TabIndex = 28;
+            this.lbl_version.Text = "v7.3";
             // 
             // Form1
             // 
@@ -969,6 +982,7 @@
         private System.Windows.Forms.Button btn_showVars;
         private System.Windows.Forms.Button btn_loadScript;
         private System.Windows.Forms.Button btn_saveScript;
+        private System.Windows.Forms.Label lbl_version;
     }
 }
 
