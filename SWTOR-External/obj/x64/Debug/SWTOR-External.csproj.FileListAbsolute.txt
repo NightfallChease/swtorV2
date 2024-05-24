@@ -28,3 +28,15 @@ C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\obj\x64
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-Ex.F4DBA39C.Up2Date
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.exe
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\obj\x64\Debug\SWTOR-External.pdb
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\Microsoft.CodeAnalysis.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\Microsoft.CodeAnalysis.CSharp.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\Microsoft.CodeAnalysis.CSharp.Scripting.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\Microsoft.CodeAnalysis.Scripting.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Buffers.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Collections.Immutable.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Memory.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Numerics.Vectors.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Reflection.Metadata.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Text.Encoding.CodePages.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Debug\System.Threading.Tasks.Extensions.xml

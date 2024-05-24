@@ -22,7 +22,9 @@ using Microsoft.CSharp;
 using Microsoft.Win32;
 using WindowsInput;
 using WindowsInput.Native;
-using Microsoft.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
+
 
 namespace SWTOR_External
 {
@@ -35,103 +37,89 @@ namespace SWTOR_External
         #region vars
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.2.sw";
-        private string PlayerBaseAddress = "";
-        private string CamBaseAddress = "";
-        private UIntPtr playerBaseUInt;
-        private UIntPtr camBaseUInt;
-        private UIntPtr EspUint;
-        private int baseAddr = 0;
-        private bool noclipPatched = false;
-        private bool cameraPatched = false;
-        private bool cameraZPatched = false;
-        private bool cameraYPatched = false;
-        private bool noclipCave = false;
-        private bool camCave = false;
-        private bool freeCamEnabled = false;
-        private bool attachToCamEnabled = false;
-        private bool nofallEnabled = false;
-        private bool nofallPatched = false;
-        private bool alwaysOnTop = false;
-        private bool devEspEnabled = false;
-        private bool devVelEnabled = false;
-        private string noclipAddress = "";
-        private byte[] noclipPatchedBytes = { };
-        private byte[] cameraPatchedBytes = { };
-        private byte[] cameraYPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-        private byte[] cameraZPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-        private string noclipAOB = "F3 44 0F 10 43 6C F3";
-        private byte[] noclipBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C, 0xF3 };
-        private byte[] cameraBytes = { 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x80, 0xF0, 0x01, 0x00, 0x00 };
-        private byte[] speedBytes = { 0xF3, 0x0F, 0x10, 0xBE, 0xF4, 0x00, 0x00, 0x00, 0x0F, 0x28, 0xF7 };
-        private byte[] cameraYBytes = { 0xF2, 0x0F, 0x11, 0x87, 0x28, 0x02, 0x00, 0x00 };
-        private byte[] cameraZBytes = { 0x89, 0x87, 0x30, 0x02, 0x00, 0x00, 0xF3 };
-        private byte[] patchedBytes = { 0xC7, 0x47, 0x10, 0x33, 0x33, 0x33, 0xBF, 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
-        private byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
-        private byte[] gotoCaveBytes = { };
-        private string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
-        private string cameraYAOB = "F2 0F 11 87 28 02 00 00";
-        private string cameraZAOB = "89 87 30 02 00 00 F3";
-        private string nofallAOB = "F3 44 0F 10 4F 10 44 0F 28 DF";
-        private string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
-        private string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
-        private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
-        private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
-        private string glideAddrString;
-        private bool glideEnabled = false;
-        private string cameraAddress = "";
-        private string cameraYAddress = "";
-        private string cameraZAddress = "";
-        private float xCoord = 0;
-        private float yCoord = 0;
-        private float zCoord = 0;
-        private float camSpeed = 0.1f;
-        private float speedBoostMultiplier = 2f;
-        private bool isSpeedBoostActive = false;
-        private string xAddrString = "";
-        private string yAddrString = "";
-        private string zAddrString = "";
-        private string devESPAddrString = "";
-        private string velocityIndAddrStr = "";
-        private string xCamAddrString = "";
-        private string yCamAddrString = "";
-        private string zCamAddrString = "";
-        private string nofallAddrString = "";
-        private string speedValueUIntString;
-        private string speedHackAddrString;
-        private string yawAddrString;
-        private string pitchAddrString;
-        private float savedX = 0;
-        private float savedY = 0;
-        private float savedZ = 0;
-        private UIntPtr xAddr;
-        private UIntPtr yAddr;
-        private UIntPtr zAddr;
-        private UIntPtr xCamAddr;
-        private UIntPtr yCamAddr;
-        private UIntPtr zCamAddr;
-        private UIntPtr nofallAddr;
-        private UIntPtr pitchAddr;
-        private UIntPtr yawAddr;
-        private UIntPtr cameraYUInt;
-        private UIntPtr cameraZUInt;
-        private UIntPtr yVelocityAddr;
-        private UIntPtr heightAddr;
-        private string heightAddrString;
-        private string yVelocityAddrString;
-        private bool tpflag = false;
-        private bool saveflag = false;
-        private string userName = Environment.UserName;
-        private bool speedHackCave;
-        private UIntPtr speedValueUInt;
-        private byte[] speedPatchedBytes;
-        private bool speedPatched;
-        private float yVelocity;
-        private UIntPtr pbasecaveAddr;
-        string mainModule = "";
+        public string PlayerBaseAddress = "";
+        public string CamBaseAddress = "";
+        public UIntPtr playerBaseUInt;
+        public UIntPtr camBaseUInt;
+        public UIntPtr EspUint;
+        public int baseAddr = 0;
+        public bool noclipPatched = false;
+        public bool cameraPatched = false;
+        public bool cameraZPatched = false;
+        public bool cameraYPatched = false;
+        public bool noclipCave = false;
+        public bool camCave = false;
+        public bool freeCamEnabled = false;
+        public bool attachToCamEnabled = false;
+        public bool nofallEnabled = false;
+        public bool nofallPatched = false;
+        public bool alwaysOnTop = false;
+        public bool devEspEnabled = false;
+        public bool devVelEnabled = false;
+        public string noclipAddress = "";
+        public string noclipAOB = "F3 44 0F 10 43 6C F3";
+        public string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
+        public string cameraYAOB = "F2 0F 11 87 28 02 00 00";
+        public string cameraZAOB = "89 87 30 02 00 00 F3";
+        public string nofallAOB = "F3 44 0F 10 4F 10 44 0F 28 DF";
+        public string speedHackAOB = "F3 0F 10 BE F4 00 00 00 0F 28 F7";
+        public string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
+        public string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
+        public string glideAOB = "F3 44 0F 11 43 14 F3 0F";
+        public string glideAddrString;
+        public bool glideEnabled = false;
+        public string cameraAddress = "";
+        public string cameraYAddress = "";
+        public string cameraZAddress = "";
+        public float xCoord = 0;
+        public float yCoord = 0;
+        public float zCoord = 0;
+        public float camSpeed = 0.1f;
+        public float speedBoostMultiplier = 2f;
+        public bool isSpeedBoostActive = false;
+        public string xAddrString = "";
+        public string yAddrString = "";
+        public string zAddrString = "";
+        public string devESPAddrString = "";
+        public string velocityIndAddrStr = "";
+        public string xCamAddrString = "";
+        public string yCamAddrString = "";
+        public string zCamAddrString = "";
+        public string nofallAddrString = "";
+        public string speedValueUIntString;
+        public string speedHackAddrString;
+        public string yawAddrString;
+        public string pitchAddrString;
+        public float savedX = 0;
+        public float savedY = 0;
+        public float savedZ = 0;
+        public UIntPtr xAddr;
+        public UIntPtr yAddr;
+        public UIntPtr zAddr;
+        public UIntPtr xCamAddr;
+        public UIntPtr yCamAddr;
+        public UIntPtr zCamAddr;
+        public UIntPtr nofallAddr;
+        public UIntPtr pitchAddr;
+        public UIntPtr yawAddr;
+        public UIntPtr cameraYUInt;
+        public UIntPtr cameraZUInt;
+        public UIntPtr yVelocityAddr;
+        public UIntPtr heightAddr;
+        public string heightAddrString;
+        public string yVelocityAddrString;
+        public bool tpflag = false;
+        public bool saveflag = false;
+        public string userName = Environment.UserName;
+        public bool speedHackCave;
+        public UIntPtr speedValueUInt;
+        public byte[] speedPatchedBytes;
+        public bool speedPatched;
+        public UIntPtr pbasecaveAddr;
         public float playerHeight;
-        private bool isPVPEnabled = false;
-        private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
-        private bool isSpeedhackEnabled = false;
+        public bool isPVPEnabled = false;
+        public string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        public bool isSpeedhackEnabled = false;
         private VirtualKeyCode TPUpKey;
         private VirtualKeyCode TPDownKey;        
         private VirtualKeyCode TPLeftKey;
@@ -143,8 +131,103 @@ namespace SWTOR_External
         private VirtualKeyCode NofallKey;
         private VirtualKeyCode GlideKey;
         private VirtualKeyCode SpeedKey;
+        public byte[] noclipPatchedBytes = { };
+        public byte[] cameraPatchedBytes = { };
+        public byte[] cameraYPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+        public byte[] cameraZPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+        public byte[] noclipBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C, 0xF3 };
+        public byte[] cameraBytes = { 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x80, 0xF0, 0x01, 0x00, 0x00 };
+        public byte[] speedBytes = { 0xF3, 0x0F, 0x10, 0xBE, 0xF4, 0x00, 0x00, 0x00, 0x0F, 0x28, 0xF7 };
+        public byte[] cameraYBytes = { 0xF2, 0x0F, 0x11, 0x87, 0x28, 0x02, 0x00, 0x00 };
+        public byte[] cameraZBytes = { 0x89, 0x87, 0x30, 0x02, 0x00, 0x00, 0xF3 };
+        public byte[] patchedBytes = { 0xC7, 0x47, 0x10, 0x33, 0x33, 0x33, 0xBF, 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
+        public byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
+        public byte[] gotoCaveBytes = { };
         #endregion
-
+        string allVars = @"string PlayerBaseAddress 
+string CamBaseAddress 
+UIntPtr playerBaseUInt
+UIntPtr camBaseUInt
+UIntPtr EspUint
+int baseAddr 
+bool noclipPatched 
+bool cameraPatched 
+bool cameraZPatched 
+bool cameraYPatched 
+bool noclipCave 
+bool camCave 
+bool freeCamEnabled 
+bool attachToCamEnabled 
+bool nofallEnabled 
+bool nofallPatched 
+bool alwaysOnTop 
+bool devEspEnabled 
+bool devVelEnabled 
+string noclipAddress 
+string noclipAOB 
+string cameraAOB 
+string cameraYAOB 
+string cameraZAOB 
+string nofallAOB 
+string speedHackAOB 
+string devESPAob 
+string velocityIndicatorAOB 
+string glideAOB 
+string glideAddrString
+bool glideEnabled 
+string cameraAddress 
+string cameraYAddress 
+string cameraZAddress 
+float xCoord 
+float yCoord 
+float zCoord 
+float camSpeed 
+float speedBoostMultiplier 
+bool isSpeedBoostActive 
+string xAddrString 
+string yAddrString 
+string zAddrString 
+string devESPAddrString 
+string velocityIndAddrStr 
+string xCamAddrString 
+string yCamAddrString 
+string zCamAddrString 
+string nofallAddrString 
+string speedValueUIntString
+string speedHackAddrString
+string yawAddrString
+string pitchAddrString
+float savedX 
+float savedY 
+float savedZ 
+UIntPtr xAddr
+UIntPtr yAddr
+UIntPtr zAddr
+UIntPtr xCamAddr
+UIntPtr yCamAddr
+UIntPtr zCamAddr
+UIntPtr nofallAddr
+UIntPtr pitchAddr
+UIntPtr yawAddr
+UIntPtr cameraYUInt
+UIntPtr cameraZUInt
+UIntPtr yVelocityAddr
+UIntPtr heightAddr
+string heightAddrString
+string yVelocityAddrString
+bool tpflag 
+bool saveflag 
+string userName 
+bool speedHackCave
+UIntPtr speedValueUInt
+byte[
+bool speedPatched
+UIntPtr pbasecaveAddr
+float playerHeight
+bool isPVPEnabled 
+string PVPAOB 
+bool isSpeedhackEnabled 
+";
         /*
         Todo:
         Fly [Backspace highjump]
@@ -886,6 +969,7 @@ namespace SWTOR_External
         {
             log_console.Text = log_console.Text + $"\r\n\r\n{textToLog}";
         }
+        /*
         private void checkForPvP()
         {
             ////Takes up to much performance
@@ -904,6 +988,7 @@ namespace SWTOR_External
             //    }
             //}
         }
+        */
         private void doglide()
         {
             if (!glideEnabled)
@@ -1170,6 +1255,10 @@ namespace SWTOR_External
             tpflag = false;
             nofallFunction();
         }
+        private void btn_example_Click(object sender, EventArgs e)
+        {
+            RunExampleScript();
+        }
         //Assign Hotkeys
         private void txtbox_TpUpHotkey_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1235,49 +1324,141 @@ namespace SWTOR_External
             ExecuteScript(scriptCode);
         }
 
-        private void ExecuteScript(string scriptCode)
-{
+        /*
+         * V1
+        //private void ExecuteScript(string scriptCode)
+        //{
+        //    try
+        //    {
+        //        // Wrap the script code inside a method
+        //        scriptCode = $"class ScriptClass {{ public static void ScriptMethod() {{ {scriptCode} }} }}";
+
+        //        // Inject the necessary using statements to the script code
+        //        scriptCode = "using System; using System.Windows.Forms; " + scriptCode;
+
+        //        // Compile the script code
+        //        var compilerResults = CodeDomProvider.CreateProvider("CSharp").CompileAssemblyFromSource(new System.CodeDom.Compiler.CompilerParameters()
+        //        {
+        //            GenerateInMemory = true,
+        //            GenerateExecutable = false,
+        //            ReferencedAssemblies = { "System.Windows.Forms.dll", "Memory.dll" } // Explicitly reference the System.Windows.Forms assembly
+        //        }, scriptCode);
+
+        //        // Check for compilation errors
+        //        if (compilerResults.Errors.HasErrors)
+        //        {
+        //            string errors = "Compilation failed:";
+        //            foreach (System.CodeDom.Compiler.CompilerError error in compilerResults.Errors)
+        //            {
+        //                errors += "\n" + error.ErrorText;
+        //            }
+        //            MessageBox.Show(errors);
+        //            return;
+        //        }
+
+        //        // Get the compiled assembly
+        //        Assembly assembly = compilerResults.CompiledAssembly;
+
+        //        // Execute the script code
+        //        var method = assembly.GetType("ScriptClass").GetMethod("ScriptMethod");
+        //        method.Invoke(null, null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("An error occurred while executing the script: " + ex.Message);
+        //    }
+        //}
+        */
+        //private void ExecuteScript(string code)
+        //{
+        //    var materialSkinAssemblyPath = @"C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll"; // Replace this with the something that all people will have.
+        //    if (!File.Exists(materialSkinAssemblyPath))
+        //    {
+        //        MessageBox.Show("MaterialSkin assembly not found.");
+        //        return;
+        //    }
+
+        //    var scriptOptions = ScriptOptions.Default
+        //        .AddReferences(typeof(Form1).Assembly.Location, materialSkinAssemblyPath)
+        //        .AddImports("System", "System.Windows.Forms", "MaterialSkin", "MaterialSkin.Controls", "");
+
+        //    var globals = new ScriptGlobals
+        //    {
+        //        Form = this,
+        //        // Hier könnten auch weitere Variablen eingefügt werden
+        //    };
+
+        //    try
+        //    {
+        //        var script = CSharpScript.Create(code, scriptOptions, typeof(ScriptGlobals));
+        //        var scriptState = script.RunAsync(globals).Result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Script execution failed: {ex.Message}");
+        //    }
+        //}
+
+        private void ExecuteScript(string code)
+        {
+            var materialSkinAssemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MaterialSkin.dll"); // Load MaterialSkin.dll from local folder
+            if (!File.Exists(materialSkinAssemblyPath))
+            {
+                MessageBox.Show("MaterialSkin assembly not found.");
+                return;
+            }
+
+            var memoryAssemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "memory.dll"); // Load memory.dll from local folder
+            if (!File.Exists(memoryAssemblyPath))
+            {
+                MessageBox.Show("Memory assembly not found.");
+                return;
+            }
+
+            var scriptOptions = ScriptOptions.Default
+                .AddReferences(typeof(Form1).Assembly.Location, materialSkinAssemblyPath, memoryAssemblyPath)
+                .AddImports("System", "System.Windows.Forms", "MaterialSkin", "MaterialSkin.Controls");
+
+            var globals = new ScriptGlobals
+            {
+                tool = this,
+                mem = new Mem()
+            // Hier könnten auch weitere Variablen eingefügt werden
+        };
+
+
+
             try
             {
-                // Wrap the script code inside a method
-                scriptCode = $"class ScriptClass {{ public static void ScriptMethod() {{ {scriptCode} }} }}";
-
-                // Inject the necessary using statements to the script code
-                scriptCode = "using System; using System.Windows.Forms; " + scriptCode;
-
-                // Compile the script code
-                var compilerResults = CodeDomProvider.CreateProvider("CSharp").CompileAssemblyFromSource(new System.CodeDom.Compiler.CompilerParameters()
-                {
-                    GenerateInMemory = true,
-                    GenerateExecutable = false,
-                    ReferencedAssemblies = { "System.Windows.Forms.dll", "Memory.dll" } // Explicitly reference the System.Windows.Forms assembly
-                }, scriptCode);
-
-                // Check for compilation errors
-                if (compilerResults.Errors.HasErrors)
-                {
-                    string errors = "Compilation failed:";
-                    foreach (System.CodeDom.Compiler.CompilerError error in compilerResults.Errors)
-                    {
-                        errors += "\n" + error.ErrorText;
-                    }
-                    MessageBox.Show(errors);
-                    return;
-                }
-
-                // Get the compiled assembly
-                Assembly assembly = compilerResults.CompiledAssembly;
-
-                // Execute the script code
-                var method = assembly.GetType("ScriptClass").GetMethod("ScriptMethod");
-                method.Invoke(null, null);
+                var script = CSharpScript.Create(code, scriptOptions, typeof(ScriptGlobals));
+                var scriptState = script.RunAsync(globals).Result;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while executing the script: " + ex.Message);
+                MessageBox.Show($"Script execution failed: {ex.Message}");
             }
         }
-     
 
+        public class ScriptGlobals
+        {
+            public Form1 tool { get; set; }
+            public Mem mem { get; set; } // Initialize the 'm' object here
+    // Hier könnten weitere Variablen hinzugefügt werden, die im Skript verwendet werden sollen
+}
+
+// Sample method to show how to use ExecuteScript
+private void RunExampleScript()
+        {
+            string scriptCode = @"//Use the term [tool] to access the variables of the tool and use the term [mem] as a reference to the memory.dll component (https://github.com/erfg12/memory.dll/wiki/)
+
+MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.zCoord}"");";
+
+            txtbox_script.Text = scriptCode;
+        }
+
+        private void btn_showVars_Click(object sender, EventArgs e)
+        {
+            txtbox_script.Text = txtbox_script.Text + "\r\n" + allVars;
+        }
     }
 }

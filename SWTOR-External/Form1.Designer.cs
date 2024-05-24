@@ -92,12 +92,16 @@
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
+            this.tab_Scripts = new System.Windows.Forms.TabPage();
+            this.btn_example = new System.Windows.Forms.Button();
+            this.btn_runScript = new System.Windows.Forms.Button();
+            this.txtbox_script = new System.Windows.Forms.TextBox();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.tab_Scripts = new System.Windows.Forms.TabPage();
-            this.txtbox_script = new System.Windows.Forms.TextBox();
-            this.btn_runScript = new System.Windows.Forms.Button();
+            this.btn_showVars = new System.Windows.Forms.Button();
+            this.btn_saveScript = new System.Windows.Forms.Button();
+            this.btn_loadScript = new System.Windows.Forms.Button();
             this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -764,6 +768,59 @@
             this.lbl_tab2Title.TabIndex = 10;
             this.lbl_tab2Title.Text = "Misc";
             // 
+            // tab_Scripts
+            // 
+            this.tab_Scripts.Controls.Add(this.btn_loadScript);
+            this.tab_Scripts.Controls.Add(this.btn_saveScript);
+            this.tab_Scripts.Controls.Add(this.btn_showVars);
+            this.tab_Scripts.Controls.Add(this.btn_example);
+            this.tab_Scripts.Controls.Add(this.btn_runScript);
+            this.tab_Scripts.Controls.Add(this.txtbox_script);
+            this.tab_Scripts.ImageIndex = 0;
+            this.tab_Scripts.Location = new System.Drawing.Point(4, 23);
+            this.tab_Scripts.Name = "tab_Scripts";
+            this.tab_Scripts.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Scripts.Size = new System.Drawing.Size(368, 384);
+            this.tab_Scripts.TabIndex = 3;
+            this.tab_Scripts.Text = "Scripts";
+            this.tab_Scripts.UseVisualStyleBackColor = true;
+            // 
+            // btn_example
+            // 
+            this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_example.Location = new System.Drawing.Point(6, 355);
+            this.btn_example.Name = "btn_example";
+            this.btn_example.Size = new System.Drawing.Size(88, 23);
+            this.btn_example.TabIndex = 2;
+            this.btn_example.Text = "Example Code";
+            this.btn_example.UseVisualStyleBackColor = true;
+            this.btn_example.Click += new System.EventHandler(this.btn_example_Click);
+            // 
+            // btn_runScript
+            // 
+            this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_runScript.Location = new System.Drawing.Point(144, 338);
+            this.btn_runScript.Name = "btn_runScript";
+            this.btn_runScript.Size = new System.Drawing.Size(75, 23);
+            this.btn_runScript.TabIndex = 1;
+            this.btn_runScript.Text = "Execute";
+            this.btn_runScript.UseVisualStyleBackColor = true;
+            this.btn_runScript.Click += new System.EventHandler(this.btn_runScript_Click);
+            // 
+            // txtbox_script
+            // 
+            this.txtbox_script.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbox_script.Location = new System.Drawing.Point(6, 6);
+            this.txtbox_script.Multiline = true;
+            this.txtbox_script.Name = "txtbox_script";
+            this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtbox_script.Size = new System.Drawing.Size(356, 326);
+            this.txtbox_script.TabIndex = 0;
+            this.txtbox_script.Text = "MessageBox.Show(\"Hello World\");";
+            // 
             // imageListMain
             // 
             this.imageListMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListMain.ImageStream")));
@@ -780,36 +837,33 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // tab_Scripts
+            // btn_showVars
             // 
-            this.tab_Scripts.Controls.Add(this.btn_runScript);
-            this.tab_Scripts.Controls.Add(this.txtbox_script);
-            this.tab_Scripts.ImageIndex = 0;
-            this.tab_Scripts.Location = new System.Drawing.Point(4, 23);
-            this.tab_Scripts.Name = "tab_Scripts";
-            this.tab_Scripts.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Scripts.Size = new System.Drawing.Size(368, 384);
-            this.tab_Scripts.TabIndex = 3;
-            this.tab_Scripts.Text = "Scripts";
-            this.tab_Scripts.UseVisualStyleBackColor = true;
+            this.btn_showVars.Location = new System.Drawing.Point(100, 355);
+            this.btn_showVars.Name = "btn_showVars";
+            this.btn_showVars.Size = new System.Drawing.Size(38, 23);
+            this.btn_showVars.TabIndex = 3;
+            this.btn_showVars.Text = "Vars";
+            this.btn_showVars.UseVisualStyleBackColor = true;
+            this.btn_showVars.Click += new System.EventHandler(this.btn_showVars_Click);
             // 
-            // txtbox_script
+            // btn_saveScript
             // 
-            this.txtbox_script.Location = new System.Drawing.Point(6, 6);
-            this.txtbox_script.Multiline = true;
-            this.txtbox_script.Name = "txtbox_script";
-            this.txtbox_script.Size = new System.Drawing.Size(356, 326);
-            this.txtbox_script.TabIndex = 0;
+            this.btn_saveScript.Location = new System.Drawing.Point(259, 358);
+            this.btn_saveScript.Name = "btn_saveScript";
+            this.btn_saveScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_saveScript.TabIndex = 4;
+            this.btn_saveScript.Text = "Save";
+            this.btn_saveScript.UseVisualStyleBackColor = true;
             // 
-            // btn_runScript
+            // btn_loadScript
             // 
-            this.btn_runScript.Location = new System.Drawing.Point(148, 338);
-            this.btn_runScript.Name = "btn_runScript";
-            this.btn_runScript.Size = new System.Drawing.Size(75, 23);
-            this.btn_runScript.TabIndex = 1;
-            this.btn_runScript.Text = "Execute";
-            this.btn_runScript.UseVisualStyleBackColor = true;
-            this.btn_runScript.Click += new System.EventHandler(this.btn_runScript_Click);
+            this.btn_loadScript.Location = new System.Drawing.Point(313, 358);
+            this.btn_loadScript.Name = "btn_loadScript";
+            this.btn_loadScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_loadScript.TabIndex = 5;
+            this.btn_loadScript.Text = "Load";
+            this.btn_loadScript.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -823,7 +877,6 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
-            this.Sizable = false;
             this.Text = "swtool";
             this.tab_List.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -912,6 +965,10 @@
         private System.Windows.Forms.TabPage tab_Scripts;
         private System.Windows.Forms.Button btn_runScript;
         private System.Windows.Forms.TextBox txtbox_script;
+        private System.Windows.Forms.Button btn_example;
+        private System.Windows.Forms.Button btn_showVars;
+        private System.Windows.Forms.Button btn_loadScript;
+        private System.Windows.Forms.Button btn_saveScript;
     }
 }
 
