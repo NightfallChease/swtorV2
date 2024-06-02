@@ -562,9 +562,13 @@ float playerHeight
 
             if (attachToCamEnabled)
             {
-                m.WriteMemory(xAddrString, "float", camx.ToString());
-                m.WriteMemory(yAddrString, "float", camy.ToString());
-                m.WriteMemory(zAddrString, "float", camz.ToString());
+                savedX = camx;
+                savedY = camy;
+                savedZ = camz;
+                tpflag = true;
+                //m.WriteMemory(xAddrString, "float", camx.ToString());
+                //m.WriteMemory(yAddrString, "float", camy.ToString());
+                //m.WriteMemory(zAddrString, "float", camz.ToString());
             }
         }
         private void teleport()

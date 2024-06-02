@@ -890,6 +890,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
+            this.Sizable = false;
             this.Text = "swtool";
             this.tab_List.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
