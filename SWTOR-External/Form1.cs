@@ -197,7 +197,7 @@ bool tpflag
 bool saveflag 
 bool speedHackCave
 float playerHeight
-";
+"; //für 
         /*
         Todo:
         Fly [Backspace highjump]
@@ -250,7 +250,7 @@ float playerHeight
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
-
+        //ICard for scripting
         public interface ICard
         {
             string GetCardInfo();
@@ -365,42 +365,7 @@ float playerHeight
         }
         private void box_Freecam_CheckedChanged(object sender, EventArgs e)
         {
-            if(!cameraYPatched)
-            {
-                m.WriteBytes(cameraYUInt, cameraYPatchedBytes);
-                //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Restored";
-                cameraYPatched = true;
-            }
-            else
-            {
-                m.WriteBytes(cameraYUInt, cameraYBytes);
-                //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Patched";
-                cameraYPatched = false;
-            }
-
-            if(!cameraZPatched)
-            {
-                m.WriteBytes(cameraZUInt, cameraZPatchedBytes);
-                //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Restored";
-                cameraZPatched = true;
-            }
-            else
-            {
-                m.WriteBytes(cameraZUInt, cameraZBytes);
-                //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Patched";
-                cameraZPatched = false;
-            }
-            //Dont touch code above, important for freecam
-
-            if (!freeCamEnabled)
-            {
-                freeCamEnabled = true;
-            }
-            else
-            {
-                freeCamEnabled = false;
-            }
-
+            toggle_freecam();
         }
         private void box_nofall_CheckedChanged(object sender, EventArgs e)
         {
@@ -467,6 +432,44 @@ float playerHeight
         }
 
         //Functions
+        private void toggle_freecam()
+        {
+            if (!cameraYPatched)
+            {
+                m.WriteBytes(cameraYUInt, cameraYPatchedBytes);
+                //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Restored";
+                cameraYPatched = true;
+            }
+            else
+            {
+                m.WriteBytes(cameraYUInt, cameraYBytes);
+                //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Patched";
+                cameraYPatched = false;
+            }
+
+            if (!cameraZPatched)
+            {
+                m.WriteBytes(cameraZUInt, cameraZPatchedBytes);
+                //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Restored";
+                cameraZPatched = true;
+            }
+            else
+            {
+                m.WriteBytes(cameraZUInt, cameraZBytes);
+                //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Patched";
+                cameraZPatched = false;
+            }
+            //Dont touch code above, important for freecam
+
+            if (!freeCamEnabled)
+            {
+                freeCamEnabled = true;
+            }
+            else
+            {
+                freeCamEnabled = false;
+            }
+        }
         private void scanAOB()
         {
             try
@@ -795,8 +798,8 @@ float playerHeight
                         log_console.Text = log_console.Text + "\r\n\r\nHooked";
                     });
 
-                        //rest of code
-                        noclipPatchedBytes = m.ReadBytes(noclipAddress, 6);
+                    //rest of code
+                    noclipPatchedBytes = m.ReadBytes(noclipAddress, 6);
                     noclipPatched = true;
                     noclipCave = true;
                     //log_console.Text = log_console.Text + "\r\n\r\nCave Created";;
@@ -1088,7 +1091,6 @@ float playerHeight
                             box_nofall.CheckState = CheckState.Unchecked;
                         }
                         Thread.Sleep(200);
-
                     }
                     if (isGlideKeyPressed)
                     {
@@ -1333,7 +1335,6 @@ float playerHeight
                 MessageBox.Show($"Script execution failed: {ex.Message}");
             }
         }
-
         public class ScriptGlobals
         {
             public Form1 tool { get; set; }
