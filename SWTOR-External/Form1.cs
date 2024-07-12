@@ -143,7 +143,6 @@ namespace SWTOR_External
         public byte[] patchedBytes = { 0xC7, 0x47, 0x10, 0x33, 0x33, 0x33, 0xBF, 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] gotoCaveBytes = { };
-        #endregion
         string allVars = @"
 string PlayerBaseAddress 
 string CamBaseAddress 
@@ -197,12 +196,8 @@ bool tpflag
 bool saveflag 
 bool speedHackCave
 float playerHeight
-"; //für 
-        /*
-        Todo:
-        Fly [Backspace highjump]
-        MouseTP (only if stable)
-         */
+"; //fürs scripting
+        #endregion
 
         //Form Init
         public Form1()
@@ -256,7 +251,7 @@ float playerHeight
             string GetCardInfo();
         }
 
-        //Timer
+        #region Timer
         private void mainTimer_Tick_1(object sender, EventArgs e)
         {
             //AntiDebug
@@ -344,8 +339,9 @@ float playerHeight
             }
             catch{}
         }
+        #endregion
 
-        //CheckBoxes
+        #region Checkboxes
         private void cbox_noclip_CheckedChanged_1(object sender, EventArgs e)
         {
             Thread codeCaveThread = new Thread(createCodeCave);
@@ -430,8 +426,9 @@ float playerHeight
         {
             speedhackFunction();
         }
+        #endregion
 
-        //Functions
+        #region Functions
         private void toggle_freecam()
         {
             if (!cameraYPatched)
@@ -1119,8 +1116,17 @@ float playerHeight
 
             }
         }
+        private void RunExampleScript()
+        {
+            string scriptCode = @"//Use the term [tool] to access the variables of the tool and use the term [mem] as a reference to the memory.dll component (https://github.com/erfg12/memory.dll/wiki/)
 
-        //Trackbars
+MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.zCoord}"");";
+
+            txtbox_script.Text = scriptCode;
+        }
+        #endregion
+
+        #region Trackbars
         private void trckbr_speed_Scroll(object sender, EventArgs e)
         {
             if(isSpeedhackEnabled)
@@ -1138,8 +1144,9 @@ float playerHeight
             float newOpacity = (float)(trck_opcacity.Value) / 100;
             this.Opacity = newOpacity;
         }
+        #endregion
 
-        //InputFields
+        #region InputFields
         private void box_playerHeight_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1156,8 +1163,9 @@ float playerHeight
                 logToConsole("Invalid player height");
             }
         }
+        #endregion
 
-        //Buttons
+        #region Buttons
         private void btn_about_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Made by Nightfall\nDiscord: nightfallct");
@@ -1238,8 +1246,9 @@ float playerHeight
         {
             txtbox_script.Text = txtbox_script.Text + "\r\n" + allVars;
         }
+        #endregion
 
-        //Assign Hotkeys
+        #region AssignedHotkeys
         private void txtbox_TpUpHotkey_KeyDown(object sender, KeyEventArgs e)
         {
             //TPUpKey == VirtualKeyCode
@@ -1296,8 +1305,9 @@ float playerHeight
             SpeedKey = (VirtualKeyCode)e.KeyCode;
             txtbox_speedKey.Text = SpeedKey.ToString();
         }
+        #endregion
 
-        //Scripting
+        #region Scripting
         private void ExecuteScript(string code)
         {
             var materialSkinAssemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MaterialSkin.dll"); // Load MaterialSkin.dll from local folder
@@ -1340,15 +1350,12 @@ float playerHeight
             public Form1 tool { get; set; }
             public Mem mem { get; set; } //Initialize the 'm' object here
         }
+        #endregion
 
-        private void RunExampleScript()
-        {
-            string scriptCode = @"//Use the term [tool] to access the variables of the tool and use the term [mem] as a reference to the memory.dll component (https://github.com/erfg12/memory.dll/wiki/)
-
-MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.zCoord}"");";
-
-            txtbox_script.Text = scriptCode;
-        }
-
+        /*
+        Todo:
+        Fly [Backspace highjump]
+        MouseTP (only if stable)
+         */
     }
 }

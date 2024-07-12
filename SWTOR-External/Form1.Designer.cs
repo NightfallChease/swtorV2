@@ -35,6 +35,7 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.tab_List = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbl_version = new System.Windows.Forms.Label();
             this.box_speedhack = new System.Windows.Forms.CheckBox();
             this.box_glide = new System.Windows.Forms.CheckBox();
             this.lbl_CusCoord = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.lbl_version = new System.Windows.Forms.Label();
             this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -191,6 +191,15 @@
             this.tabPage1.Size = new System.Drawing.Size(368, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
+            // 
+            // lbl_version
+            // 
+            this.lbl_version.AutoSize = true;
+            this.lbl_version.Location = new System.Drawing.Point(337, 369);
+            this.lbl_version.Name = "lbl_version";
+            this.lbl_version.Size = new System.Drawing.Size(28, 13);
+            this.lbl_version.TabIndex = 28;
+            this.lbl_version.Text = "v7.3";
             // 
             // box_speedhack
             // 
@@ -868,15 +877,6 @@
             // 
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
-            // 
-            // lbl_version
-            // 
-            this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(337, 369);
-            this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(28, 13);
-            this.lbl_version.TabIndex = 28;
-            this.lbl_version.Text = "v7.3";
             // 
             // Form1
             // 
