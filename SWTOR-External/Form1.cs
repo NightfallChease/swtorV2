@@ -25,7 +25,7 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.3.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.4.sw";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -340,7 +340,7 @@ float playerHeight
             {
                 Color fColor = Color.FromArgb(220, 220, 220);
                 Color bColor = Color.FromArgb(50, 50, 50);
-                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.BLACK);
+                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green900, Accent.Green700, TextShade.BLACK);
                 MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.DARK;
                 this.BackColor = bColor;
                 this.ForeColor = fColor;
@@ -350,8 +350,6 @@ float playerHeight
                 tabPage2.ForeColor = fColor;
                 tabPage3.BackColor = bColor;
                 tabPage3.ForeColor = fColor;
-                panel1.BackColor = bColor;
-                panel1.ForeColor = fColor;
                 trckbr_speed.BackColor = bColor;
 
                 SetControlColors(this.Controls, bColor, fColor);
@@ -360,7 +358,7 @@ float playerHeight
             }
             else
             {
-                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.WHITE);
+                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green900, Accent.Green700, TextShade.WHITE);
                 MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT;
                 this.BackColor = Color.FromArgb(240, 240, 250);
                 this.ForeColor = Color.FromArgb(0, 0, 0);
@@ -370,8 +368,6 @@ float playerHeight
                 tabPage2.ForeColor = Color.FromArgb(0, 0, 0);
                 tabPage3.BackColor = Color.FromArgb(250, 250, 250);
                 tabPage3.ForeColor = Color.FromArgb(0, 0, 0);
-                panel1.BackColor = Color.FromArgb(250, 250, 250);
-                panel1.ForeColor = Color.FromArgb(0, 0, 0);
                 trckbr_speed.BackColor = Color.FromArgb(250, 250, 250);
                 trckbr_speed.BackColor = Color.FromArgb(0, 0, 0);
 
