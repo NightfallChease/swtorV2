@@ -33,8 +33,6 @@
             this.btn_about = new System.Windows.Forms.Button();
             this.lbl_title = new System.Windows.Forms.Label();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.tab_List = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.box_darkmode = new System.Windows.Forms.CheckBox();
             this.lbl_version = new System.Windows.Forms.Label();
             this.box_speedhack = new System.Windows.Forms.CheckBox();
@@ -54,7 +52,6 @@
             this.box_nofall = new System.Windows.Forms.CheckBox();
             this.btn_tpToCam = new System.Windows.Forms.Button();
             this.box_Freecam = new System.Windows.Forms.CheckBox();
-            this.lbl_tabOneTitle = new System.Windows.Forms.Label();
             this.btn_clearConsole = new System.Windows.Forms.Button();
             this.btn_teleport = new System.Windows.Forms.Button();
             this.btn_saveLocation = new System.Windows.Forms.Button();
@@ -62,7 +59,6 @@
             this.lbl_cons = new System.Windows.Forms.Label();
             this.log_console = new System.Windows.Forms.TextBox();
             this.cbox_noclip = new System.Windows.Forms.CheckBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.lbl_customHks = new System.Windows.Forms.Label();
@@ -93,8 +89,6 @@
             this.lbl_HeightNormal = new System.Windows.Forms.Label();
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
-            this.lbl_tab2Title = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btn_loadScript = new System.Windows.Forms.Button();
             this.btn_saveScript = new System.Windows.Forms.Button();
             this.btn_showVars = new System.Windows.Forms.Button();
@@ -104,13 +98,17 @@
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.tab_List.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
+            this.materialTabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +116,7 @@
             // 
             this.btn_about.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_about.Location = new System.Drawing.Point(144, 351);
+            this.btn_about.Location = new System.Drawing.Point(147, 326);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(80, 27);
             this.btn_about.TabIndex = 0;
@@ -132,7 +130,7 @@
             this.lbl_title.BackColor = System.Drawing.Color.Transparent;
             this.lbl_title.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_title.Location = new System.Drawing.Point(0, 0);
+            this.lbl_title.Location = new System.Drawing.Point(2, -2);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(188, 25);
             this.lbl_title.TabIndex = 1;
@@ -143,63 +141,11 @@
             this.mainTimer.Interval = 10;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick_1);
             // 
-            // tab_List
-            // 
-            this.tab_List.Controls.Add(this.tabPage1);
-            this.tab_List.Controls.Add(this.tabPage2);
-            this.tab_List.Controls.Add(this.tabPage3);
-            this.tab_List.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tab_List.ImageList = this.imageListMain;
-            this.tab_List.Location = new System.Drawing.Point(3, 24);
-            this.tab_List.Name = "tab_List";
-            this.tab_List.SelectedIndex = 0;
-            this.tab_List.Size = new System.Drawing.Size(376, 411);
-            this.tab_List.TabIndex = 2;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.box_darkmode);
-            this.tabPage1.Controls.Add(this.lbl_version);
-            this.tabPage1.Controls.Add(this.box_speedhack);
-            this.tabPage1.Controls.Add(this.box_glide);
-            this.tabPage1.Controls.Add(this.lbl_CusCoord);
-            this.tabPage1.Controls.Add(this.lbl_Speed);
-            this.tabPage1.Controls.Add(this.trckbr_speed);
-            this.tabPage1.Controls.Add(this.btn_cancelTP);
-            this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.btn_saveCustomCoords);
-            this.tabPage1.Controls.Add(this.lbl_saveCoords);
-            this.tabPage1.Controls.Add(this.txt_ZBox);
-            this.tabPage1.Controls.Add(this.txt_YBox);
-            this.tabPage1.Controls.Add(this.txt_XBox);
-            this.tabPage1.Controls.Add(this.box_alwaysInFront);
-            this.tabPage1.Controls.Add(this.box_camAttach);
-            this.tabPage1.Controls.Add(this.box_nofall);
-            this.tabPage1.Controls.Add(this.btn_tpToCam);
-            this.tabPage1.Controls.Add(this.box_Freecam);
-            this.tabPage1.Controls.Add(this.lbl_tabOneTitle);
-            this.tabPage1.Controls.Add(this.btn_clearConsole);
-            this.tabPage1.Controls.Add(this.btn_teleport);
-            this.tabPage1.Controls.Add(this.btn_saveLocation);
-            this.tabPage1.Controls.Add(this.lbl_coords);
-            this.tabPage1.Controls.Add(this.lbl_cons);
-            this.tabPage1.Controls.Add(this.log_console);
-            this.tabPage1.Controls.Add(this.cbox_noclip);
-            this.tabPage1.Controls.Add(this.btn_about);
-            this.tabPage1.ImageKey = "home_house_3526.ico";
-            this.tabPage1.Location = new System.Drawing.Point(4, 23);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(368, 384);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Movement";
-            // 
             // box_darkmode
             // 
             this.box_darkmode.AutoSize = true;
             this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_darkmode.Location = new System.Drawing.Point(7, 350);
+            this.box_darkmode.Location = new System.Drawing.Point(12, 337);
             this.box_darkmode.Name = "box_darkmode";
             this.box_darkmode.Size = new System.Drawing.Size(72, 17);
             this.box_darkmode.TabIndex = 29;
@@ -210,7 +156,7 @@
             // lbl_version
             // 
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(337, 369);
+            this.lbl_version.Location = new System.Drawing.Point(342, 367);
             this.lbl_version.Name = "lbl_version";
             this.lbl_version.Size = new System.Drawing.Size(28, 13);
             this.lbl_version.TabIndex = 28;
@@ -221,7 +167,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(119, 321);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 277);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -233,7 +179,7 @@
             // 
             this.box_glide.AutoSize = true;
             this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_glide.Location = new System.Drawing.Point(9, 143);
+            this.box_glide.Location = new System.Drawing.Point(6, 99);
             this.box_glide.Name = "box_glide";
             this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
@@ -244,7 +190,7 @@
             // lbl_CusCoord
             // 
             this.lbl_CusCoord.AutoSize = true;
-            this.lbl_CusCoord.Location = new System.Drawing.Point(6, 176);
+            this.lbl_CusCoord.Location = new System.Drawing.Point(3, 132);
             this.lbl_CusCoord.Name = "lbl_CusCoord";
             this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
             this.lbl_CusCoord.TabIndex = 25;
@@ -253,7 +199,7 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(6, 305);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 261);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -263,7 +209,7 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(9, 321);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 277);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -272,7 +218,7 @@
             // btn_cancelTP
             // 
             this.btn_cancelTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cancelTP.Location = new System.Drawing.Point(144, 166);
+            this.btn_cancelTP.Location = new System.Drawing.Point(141, 122);
             this.btn_cancelTP.Name = "btn_cancelTP";
             this.btn_cancelTP.Size = new System.Drawing.Size(55, 23);
             this.btn_cancelTP.TabIndex = 21;
@@ -283,7 +229,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(310, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(315, -1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(58, 59);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -293,7 +239,7 @@
             // btn_saveCustomCoords
             // 
             this.btn_saveCustomCoords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(22, 270);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(19, 226);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(55, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
@@ -304,7 +250,7 @@
             // lbl_saveCoords
             // 
             this.lbl_saveCoords.AutoSize = true;
-            this.lbl_saveCoords.Location = new System.Drawing.Point(11, 195);
+            this.lbl_saveCoords.Location = new System.Drawing.Point(8, 151);
             this.lbl_saveCoords.Name = "lbl_saveCoords";
             this.lbl_saveCoords.Size = new System.Drawing.Size(17, 65);
             this.lbl_saveCoords.TabIndex = 18;
@@ -312,21 +258,21 @@
             // 
             // txt_ZBox
             // 
-            this.txt_ZBox.Location = new System.Drawing.Point(34, 244);
+            this.txt_ZBox.Location = new System.Drawing.Point(31, 200);
             this.txt_ZBox.Name = "txt_ZBox";
             this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
             // 
             // txt_YBox
             // 
-            this.txt_YBox.Location = new System.Drawing.Point(34, 218);
+            this.txt_YBox.Location = new System.Drawing.Point(31, 174);
             this.txt_YBox.Name = "txt_YBox";
             this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
             // 
             // txt_XBox
             // 
-            this.txt_XBox.Location = new System.Drawing.Point(34, 192);
+            this.txt_XBox.Location = new System.Drawing.Point(31, 148);
             this.txt_XBox.Name = "txt_XBox";
             this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
@@ -335,7 +281,7 @@
             // 
             this.box_alwaysInFront.AutoSize = true;
             this.box_alwaysInFront.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_alwaysInFront.Location = new System.Drawing.Point(7, 365);
+            this.box_alwaysInFront.Location = new System.Drawing.Point(12, 363);
             this.box_alwaysInFront.Name = "box_alwaysInFront";
             this.box_alwaysInFront.Size = new System.Drawing.Size(56, 17);
             this.box_alwaysInFront.TabIndex = 14;
@@ -347,7 +293,7 @@
             // 
             this.box_camAttach.AutoSize = true;
             this.box_camAttach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_camAttach.Location = new System.Drawing.Point(9, 98);
+            this.box_camAttach.Location = new System.Drawing.Point(6, 54);
             this.box_camAttach.Name = "box_camAttach";
             this.box_camAttach.Size = new System.Drawing.Size(88, 17);
             this.box_camAttach.TabIndex = 13;
@@ -359,7 +305,7 @@
             // 
             this.box_nofall.AutoSize = true;
             this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_nofall.Location = new System.Drawing.Point(9, 121);
+            this.box_nofall.Location = new System.Drawing.Point(6, 77);
             this.box_nofall.Name = "box_nofall";
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
@@ -371,7 +317,7 @@
             // 
             this.btn_tpToCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tpToCam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_tpToCam.Location = new System.Drawing.Point(71, 76);
+            this.btn_tpToCam.Location = new System.Drawing.Point(71, 34);
             this.btn_tpToCam.Name = "btn_tpToCam";
             this.btn_tpToCam.Size = new System.Drawing.Size(31, 19);
             this.btn_tpToCam.TabIndex = 11;
@@ -383,7 +329,7 @@
             // 
             this.box_Freecam.AutoSize = true;
             this.box_Freecam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_Freecam.Location = new System.Drawing.Point(9, 78);
+            this.box_Freecam.Location = new System.Drawing.Point(6, 34);
             this.box_Freecam.Name = "box_Freecam";
             this.box_Freecam.Size = new System.Drawing.Size(64, 17);
             this.box_Freecam.TabIndex = 9;
@@ -391,20 +337,10 @@
             this.box_Freecam.UseVisualStyleBackColor = true;
             this.box_Freecam.CheckedChanged += new System.EventHandler(this.box_Freecam_CheckedChanged);
             // 
-            // lbl_tabOneTitle
-            // 
-            this.lbl_tabOneTitle.AutoSize = true;
-            this.lbl_tabOneTitle.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tabOneTitle.Location = new System.Drawing.Point(3, 3);
-            this.lbl_tabOneTitle.Name = "lbl_tabOneTitle";
-            this.lbl_tabOneTitle.Size = new System.Drawing.Size(170, 23);
-            this.lbl_tabOneTitle.TabIndex = 9;
-            this.lbl_tabOneTitle.Text = "General Movement";
-            // 
             // btn_clearConsole
             // 
             this.btn_clearConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearConsole.Location = new System.Drawing.Point(258, 330);
+            this.btn_clearConsole.Location = new System.Drawing.Point(263, 328);
             this.btn_clearConsole.Name = "btn_clearConsole";
             this.btn_clearConsole.Size = new System.Drawing.Size(45, 23);
             this.btn_clearConsole.TabIndex = 8;
@@ -415,7 +351,7 @@
             // btn_teleport
             // 
             this.btn_teleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_teleport.Location = new System.Drawing.Point(144, 137);
+            this.btn_teleport.Location = new System.Drawing.Point(141, 93);
             this.btn_teleport.Name = "btn_teleport";
             this.btn_teleport.Size = new System.Drawing.Size(55, 23);
             this.btn_teleport.TabIndex = 7;
@@ -426,7 +362,7 @@
             // btn_saveLocation
             // 
             this.btn_saveLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocation.Location = new System.Drawing.Point(144, 108);
+            this.btn_saveLocation.Location = new System.Drawing.Point(141, 64);
             this.btn_saveLocation.Name = "btn_saveLocation";
             this.btn_saveLocation.Size = new System.Drawing.Size(55, 23);
             this.btn_saveLocation.TabIndex = 6;
@@ -437,7 +373,7 @@
             // lbl_coords
             // 
             this.lbl_coords.AutoSize = true;
-            this.lbl_coords.Location = new System.Drawing.Point(141, 53);
+            this.lbl_coords.Location = new System.Drawing.Point(138, 9);
             this.lbl_coords.Name = "lbl_coords";
             this.lbl_coords.Size = new System.Drawing.Size(17, 52);
             this.lbl_coords.TabIndex = 5;
@@ -446,7 +382,7 @@
             // lbl_cons
             // 
             this.lbl_cons.AutoSize = true;
-            this.lbl_cons.Location = new System.Drawing.Point(211, 44);
+            this.lbl_cons.Location = new System.Drawing.Point(216, 42);
             this.lbl_cons.Name = "lbl_cons";
             this.lbl_cons.Size = new System.Drawing.Size(33, 13);
             this.lbl_cons.TabIndex = 4;
@@ -454,7 +390,7 @@
             // 
             // log_console
             // 
-            this.log_console.Location = new System.Drawing.Point(211, 63);
+            this.log_console.Location = new System.Drawing.Point(216, 61);
             this.log_console.Multiline = true;
             this.log_console.Name = "log_console";
             this.log_console.ReadOnly = true;
@@ -468,33 +404,13 @@
             this.cbox_noclip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbox_noclip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbox_noclip.ForeColor = System.Drawing.Color.Red;
-            this.cbox_noclip.Location = new System.Drawing.Point(9, 50);
+            this.cbox_noclip.Location = new System.Drawing.Point(6, 6);
             this.cbox_noclip.Name = "cbox_noclip";
             this.cbox_noclip.Size = new System.Drawing.Size(103, 17);
             this.cbox_noclip.TabIndex = 2;
             this.cbox_noclip.Text = "Master-Switch";
             this.cbox_noclip.UseVisualStyleBackColor = true;
             this.cbox_noclip.CheckedChanged += new System.EventHandler(this.cbox_noclip_CheckedChanged_1);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Controls.Add(this.trck_opcacity);
-            this.tabPage2.Controls.Add(this.lbl_opacity);
-            this.tabPage2.Controls.Add(this.box_playerHeight);
-            this.tabPage2.Controls.Add(this.lbl_HeightNormal);
-            this.tabPage2.Controls.Add(this.box_dotEsp);
-            this.tabPage2.Controls.Add(this.box_esp);
-            this.tabPage2.Controls.Add(this.lbl_tab2Title);
-            this.tabPage2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tabPage2.ImageKey = "death_star_wars_icon_183176.ico";
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(368, 384);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Misc";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -523,7 +439,7 @@
             this.panel1.Controls.Add(this.lbl_tpUp);
             this.panel1.Controls.Add(this.txtbox_TPUpKey);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(105, 180);
+            this.panel1.Location = new System.Drawing.Point(100, 85);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(262, 197);
             this.panel1.TabIndex = 53;
@@ -739,7 +655,7 @@
             // 
             this.trck_opcacity.AutoSize = false;
             this.trck_opcacity.BackColor = System.Drawing.Color.White;
-            this.trck_opcacity.Location = new System.Drawing.Point(7, 274);
+            this.trck_opcacity.Location = new System.Drawing.Point(10, 178);
             this.trck_opcacity.Maximum = 100;
             this.trck_opcacity.Minimum = 10;
             this.trck_opcacity.Name = "trck_opcacity";
@@ -752,7 +668,7 @@
             // lbl_opacity
             // 
             this.lbl_opacity.AutoSize = true;
-            this.lbl_opacity.Location = new System.Drawing.Point(6, 258);
+            this.lbl_opacity.Location = new System.Drawing.Point(9, 162);
             this.lbl_opacity.Name = "lbl_opacity";
             this.lbl_opacity.Size = new System.Drawing.Size(85, 13);
             this.lbl_opacity.TabIndex = 28;
@@ -760,7 +676,7 @@
             // 
             // box_playerHeight
             // 
-            this.box_playerHeight.Location = new System.Drawing.Point(48, 87);
+            this.box_playerHeight.Location = new System.Drawing.Point(47, 55);
             this.box_playerHeight.Name = "box_playerHeight";
             this.box_playerHeight.Size = new System.Drawing.Size(40, 20);
             this.box_playerHeight.TabIndex = 27;
@@ -770,7 +686,7 @@
             // lbl_HeightNormal
             // 
             this.lbl_HeightNormal.AutoSize = true;
-            this.lbl_HeightNormal.Location = new System.Drawing.Point(4, 90);
+            this.lbl_HeightNormal.Location = new System.Drawing.Point(3, 58);
             this.lbl_HeightNormal.Name = "lbl_HeightNormal";
             this.lbl_HeightNormal.Size = new System.Drawing.Size(152, 13);
             this.lbl_HeightNormal.TabIndex = 26;
@@ -780,7 +696,7 @@
             // 
             this.box_dotEsp.AutoSize = true;
             this.box_dotEsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_dotEsp.Location = new System.Drawing.Point(7, 61);
+            this.box_dotEsp.Location = new System.Drawing.Point(6, 29);
             this.box_dotEsp.Name = "box_dotEsp";
             this.box_dotEsp.Size = new System.Drawing.Size(104, 17);
             this.box_dotEsp.TabIndex = 25;
@@ -792,7 +708,7 @@
             // 
             this.box_esp.AutoSize = true;
             this.box_esp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_esp.Location = new System.Drawing.Point(7, 38);
+            this.box_esp.Location = new System.Drawing.Point(6, 6);
             this.box_esp.Name = "box_esp";
             this.box_esp.Size = new System.Drawing.Size(78, 17);
             this.box_esp.TabIndex = 24;
@@ -800,59 +716,35 @@
             this.box_esp.UseVisualStyleBackColor = true;
             this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
             // 
-            // lbl_tab2Title
-            // 
-            this.lbl_tab2Title.AutoSize = true;
-            this.lbl_tab2Title.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tab2Title.Location = new System.Drawing.Point(3, 3);
-            this.lbl_tab2Title.Name = "lbl_tab2Title";
-            this.lbl_tab2Title.Size = new System.Drawing.Size(49, 23);
-            this.lbl_tab2Title.TabIndex = 10;
-            this.lbl_tab2Title.Text = "Misc";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btn_loadScript);
-            this.tabPage3.Controls.Add(this.btn_saveScript);
-            this.tabPage3.Controls.Add(this.btn_showVars);
-            this.tabPage3.Controls.Add(this.btn_example);
-            this.tabPage3.Controls.Add(this.btn_runScript);
-            this.tabPage3.Controls.Add(this.txtbox_script);
-            this.tabPage3.ImageIndex = 0;
-            this.tabPage3.Location = new System.Drawing.Point(4, 23);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(368, 384);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Scripts";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // btn_loadScript
             // 
+            this.btn_loadScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_loadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadScript.Location = new System.Drawing.Point(313, 358);
+            this.btn_loadScript.Location = new System.Drawing.Point(327, 325);
             this.btn_loadScript.Name = "btn_loadScript";
-            this.btn_loadScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_loadScript.Size = new System.Drawing.Size(43, 23);
             this.btn_loadScript.TabIndex = 5;
             this.btn_loadScript.Text = "Load";
             this.btn_loadScript.UseVisualStyleBackColor = true;
             // 
             // btn_saveScript
             // 
+            this.btn_saveScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_saveScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveScript.Location = new System.Drawing.Point(259, 358);
+            this.btn_saveScript.Location = new System.Drawing.Point(278, 325);
             this.btn_saveScript.Name = "btn_saveScript";
-            this.btn_saveScript.Size = new System.Drawing.Size(52, 23);
+            this.btn_saveScript.Size = new System.Drawing.Size(43, 23);
             this.btn_saveScript.TabIndex = 4;
             this.btn_saveScript.Text = "Save";
             this.btn_saveScript.UseVisualStyleBackColor = true;
             // 
             // btn_showVars
             // 
+            this.btn_showVars.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_showVars.Location = new System.Drawing.Point(100, 355);
+            this.btn_showVars.Location = new System.Drawing.Point(95, 325);
             this.btn_showVars.Name = "btn_showVars";
             this.btn_showVars.Size = new System.Drawing.Size(38, 23);
             this.btn_showVars.TabIndex = 3;
@@ -864,7 +756,7 @@
             // 
             this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_example.Location = new System.Drawing.Point(6, 355);
+            this.btn_example.Location = new System.Drawing.Point(3, 325);
             this.btn_example.Name = "btn_example";
             this.btn_example.Size = new System.Drawing.Size(88, 23);
             this.btn_example.TabIndex = 2;
@@ -876,7 +768,7 @@
             // 
             this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_runScript.Location = new System.Drawing.Point(144, 338);
+            this.btn_runScript.Location = new System.Drawing.Point(163, 325);
             this.btn_runScript.Name = "btn_runScript";
             this.btn_runScript.Size = new System.Drawing.Size(75, 23);
             this.btn_runScript.TabIndex = 1;
@@ -886,15 +778,13 @@
             // 
             // txtbox_script
             // 
-            this.txtbox_script.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbox_script.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbox_script.Location = new System.Drawing.Point(6, 6);
+            this.txtbox_script.Location = new System.Drawing.Point(0, 0);
             this.txtbox_script.Multiline = true;
             this.txtbox_script.Name = "txtbox_script";
             this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtbox_script.Size = new System.Drawing.Size(356, 326);
+            this.txtbox_script.Size = new System.Drawing.Size(374, 319);
             this.txtbox_script.TabIndex = 0;
             this.txtbox_script.Text = "MessageBox.Show(\"Hello World\");";
             // 
@@ -914,30 +804,117 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
+            // materialTabControl1
+            // 
+            this.materialTabControl1.Controls.Add(this.tabPage1);
+            this.materialTabControl1.Controls.Add(this.tabPage2);
+            this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Depth = 0;
+            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialTabControl1.ImageList = this.imageListMain;
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
+            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl1.Multiline = true;
+            this.materialTabControl1.Name = "materialTabControl1";
+            this.materialTabControl1.SelectedIndex = 0;
+            this.materialTabControl1.Size = new System.Drawing.Size(382, 384);
+            this.materialTabControl1.TabIndex = 30;
+            this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.box_darkmode);
+            this.tabPage1.Controls.Add(this.log_console);
+            this.tabPage1.Controls.Add(this.lbl_version);
+            this.tabPage1.Controls.Add(this.btn_about);
+            this.tabPage1.Controls.Add(this.box_speedhack);
+            this.tabPage1.Controls.Add(this.cbox_noclip);
+            this.tabPage1.Controls.Add(this.box_glide);
+            this.tabPage1.Controls.Add(this.lbl_cons);
+            this.tabPage1.Controls.Add(this.lbl_CusCoord);
+            this.tabPage1.Controls.Add(this.lbl_coords);
+            this.tabPage1.Controls.Add(this.lbl_Speed);
+            this.tabPage1.Controls.Add(this.btn_saveLocation);
+            this.tabPage1.Controls.Add(this.trckbr_speed);
+            this.tabPage1.Controls.Add(this.btn_teleport);
+            this.tabPage1.Controls.Add(this.btn_cancelTP);
+            this.tabPage1.Controls.Add(this.btn_clearConsole);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.btn_saveCustomCoords);
+            this.tabPage1.Controls.Add(this.box_Freecam);
+            this.tabPage1.Controls.Add(this.lbl_saveCoords);
+            this.tabPage1.Controls.Add(this.btn_tpToCam);
+            this.tabPage1.Controls.Add(this.txt_ZBox);
+            this.tabPage1.Controls.Add(this.box_nofall);
+            this.tabPage1.Controls.Add(this.txt_YBox);
+            this.tabPage1.Controls.Add(this.box_camAttach);
+            this.tabPage1.Controls.Add(this.txt_XBox);
+            this.tabPage1.Controls.Add(this.box_alwaysInFront);
+            this.tabPage1.ImageKey = "home_house_3526.ico";
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(374, 357);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Movement";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.trck_opcacity);
+            this.tabPage2.Controls.Add(this.lbl_opacity);
+            this.tabPage2.Controls.Add(this.box_esp);
+            this.tabPage2.Controls.Add(this.box_playerHeight);
+            this.tabPage2.Controls.Add(this.box_dotEsp);
+            this.tabPage2.Controls.Add(this.lbl_HeightNormal);
+            this.tabPage2.ImageKey = "death_star_wars_icon_183176.ico";
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(374, 357);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Misc";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btn_loadScript);
+            this.tabPage3.Controls.Add(this.txtbox_script);
+            this.tabPage3.Controls.Add(this.btn_saveScript);
+            this.tabPage3.Controls.Add(this.btn_runScript);
+            this.tabPage3.Controls.Add(this.btn_showVars);
+            this.tabPage3.Controls.Add(this.btn_example);
+            this.tabPage3.ImageKey = "feather_38326.ico";
+            this.tabPage3.Location = new System.Drawing.Point(4, 23);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(374, 357);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Scripts";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 438);
-            this.Controls.Add(this.tab_List);
+            this.ClientSize = new System.Drawing.Size(388, 451);
+            this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.lbl_title);
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.DrawerTabControl = this.materialTabControl1;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.Sizable = false;
-            this.Text = "swtool";
-            this.tab_List.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
+            this.materialTabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
@@ -950,9 +927,6 @@
         private System.Windows.Forms.Button btn_about;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Timer mainTimer;
-        private System.Windows.Forms.TabControl tab_List;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox cbox_noclip;
         private System.Windows.Forms.TextBox log_console;
         private System.Windows.Forms.Label lbl_cons;
@@ -961,8 +935,6 @@
         private System.Windows.Forms.Button btn_teleport;
         private System.Windows.Forms.Button btn_saveLocation;
         private System.Windows.Forms.CheckBox box_Freecam;
-        private System.Windows.Forms.Label lbl_tabOneTitle;
-        private System.Windows.Forms.Label lbl_tab2Title;
         private System.Windows.Forms.Button btn_tpToCam;
         private System.Windows.Forms.CheckBox box_nofall;
         private System.Windows.Forms.CheckBox box_camAttach;
@@ -1012,7 +984,6 @@
         private System.Windows.Forms.TextBox txtbox_speedKey;
         private System.Windows.Forms.Label lbl_customHks;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btn_runScript;
         private System.Windows.Forms.TextBox txtbox_script;
         private System.Windows.Forms.Button btn_example;
@@ -1021,6 +992,10 @@
         private System.Windows.Forms.Button btn_saveScript;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox box_darkmode;
+        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 

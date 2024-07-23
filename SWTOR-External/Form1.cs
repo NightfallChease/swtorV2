@@ -199,7 +199,7 @@ float playerHeight
             //Thread pvpThread = new Thread(checkForPvP) { IsBackground = true , Priority = ThreadPriority.Lowest};
 
             //Design stuff 
-            MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.WHITE);
+            MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green900, Accent.Green700, TextShade.WHITE);
             //Design stuff 
 
             onlineCheck(urlRunning);
@@ -212,7 +212,7 @@ float playerHeight
             startgetBaseTimer();
 
             int title = rnd.Next(999999, 9999999);
-            this.Text = title.ToString("X2");
+            //this.Text = title.ToString("X2");
 
             int PID = m.GetProcIdFromName("swtor");
 
@@ -231,6 +231,8 @@ float playerHeight
             aobThread.Start();
             NumpadTeleportThread.Start();
             HotkeyThread.Start();
+
+            this.Text = materialTabControl1.SelectedTab.Text;
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
@@ -336,26 +338,30 @@ float playerHeight
         {
             if (!darkmodeEnabled)
             {
+                Color fColor = Color.FromArgb(220, 220, 220);
+                Color bColor = Color.FromArgb(50, 50, 50);
                 MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.BLACK);
-                this.BackColor = Color.FromArgb(53, 59, 72);
-                this.ForeColor = Color.FromArgb(245, 246, 250);
-                tabPage1.BackColor = Color.FromArgb(53, 59, 72);
-                tabPage1.ForeColor = Color.FromArgb(245, 246, 250);
-                tabPage2.BackColor = Color.FromArgb(53, 59, 72);
-                tabPage2.ForeColor = Color.FromArgb(245, 246, 250);
-                tabPage3.BackColor = Color.FromArgb(53, 59, 72);
-                tabPage3.ForeColor = Color.FromArgb(245, 246, 250);
-                panel1.BackColor = Color.FromArgb(53, 59, 72);
-                panel1.ForeColor = Color.FromArgb(245, 246, 250);
-                trckbr_speed.BackColor = Color.FromArgb(53, 59, 72);
+                MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.DARK;
+                this.BackColor = bColor;
+                this.ForeColor = fColor;
+                tabPage1.BackColor = bColor;
+                tabPage1.ForeColor = fColor;
+                tabPage2.BackColor = bColor;
+                tabPage2.ForeColor = fColor;
+                tabPage3.BackColor = bColor;
+                tabPage3.ForeColor = fColor;
+                panel1.BackColor = bColor;
+                panel1.ForeColor = fColor;
+                trckbr_speed.BackColor = bColor;
 
-                SetControlColors(this.Controls, Color.FromArgb(53, 59, 72), Color.FromArgb(245, 246, 250));
+                SetControlColors(this.Controls, bColor, fColor);
 
                 darkmodeEnabled = true;
             }
             else
             {
                 MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.WHITE);
+                MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT;
                 this.BackColor = Color.FromArgb(240, 240, 250);
                 this.ForeColor = Color.FromArgb(0, 0, 0);
                 tabPage1.BackColor = Color.FromArgb(250, 250, 250);
@@ -1396,6 +1402,11 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             public Form1 tool { get; set; }
             public Mem mem { get; set; } //Initialize the 'm' object here
+        }
+
+        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Text = materialTabControl1.SelectedTab.Text;
         }
 
         #endregion
