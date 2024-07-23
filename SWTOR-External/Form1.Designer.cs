@@ -116,6 +116,7 @@
             // btn_about
             // 
             this.btn_about.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_about.Location = new System.Drawing.Point(144, 351);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(80, 27);
@@ -204,10 +205,11 @@
             // box_speedhack
             // 
             this.box_speedhack.AutoSize = true;
+            this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.box_speedhack.Location = new System.Drawing.Point(119, 321);
             this.box_speedhack.Name = "box_speedhack";
-            this.box_speedhack.Size = new System.Drawing.Size(43, 17);
+            this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
             this.box_speedhack.Text = "Off";
             this.box_speedhack.UseVisualStyleBackColor = true;
@@ -216,9 +218,10 @@
             // box_glide
             // 
             this.box_glide.AutoSize = true;
+            this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_glide.Location = new System.Drawing.Point(9, 143);
             this.box_glide.Name = "box_glide";
-            this.box_glide.Size = new System.Drawing.Size(68, 17);
+            this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
             this.box_glide.Text = "Freeze Y";
             this.box_glide.UseVisualStyleBackColor = true;
@@ -254,6 +257,7 @@
             // 
             // btn_cancelTP
             // 
+            this.btn_cancelTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancelTP.Location = new System.Drawing.Point(144, 166);
             this.btn_cancelTP.Name = "btn_cancelTP";
             this.btn_cancelTP.Size = new System.Drawing.Size(55, 23);
@@ -274,6 +278,7 @@
             // 
             // btn_saveCustomCoords
             // 
+            this.btn_saveCustomCoords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveCustomCoords.Location = new System.Drawing.Point(22, 270);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(55, 23);
@@ -315,9 +320,10 @@
             // box_alwaysInFront
             // 
             this.box_alwaysInFront.AutoSize = true;
+            this.box_alwaysInFront.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_alwaysInFront.Location = new System.Drawing.Point(7, 365);
             this.box_alwaysInFront.Name = "box_alwaysInFront";
-            this.box_alwaysInFront.Size = new System.Drawing.Size(59, 17);
+            this.box_alwaysInFront.Size = new System.Drawing.Size(56, 17);
             this.box_alwaysInFront.TabIndex = 14;
             this.box_alwaysInFront.Text = "OnTop";
             this.box_alwaysInFront.UseVisualStyleBackColor = true;
@@ -326,9 +332,10 @@
             // box_camAttach
             // 
             this.box_camAttach.AutoSize = true;
+            this.box_camAttach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_camAttach.Location = new System.Drawing.Point(9, 98);
             this.box_camAttach.Name = "box_camAttach";
-            this.box_camAttach.Size = new System.Drawing.Size(91, 17);
+            this.box_camAttach.Size = new System.Drawing.Size(88, 17);
             this.box_camAttach.TabIndex = 13;
             this.box_camAttach.Text = "AttachToCam";
             this.box_camAttach.UseVisualStyleBackColor = true;
@@ -337,9 +344,10 @@
             // box_nofall
             // 
             this.box_nofall.AutoSize = true;
+            this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_nofall.Location = new System.Drawing.Point(9, 121);
             this.box_nofall.Name = "box_nofall";
-            this.box_nofall.Size = new System.Drawing.Size(97, 17);
+            this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
             this.box_nofall.Text = "No Falldamage";
             this.box_nofall.UseVisualStyleBackColor = true;
@@ -347,6 +355,8 @@
             // 
             // btn_tpToCam
             // 
+            this.btn_tpToCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_tpToCam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tpToCam.Location = new System.Drawing.Point(71, 76);
             this.btn_tpToCam.Name = "btn_tpToCam";
             this.btn_tpToCam.Size = new System.Drawing.Size(31, 19);
@@ -358,9 +368,10 @@
             // box_Freecam
             // 
             this.box_Freecam.AutoSize = true;
+            this.box_Freecam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_Freecam.Location = new System.Drawing.Point(9, 78);
             this.box_Freecam.Name = "box_Freecam";
-            this.box_Freecam.Size = new System.Drawing.Size(67, 17);
+            this.box_Freecam.Size = new System.Drawing.Size(64, 17);
             this.box_Freecam.TabIndex = 9;
             this.box_Freecam.Text = "Freecam";
             this.box_Freecam.UseVisualStyleBackColor = true;
@@ -378,6 +389,7 @@
             // 
             // btn_clearConsole
             // 
+            this.btn_clearConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_clearConsole.Location = new System.Drawing.Point(258, 330);
             this.btn_clearConsole.Name = "btn_clearConsole";
             this.btn_clearConsole.Size = new System.Drawing.Size(45, 23);
@@ -388,6 +400,7 @@
             // 
             // btn_teleport
             // 
+            this.btn_teleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_teleport.Location = new System.Drawing.Point(144, 137);
             this.btn_teleport.Name = "btn_teleport";
             this.btn_teleport.Size = new System.Drawing.Size(55, 23);
@@ -398,6 +411,7 @@
             // 
             // btn_saveLocation
             // 
+            this.btn_saveLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveLocation.Location = new System.Drawing.Point(144, 108);
             this.btn_saveLocation.Name = "btn_saveLocation";
             this.btn_saveLocation.Size = new System.Drawing.Size(55, 23);
@@ -437,11 +451,12 @@
             // cbox_noclip
             // 
             this.cbox_noclip.AutoSize = true;
+            this.cbox_noclip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbox_noclip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbox_noclip.ForeColor = System.Drawing.Color.Red;
             this.cbox_noclip.Location = new System.Drawing.Point(9, 50);
             this.cbox_noclip.Name = "cbox_noclip";
-            this.cbox_noclip.Size = new System.Drawing.Size(106, 17);
+            this.cbox_noclip.Size = new System.Drawing.Size(103, 17);
             this.cbox_noclip.TabIndex = 2;
             this.cbox_noclip.Text = "Master-Switch";
             this.cbox_noclip.UseVisualStyleBackColor = true;
@@ -750,9 +765,10 @@
             // box_dotEsp
             // 
             this.box_dotEsp.AutoSize = true;
+            this.box_dotEsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_dotEsp.Location = new System.Drawing.Point(7, 61);
             this.box_dotEsp.Name = "box_dotEsp";
-            this.box_dotEsp.Size = new System.Drawing.Size(107, 17);
+            this.box_dotEsp.Size = new System.Drawing.Size(104, 17);
             this.box_dotEsp.TabIndex = 25;
             this.box_dotEsp.Text = "Velocity Indicator";
             this.box_dotEsp.UseVisualStyleBackColor = true;
@@ -761,9 +777,10 @@
             // box_esp
             // 
             this.box_esp.AutoSize = true;
+            this.box_esp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_esp.Location = new System.Drawing.Point(7, 38);
             this.box_esp.Name = "box_esp";
-            this.box_esp.Size = new System.Drawing.Size(81, 17);
+            this.box_esp.Size = new System.Drawing.Size(78, 17);
             this.box_esp.TabIndex = 24;
             this.box_esp.Text = "Target ESP";
             this.box_esp.UseVisualStyleBackColor = true;
@@ -799,6 +816,7 @@
             // btn_loadScript
             // 
             this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_loadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_loadScript.Location = new System.Drawing.Point(313, 358);
             this.btn_loadScript.Name = "btn_loadScript";
             this.btn_loadScript.Size = new System.Drawing.Size(52, 23);
@@ -809,6 +827,7 @@
             // btn_saveScript
             // 
             this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_saveScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveScript.Location = new System.Drawing.Point(259, 358);
             this.btn_saveScript.Name = "btn_saveScript";
             this.btn_saveScript.Size = new System.Drawing.Size(52, 23);
@@ -818,6 +837,7 @@
             // 
             // btn_showVars
             // 
+            this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_showVars.Location = new System.Drawing.Point(100, 355);
             this.btn_showVars.Name = "btn_showVars";
             this.btn_showVars.Size = new System.Drawing.Size(38, 23);
@@ -829,6 +849,7 @@
             // btn_example
             // 
             this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_example.Location = new System.Drawing.Point(6, 355);
             this.btn_example.Name = "btn_example";
             this.btn_example.Size = new System.Drawing.Size(88, 23);
@@ -840,6 +861,7 @@
             // btn_runScript
             // 
             this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_runScript.Location = new System.Drawing.Point(144, 338);
             this.btn_runScript.Name = "btn_runScript";
             this.btn_runScript.Size = new System.Drawing.Size(75, 23);
