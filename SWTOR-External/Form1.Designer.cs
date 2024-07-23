@@ -103,6 +103,7 @@
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
+            this.box_darkmode = new System.Windows.Forms.CheckBox();
             this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -158,6 +159,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.box_darkmode);
             this.tabPage1.Controls.Add(this.lbl_version);
             this.tabPage1.Controls.Add(this.box_speedhack);
             this.tabPage1.Controls.Add(this.box_glide);
@@ -900,6 +902,18 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
+            // box_darkmode
+            // 
+            this.box_darkmode.AutoSize = true;
+            this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_darkmode.Location = new System.Drawing.Point(7, 350);
+            this.box_darkmode.Name = "box_darkmode";
+            this.box_darkmode.Size = new System.Drawing.Size(72, 17);
+            this.box_darkmode.TabIndex = 29;
+            this.box_darkmode.Text = "Darkmode";
+            this.box_darkmode.UseVisualStyleBackColor = true;
+            this.box_darkmode.CheckedChanged += new System.EventHandler(this.box_darkMode_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1006,6 +1020,7 @@
         private System.Windows.Forms.Button btn_loadScript;
         private System.Windows.Forms.Button btn_saveScript;
         private System.Windows.Forms.Label lbl_version;
+        private System.Windows.Forms.CheckBox box_darkmode;
     }
 }
 

@@ -23,6 +23,7 @@ namespace SWTOR_External
         InputSimulator sim = new InputSimulator();
 
         #region vars
+        private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.3.sw";
         private bool noclipPatched = false;
@@ -330,6 +331,36 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+
+        private void box_darkMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!darkmodeEnabled)
+            {
+                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.BLACK);
+                this.BackColor = Color.FromArgb(53, 59, 72);
+                this.ForeColor = Color.FromArgb(245, 246, 250);
+                tabPage1.BackColor = Color.FromArgb(53, 59, 72);
+                tabPage1.ForeColor = Color.FromArgb(245, 246, 250);
+                trckbr_speed.BackColor = Color.FromArgb(53, 59, 72);
+
+                SetControlColors(this.Controls, Color.FromArgb(53, 59, 72), Color.FromArgb(245, 246, 250));
+
+                darkmodeEnabled = true;
+            }
+            else
+            {
+                MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green500, Primary.Green900, Primary.Green800, Accent.Green700, TextShade.WHITE);
+                this.BackColor = Color.FromArgb(240, 240, 250);
+                this.ForeColor = Color.FromArgb(0, 0, 0);
+                tabPage1.BackColor = Color.FromArgb(250, 250, 250);
+                tabPage1.ForeColor = Color.FromArgb(0, 0, 0);
+                trckbr_speed.BackColor = Color.FromArgb(250, 250, 250);
+
+                SetControlColors(this.Controls, Color.FromArgb(250, 250, 250), Color.FromArgb(0, 0, 0));
+
+                darkmodeEnabled = false;
+            }
+        }
         private void cbox_noclip_CheckedChanged_1(object sender, EventArgs e)
         {
             Thread codeCaveThread = new Thread(createCodeCave);
@@ -417,6 +448,21 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void SetControlColors(Control.ControlCollection controls, Color backColor, Color foreColor)
+        {
+            foreach (Control control in controls)
+            {
+                if (control is Button || control is TextBox || control is TrackBar)
+                {
+                    control.BackColor = backColor;
+                    control.ForeColor = foreColor;
+                }
+                else if (control.HasChildren)
+                {
+                    SetControlColors(control.Controls, backColor, foreColor);
+                }
+            }
+        }
         private void toggle_freecam()
         {
             if (!cameraYPatched)
@@ -1338,6 +1384,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             public Form1 tool { get; set; }
             public Mem mem { get; set; } //Initialize the 'm' object here
         }
+
         #endregion
 
         /*
