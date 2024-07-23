@@ -341,6 +341,12 @@ float playerHeight
                 this.ForeColor = Color.FromArgb(245, 246, 250);
                 tabPage1.BackColor = Color.FromArgb(53, 59, 72);
                 tabPage1.ForeColor = Color.FromArgb(245, 246, 250);
+                tabPage2.BackColor = Color.FromArgb(53, 59, 72);
+                tabPage2.ForeColor = Color.FromArgb(245, 246, 250);
+                tabPage3.BackColor = Color.FromArgb(53, 59, 72);
+                tabPage3.ForeColor = Color.FromArgb(245, 246, 250);
+                panel1.BackColor = Color.FromArgb(53, 59, 72);
+                panel1.ForeColor = Color.FromArgb(245, 246, 250);
                 trckbr_speed.BackColor = Color.FromArgb(53, 59, 72);
 
                 SetControlColors(this.Controls, Color.FromArgb(53, 59, 72), Color.FromArgb(245, 246, 250));
@@ -354,7 +360,14 @@ float playerHeight
                 this.ForeColor = Color.FromArgb(0, 0, 0);
                 tabPage1.BackColor = Color.FromArgb(250, 250, 250);
                 tabPage1.ForeColor = Color.FromArgb(0, 0, 0);
+                tabPage2.BackColor = Color.FromArgb(250, 250, 250);
+                tabPage2.ForeColor = Color.FromArgb(0, 0, 0);
+                tabPage3.BackColor = Color.FromArgb(250, 250, 250);
+                tabPage3.ForeColor = Color.FromArgb(0, 0, 0);
+                panel1.BackColor = Color.FromArgb(250, 250, 250);
+                panel1.ForeColor = Color.FromArgb(0, 0, 0);
                 trckbr_speed.BackColor = Color.FromArgb(250, 250, 250);
+                trckbr_speed.BackColor = Color.FromArgb(0, 0, 0);
 
                 SetControlColors(this.Controls, Color.FromArgb(250, 250, 250), Color.FromArgb(0, 0, 0));
 

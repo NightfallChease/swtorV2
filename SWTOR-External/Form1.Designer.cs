@@ -35,6 +35,7 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.tab_List = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_darkmode = new System.Windows.Forms.CheckBox();
             this.lbl_version = new System.Windows.Forms.Label();
             this.box_speedhack = new System.Windows.Forms.CheckBox();
             this.box_glide = new System.Windows.Forms.CheckBox();
@@ -93,7 +94,7 @@
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
             this.lbl_tab2Title = new System.Windows.Forms.Label();
-            this.tab_Scripts = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btn_loadScript = new System.Windows.Forms.Button();
             this.btn_saveScript = new System.Windows.Forms.Button();
             this.btn_showVars = new System.Windows.Forms.Button();
@@ -103,7 +104,6 @@
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
-            this.box_darkmode = new System.Windows.Forms.CheckBox();
             this.tab_List.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
@@ -111,7 +111,7 @@
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
-            this.tab_Scripts.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_about
@@ -147,7 +147,7 @@
             // 
             this.tab_List.Controls.Add(this.tabPage1);
             this.tab_List.Controls.Add(this.tabPage2);
-            this.tab_List.Controls.Add(this.tab_Scripts);
+            this.tab_List.Controls.Add(this.tabPage3);
             this.tab_List.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_List.ImageList = this.imageListMain;
             this.tab_List.Location = new System.Drawing.Point(3, 24);
@@ -194,6 +194,18 @@
             this.tabPage1.Size = new System.Drawing.Size(368, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
+            // 
+            // box_darkmode
+            // 
+            this.box_darkmode.AutoSize = true;
+            this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_darkmode.Location = new System.Drawing.Point(7, 350);
+            this.box_darkmode.Name = "box_darkmode";
+            this.box_darkmode.Size = new System.Drawing.Size(72, 17);
+            this.box_darkmode.TabIndex = 29;
+            this.box_darkmode.Text = "Darkmode";
+            this.box_darkmode.UseVisualStyleBackColor = true;
+            this.box_darkmode.CheckedChanged += new System.EventHandler(this.box_darkMode_CheckedChanged);
             // 
             // lbl_version
             // 
@@ -798,22 +810,22 @@
             this.lbl_tab2Title.TabIndex = 10;
             this.lbl_tab2Title.Text = "Misc";
             // 
-            // tab_Scripts
+            // tabPage3
             // 
-            this.tab_Scripts.Controls.Add(this.btn_loadScript);
-            this.tab_Scripts.Controls.Add(this.btn_saveScript);
-            this.tab_Scripts.Controls.Add(this.btn_showVars);
-            this.tab_Scripts.Controls.Add(this.btn_example);
-            this.tab_Scripts.Controls.Add(this.btn_runScript);
-            this.tab_Scripts.Controls.Add(this.txtbox_script);
-            this.tab_Scripts.ImageIndex = 0;
-            this.tab_Scripts.Location = new System.Drawing.Point(4, 23);
-            this.tab_Scripts.Name = "tab_Scripts";
-            this.tab_Scripts.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Scripts.Size = new System.Drawing.Size(368, 384);
-            this.tab_Scripts.TabIndex = 3;
-            this.tab_Scripts.Text = "Scripts";
-            this.tab_Scripts.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.btn_loadScript);
+            this.tabPage3.Controls.Add(this.btn_saveScript);
+            this.tabPage3.Controls.Add(this.btn_showVars);
+            this.tabPage3.Controls.Add(this.btn_example);
+            this.tabPage3.Controls.Add(this.btn_runScript);
+            this.tabPage3.Controls.Add(this.txtbox_script);
+            this.tabPage3.ImageIndex = 0;
+            this.tabPage3.Location = new System.Drawing.Point(4, 23);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(368, 384);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "Scripts";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btn_loadScript
             // 
@@ -902,18 +914,6 @@
             this.timer_getBase.Interval = 500;
             this.timer_getBase.Tick += new System.EventHandler(this.timer_getBase_Tick);
             // 
-            // box_darkmode
-            // 
-            this.box_darkmode.AutoSize = true;
-            this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_darkmode.Location = new System.Drawing.Point(7, 350);
-            this.box_darkmode.Name = "box_darkmode";
-            this.box_darkmode.Size = new System.Drawing.Size(72, 17);
-            this.box_darkmode.TabIndex = 29;
-            this.box_darkmode.Text = "Darkmode";
-            this.box_darkmode.UseVisualStyleBackColor = true;
-            this.box_darkmode.CheckedChanged += new System.EventHandler(this.box_darkMode_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -938,8 +938,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
-            this.tab_Scripts.ResumeLayout(false);
-            this.tab_Scripts.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1012,7 +1012,7 @@
         private System.Windows.Forms.TextBox txtbox_speedKey;
         private System.Windows.Forms.Label lbl_customHks;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabPage tab_Scripts;
+        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btn_runScript;
         private System.Windows.Forms.TextBox txtbox_script;
         private System.Windows.Forms.Button btn_example;
