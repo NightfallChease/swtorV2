@@ -13,7 +13,6 @@ using WindowsInput.Native;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 
-
 namespace SWTOR_External
 {
     public partial class Form1 : MaterialForm
@@ -533,6 +532,7 @@ float playerHeight
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
+                //MessageBox.Show("AOB scan success");
             }
             catch(Exception ex)
             {
@@ -850,11 +850,11 @@ float playerHeight
                     noclipCave = true;
                     //log_console.Text = log_console.Text + "\r\n\r\nCave Created";;
                 }
-                catch
+                catch(Exception ex)
                 {
                     log_console.Invoke((MethodInvoker)delegate
                     {
-                        log_console.Text = log_console.Text + "\r\n\r\nHook failed!";
+                        log_console.Text = log_console.Text + $"\r\n\r\nHook failed\r\nError: {ex.Message}";
                     });
                     return;
                 }
@@ -982,7 +982,7 @@ float playerHeight
         }
         private void logToConsole(string textToLog)
         {
-            log_console.Text = log_console.Text + $"\r\n\r\n{textToLog}";
+            log_console.Text = log_console.Text + $"\r\n{textToLog}";
         }
         /*
         private void checkForPvP()

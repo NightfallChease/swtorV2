@@ -413,7 +413,7 @@
             // lbl_customHks
             // 
             this.lbl_customHks.AutoSize = true;
-            this.lbl_customHks.Location = new System.Drawing.Point(90, 13);
+            this.lbl_customHks.Location = new System.Drawing.Point(189, 89);
             this.lbl_customHks.Name = "lbl_customHks";
             this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
             this.lbl_customHks.TabIndex = 52;
