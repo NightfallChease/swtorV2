@@ -24,7 +24,7 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.4.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.5.sw";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -47,6 +47,9 @@ namespace SWTOR_External
         private string devESPAob = "0F 84 ?? ?? ?? ?? B9 06 00 00 00 41 FF D4 48 BE";
         private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
         private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
+        private string wallhackAOB = "74 0D 83 4B 68 01";
+        private string wallhackAddress;
+        private bool wallhackPatched;
         private bool glideEnabled = false;
         private VirtualKeyCode TPUpKey;
         private VirtualKeyCode TPDownKey;
@@ -105,6 +108,7 @@ namespace SWTOR_External
         public UIntPtr cameraZUInt;
         public UIntPtr yVelocityAddr;
         public UIntPtr heightAddr;
+        public float playerYVelocity;
         public string heightAddrString;
         public string yVelocityAddrString;
         public bool tpflag = false;
@@ -326,6 +330,8 @@ float playerHeight
                 long playerBaselong = m.ReadLong(PbaseUintString);
                 PlayerBaseAddress = playerBaselong.ToString("X2");
                 playerBaseUInt = ParseHexToUIntPtr(PlayerBaseAddress);
+                UIntPtr yVeloUint = (UIntPtr)UIntPtr.Add(playerBaseUInt, 0x470);
+                UIntPtr yVeloUint2 = (UIntPtr)UIntPtr.Add(playerBaseUInt, 0x10);
             }
             catch{}
         }
@@ -451,6 +457,19 @@ float playerHeight
                 devVelEnabled = false;
             }
         }
+        private void box_wallhack_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!wallhackPatched)
+            {
+                m.WriteMemory($"{wallhackAddress}", "bytes", "90 90");
+                wallhackPatched = true;
+            }
+            else
+            {
+                m.WriteMemory($"{wallhackAddress}", "bytes", "74 0D");
+                wallhackPatched = false;
+            }
+        }
         private void box_glide_CheckedChanged(object sender, EventArgs e)
         {
             doglide();
@@ -529,6 +548,7 @@ float playerHeight
                 devESPAddrString = m.AoBScan(devESPAob).Result.Sum().ToString("X2");
                 velocityIndAddrStr = m.AoBScan(velocityIndicatorAOB).Result.Sum().ToString("X2");
                 glideAddrString = m.AoBScan(glideAOB).Result.Sum().ToString("X2");
+                wallhackAddress = m.AoBScan(wallhackAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -834,7 +854,7 @@ float playerHeight
             {
                 try
                 {
-                    byte[] patched_bytes = { 0x48, 0x89, 0x1D, 0x0B, 0x00, 0x00, 0x00, 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C }; // patched bytes from the asm above
+                    byte[] patched_bytes = { 0x48, 0x89, 0x1D, 0x0B, 0x00, 0x00, 0x00, 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C };
 
                     //Create Codecave
                     pbasecaveAddr = m.CreateCodeCave(noclipAddress, patched_bytes, 6, 300);
@@ -1404,6 +1424,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             this.Text = materialTabControl1.SelectedTab.Text;
         }
+
+
 
         #endregion
 
