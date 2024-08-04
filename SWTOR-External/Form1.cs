@@ -1047,12 +1047,14 @@ float playerHeight
                 glideEnabled = true;
 
                 m.WriteMemory(glideAddrString, "bytes", "90 90 90 90 90 90");
+                m.WriteMemory(movementModeAddrStr, "int", "6");
             }
             else
             {
                 glideEnabled = false;
 
                 m.WriteMemory(glideAddrString, "bytes", glideAOB);
+                m.WriteMemory(movementModeAddrStr, "int", "1");
             }
         }
         private void speedhackFunction()
