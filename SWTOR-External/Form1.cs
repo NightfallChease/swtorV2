@@ -24,7 +24,7 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.5.sw";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -659,6 +659,7 @@ float playerHeight
             if (!glideEnabled)
             {
                 doglide();
+                m.WriteMemory(movementModeAddrStr, "int", "6");
             }
 
             if (savedX == 0 || savedY == 0 || savedZ == 0)
@@ -675,6 +676,7 @@ float playerHeight
                 m.WriteMemory(xAddrString, "float", (savedX).ToString());
                 m.WriteMemory(yAddrString, "float", (savedY).ToString());
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString());
+                m.WriteMemory(movementModeAddrStr, "int", "1");
                 isArrived = true;
                 doglide();
             }
@@ -1255,7 +1257,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #region Buttons
         private void btn_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Made by Nightfall\nDiscord: nightfallct\n\nAlso Credits to Klerik for the noclip & research");
+            MessageBox.Show("Made by Nightfall\nDiscord: nightfallct\n\nAlso credits to Klerik for the noclip & research");
         }
         private void btn_clearConsole_Click(object sender, EventArgs e)
         {
