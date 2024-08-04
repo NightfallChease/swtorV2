@@ -24,11 +24,12 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.5.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.sw";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
         private bool cameraYPatched = false;
+        private bool noCollisionEnabled = false;
         private bool noclipCave = false;
         private bool camCave = false;
         private bool freeCamEnabled = false;
@@ -108,6 +109,8 @@ namespace SWTOR_External
         public UIntPtr cameraZUInt;
         public UIntPtr yVelocityAddr;
         public UIntPtr heightAddr;
+        public UIntPtr movementModeAddr;
+        public string movementModeAddrStr;
         public float playerYVelocity;
         public string heightAddrString;
         public string yVelocityAddrString;
@@ -236,6 +239,7 @@ float playerHeight
             HotkeyThread.Start();
 
             this.Text = materialTabControl1.SelectedTab.Text;
+            box_darkmode.Checked = true;
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
@@ -249,10 +253,13 @@ float playerHeight
         private void mainTimer_Tick_1(object sender, EventArgs e)
         {
             //AntiDebug
-            PreventProgramFromBeingDebuged();
+            //PreventProgramFromBeingDebuged();
 
             xAddr = playerBaseUInt + 0x68;
             xAddrString = convertUintToHexString(xAddr);
+            
+            movementModeAddr = playerBaseUInt + 0x3d0;
+            movementModeAddrStr = convertUintToHexString(movementModeAddr);
 
             yAddr = playerBaseUInt + 0x6C;
             yAddrString = convertUintToHexString(yAddr);
@@ -286,7 +293,6 @@ float playerHeight
             zCoord = m.ReadFloat(zAddrString);
 
             playerHeight = m.ReadFloat(heightAddrString);
-
 
             lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
 
@@ -330,15 +336,25 @@ float playerHeight
                 long playerBaselong = m.ReadLong(PbaseUintString);
                 PlayerBaseAddress = playerBaselong.ToString("X2");
                 playerBaseUInt = ParseHexToUIntPtr(PlayerBaseAddress);
-                UIntPtr yVeloUint = (UIntPtr)UIntPtr.Add(playerBaseUInt, 0x470);
-                UIntPtr yVeloUint2 = (UIntPtr)UIntPtr.Add(playerBaseUInt, 0x10);
             }
             catch{}
         }
         #endregion
 
         #region Checkboxes
-
+        private void box_noCollision_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!noCollisionEnabled)
+            {
+                m.WriteMemory($"{movementModeAddrStr}", "int", "6");
+                noCollisionEnabled = true;
+            }
+            else
+            {
+                m.WriteMemory($"{movementModeAddrStr}", "int", "1");
+                noCollisionEnabled = true;
+            }
+        }
         private void box_darkMode_CheckedChanged(object sender, EventArgs e)
         {
             if (!darkmodeEnabled)
@@ -1237,7 +1253,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #region Buttons
         private void btn_about_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Made by Nightfall\nDiscord: nightfallct");
+            MessageBox.Show("Made by Nightfall\nDiscord: nightfallct\n\nAlso Credits to Klerik for the noclip & research");
         }
         private void btn_clearConsole_Click(object sender, EventArgs e)
         {
@@ -1424,6 +1440,28 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             this.Text = materialTabControl1.SelectedTab.Text;
         }
+
+        private void lbl_Speed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_ZBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_YBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_XBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
 

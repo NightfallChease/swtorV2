@@ -98,6 +98,7 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
@@ -166,7 +167,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 277);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 304);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -189,7 +190,7 @@
             // lbl_CusCoord
             // 
             this.lbl_CusCoord.AutoSize = true;
-            this.lbl_CusCoord.Location = new System.Drawing.Point(3, 132);
+            this.lbl_CusCoord.Location = new System.Drawing.Point(3, 159);
             this.lbl_CusCoord.Name = "lbl_CusCoord";
             this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
             this.lbl_CusCoord.TabIndex = 25;
@@ -198,17 +199,18 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 261);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 288);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
             this.lbl_Speed.Text = "Custom Speed (Risky)";
+            this.lbl_Speed.Click += new System.EventHandler(this.lbl_Speed_Click);
             // 
             // trckbr_speed
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 277);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 304);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -238,7 +240,7 @@
             // btn_saveCustomCoords
             // 
             this.btn_saveCustomCoords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(19, 226);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(19, 253);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(55, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
@@ -249,7 +251,7 @@
             // lbl_saveCoords
             // 
             this.lbl_saveCoords.AutoSize = true;
-            this.lbl_saveCoords.Location = new System.Drawing.Point(8, 151);
+            this.lbl_saveCoords.Location = new System.Drawing.Point(8, 178);
             this.lbl_saveCoords.Name = "lbl_saveCoords";
             this.lbl_saveCoords.Size = new System.Drawing.Size(17, 65);
             this.lbl_saveCoords.TabIndex = 18;
@@ -257,24 +259,27 @@
             // 
             // txt_ZBox
             // 
-            this.txt_ZBox.Location = new System.Drawing.Point(31, 200);
+            this.txt_ZBox.Location = new System.Drawing.Point(31, 227);
             this.txt_ZBox.Name = "txt_ZBox";
             this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
+            this.txt_ZBox.TextChanged += new System.EventHandler(this.txt_ZBox_TextChanged);
             // 
             // txt_YBox
             // 
-            this.txt_YBox.Location = new System.Drawing.Point(31, 174);
+            this.txt_YBox.Location = new System.Drawing.Point(31, 201);
             this.txt_YBox.Name = "txt_YBox";
             this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
+            this.txt_YBox.TextChanged += new System.EventHandler(this.txt_YBox_TextChanged);
             // 
             // txt_XBox
             // 
-            this.txt_XBox.Location = new System.Drawing.Point(31, 148);
+            this.txt_XBox.Location = new System.Drawing.Point(31, 175);
             this.txt_XBox.Name = "txt_XBox";
             this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
+            this.txt_XBox.TextChanged += new System.EventHandler(this.txt_XBox_TextChanged);
             // 
             // box_alwaysInFront
             // 
@@ -742,7 +747,7 @@
             this.txtbox_script.Multiline = true;
             this.txtbox_script.Name = "txtbox_script";
             this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtbox_script.Size = new System.Drawing.Size(374, 319);
+            this.txtbox_script.Size = new System.Drawing.Size(432, 319);
             this.txtbox_script.TabIndex = 0;
             this.txtbox_script.Text = "MessageBox.Show(\"Hello World\");";
             // 
@@ -781,6 +786,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.box_noCollision);
             this.tabPage1.Controls.Add(this.box_darkmode);
             this.tabPage1.Controls.Add(this.log_console);
             this.tabPage1.Controls.Add(this.lbl_version);
@@ -816,6 +822,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // box_noCollision
+            // 
+            this.box_noCollision.AutoSize = true;
+            this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_noCollision.Location = new System.Drawing.Point(6, 122);
+            this.box_noCollision.Name = "box_noCollision";
+            this.box_noCollision.Size = new System.Drawing.Size(78, 17);
+            this.box_noCollision.TabIndex = 30;
+            this.box_noCollision.Text = "No Collision";
+            this.box_noCollision.UseVisualStyleBackColor = true;
+            this.box_noCollision.CheckedChanged += new System.EventHandler(this.box_noCollision_CheckedChanged);
             // 
             // tabPage2
             // 
@@ -890,7 +908,7 @@
             this.tabPage3.ImageKey = "feather_38326.ico";
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(374, 357);
+            this.tabPage3.Size = new System.Drawing.Size(432, 357);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -997,6 +1015,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label lbl_speedKey;
         private System.Windows.Forms.CheckBox box_wallhack;
+        private System.Windows.Forms.CheckBox box_noCollision;
     }
 }
 

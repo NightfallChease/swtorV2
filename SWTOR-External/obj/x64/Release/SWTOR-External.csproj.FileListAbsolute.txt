@@ -16,7 +16,6 @@ C:\Users\nightfall\Documents\C#\SWTOR-External\SWTOR-External\obj\x64\Release\SW
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\SWTOR-External.exe.config
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\SWTOR-External.exe
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\SWTOR-External.pdb
-C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\Memory.xml
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\System.Diagnostics.DiagnosticSource.xml
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\WindowsInput.xml
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\obj\x64\Release\SWTOR-External.csproj.AssemblyReference.cache
@@ -40,3 +39,4 @@ C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\System.Text.Encoding.CodePages.xml
 C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\System.Threading.Tasks.Extensions.xml
+C:\Users\nightfall\Documents\C#\MyProjects\SWTOR-External\SWTOR-External\bin\x64\Release\Memory.xml
