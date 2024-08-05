@@ -25,6 +25,7 @@ namespace SWTOR_External
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.sw";
+        private string currentVersion = "v7.6";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -39,7 +40,7 @@ namespace SWTOR_External
         private bool alwaysOnTop = false;
         private bool devEspEnabled = false;
         private bool devVelEnabled = false;
-        private string noclipAOB = "F3 44 0F 10 43 6C F3";
+        private string noclipAOB = "EA 00 00 00 48 8B 01 48 8B 40 58";
         private string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
         private string cameraYAOB = "F2 0F 11 87 28 02 00 00";
         private string cameraZAOB = "89 87 30 02 00 00 F3";
@@ -75,7 +76,8 @@ namespace SWTOR_External
         public UIntPtr camBaseUInt;
         public UIntPtr EspUint;
         public int baseAddr = 0;
-        public string noclipAddress = "";
+        public UIntPtr noclipAddress;
+        public string noclipAddressStr = "";
         public string glideAddrString;
         public string cameraAddress = "";
         public string cameraYAddress = "";
@@ -136,7 +138,7 @@ namespace SWTOR_External
         public byte[] cameraPatchedBytes = { };
         public byte[] cameraYPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
         public byte[] cameraZPatchedBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-        public byte[] noclipBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C, 0xF3 };
+        public byte[] noclipBytes = { 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x40, 0x58 };
         public byte[] cameraBytes = { 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x80, 0xF0, 0x01, 0x00, 0x00 };
         public byte[] speedBytes = { 0xF3, 0x0F, 0x10, 0xBE, 0xF4, 0x00, 0x00, 0x00, 0x0F, 0x28, 0xF7 };
         public byte[] cameraYBytes = { 0xF2, 0x0F, 0x11, 0x87, 0x28, 0x02, 0x00, 0x00 };
@@ -242,6 +244,8 @@ float playerHeight
                 Environment.Exit(0);
             }
 
+            lbl_version.Text = currentVersion;
+
             aobThread.Start();
             NumpadTeleportThread.Start();
             HotkeyThread.Start();
@@ -334,7 +338,7 @@ float playerHeight
                 //log_console.Text = log_console.Text + "\r\n\r\nCaveAddr = " + caveAddrString;
 
                 //Add offset 0x12 to the cwave addr (that's where the ptr for pbase is stored)
-                playerBaseUInt = (UIntPtr)UIntPtr.Add(pbasecaveAddr, 0x1C); //caveAddr == UIntPtr
+                playerBaseUInt = (UIntPtr)UIntPtr.Add(pbasecaveAddr, 0x20); //caveAddr == UIntPtr
 
                 //log caveAddr + offset
                 string PbaseUintString = convertUintToHexString(playerBaseUInt);
@@ -570,7 +574,7 @@ float playerHeight
             try
             {
                 //AOB Scans
-                noclipAddress = m.AoBScan(noclipAOB).Result.Sum().ToString("X2");
+                noclipAddressStr = m.AoBScan(noclipAOB).Result.Sum().ToString("X2");
                 cameraAddress = m.AoBScan(cameraAOB).Result.Sum().ToString("X2");
                 cameraZAddress = m.AoBScan(cameraZAOB).Result.Sum().ToString("X2");
                 cameraYAddress = m.AoBScan(cameraYAOB).Result.Sum().ToString("X2");
@@ -589,6 +593,16 @@ float playerHeight
                 infReachAddress = m.Get64BitCode(infReachAddressStr);
                 infReachAddress = (infReachAddress + 0x5);
                 infReachAddressStr = convertUintToHexString(infReachAddress);
+
+                //fixPbaseAddr to +4 bytes
+                noclipAddress = m.Get64BitCode(noclipAddressStr);
+                noclipAddress = (noclipAddress + 0x4);
+                noclipAddressStr = convertUintToHexString(noclipAddress);
+
+                log_console.Invoke((MethodInvoker)delegate
+                {
+                    log_console.Text = log_console.Text + $"\r\n\r\nEvery AOB was found";
+                });
 
                 //MessageBox.Show("AOB scan success");
             }
@@ -919,10 +933,10 @@ float playerHeight
             {
                 try
                 {
-                    byte[] patched_bytes = { 0x83, 0x7B, 0x54, 0x00, 0x0F, 0x85, 0x07, 0x00, 0x00, 0x00, 0x48, 0x89, 0x1D, 0x0B, 0x00, 0x00, 0x00, 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C };
+                    byte[] patched_bytes = { 0x83, 0xB9, 0x24, 0x03, 0x00, 0x00, 0x02, 0x0F, 0x85, 0x07, 0x00, 0x00, 0x00, 0x48, 0x89, 0x0D, 0x0C, 0x00, 0x00, 0x00, 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x40, 0x58 };
 
                     //Create Codecave
-                    pbasecaveAddr = m.CreateCodeCave(noclipAddress, patched_bytes, 6, 300);
+                    pbasecaveAddr = m.CreateCodeCave(noclipAddressStr, patched_bytes, 7, 300);
 
                     log_console.Invoke((MethodInvoker)delegate
                     {
@@ -930,7 +944,7 @@ float playerHeight
                     });
 
                     //rest of code
-                    noclipPatchedBytes = m.ReadBytes(noclipAddress, 6);
+                    noclipPatchedBytes = m.ReadBytes(noclipAddressStr, 7);
                     noclipPatched = true;
                     noclipCave = true;
                     //log_console.Text = log_console.Text + "\r\n\r\nCave Created";;
@@ -949,7 +963,7 @@ float playerHeight
             {
                 if (noclipPatched)
                 {
-                    m.WriteBytes(noclipAddress, noclipBytes);
+                    m.WriteBytes(noclipAddressStr, noclipBytes);
                     log_console.Invoke((MethodInvoker)delegate
                     {
                         log_console.Text = log_console.Text + "\r\n\r\nUnhooked";
@@ -958,7 +972,7 @@ float playerHeight
                 }
                 else
                 {
-                    m.WriteBytes(noclipAddress, noclipPatchedBytes);
+                    m.WriteBytes(noclipAddressStr, noclipPatchedBytes);
                     log_console.Invoke((MethodInvoker)delegate
                     {
                         log_console.Text = log_console.Text + "\r\n\r\nRe-Hooked";

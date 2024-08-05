@@ -159,9 +159,8 @@
             this.lbl_version.AutoSize = true;
             this.lbl_version.Location = new System.Drawing.Point(342, 367);
             this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(28, 13);
+            this.lbl_version.Size = new System.Drawing.Size(0, 13);
             this.lbl_version.TabIndex = 28;
-            this.lbl_version.Text = "v7.5";
             // 
             // box_speedhack
             // 
