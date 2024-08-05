@@ -325,8 +325,8 @@ float playerHeight
                 string caveAddrString = convertUintToHexString(pbasecaveAddr);
                 //log_console.Text = log_console.Text + "\r\n\r\nCaveAddr = " + caveAddrString;
 
-                //Add offset 0x12 to the cave addr (that's where the ptr for pbase is stored)
-                playerBaseUInt = (UIntPtr)UIntPtr.Add(pbasecaveAddr, 0x12); //caveAddr == UIntPtr
+                //Add offset 0x12 to the cwave addr (that's where the ptr for pbase is stored)
+                playerBaseUInt = (UIntPtr)UIntPtr.Add(pbasecaveAddr, 0x1C); //caveAddr == UIntPtr
 
                 //log caveAddr + offset
                 string PbaseUintString = convertUintToHexString(playerBaseUInt);
@@ -336,6 +336,9 @@ float playerHeight
                 long playerBaselong = m.ReadLong(PbaseUintString);
                 PlayerBaseAddress = playerBaselong.ToString("X2");
                 playerBaseUInt = ParseHexToUIntPtr(PlayerBaseAddress);
+
+                //constWriteMovementMode
+
             }
             catch{}
         }
@@ -352,7 +355,7 @@ float playerHeight
             else
             {
                 m.WriteMemory($"{movementModeAddrStr}", "int", "1");
-                noCollisionEnabled = true;
+                noCollisionEnabled = false;
             }
         }
         private void box_darkMode_CheckedChanged(object sender, EventArgs e)
@@ -872,7 +875,7 @@ float playerHeight
             {
                 try
                 {
-                    byte[] patched_bytes = { 0x48, 0x89, 0x1D, 0x0B, 0x00, 0x00, 0x00, 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C };
+                    byte[] patched_bytes = { 0x83, 0x7B, 0x54, 0x00, 0x0F, 0x85, 0x07, 0x00, 0x00, 0x00, 0x48, 0x89, 0x1D, 0x0B, 0x00, 0x00, 0x00, 0xF3, 0x44, 0x0F, 0x10, 0x43, 0x6C };
 
                     //Create Codecave
                     pbasecaveAddr = m.CreateCodeCave(noclipAddress, patched_bytes, 6, 300);
