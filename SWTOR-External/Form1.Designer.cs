@@ -103,6 +103,7 @@
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.box_infReach = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -837,6 +838,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.box_infReach);
             this.tabPage2.Controls.Add(this.box_wallhack);
             this.tabPage2.Controls.Add(this.lbl_speedKey);
             this.tabPage2.Controls.Add(this.lbl_customHks);
@@ -880,7 +882,7 @@
             // 
             this.box_wallhack.AutoSize = true;
             this.box_wallhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_wallhack.Location = new System.Drawing.Point(108, 6);
+            this.box_wallhack.Location = new System.Drawing.Point(116, 6);
             this.box_wallhack.Name = "box_wallhack";
             this.box_wallhack.Size = new System.Drawing.Size(68, 17);
             this.box_wallhack.TabIndex = 53;
@@ -912,6 +914,18 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // box_infReach
+            // 
+            this.box_infReach.AutoSize = true;
+            this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_infReach.Location = new System.Drawing.Point(116, 29);
+            this.box_infReach.Name = "box_infReach";
+            this.box_infReach.Size = new System.Drawing.Size(140, 17);
+            this.box_infReach.TabIndex = 54;
+            this.box_infReach.Text = "Inf Attackrange (Vertical)";
+            this.box_infReach.UseVisualStyleBackColor = true;
+            this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
             // 
             // Form1
             // 
@@ -1016,6 +1030,7 @@
         private System.Windows.Forms.Label lbl_speedKey;
         private System.Windows.Forms.CheckBox box_wallhack;
         private System.Windows.Forms.CheckBox box_noCollision;
+        private System.Windows.Forms.CheckBox box_infReach;
     }
 }
 

@@ -24,7 +24,7 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.5.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.sw";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -49,6 +49,12 @@ namespace SWTOR_External
         private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
         private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
         private string wallhackAOB = "74 0D 83 4B 68 01";
+        private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
+        private bool infReachEnabled = false;
+        private bool infReachPatched = false;
+        private string infReachAddressStr;
+        private UIntPtr infReachAddress;
+        private byte[] infReachPatchedBytes = { 0x83, 0xBC, 0x24, 0xA8, 0x00, 0x00, 0x00, 0x29, 0x0F, 0x85, 0x05, 0x00, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
         private string wallhackAddress;
         private bool wallhackPatched;
         private bool glideEnabled = false;
@@ -138,6 +144,8 @@ namespace SWTOR_External
         public byte[] patchedBytes = { 0xC7, 0x47, 0x10, 0x33, 0x33, 0x33, 0xBF, 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] gotoCaveBytes = { };
+        public byte[] infReachAlreadyPatchedBytes = { };
+        public byte[] infReachOriginalBytes = { 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
         string allVars = @"
 string PlayerBaseAddress 
 string CamBaseAddress 
@@ -345,6 +353,10 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_infReach_CheckedChanged(object sender, EventArgs e)
+        {
+            infReachFunction();
+        }
         private void box_noCollision_CheckedChanged(object sender, EventArgs e)
         {
             if (!noCollisionEnabled)
@@ -568,9 +580,16 @@ float playerHeight
                 velocityIndAddrStr = m.AoBScan(velocityIndicatorAOB).Result.Sum().ToString("X2");
                 glideAddrString = m.AoBScan(glideAOB).Result.Sum().ToString("X2");
                 wallhackAddress = m.AoBScan(wallhackAOB).Result.Sum().ToString("X2");
+                infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
+
+                //fixInfReachAddr to +5 bytes
+                infReachAddress = m.Get64BitCode(infReachAddressStr);
+                infReachAddress = (infReachAddress + 0x5);
+                infReachAddressStr = convertUintToHexString(infReachAddress);
+
                 //MessageBox.Show("AOB scan success");
             }
             catch(Exception ex)
@@ -769,7 +788,7 @@ float playerHeight
             {
                 if (!nofallPatched)
                 {
-                    m.CreateCodeCave(nofallAddrString, patchedBytes, 6, 1000);
+                    m.CreateCodeCave(nofallAddrString, patchedBytes, 6, 300);
 
                     gotoCaveBytes = m.ReadBytes(nofallAddrString, 6);
 
@@ -787,6 +806,31 @@ float playerHeight
                 nofallAddr = ParseHexToUIntPtr(nofallAddrString);
                 m.WriteBytes(nofallAddr, originalBytes);
                 nofallEnabled = false;
+            }
+        }
+        private void infReachFunction()
+        {
+            if(!infReachEnabled)
+            {
+                if (!infReachPatched)
+                {
+                    m.CreateCodeCave(infReachAddressStr, infReachPatchedBytes, 6, 300);
+
+                    infReachAlreadyPatchedBytes = m.ReadBytes(infReachAddressStr, 6);
+
+                    infReachEnabled = true;
+                    infReachPatched = true;
+                }
+                else
+                {
+                    m.WriteBytes(infReachAddressStr, infReachAlreadyPatchedBytes);
+                    infReachEnabled= true;
+                }
+            }
+            else
+            {
+                m.WriteBytes(infReachAddressStr, infReachOriginalBytes);
+                infReachEnabled = false;
             }
         }
         private async void onlineCheck(string url)
@@ -830,23 +874,23 @@ float playerHeight
 
             }
         }
-        private void PreventProgramFromBeingDebuged()
-        {
+        //private void PreventProgramFromBeingDebuged()
+        //{
 
-            var a = DateTime.Now;
-            Thread.Sleep(10);
-            var b = DateTime.Now;
+        //    var a = DateTime.Now;
+        //    Thread.Sleep(10);
+        //    var b = DateTime.Now;
 
-            // if difference in time is greater than 1 second it means the program has stopped executing
+        //    // if difference in time is greater than 1 second it means the program has stopped executing
 
-            if ((b - a).TotalSeconds > 2)
-            {
-                Application.ExitThread();
-                Environment.Exit(0);
-                this.Close();
-            }
+        //    if ((b - a).TotalSeconds > 2)
+        //    {
+        //        Application.ExitThread();
+        //        Environment.Exit(0);
+        //        this.Close();
+        //    }
     
-        }
+        //}
         private void startMainTimer()
         {
             try
@@ -1467,6 +1511,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
 
         }
+
+
 
 
 
