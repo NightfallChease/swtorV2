@@ -12,6 +12,7 @@ using WindowsInput;
 using WindowsInput.Native;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using System.Globalization;
 
 namespace SWTOR_External
 {
@@ -325,7 +326,7 @@ float playerHeight
                 //SpeedhackManagement
                 if (isSpeedhackEnabled)
                 {
-                    m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString());
+                    m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString(CultureInfo.InvariantCulture));
                 }
                 //check if speedhack is disabled
                 if (!isSpeedhackEnabled)
@@ -674,9 +675,15 @@ float playerHeight
             camy += speedY;
             camz += speedZ;
 
-            m.WriteMemory(xCamAddrString, "float", camx.ToString());
-            m.WriteMemory(yCamAddrString, "float", camy.ToString());
-            m.WriteMemory(zCamAddrString, "float", camz.ToString());
+            // Ensure the float values are converted to strings using the invariant culture
+            string camxString = camx.ToString(CultureInfo.InvariantCulture);
+            string camyString = camy.ToString(CultureInfo.InvariantCulture);
+            string camzString = camz.ToString(CultureInfo.InvariantCulture);
+
+            // Write the memory
+            m.WriteMemory(xCamAddrString, "float", camxString);
+            m.WriteMemory(yCamAddrString, "float", camyString);
+            m.WriteMemory(zCamAddrString, "float", camzString);
 
             if (attachToCamEnabled)
             {
@@ -691,6 +698,9 @@ float playerHeight
             //enable
 
             bool isArrived = false;
+            float xAddrF = m.ReadFloat(xAddrString);
+            float yAddrF = m.ReadFloat(yAddrString);
+            float zAddrF = m.ReadFloat(zAddrString);
 
             if (!glideEnabled)
             {
@@ -709,9 +719,9 @@ float playerHeight
             if (distance <= 1.0f && distance > 0)
             {
                 //if player is already close to the destination tp directly
-                m.WriteMemory(xAddrString, "float", (savedX).ToString());
-                m.WriteMemory(yAddrString, "float", (savedY).ToString());
-                m.WriteMemory(zAddrString, "float", (savedZ).ToString());
+                m.WriteMemory(xAddrString, "float", (savedX).ToString(CultureInfo.InvariantCulture));
+                m.WriteMemory(yAddrString, "float", (savedY).ToString(CultureInfo.InvariantCulture));
+                m.WriteMemory(zAddrString, "float", (savedZ).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(movementModeAddrStr, "int", "1");
                 isArrived = true;
                 doglide();
@@ -757,7 +767,7 @@ float playerHeight
 
                 if (isTPUpPressed)
                 {
-                    m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString());
+                    m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString(CultureInfo.InvariantCulture));
                 }
                 if (isTPDownPressed)
                 {
@@ -765,19 +775,19 @@ float playerHeight
                 }
                 if (isTPXUpPressed)
                 {
-                    m.WriteMemory(xAddrString, "float", (playerXCoord + 0.25f).ToString());
+                    m.WriteMemory(xAddrString, "float", (playerXCoord + 0.25f).ToString(CultureInfo.InvariantCulture));
                 }
                 if (isTPXDownPressed)
                 {
-                    m.WriteMemory(xAddrString, "float", (playerXCoord - 0.25f).ToString());
+                    m.WriteMemory(xAddrString, "float", (playerXCoord - 0.25f).ToString(CultureInfo.InvariantCulture));
                 }
                 if (isTPZUpPressed)
                 {
-                    m.WriteMemory(zAddrString, "float", (playerZCoord + 0.25f).ToString());
+                    m.WriteMemory(zAddrString, "float", (playerZCoord + 0.25f).ToString(CultureInfo.InvariantCulture));
                 }
                 if (isTPZDownPressed)
                 {
-                    m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString());
+                    m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString(CultureInfo.InvariantCulture));
                 }
                 Thread.Sleep(200);
             }
@@ -1281,7 +1291,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             if(isSpeedhackEnabled)
             {
-                m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString());
+                m.WriteMemory(speedValueUIntString, "float", trckbr_speed.Value.ToString(CultureInfo.InvariantCulture));
                 //BottomScroll
                 log_console.Focus();
                 log_console.ScrollToCaret();
