@@ -277,7 +277,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlayerClass.cs" />
+    <Compile Include="Hotkeys.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

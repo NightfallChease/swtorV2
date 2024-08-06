@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Globalization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 namespace SWTOR_External
 {
@@ -150,6 +151,7 @@ namespace SWTOR_External
         public byte[] gotoCaveBytes = { };
         public byte[] infReachAlreadyPatchedBytes = { };
         public byte[] infReachOriginalBytes = { 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
+        private List<customLocation> locationList;
         string allVars = @"
 string PlayerBaseAddress 
 string CamBaseAddress 
@@ -246,7 +248,16 @@ float playerHeight
                 Environment.Exit(0);
             }
 
+            //setVersionLabel
             lbl_version.Text = currentVersion;
+
+            try
+            {
+                //load hotkeys from .dat file
+                loadHotkeys();
+                //load locationList .dat file
+                loadLocations();
+            }catch(Exception ex) { }
 
             aobThread.Start();
             NumpadTeleportThread.Start();
@@ -309,6 +320,7 @@ float playerHeight
             playerHeight = m.ReadFloat(heightAddrString);
 
             lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
+            lbl_savedCoords.Text = $"X: {savedX}\nY: {savedY}\nZ: {savedZ}";
 
             if(tpflag == true)
             {
@@ -351,8 +363,6 @@ float playerHeight
                 PlayerBaseAddress = playerBaselong.ToString("X2");
                 playerBaseUInt = ParseHexToUIntPtr(PlayerBaseAddress);
 
-                //constWriteMovementMode
-
             }
             catch{}
         }
@@ -391,8 +401,12 @@ float playerHeight
                 tabPage2.BackColor = bColor;
                 tabPage2.ForeColor = fColor;
                 tabPage3.BackColor = bColor;
-                tabPage3.ForeColor = fColor;
+                tabPage3.ForeColor = fColor;                
+                tabPage4.BackColor = bColor;
+                tabPage4.ForeColor = fColor;
                 trckbr_speed.BackColor = bColor;
+                listbox_teleportLocations.BackColor = bColor;
+                listbox_teleportLocations.ForeColor = fColor;
 
                 SetControlColors(this.Controls, bColor, fColor);
 
@@ -404,14 +418,20 @@ float playerHeight
                 MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT;
                 this.BackColor = Color.FromArgb(240, 240, 250);
                 this.ForeColor = Color.FromArgb(0, 0, 0);
-                tabPage1.BackColor = Color.FromArgb(250, 250, 250);
-                tabPage1.ForeColor = Color.FromArgb(0, 0, 0);
-                tabPage2.BackColor = Color.FromArgb(250, 250, 250);
-                tabPage2.ForeColor = Color.FromArgb(0, 0, 0);
-                tabPage3.BackColor = Color.FromArgb(250, 250, 250);
-                tabPage3.ForeColor = Color.FromArgb(0, 0, 0);
-                trckbr_speed.BackColor = Color.FromArgb(250, 250, 250);
-                trckbr_speed.BackColor = Color.FromArgb(0, 0, 0);
+                Color fColor = Color.FromArgb(250, 250, 250);
+                Color bColor = Color.FromArgb(0, 0, 0);
+                tabPage1.BackColor = bColor;
+                tabPage1.ForeColor = fColor;
+                tabPage2.BackColor = bColor;
+                tabPage2.ForeColor = fColor;
+                tabPage3.BackColor = bColor;
+                tabPage3.ForeColor = fColor;
+                tabPage4.BackColor = bColor;
+                tabPage4.ForeColor = fColor;
+                trckbr_speed.BackColor = bColor;
+                trckbr_speed.BackColor = fColor;
+                listbox_teleportLocations.BackColor = bColor;
+                listbox_teleportLocations.ForeColor = fColor;
 
                 SetControlColors(this.Controls, Color.FromArgb(250, 250, 250), Color.FromArgb(0, 0, 0));
 
@@ -518,6 +538,73 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void loadHotkeys()
+        {
+            if (File.Exists("hotkeys.dat"))
+            {
+                using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    HotkeySettings settings = (HotkeySettings)formatter.Deserialize(fs);
+
+                    TPUpKey = settings.TPUpKey;
+                    TPDownKey = settings.TPDownKey;
+                    TPLeftKey = settings.TPLeftKey;
+                    TPRightKey = settings.TPRightKey;
+                    TPForwardKey = settings.TPForwardKey;
+                    TPBackwardKey = settings.TPBackwardKey;
+                    FreecamKey = settings.FreecamKey;
+                    TPToCamKey = settings.TPToCamKey;
+                    NofallKey = settings.NofallKey;
+                    GlideKey = settings.GlideKey;
+                    SpeedKey = settings.SpeedKey;
+
+                    txtbox_TPUpKey.Text = TPUpKey.ToString();
+                    txtbox_TPDowNkey.Text = TPDownKey.ToString();
+                    txtbox_TPLeftKey.Text = TPLeftKey.ToString();
+                    txtbox_TPRightKey.Text = TPRightKey.ToString();
+                    txtbox_TPForwardKey.Text = TPForwardKey.ToString();
+                    txtbox_TPBackwardKey.Text = TPBackwardKey.ToString();
+                    txtbox_freecamKey.Text = FreecamKey.ToString();
+                    txtbox_tpToCamKey.Text = TPToCamKey.ToString();
+                    txtbox_nofallKey.Text = NofallKey.ToString();
+                    txtbox_glideKey.Text = GlideKey.ToString();
+                    txtbox_speedKey.Text = SpeedKey.ToString();
+                }
+            }
+            else
+            {
+                logToConsole("No hotkey settings found.");
+            }
+        }
+        private void loadLocations()
+        {
+            try
+            {
+                if (File.Exists("locations.dat"))
+                {
+                    using (FileStream fs = new FileStream("locations.dat", FileMode.Open))
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        List<customLocation> savedList = (List<customLocation>)formatter.Deserialize(fs);
+
+                        locationList = savedList;
+                        // Sort the list by customName
+                        locationList = locationList.OrderBy(loc => loc.customName).ToList();
+                        // Update the listbox
+                        listbox_teleportLocations.Items.Clear(); // Clear existing items to avoid duplicates
+                        foreach (customLocation loc in locationList)
+                        {
+                            listbox_teleportLocations.Items.Add(loc.customName);
+                        }
+                    }
+                }
+                else
+                {
+                    logToConsole("No location settings found.");
+                }
+            }catch { }
+        }
         private void SetControlColors(Control.ControlCollection controls, Color backColor, Color foreColor)
         {
             foreach (Control control in controls)
@@ -603,7 +690,7 @@ float playerHeight
 
                 log_console.Invoke((MethodInvoker)delegate
                 {
-                    log_console.Text = log_console.Text + $"\r\n\r\nEvery AOB was found";
+                    log_console.Text = log_console.Text + $"\r\nAOB scan success";
                 });
 
                 //MessageBox.Show("AOB scan success");
@@ -1416,6 +1503,149 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             txtbox_script.Text = txtbox_script.Text + "\r\n" + allVars;
         }
+        private void btn_addCustomTP_Click(object sender, EventArgs e)
+        {
+            // Ensure locationList is initialized as a List<customLocation>
+            if (locationList == null)
+            {
+                locationList = new List<customLocation>();
+            }
+
+            customLocation newLocation = new customLocation();
+            newLocation.customName = txt_tpnameBox.Text;
+
+            // Assuming customX, customY, customZ are of type float, convert the text appropriately
+            if (float.TryParse(txt_XBox.Text, out float xValue))
+            {
+                newLocation.customX = xValue;
+            }
+            else
+            {
+                // Handle the case where the conversion fails
+                MessageBox.Show("Invalid X value");
+                return;
+            }
+
+            if (float.TryParse(txt_YBox.Text, out float yValue))
+            {
+                newLocation.customY = yValue;
+            }
+            else
+            {
+                // Handle the case where the conversion fails
+                MessageBox.Show("Invalid Y value");
+                return;
+            }
+
+            if (float.TryParse(txt_ZBox.Text, out float zValue))
+            {
+                newLocation.customZ = zValue;
+            }
+            else
+            {
+                // Handle the case where the conversion fails
+                MessageBox.Show("Invalid Z value");
+                return;
+            }
+
+            // Add the new location to the list
+            locationList.Add(newLocation);
+
+            // Sort the list by customName
+            locationList = locationList.OrderBy(loc => loc.customName).ToList();
+
+            // Update the listbox with the sorted list
+            listbox_teleportLocations.Items.Clear(); // Clear existing items to avoid duplicates
+            foreach (customLocation loc in locationList)
+            {
+                listbox_teleportLocations.Items.Add(loc.customName);
+            }
+        }
+        private void btn_setSelected_Click(object sender, EventArgs e)
+        {
+            savedX = locationList[listbox_teleportLocations.SelectedIndex].customX;
+            savedY = locationList[listbox_teleportLocations.SelectedIndex].customY;
+            savedZ = locationList[listbox_teleportLocations.SelectedIndex].customZ;
+        }
+        private void btn_clearHotkeys_Click(object sender, EventArgs e)
+        {
+            // Clear the text in each textbox
+            txtbox_TPUpKey.Text = "";
+            txtbox_TPDowNkey.Text = "";
+            txtbox_TPLeftKey.Text = "";
+            txtbox_TPRightKey.Text = "";
+            txtbox_TPForwardKey.Text = "";
+            txtbox_TPBackwardKey.Text = "";
+            txtbox_freecamKey.Text = "";
+            txtbox_tpToCamKey.Text = "";
+            txtbox_nofallKey.Text = "";
+            txtbox_glideKey.Text = "";
+            txtbox_speedKey.Text = "";
+
+            // Reset the associated hotkey variables to a default value
+            TPUpKey = VirtualKeyCode.NONAME;
+            TPDownKey = VirtualKeyCode.NONAME;
+            TPLeftKey = VirtualKeyCode.NONAME;
+            TPRightKey = VirtualKeyCode.NONAME;
+            TPForwardKey = VirtualKeyCode.NONAME;
+            TPBackwardKey = VirtualKeyCode.NONAME;
+            FreecamKey = VirtualKeyCode.NONAME;
+            TPToCamKey = VirtualKeyCode.NONAME;
+            NofallKey = VirtualKeyCode.NONAME;
+            GlideKey = VirtualKeyCode.NONAME;
+            SpeedKey = VirtualKeyCode.NONAME;
+        }
+        private void btn_saveHotkeys_Click(object sender, EventArgs e)
+        {
+            HotkeySettings settings = new HotkeySettings
+            {
+                TPUpKey = TPUpKey,
+                TPDownKey = TPDownKey,
+                TPLeftKey = TPLeftKey,
+                TPRightKey = TPRightKey,
+                TPForwardKey = TPForwardKey,
+                TPBackwardKey = TPBackwardKey,
+                FreecamKey = FreecamKey,
+                TPToCamKey = TPToCamKey,
+                NofallKey = NofallKey,
+                GlideKey = GlideKey,
+                SpeedKey = SpeedKey
+            };
+
+            using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, settings);
+            }
+            MessageBox.Show("Hotkeys Saved");
+        }
+        private void btn_saveLocations_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream("locations.dat", FileMode.Create))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(fs, locationList);
+                }
+                MessageBox.Show("Saved locations");
+            }
+            catch (Exception ex){}
+        }
+        private void btn_clearLocations_Click(object sender, EventArgs e)
+        {
+            locationList = null;
+            listbox_teleportLocations.Items.Clear();
+        }
+        private void btn_loadLocations_Click(object sender, EventArgs e)
+        {
+            loadLocations();
+        }
+        private void btn_removeLocation_Click(object sender, EventArgs e)
+        {
+            locationList.RemoveAt(listbox_teleportLocations.SelectedIndex);
+            listbox_teleportLocations.Items.RemoveAt(listbox_teleportLocations.SelectedIndex);
+        }
         #endregion
 
         #region AssignedHotkeys
@@ -1475,98 +1705,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             SpeedKey = (VirtualKeyCode)e.KeyCode;
             txtbox_speedKey.Text = SpeedKey.ToString();
         }
-        private void btn_clearHotkeys_Click(object sender, EventArgs e)
-        {
-            // Clear the text in each textbox
-            txtbox_TPUpKey.Text = "";
-            txtbox_TPDowNkey.Text = "";
-            txtbox_TPLeftKey.Text = "";
-            txtbox_TPRightKey.Text = "";
-            txtbox_TPForwardKey.Text = "";
-            txtbox_TPBackwardKey.Text = "";
-            txtbox_freecamKey.Text = "";
-            txtbox_tpToCamKey.Text = "";
-            txtbox_nofallKey.Text = "";
-            txtbox_glideKey.Text = "";
-            txtbox_speedKey.Text = "";
 
-            // Reset the associated hotkey variables to a default value
-            TPUpKey = VirtualKeyCode.NONAME;
-            TPDownKey = VirtualKeyCode.NONAME;
-            TPLeftKey = VirtualKeyCode.NONAME;
-            TPRightKey = VirtualKeyCode.NONAME;
-            TPForwardKey = VirtualKeyCode.NONAME;
-            TPBackwardKey = VirtualKeyCode.NONAME;
-            FreecamKey = VirtualKeyCode.NONAME;
-            TPToCamKey = VirtualKeyCode.NONAME;
-            NofallKey = VirtualKeyCode.NONAME;
-            GlideKey = VirtualKeyCode.NONAME;
-            SpeedKey = VirtualKeyCode.NONAME;
-        }
-        private void btn_saveHotkeys_Click(object sender, EventArgs e)
-        {
-            HotkeySettings settings = new HotkeySettings
-            {
-                TPUpKey = TPUpKey,
-                TPDownKey = TPDownKey,
-                TPLeftKey = TPLeftKey,
-                TPRightKey = TPRightKey,
-                TPForwardKey = TPForwardKey,
-                TPBackwardKey = TPBackwardKey,
-                FreecamKey = FreecamKey,
-                TPToCamKey = TPToCamKey,
-                NofallKey = NofallKey,
-                GlideKey = GlideKey,
-                SpeedKey = SpeedKey
-            };
 
-            using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, settings);
-            }
-            MessageBox.Show("Hotkeys Saved");
-        }
-
-        private void btn_loadHotkeys_Click(object sender, EventArgs e)
-        {
-            if (File.Exists("hotkeys.dat"))
-            {
-                using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Open))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    HotkeySettings settings = (HotkeySettings)formatter.Deserialize(fs);
-
-                    TPUpKey = settings.TPUpKey;
-                    TPDownKey = settings.TPDownKey;
-                    TPLeftKey = settings.TPLeftKey;
-                    TPRightKey = settings.TPRightKey;
-                    TPForwardKey = settings.TPForwardKey;
-                    TPBackwardKey = settings.TPBackwardKey;
-                    FreecamKey = settings.FreecamKey;
-                    TPToCamKey = settings.TPToCamKey;
-                    NofallKey = settings.NofallKey;
-                    GlideKey = settings.GlideKey;
-                    SpeedKey = settings.SpeedKey;
-
-                    txtbox_TPUpKey.Text = TPUpKey.ToString();
-                    txtbox_TPDowNkey.Text = TPDownKey.ToString();
-                    txtbox_TPLeftKey.Text = TPLeftKey.ToString();
-                    txtbox_TPRightKey.Text = TPRightKey.ToString();
-                    txtbox_TPForwardKey.Text = TPForwardKey.ToString();
-                    txtbox_TPBackwardKey.Text = TPBackwardKey.ToString();
-                    txtbox_freecamKey.Text = FreecamKey.ToString();
-                    txtbox_tpToCamKey.Text = TPToCamKey.ToString();
-                    txtbox_nofallKey.Text = NofallKey.ToString();
-                    txtbox_glideKey.Text = GlideKey.ToString();
-                    txtbox_speedKey.Text = SpeedKey.ToString();
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hotkey settings file found.");
-            }
-        }
         #endregion
 
         #region Scripting
@@ -1643,13 +1783,17 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
         }
 
+        #endregion
 
-
-
-
-
-
-
+        #region structs
+        [Serializable]
+        public struct customLocation
+        {
+            public string customName;
+            public float customX;
+            public float customY;
+            public float customZ;
+        }
 
 
 
@@ -1662,19 +1806,4 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
          */
     }
 
-    [Serializable]
-    public class HotkeySettings
-    {
-        public VirtualKeyCode TPUpKey { get; set; }
-        public VirtualKeyCode TPDownKey { get; set; }
-        public VirtualKeyCode TPLeftKey { get; set; }
-        public VirtualKeyCode TPRightKey { get; set; }
-        public VirtualKeyCode TPForwardKey { get; set; }
-        public VirtualKeyCode TPBackwardKey { get; set; }
-        public VirtualKeyCode FreecamKey { get; set; }
-        public VirtualKeyCode TPToCamKey { get; set; }
-        public VirtualKeyCode NofallKey { get; set; }
-        public VirtualKeyCode GlideKey { get; set; }
-        public VirtualKeyCode SpeedKey { get; set; }
-    }
 }
