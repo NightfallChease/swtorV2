@@ -100,10 +100,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.box_infReach = new System.Windows.Forms.CheckBox();
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.box_infReach = new System.Windows.Forms.CheckBox();
+            this.btn_clearHotkeys = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -612,6 +613,7 @@
             this.txtbox_TPUpKey.ReadOnly = true;
             this.txtbox_TPUpKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPUpKey.TabIndex = 30;
+            this.txtbox_TPUpKey.TextChanged += new System.EventHandler(this.txtbox_TPUpKey_TextChanged);
             this.txtbox_TPUpKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TpUpHotkey_KeyDown);
             // 
             // trck_opcacity
@@ -837,6 +839,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_clearHotkeys);
             this.tabPage2.Controls.Add(this.box_infReach);
             this.tabPage2.Controls.Add(this.box_wallhack);
             this.tabPage2.Controls.Add(this.lbl_speedKey);
@@ -877,6 +880,18 @@
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // box_infReach
+            // 
+            this.box_infReach.AutoSize = true;
+            this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_infReach.Location = new System.Drawing.Point(116, 29);
+            this.box_infReach.Name = "box_infReach";
+            this.box_infReach.Size = new System.Drawing.Size(140, 17);
+            this.box_infReach.TabIndex = 54;
+            this.box_infReach.Text = "Inf Attackrange (Vertical)";
+            this.box_infReach.UseVisualStyleBackColor = true;
+            this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
+            // 
             // box_wallhack
             // 
             this.box_wallhack.AutoSize = true;
@@ -914,17 +929,16 @@
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // box_infReach
+            // btn_clearHotkeys
             // 
-            this.box_infReach.AutoSize = true;
-            this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infReach.Location = new System.Drawing.Point(116, 29);
-            this.box_infReach.Name = "box_infReach";
-            this.box_infReach.Size = new System.Drawing.Size(140, 17);
-            this.box_infReach.TabIndex = 54;
-            this.box_infReach.Text = "Inf Attackrange (Vertical)";
-            this.box_infReach.UseVisualStyleBackColor = true;
-            this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
+            this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_clearHotkeys.Location = new System.Drawing.Point(276, 316);
+            this.btn_clearHotkeys.Name = "btn_clearHotkeys";
+            this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
+            this.btn_clearHotkeys.TabIndex = 55;
+            this.btn_clearHotkeys.Text = "Clear Hotkeys";
+            this.btn_clearHotkeys.UseVisualStyleBackColor = true;
+            this.btn_clearHotkeys.Click += new System.EventHandler(this.btn_clearHotkeys_Click);
             // 
             // Form1
             // 
@@ -1030,6 +1044,7 @@
         private System.Windows.Forms.CheckBox box_wallhack;
         private System.Windows.Forms.CheckBox box_noCollision;
         private System.Windows.Forms.CheckBox box_infReach;
+        private System.Windows.Forms.Button btn_clearHotkeys;
     }
 }
 

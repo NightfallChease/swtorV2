@@ -25,8 +25,8 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.sw";
-        private string currentVersion = "v7.6";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.1.sw";
+        private string currentVersion = "v7.6.1";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -1311,11 +1311,13 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             try
             {
+                //human error prevention
                 if (box_playerHeight.Text == "")
-                {
                     return;
+                else if (box_playerHeight.Text.Contains(","))
+                {
+                    box_playerHeight.Text = box_playerHeight.Text.Replace(",", ".");
                 }
-
                 m.WriteMemory(heightAddrString, "float", $"{box_playerHeight.Text}");
             }
             catch
@@ -1465,6 +1467,34 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             SpeedKey = (VirtualKeyCode)e.KeyCode;
             txtbox_speedKey.Text = SpeedKey.ToString();
         }
+        private void btn_clearHotkeys_Click(object sender, EventArgs e)
+        {
+            // Clear the text in each textbox
+            txtbox_TPUpKey.Text = "";
+            txtbox_TPDowNkey.Text = "";
+            txtbox_TPLeftKey.Text = "";
+            txtbox_TPRightKey.Text = "";
+            txtbox_TPForwardKey.Text = "";
+            txtbox_TPBackwardKey.Text = "";
+            txtbox_freecamKey.Text = "";
+            txtbox_tpToCamKey.Text = "";
+            txtbox_nofallKey.Text = "";
+            txtbox_glideKey.Text = "";
+            txtbox_speedKey.Text = "";
+
+            // Reset the associated hotkey variables to a default value
+            TPUpKey = VirtualKeyCode.NONAME;
+            TPDownKey = VirtualKeyCode.NONAME;
+            TPLeftKey = VirtualKeyCode.NONAME;
+            TPRightKey = VirtualKeyCode.NONAME;
+            TPForwardKey = VirtualKeyCode.NONAME;
+            TPBackwardKey = VirtualKeyCode.NONAME;
+            FreecamKey = VirtualKeyCode.NONAME;
+            TPToCamKey = VirtualKeyCode.NONAME;
+            NofallKey = VirtualKeyCode.NONAME;
+            GlideKey = VirtualKeyCode.NONAME;
+            SpeedKey = VirtualKeyCode.NONAME;
+        }
         #endregion
 
         #region Scripting
@@ -1535,6 +1565,13 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
 
         }
+
+        private void txtbox_TPUpKey_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
 
