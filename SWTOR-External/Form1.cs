@@ -13,6 +13,7 @@ using WindowsInput.Native;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Globalization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SWTOR_External
 {
@@ -1502,6 +1503,70 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             GlideKey = VirtualKeyCode.NONAME;
             SpeedKey = VirtualKeyCode.NONAME;
         }
+        private void btn_saveHotkeys_Click(object sender, EventArgs e)
+        {
+            HotkeySettings settings = new HotkeySettings
+            {
+                TPUpKey = TPUpKey,
+                TPDownKey = TPDownKey,
+                TPLeftKey = TPLeftKey,
+                TPRightKey = TPRightKey,
+                TPForwardKey = TPForwardKey,
+                TPBackwardKey = TPBackwardKey,
+                FreecamKey = FreecamKey,
+                TPToCamKey = TPToCamKey,
+                NofallKey = NofallKey,
+                GlideKey = GlideKey,
+                SpeedKey = SpeedKey
+            };
+
+            using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, settings);
+            }
+            MessageBox.Show("Hotkeys Saved");
+        }
+
+        private void btn_loadHotkeys_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("hotkeys.dat"))
+            {
+                using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    HotkeySettings settings = (HotkeySettings)formatter.Deserialize(fs);
+
+                    TPUpKey = settings.TPUpKey;
+                    TPDownKey = settings.TPDownKey;
+                    TPLeftKey = settings.TPLeftKey;
+                    TPRightKey = settings.TPRightKey;
+                    TPForwardKey = settings.TPForwardKey;
+                    TPBackwardKey = settings.TPBackwardKey;
+                    FreecamKey = settings.FreecamKey;
+                    TPToCamKey = settings.TPToCamKey;
+                    NofallKey = settings.NofallKey;
+                    GlideKey = settings.GlideKey;
+                    SpeedKey = settings.SpeedKey;
+
+                    txtbox_TPUpKey.Text = TPUpKey.ToString();
+                    txtbox_TPDowNkey.Text = TPDownKey.ToString();
+                    txtbox_TPLeftKey.Text = TPLeftKey.ToString();
+                    txtbox_TPRightKey.Text = TPRightKey.ToString();
+                    txtbox_TPForwardKey.Text = TPForwardKey.ToString();
+                    txtbox_TPBackwardKey.Text = TPBackwardKey.ToString();
+                    txtbox_freecamKey.Text = FreecamKey.ToString();
+                    txtbox_tpToCamKey.Text = TPToCamKey.ToString();
+                    txtbox_nofallKey.Text = NofallKey.ToString();
+                    txtbox_glideKey.Text = GlideKey.ToString();
+                    txtbox_speedKey.Text = SpeedKey.ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hotkey settings file found.");
+            }
+        }
         #endregion
 
         #region Scripting
@@ -1586,6 +1651,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
 
+
+
         #endregion
 
         /*
@@ -1593,5 +1660,21 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         Fly [Backspace highjump]
         MouseTP (only if stable)
          */
+    }
+
+    [Serializable]
+    public class HotkeySettings
+    {
+        public VirtualKeyCode TPUpKey { get; set; }
+        public VirtualKeyCode TPDownKey { get; set; }
+        public VirtualKeyCode TPLeftKey { get; set; }
+        public VirtualKeyCode TPRightKey { get; set; }
+        public VirtualKeyCode TPForwardKey { get; set; }
+        public VirtualKeyCode TPBackwardKey { get; set; }
+        public VirtualKeyCode FreecamKey { get; set; }
+        public VirtualKeyCode TPToCamKey { get; set; }
+        public VirtualKeyCode NofallKey { get; set; }
+        public VirtualKeyCode GlideKey { get; set; }
+        public VirtualKeyCode SpeedKey { get; set; }
     }
 }

@@ -100,6 +100,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_loadHotkeys = new System.Windows.Forms.Button();
+            this.btn_saveHotkeys = new System.Windows.Forms.Button();
             this.btn_clearHotkeys = new System.Windows.Forms.Button();
             this.box_infReach = new System.Windows.Forms.CheckBox();
             this.box_wallhack = new System.Windows.Forms.CheckBox();
@@ -118,7 +120,7 @@
             // 
             this.btn_about.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_about.Location = new System.Drawing.Point(176, 326);
+            this.btn_about.Location = new System.Drawing.Point(176, 328);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(80, 27);
             this.btn_about.TabIndex = 0;
@@ -786,7 +788,7 @@
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(440, 384);
+            this.materialTabControl1.Size = new System.Drawing.Size(440, 386);
             this.materialTabControl1.TabIndex = 30;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -824,7 +826,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(432, 357);
+            this.tabPage1.Size = new System.Drawing.Size(432, 359);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -843,6 +845,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_loadHotkeys);
+            this.tabPage2.Controls.Add(this.btn_saveHotkeys);
             this.tabPage2.Controls.Add(this.btn_clearHotkeys);
             this.tabPage2.Controls.Add(this.box_infReach);
             this.tabPage2.Controls.Add(this.box_wallhack);
@@ -879,10 +883,32 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(432, 357);
+            this.tabPage2.Size = new System.Drawing.Size(432, 453);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btn_loadHotkeys
+            // 
+            this.btn_loadHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_loadHotkeys.Location = new System.Drawing.Point(192, 357);
+            this.btn_loadHotkeys.Name = "btn_loadHotkeys";
+            this.btn_loadHotkeys.Size = new System.Drawing.Size(85, 23);
+            this.btn_loadHotkeys.TabIndex = 57;
+            this.btn_loadHotkeys.Text = "Load Hotkeys";
+            this.btn_loadHotkeys.UseVisualStyleBackColor = true;
+            this.btn_loadHotkeys.Click += new System.EventHandler(this.btn_loadHotkeys_Click);
+            // 
+            // btn_saveHotkeys
+            // 
+            this.btn_saveHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_saveHotkeys.Location = new System.Drawing.Point(101, 357);
+            this.btn_saveHotkeys.Name = "btn_saveHotkeys";
+            this.btn_saveHotkeys.Size = new System.Drawing.Size(85, 23);
+            this.btn_saveHotkeys.TabIndex = 56;
+            this.btn_saveHotkeys.Text = "Save Hotkeys";
+            this.btn_saveHotkeys.UseVisualStyleBackColor = true;
+            this.btn_saveHotkeys.Click += new System.EventHandler(this.btn_saveHotkeys_Click);
             // 
             // btn_clearHotkeys
             // 
@@ -940,7 +966,7 @@
             this.tabPage3.ImageKey = "feather_38326.ico";
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(432, 357);
+            this.tabPage3.Size = new System.Drawing.Size(432, 453);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -949,7 +975,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 451);
+            this.ClientSize = new System.Drawing.Size(446, 453);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.lbl_title);
             this.DrawerShowIconsWhenHidden = true;
@@ -1050,6 +1076,8 @@
         private System.Windows.Forms.CheckBox box_noCollision;
         private System.Windows.Forms.CheckBox box_infReach;
         private System.Windows.Forms.Button btn_clearHotkeys;
+        private System.Windows.Forms.Button btn_loadHotkeys;
+        private System.Windows.Forms.Button btn_saveHotkeys;
     }
 }
 
