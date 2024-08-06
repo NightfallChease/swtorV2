@@ -1370,6 +1370,13 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             try
             {
+                if(txt_XBox.Text.Contains(",") || txt_YBox.Text.Contains(",") || txt_ZBox.Text.Contains(","))
+                {
+                    txt_XBox.Text.Replace(",", ".");
+                    txt_YBox.Text.Replace(",", ".");
+                    txt_ZBox.Text.Replace(",", ".");
+                }
+
                 savedX = float.Parse(txt_XBox.Text);
                 savedY = float.Parse(txt_YBox.Text);
                 savedZ = float.Parse(txt_ZBox.Text);

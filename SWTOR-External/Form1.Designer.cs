@@ -100,11 +100,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_clearHotkeys = new System.Windows.Forms.Button();
             this.box_infReach = new System.Windows.Forms.CheckBox();
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btn_clearHotkeys = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -708,6 +708,7 @@
             // btn_showVars
             // 
             this.btn_showVars.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_showVars.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_showVars.Location = new System.Drawing.Point(95, 325);
             this.btn_showVars.Name = "btn_showVars";
@@ -720,6 +721,7 @@
             // btn_example
             // 
             this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_example.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_example.Location = new System.Drawing.Point(3, 325);
             this.btn_example.Name = "btn_example";
@@ -732,6 +734,7 @@
             // btn_runScript
             // 
             this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_runScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_runScript.Location = new System.Drawing.Point(163, 325);
             this.btn_runScript.Name = "btn_runScript";
@@ -743,6 +746,7 @@
             // 
             // txtbox_script
             // 
+            this.txtbox_script.Cursor = System.Windows.Forms.Cursors.No;
             this.txtbox_script.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbox_script.Location = new System.Drawing.Point(0, 0);
@@ -880,6 +884,17 @@
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btn_clearHotkeys
+            // 
+            this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_clearHotkeys.Location = new System.Drawing.Point(276, 316);
+            this.btn_clearHotkeys.Name = "btn_clearHotkeys";
+            this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
+            this.btn_clearHotkeys.TabIndex = 55;
+            this.btn_clearHotkeys.Text = "Clear Hotkeys";
+            this.btn_clearHotkeys.UseVisualStyleBackColor = true;
+            this.btn_clearHotkeys.Click += new System.EventHandler(this.btn_clearHotkeys_Click);
+            // 
             // box_infReach
             // 
             this.box_infReach.AutoSize = true;
@@ -921,6 +936,7 @@
             this.tabPage3.Controls.Add(this.btn_runScript);
             this.tabPage3.Controls.Add(this.btn_showVars);
             this.tabPage3.Controls.Add(this.btn_example);
+            this.tabPage3.Cursor = System.Windows.Forms.Cursors.No;
             this.tabPage3.ImageKey = "feather_38326.ico";
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
@@ -928,17 +944,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btn_clearHotkeys
-            // 
-            this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearHotkeys.Location = new System.Drawing.Point(276, 316);
-            this.btn_clearHotkeys.Name = "btn_clearHotkeys";
-            this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
-            this.btn_clearHotkeys.TabIndex = 55;
-            this.btn_clearHotkeys.Text = "Clear Hotkeys";
-            this.btn_clearHotkeys.UseVisualStyleBackColor = true;
-            this.btn_clearHotkeys.Click += new System.EventHandler(this.btn_clearHotkeys_Click);
             // 
             // Form1
             // 
