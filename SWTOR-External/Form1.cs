@@ -27,8 +27,8 @@ namespace SWTOR_External
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.6.1.sw";
-        private string currentVersion = "v7.6.1";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.7.sw";
+        private string currentVersion = "v7.7";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
