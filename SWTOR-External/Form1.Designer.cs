@@ -327,7 +327,7 @@
             this.box_camAttach.Size = new System.Drawing.Size(88, 17);
             this.box_camAttach.TabIndex = 13;
             this.box_camAttach.Text = "AttachToCam";
-            this.tipControl.SetToolTip(this.box_camAttach, "Attaches your player to your camera");
+            this.tipControl.SetToolTip(this.box_camAttach, "Attach your player to your camera");
             this.box_camAttach.UseVisualStyleBackColor = true;
             this.box_camAttach.CheckedChanged += new System.EventHandler(this.box_camAttach_CheckedChanged);
             // 
@@ -340,7 +340,7 @@
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
             this.box_nofall.Text = "No Falldamage";
-            this.tipControl.SetToolTip(this.box_nofall, "Makes you fall very slow");
+            this.tipControl.SetToolTip(this.box_nofall, "You fall very slow");
             this.box_nofall.UseVisualStyleBackColor = true;
             this.box_nofall.CheckedChanged += new System.EventHandler(this.box_nofall_CheckedChanged);
             // 
@@ -353,6 +353,7 @@
             this.btn_tpToCam.Size = new System.Drawing.Size(31, 19);
             this.btn_tpToCam.TabIndex = 11;
             this.btn_tpToCam.Text = "TP";
+            this.tipControl.SetToolTip(this.btn_tpToCam, "Teleport to your cameras location");
             this.btn_tpToCam.UseVisualStyleBackColor = true;
             this.btn_tpToCam.Click += new System.EventHandler(this.btn_tpToCam_Click);
             // 
@@ -652,7 +653,7 @@
             this.box_playerHeight.Size = new System.Drawing.Size(40, 20);
             this.box_playerHeight.TabIndex = 27;
             this.box_playerHeight.Text = "1";
-            this.tipControl.SetToolTip(this.box_playerHeight, "Changes the player model size (client side)");
+            this.tipControl.SetToolTip(this.box_playerHeight, "Change the player model size (client side)");
             this.box_playerHeight.TextChanged += new System.EventHandler(this.box_playerHeight_TextChanged);
             // 
             // lbl_HeightNormal
@@ -673,7 +674,7 @@
             this.box_dotEsp.Size = new System.Drawing.Size(104, 17);
             this.box_dotEsp.TabIndex = 25;
             this.box_dotEsp.Text = "Velocity Indicator";
-            this.tipControl.SetToolTip(this.box_dotEsp, "Shows the velocity of every enemy in form of a pink arrow");
+            this.tipControl.SetToolTip(this.box_dotEsp, "Show the velocity of every enemy in shape of a pink arrow");
             this.box_dotEsp.UseVisualStyleBackColor = true;
             this.box_dotEsp.CheckedChanged += new System.EventHandler(this.box_dotEsp_CheckedChanged);
             // 
@@ -686,7 +687,7 @@
             this.box_esp.Size = new System.Drawing.Size(78, 17);
             this.box_esp.TabIndex = 24;
             this.box_esp.Text = "Target ESP";
-            this.tipControl.SetToolTip(this.box_esp, "Draws a yellow/green box around the selected enemy");
+            this.tipControl.SetToolTip(this.box_esp, "Draw a yellow/green box around the selected enemy");
             this.box_esp.UseVisualStyleBackColor = true;
             this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
             // 
@@ -907,7 +908,7 @@
             this.btn_loadLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_loadLocations.TabIndex = 39;
             this.btn_loadLocations.Text = "Load fie";
-            this.tipControl.SetToolTip(this.btn_loadLocations, "Loads the saved locations file if it existing");
+            this.tipControl.SetToolTip(this.btn_loadLocations, "Load the saved locations file if it existing");
             this.btn_loadLocations.UseVisualStyleBackColor = true;
             this.btn_loadLocations.Click += new System.EventHandler(this.btn_loadLocations_Click);
             // 
@@ -919,7 +920,7 @@
             this.btn_clearLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_clearLocations.TabIndex = 38;
             this.btn_clearLocations.Text = "Clear List";
-            this.tipControl.SetToolTip(this.btn_clearLocations, "Clears your list");
+            this.tipControl.SetToolTip(this.btn_clearLocations, "Clear your list");
             this.btn_clearLocations.UseVisualStyleBackColor = true;
             this.btn_clearLocations.Click += new System.EventHandler(this.btn_clearLocations_Click);
             // 
@@ -931,7 +932,7 @@
             this.btn_saveLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_saveLocations.TabIndex = 37;
             this.btn_saveLocations.Text = "Save to file";
-            this.tipControl.SetToolTip(this.btn_saveLocations, "Saves the current locations to file");
+            this.tipControl.SetToolTip(this.btn_saveLocations, "Save the current locations to file");
             this.btn_saveLocations.UseVisualStyleBackColor = true;
             this.btn_saveLocations.Click += new System.EventHandler(this.btn_saveLocations_Click);
             // 
@@ -1114,7 +1115,7 @@
             this.box_wallhack.Size = new System.Drawing.Size(68, 17);
             this.box_wallhack.TabIndex = 53;
             this.box_wallhack.Text = "Wallhack";
-            this.tipControl.SetToolTip(this.box_wallhack, "Draws player & npc names through walls");
+            this.tipControl.SetToolTip(this.box_wallhack, "Draw player & npc names through walls");
             this.box_wallhack.UseVisualStyleBackColor = true;
             this.box_wallhack.CheckedChanged += new System.EventHandler(this.box_wallhack_CheckedChanged);
             // 
