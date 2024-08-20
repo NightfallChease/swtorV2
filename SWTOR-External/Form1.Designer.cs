@@ -96,8 +96,13 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_noCamCollision = new System.Windows.Forms.CheckBox();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btn_removeLocation = new System.Windows.Forms.Button();
+            this.btn_loadLocations = new System.Windows.Forms.Button();
+            this.btn_clearLocations = new System.Windows.Forms.Button();
+            this.btn_saveLocations = new System.Windows.Forms.Button();
             this.lbl_savedCoords = new System.Windows.Forms.Label();
             this.btn_setSelected = new System.Windows.Forms.Button();
             this.btn_teleport = new System.Windows.Forms.Button();
@@ -114,10 +119,7 @@
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btn_saveLocations = new System.Windows.Forms.Button();
-            this.btn_clearLocations = new System.Windows.Forms.Button();
-            this.btn_loadLocations = new System.Windows.Forms.Button();
-            this.btn_removeLocation = new System.Windows.Forms.Button();
+            this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -182,7 +184,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 172);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 197);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -199,6 +201,7 @@
             this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
             this.box_glide.Text = "Freeze Y";
+            this.tipControl.SetToolTip(this.box_glide, "Freeze your Y coordinate");
             this.box_glide.UseVisualStyleBackColor = true;
             this.box_glide.CheckedChanged += new System.EventHandler(this.box_glide_CheckedChanged);
             // 
@@ -214,7 +217,7 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 156);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 181);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -225,7 +228,7 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 172);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 197);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -239,6 +242,7 @@
             this.btn_cancelTP.Size = new System.Drawing.Size(59, 23);
             this.btn_cancelTP.TabIndex = 21;
             this.btn_cancelTP.Text = "Cancel TP";
+            this.tipControl.SetToolTip(this.btn_cancelTP, "Cancel the current teleport (bugs out nofall and freeze Y)");
             this.btn_cancelTP.UseVisualStyleBackColor = true;
             this.btn_cancelTP.Click += new System.EventHandler(this.btn_cancelTP_Click);
             // 
@@ -251,6 +255,8 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
+            this.tipControl.SetToolTip(this.pictureBox1, "Join my Discord");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btn_saveCustomCoords
             // 
@@ -260,6 +266,7 @@
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(81, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
             this.btn_saveCustomCoords.Text = "Set coords";
+            this.tipControl.SetToolTip(this.btn_saveCustomCoords, "Set saved coords to custom coords");
             this.btn_saveCustomCoords.UseVisualStyleBackColor = true;
             this.btn_saveCustomCoords.Click += new System.EventHandler(this.btn_saveCustomCoords_Click);
             // 
@@ -278,6 +285,7 @@
             this.txt_ZBox.Name = "txt_ZBox";
             this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
+            this.tipControl.SetToolTip(this.txt_ZBox, "coord for new location");
             this.txt_ZBox.TextChanged += new System.EventHandler(this.txt_ZBox_TextChanged);
             // 
             // txt_YBox
@@ -286,6 +294,7 @@
             this.txt_YBox.Name = "txt_YBox";
             this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
+            this.tipControl.SetToolTip(this.txt_YBox, "coord for new location");
             this.txt_YBox.TextChanged += new System.EventHandler(this.txt_YBox_TextChanged);
             // 
             // txt_XBox
@@ -294,6 +303,7 @@
             this.txt_XBox.Name = "txt_XBox";
             this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
+            this.tipControl.SetToolTip(this.txt_XBox, "coord for new location");
             this.txt_XBox.TextChanged += new System.EventHandler(this.txt_XBox_TextChanged);
             // 
             // box_alwaysInFront
@@ -317,6 +327,7 @@
             this.box_camAttach.Size = new System.Drawing.Size(88, 17);
             this.box_camAttach.TabIndex = 13;
             this.box_camAttach.Text = "AttachToCam";
+            this.tipControl.SetToolTip(this.box_camAttach, "Attaches your player to your camera");
             this.box_camAttach.UseVisualStyleBackColor = true;
             this.box_camAttach.CheckedChanged += new System.EventHandler(this.box_camAttach_CheckedChanged);
             // 
@@ -329,6 +340,7 @@
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
             this.box_nofall.Text = "No Falldamage";
+            this.tipControl.SetToolTip(this.box_nofall, "Makes you fall very slow");
             this.box_nofall.UseVisualStyleBackColor = true;
             this.box_nofall.CheckedChanged += new System.EventHandler(this.box_nofall_CheckedChanged);
             // 
@@ -353,6 +365,7 @@
             this.box_Freecam.Size = new System.Drawing.Size(64, 17);
             this.box_Freecam.TabIndex = 9;
             this.box_Freecam.Text = "Freecam";
+            this.tipControl.SetToolTip(this.box_Freecam, "Fly around with arrow keys");
             this.box_Freecam.UseVisualStyleBackColor = true;
             this.box_Freecam.CheckedChanged += new System.EventHandler(this.box_Freecam_CheckedChanged);
             // 
@@ -406,6 +419,7 @@
             this.cbox_noclip.Size = new System.Drawing.Size(103, 17);
             this.cbox_noclip.TabIndex = 2;
             this.cbox_noclip.Text = "Master-Switch";
+            this.tipControl.SetToolTip(this.cbox_noclip, "Hook the game and make the features work");
             this.cbox_noclip.UseVisualStyleBackColor = true;
             this.cbox_noclip.CheckedChanged += new System.EventHandler(this.cbox_noclip_CheckedChanged_1);
             // 
@@ -638,6 +652,7 @@
             this.box_playerHeight.Size = new System.Drawing.Size(40, 20);
             this.box_playerHeight.TabIndex = 27;
             this.box_playerHeight.Text = "1";
+            this.tipControl.SetToolTip(this.box_playerHeight, "Changes the player model size (client side)");
             this.box_playerHeight.TextChanged += new System.EventHandler(this.box_playerHeight_TextChanged);
             // 
             // lbl_HeightNormal
@@ -658,6 +673,7 @@
             this.box_dotEsp.Size = new System.Drawing.Size(104, 17);
             this.box_dotEsp.TabIndex = 25;
             this.box_dotEsp.Text = "Velocity Indicator";
+            this.tipControl.SetToolTip(this.box_dotEsp, "Shows the velocity of every enemy in form of a pink arrow");
             this.box_dotEsp.UseVisualStyleBackColor = true;
             this.box_dotEsp.CheckedChanged += new System.EventHandler(this.box_dotEsp_CheckedChanged);
             // 
@@ -670,6 +686,7 @@
             this.box_esp.Size = new System.Drawing.Size(78, 17);
             this.box_esp.TabIndex = 24;
             this.box_esp.Text = "Target ESP";
+            this.tipControl.SetToolTip(this.box_esp, "Draws a yellow/green box around the selected enemy");
             this.box_esp.UseVisualStyleBackColor = true;
             this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
             // 
@@ -785,6 +802,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.box_noCamCollision);
             this.tabPage1.Controls.Add(this.box_noCollision);
             this.tabPage1.Controls.Add(this.box_darkmode);
             this.tabPage1.Controls.Add(this.log_console);
@@ -812,6 +830,19 @@
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // box_noCamCollision
+            // 
+            this.box_noCamCollision.AutoSize = true;
+            this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_noCamCollision.Location = new System.Drawing.Point(6, 145);
+            this.box_noCamCollision.Name = "box_noCamCollision";
+            this.box_noCamCollision.Size = new System.Drawing.Size(102, 17);
+            this.box_noCamCollision.TabIndex = 31;
+            this.box_noCamCollision.Text = "No Cam Collision";
+            this.tipControl.SetToolTip(this.box_noCamCollision, "Disable camera collision (horizontally)");
+            this.box_noCamCollision.UseVisualStyleBackColor = true;
+            this.box_noCamCollision.CheckedChanged += new System.EventHandler(this.box_noCamCollision_CheckedChanged);
+            // 
             // box_noCollision
             // 
             this.box_noCollision.AutoSize = true;
@@ -821,6 +852,7 @@
             this.box_noCollision.Size = new System.Drawing.Size(78, 17);
             this.box_noCollision.TabIndex = 30;
             this.box_noCollision.Text = "No Collision";
+            this.tipControl.SetToolTip(this.box_noCollision, "Disable player collision (horizontally)");
             this.box_noCollision.UseVisualStyleBackColor = true;
             this.box_noCollision.CheckedChanged += new System.EventHandler(this.box_noCollision_CheckedChanged);
             // 
@@ -855,6 +887,54 @@
             this.tabPage4.Text = "Teleport";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // btn_removeLocation
+            // 
+            this.btn_removeLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_removeLocation.Location = new System.Drawing.Point(340, 35);
+            this.btn_removeLocation.Name = "btn_removeLocation";
+            this.btn_removeLocation.Size = new System.Drawing.Size(24, 23);
+            this.btn_removeLocation.TabIndex = 40;
+            this.btn_removeLocation.Text = "-";
+            this.tipControl.SetToolTip(this.btn_removeLocation, "Remove selected location");
+            this.btn_removeLocation.UseVisualStyleBackColor = true;
+            this.btn_removeLocation.Click += new System.EventHandler(this.btn_removeLocation_Click);
+            // 
+            // btn_loadLocations
+            // 
+            this.btn_loadLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_loadLocations.Location = new System.Drawing.Point(253, 347);
+            this.btn_loadLocations.Name = "btn_loadLocations";
+            this.btn_loadLocations.Size = new System.Drawing.Size(81, 23);
+            this.btn_loadLocations.TabIndex = 39;
+            this.btn_loadLocations.Text = "Load fie";
+            this.tipControl.SetToolTip(this.btn_loadLocations, "Loads the saved locations file if it existing");
+            this.btn_loadLocations.UseVisualStyleBackColor = true;
+            this.btn_loadLocations.Click += new System.EventHandler(this.btn_loadLocations_Click);
+            // 
+            // btn_clearLocations
+            // 
+            this.btn_clearLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_clearLocations.Location = new System.Drawing.Point(140, 347);
+            this.btn_clearLocations.Name = "btn_clearLocations";
+            this.btn_clearLocations.Size = new System.Drawing.Size(81, 23);
+            this.btn_clearLocations.TabIndex = 38;
+            this.btn_clearLocations.Text = "Clear List";
+            this.tipControl.SetToolTip(this.btn_clearLocations, "Clears your list");
+            this.btn_clearLocations.UseVisualStyleBackColor = true;
+            this.btn_clearLocations.Click += new System.EventHandler(this.btn_clearLocations_Click);
+            // 
+            // btn_saveLocations
+            // 
+            this.btn_saveLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_saveLocations.Location = new System.Drawing.Point(253, 318);
+            this.btn_saveLocations.Name = "btn_saveLocations";
+            this.btn_saveLocations.Size = new System.Drawing.Size(81, 23);
+            this.btn_saveLocations.TabIndex = 37;
+            this.btn_saveLocations.Text = "Save to file";
+            this.tipControl.SetToolTip(this.btn_saveLocations, "Saves the current locations to file");
+            this.btn_saveLocations.UseVisualStyleBackColor = true;
+            this.btn_saveLocations.Click += new System.EventHandler(this.btn_saveLocations_Click);
+            // 
             // lbl_savedCoords
             // 
             this.lbl_savedCoords.AutoSize = true;
@@ -872,6 +952,7 @@
             this.btn_setSelected.Size = new System.Drawing.Size(81, 23);
             this.btn_setSelected.TabIndex = 35;
             this.btn_setSelected.Text = "Use selected";
+            this.tipControl.SetToolTip(this.btn_setSelected, "Use the selected location from your list");
             this.btn_setSelected.UseVisualStyleBackColor = true;
             this.btn_setSelected.Click += new System.EventHandler(this.btn_setSelected_Click);
             // 
@@ -883,6 +964,7 @@
             this.btn_teleport.Size = new System.Drawing.Size(59, 23);
             this.btn_teleport.TabIndex = 34;
             this.btn_teleport.Text = "Teleport";
+            this.tipControl.SetToolTip(this.btn_teleport, "Teleport to saved coordinates");
             this.btn_teleport.UseVisualStyleBackColor = true;
             this.btn_teleport.Click += new System.EventHandler(this.btn_teleport_Click);
             // 
@@ -910,6 +992,7 @@
             this.txt_tpnameBox.Name = "txt_tpnameBox";
             this.txt_tpnameBox.Size = new System.Drawing.Size(78, 20);
             this.txt_tpnameBox.TabIndex = 31;
+            this.tipControl.SetToolTip(this.txt_tpnameBox, "New name of your custom location");
             // 
             // btn_addCustomTP
             // 
@@ -919,6 +1002,7 @@
             this.btn_addCustomTP.Size = new System.Drawing.Size(81, 23);
             this.btn_addCustomTP.TabIndex = 30;
             this.btn_addCustomTP.Text = "Add to list";
+            this.tipControl.SetToolTip(this.btn_addCustomTP, "Add saved coords + name to list");
             this.btn_addCustomTP.UseVisualStyleBackColor = true;
             this.btn_addCustomTP.Click += new System.EventHandler(this.btn_addCustomTP_Click);
             // 
@@ -938,6 +1022,7 @@
             this.btn_saveLocation.Size = new System.Drawing.Size(59, 23);
             this.btn_saveLocation.TabIndex = 26;
             this.btn_saveLocation.Text = "Save";
+            this.tipControl.SetToolTip(this.btn_saveLocation, "Save current coordinates");
             this.btn_saveLocation.UseVisualStyleBackColor = true;
             this.btn_saveLocation.Click += new System.EventHandler(this.btn_saveLocation_Click);
             // 
@@ -980,7 +1065,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(428, 448);
+            this.tabPage2.Size = new System.Drawing.Size(428, 360);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1016,6 +1101,7 @@
             this.box_infReach.Size = new System.Drawing.Size(140, 17);
             this.box_infReach.TabIndex = 54;
             this.box_infReach.Text = "Inf Attackrange (Vertical)";
+            this.tipControl.SetToolTip(this.box_infReach, "You can attack enemies from any VERTICAL distance");
             this.box_infReach.UseVisualStyleBackColor = true;
             this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
             // 
@@ -1028,6 +1114,7 @@
             this.box_wallhack.Size = new System.Drawing.Size(68, 17);
             this.box_wallhack.TabIndex = 53;
             this.box_wallhack.Text = "Wallhack";
+            this.tipControl.SetToolTip(this.box_wallhack, "Draws player & npc names through walls");
             this.box_wallhack.UseVisualStyleBackColor = true;
             this.box_wallhack.CheckedChanged += new System.EventHandler(this.box_wallhack_CheckedChanged);
             // 
@@ -1052,54 +1139,10 @@
             this.tabPage3.ImageKey = "feather_38326.ico";
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(428, 396);
+            this.tabPage3.Size = new System.Drawing.Size(428, 360);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btn_saveLocations
-            // 
-            this.btn_saveLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocations.Location = new System.Drawing.Point(253, 318);
-            this.btn_saveLocations.Name = "btn_saveLocations";
-            this.btn_saveLocations.Size = new System.Drawing.Size(81, 23);
-            this.btn_saveLocations.TabIndex = 37;
-            this.btn_saveLocations.Text = "Save to file";
-            this.btn_saveLocations.UseVisualStyleBackColor = true;
-            this.btn_saveLocations.Click += new System.EventHandler(this.btn_saveLocations_Click);
-            // 
-            // btn_clearLocations
-            // 
-            this.btn_clearLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearLocations.Location = new System.Drawing.Point(140, 347);
-            this.btn_clearLocations.Name = "btn_clearLocations";
-            this.btn_clearLocations.Size = new System.Drawing.Size(81, 23);
-            this.btn_clearLocations.TabIndex = 38;
-            this.btn_clearLocations.Text = "Clear List";
-            this.btn_clearLocations.UseVisualStyleBackColor = true;
-            this.btn_clearLocations.Click += new System.EventHandler(this.btn_clearLocations_Click);
-            // 
-            // btn_loadLocations
-            // 
-            this.btn_loadLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadLocations.Location = new System.Drawing.Point(253, 347);
-            this.btn_loadLocations.Name = "btn_loadLocations";
-            this.btn_loadLocations.Size = new System.Drawing.Size(81, 23);
-            this.btn_loadLocations.TabIndex = 39;
-            this.btn_loadLocations.Text = "Load fie";
-            this.btn_loadLocations.UseVisualStyleBackColor = true;
-            this.btn_loadLocations.Click += new System.EventHandler(this.btn_loadLocations_Click);
-            // 
-            // btn_removeLocation
-            // 
-            this.btn_removeLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeLocation.Location = new System.Drawing.Point(340, 35);
-            this.btn_removeLocation.Name = "btn_removeLocation";
-            this.btn_removeLocation.Size = new System.Drawing.Size(24, 23);
-            this.btn_removeLocation.TabIndex = 40;
-            this.btn_removeLocation.Text = "-";
-            this.btn_removeLocation.UseVisualStyleBackColor = true;
-            this.btn_removeLocation.Click += new System.EventHandler(this.btn_removeLocation_Click);
             // 
             // Form1
             // 
@@ -1221,6 +1264,8 @@
         private System.Windows.Forms.Button btn_clearLocations;
         private System.Windows.Forms.Button btn_loadLocations;
         private System.Windows.Forms.Button btn_removeLocation;
+        private System.Windows.Forms.CheckBox box_noCamCollision;
+        private System.Windows.Forms.ToolTip tipControl;
     }
 }
 

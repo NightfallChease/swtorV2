@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis.Scripting;
 using System.Globalization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SWTOR_External
 {
@@ -54,6 +55,10 @@ namespace SWTOR_External
         private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
         private string wallhackAOB = "74 0D 83 4B 68 01";
         private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
+        private string camCollisionAOB = "F3 0F 11 8F 50 03 00 00 0F";
+        private string camCollisionAddrStr;
+        private UIntPtr camCollisionAddr;
+        private bool camCollisionEnabled = false;
         private bool infReachEnabled = false;
         private bool infReachPatched = false;
         private string infReachAddressStr;
@@ -88,6 +93,9 @@ namespace SWTOR_External
         public float xCoord = 0;
         public float yCoord = 0;
         public float zCoord = 0;
+        private UIntPtr floorYAddr;
+        private string floorYAddrStr;
+        private float floorYValue;
         public float camSpeed = 0.1f;
         public float speedBoostMultiplier = 2f;
         public bool isSpeedBoostActive = false;
@@ -244,7 +252,7 @@ float playerHeight
             }
             else
             {
-                MessageBox.Show("Process not found...");
+                MessageBox.Show("SWTOR must be running...");
                 Environment.Exit(0);
             }
 
@@ -313,10 +321,14 @@ float playerHeight
             heightAddr = playerBaseUInt + 0x84;
             heightAddrString = convertUintToHexString(heightAddr);
 
+            floorYAddr = camBaseUInt + 0x858;
+            floorYAddrStr = convertUintToHexString(floorYAddr);
+
             xCoord = m.ReadFloat(xAddrString);
             yCoord = m.ReadFloat(yAddrString);
             zCoord = m.ReadFloat(zAddrString);
 
+            floorYValue = m.ReadFloat(floorYAddrStr);
             playerHeight = m.ReadFloat(heightAddrString);
 
             lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
@@ -535,9 +547,29 @@ float playerHeight
         {
             speedhackFunction();
         }
+
+        private void box_noCamCollision_CheckedChanged(object sender, EventArgs e)
+        {
+            camCollisionFunction();
+        }
         #endregion
 
         #region Functions
+        private void camCollisionFunction()
+        {
+            if (!camCollisionEnabled)
+            {
+                camCollisionEnabled = true;
+
+                m.WriteMemory(camCollisionAddrStr, "bytes", "90 90 90 90 90 90 90 90");
+            }
+            else
+            {
+                camCollisionEnabled = false;
+
+                m.WriteMemory(camCollisionAddrStr, "bytes", "F3 0F 11 8F 50 03 00 00");
+            }
+        }
         private void loadHotkeys()
         {
             if (File.Exists("hotkeys.dat"))
@@ -574,7 +606,7 @@ float playerHeight
             }
             else
             {
-                logToConsole("No hotkey settings found.");
+                //logToConsole("No hotkey settings found.");
             }
         }
         private void loadLocations()
@@ -601,7 +633,7 @@ float playerHeight
                 }
                 else
                 {
-                    logToConsole("No location settings found.");
+                    //logToConsole("No location settings found.");
                 }
             }catch { }
         }
@@ -674,6 +706,7 @@ float playerHeight
                 glideAddrString = m.AoBScan(glideAOB).Result.Sum().ToString("X2");
                 wallhackAddress = m.AoBScan(wallhackAOB).Result.Sum().ToString("X2");
                 infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
+                camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -786,9 +819,6 @@ float playerHeight
             //enable
 
             bool isArrived = false;
-            float xAddrF = m.ReadFloat(xAddrString);
-            float yAddrF = m.ReadFloat(yAddrString);
-            float zAddrF = m.ReadFloat(zAddrString);
 
             if (!glideEnabled)
             {
@@ -809,6 +839,7 @@ float playerHeight
                 //if player is already close to the destination tp directly
                 m.WriteMemory(xAddrString, "float", (savedX).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(yAddrString, "float", (savedY).ToString(CultureInfo.InvariantCulture));
+                //m.WriteMemory(yAddrString, "float", (floorYValue).ToString(CultureInfo.InvariantCulture)); //bad idea (freecamtp)
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(movementModeAddrStr, "int", "1");
                 isArrived = true;
@@ -988,20 +1019,15 @@ float playerHeight
         }
         //private void PreventProgramFromBeingDebuged()
         //{
-
         //    var a = DateTime.Now;
         //    Thread.Sleep(10);
         //    var b = DateTime.Now;
-
-        //    // if difference in time is greater than 1 second it means the program has stopped executing
-
         //    if ((b - a).TotalSeconds > 2)
         //    {
         //        Application.ExitThread();
         //        Environment.Exit(0);
         //        this.Close();
         //    }
-    
         //}
         private void startMainTimer()
         {
@@ -1795,7 +1821,35 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             public float customZ;
         }
 
+        private async void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //Open discord
+            string tempFile = Path.GetTempFileName() + ".bat";
 
+            // Command to run Python script
+            string blockCmd = @"start https://discord.gg/6MMEgcHJea";
+
+            // Write the commands to the temporary batch file
+            File.WriteAllText(tempFile, blockCmd);
+
+            // Configure the process start info
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",  // Specify cmd.exe as the program to run
+                Arguments = "/c \"" + tempFile + "\"",  // Pass the batch file as an argument to cmd.exe
+                WindowStyle = ProcessWindowStyle.Hidden,  // Hide the window
+                CreateNoWindow = true,  // Do not create a window
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                UseShellExecute = false
+            };
+
+            // Start the process
+            var process = Process.Start(startInfo);
+
+            // Wait for the process to exit asynchronously
+            await System.Threading.Tasks.Task.Run(() => process.WaitForExit());
+        }
 
         #endregion
 
