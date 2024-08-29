@@ -25,6 +25,14 @@ namespace SWTOR_External
         Mem m = new Mem();
         InputSimulator sim = new InputSimulator();
 
+        /* Todo:
+        Fly [Backspace highjump]
+        MouseTP (only if stable)
+        Auto cancel teleport when stuck
+        Fix hotkeys for gliding and freecam
+        Teleport to ground via ground offset?
+        */
+
         #region vars
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
@@ -1854,11 +1862,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
         #endregion
 
-        /*
-        Todo:
-        Fly [Backspace highjump]
-        MouseTP (only if stable)
-         */
+
     }
 
 }
