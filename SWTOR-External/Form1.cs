@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 
-namespace SWTOR_External
+namespace SWTOR_External 
 {
     public partial class Form1 : MaterialForm
     {
@@ -29,7 +29,7 @@ namespace SWTOR_External
         /* Todo:
         Fly [Backspace highjump]
         MouseTP (only if stable)
-        Fix hotkeys for gliding and freecam
+        Fix hotkeys for freecam
         Teleport to ground via ground offset?
         */
 
@@ -276,7 +276,7 @@ float playerHeight
                 loadHotkeys();
                 //load locationList .dat file
                 loadLocations();
-            }catch(Exception ex) { }
+            }catch { }
 
             aobThread.Start();
             NumpadTeleportThread.Start();
@@ -840,6 +840,7 @@ float playerHeight
                 if (rubberbandCount > 3)
                 {
                     doglide();
+                    nofallFunction();
                     tpflag = false;
                     return;
                 }
@@ -1354,13 +1355,7 @@ float playerHeight
                         speedhackFunction();
                         Thread.Sleep(200);
                     }
-                }
-                catch
-                {
-
-                }
-
-
+                }catch{ }
             }
         }
         private void RunExampleScript()
@@ -1630,7 +1625,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 }
                 MessageBox.Show("Saved locations");
             }
-            catch (Exception ex){}
+            catch{}
         }
         private void btn_clearLocations_Click(object sender, EventArgs e)
         {
