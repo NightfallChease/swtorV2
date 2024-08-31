@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace SWTOR_External
 {
@@ -34,6 +35,8 @@ namespace SWTOR_External
         */
 
         #region vars
+        private int rubberbandCount;
+        private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.8.sw";
@@ -825,14 +828,32 @@ float playerHeight
         }
         private void teleport()
         {
-            //enable
-
             bool isArrived = false;
+
+            #region autoCancelTP
+            if (!attachToCamEnabled)
+            {
+                if (lastPos.X == xCoord && lastPos.Y == yCoord && lastPos.Z == zCoord)
+                {
+                    rubberbandCount++;
+                }
+
+                if (rubberbandCount > 3)
+                {
+                    doglide();
+                    tpflag = false;
+                    return;
+                }
+            }
+            lastPos.X = xCoord;
+            lastPos.Y = yCoord;
+            lastPos.Z = zCoord;
+            #endregion
 
             if (!glideEnabled)
             {
-                doglide();
-                m.WriteMemory(movementModeAddrStr, "int", "6");
+                doglide(); //to enable glide while teleport
+                m.WriteMemory(movementModeAddrStr, "int", "6"); //to enable noclip while teleport
             }
 
             if (savedX == 0 || savedY == 0 || savedZ == 0)
@@ -988,14 +1009,12 @@ float playerHeight
         private async void onlineCheck(string url)
         {
 
-            using (HttpClient client = new HttpClient())
+           using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
-
                 if (!response.IsSuccessStatusCode)
                 {
-
                     MessageBox.Show("Tool is offline...");
                     Environment.Exit(1);
                 }
@@ -1007,15 +1026,12 @@ float playerHeight
         }
         private async void updateCheck(string url)
         {
-
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
-
                 if (!response.IsSuccessStatusCode)
                 {
-
                     MessageBox.Show("Your tool is outdated. Please download a new version from the discord");
                     Environment.Exit(1);
                 }
@@ -1023,7 +1039,6 @@ float playerHeight
                 {
                     log_console.Text = log_console.Text + "\r\n\r\nYou are running the latest version\r\n\r\n";
                 }
-
             }
         }
         //private void PreventProgramFromBeingDebuged()
@@ -1276,12 +1291,14 @@ float playerHeight
         }
         private void tpToCam()
         {
+            rubberbandCount = 0;
+
             savedX = m.ReadFloat(xCamAddrString);
             savedY = m.ReadFloat(yCamAddrString);
             savedZ = m.ReadFloat(zCamAddrString);
 
-
             log_console.Text = log_console.Text + $"\r\n\r\nTeleported to camera";
+
             //BottomScroll
             log_console.Focus();
             log_console.ScrollToCaret();
@@ -1483,6 +1500,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             tpflag = true;
             box_nofall.Checked = true;
+            rubberbandCount = 0;
             //BottomScroll
             log_console.Focus();
             log_console.ScrollToCaret();
