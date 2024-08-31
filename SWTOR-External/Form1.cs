@@ -29,7 +29,6 @@ namespace SWTOR_External
         /* Todo:
         Fly [Backspace highjump]
         MouseTP (only if stable)
-        Auto cancel teleport when stuck
         Fix hotkeys for gliding and freecam
         Teleport to ground via ground offset?
         */
@@ -1324,51 +1323,7 @@ float playerHeight
                 {
                     if (isFreecamKeyPressed)
                     {
-                        ///////////FreecamCompabilityFix
-                        if (!cameraYPatched)
-                        {
-                            m.WriteBytes(cameraYUInt, cameraYPatchedBytes);
-                            //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Restored";
-                            cameraYPatched = true;
-                        }
-                        else
-                        {
-                            m.WriteBytes(cameraYUInt, cameraYBytes);
-                            //log_console.Text = log_console.Text + "\r\n\r\nCamYBytes Patched";
-                            cameraYPatched = false;
-                        }
-
-                        if (!cameraZPatched)
-                        {
-                            m.WriteBytes(cameraZUInt, cameraZPatchedBytes);
-                            //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Restored";
-                            cameraZPatched = true;
-                        }
-                        else
-                        {
-                            m.WriteBytes(cameraZUInt, cameraZBytes);
-                            //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Patched";
-                            cameraZPatched = false;
-                        }
-                        //Dont touch code above, important for freecam
-
-                        if (!freeCamEnabled)
-                        {
-                            freeCamEnabled = true;
-                        }
-                        else
-                        {
-                            freeCamEnabled = false;
-                        }
-                        ///////////FreecamCompabilityFix
-                        if (box_Freecam.CheckState == CheckState.Unchecked)
-                        {
-                            box_Freecam.CheckState = CheckState.Checked;
-                        }
-                        else
-                        {
-                            box_Freecam.CheckState = CheckState.Unchecked;
-                        }
+                        toggle_freecam();
                         Thread.Sleep(200);
                     }
                     if (isTPToCamKeyPressed)
@@ -1392,14 +1347,6 @@ float playerHeight
                     if (isGlideKeyPressed)
                     {
                         doglide();
-                        if (box_glide.CheckState == CheckState.Unchecked)
-                        {
-                            box_glide.CheckState = CheckState.Checked;
-                        }
-                        else
-                        {
-                            box_glide.CheckState = CheckState.Unchecked;
-                        }
                         Thread.Sleep(200);
                     }
                     if (isSpeedKeyPressed)
