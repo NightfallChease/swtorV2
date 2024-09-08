@@ -412,6 +412,7 @@
             // cbox_noclip
             // 
             this.cbox_noclip.AutoSize = true;
+            this.cbox_noclip.Enabled = false;
             this.cbox_noclip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbox_noclip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbox_noclip.ForeColor = System.Drawing.Color.Red;

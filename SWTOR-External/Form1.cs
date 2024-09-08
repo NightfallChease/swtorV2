@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version7.8.sw";
-        private string currentVersion = "v7.8";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.sw";
+        private string currentVersion = "v8.0";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -64,19 +64,20 @@ namespace SWTOR_External
         private string velocityIndicatorAOB = "74 1F B9 ?? ?? ?? ?? 41 FF D6 4C 8D 45 D0 B9 ?? ?? ?? ?? 48 89 F2 FF D7 48 8B 4D D0 FF D0 41 FF D7";
         private string glideAOB = "F3 44 0F 11 43 14 F3 0F";
         private string wallhackAOB = "74 0D 83 4B 68 01";
+        private string wallhack2AOB = "0F 84 76 02 00 00 49 8B CE";
         private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
         private string camCollisionAOB = "F3 0F 11 8F 50 03 00 00 0F";
         private string camCollisionAddrStr;
-        private UIntPtr camCollisionAddr;
         private bool camCollisionEnabled = false;
         private bool infReachEnabled = false;
         private bool infReachPatched = false;
         private string infReachAddressStr;
         private UIntPtr infReachAddress;
-        //private byte[] infReachPatchedBytes = { 0x83, 0xBC, 0x24, 0xA8, 0x00, 0x00, 0x00, 0x29, 0x0F, 0x85, 0x05, 0x00, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
         private byte[] infReachPatchedBytes = { 0x83, 0xBC, 0x24, 0xA8, 0x00, 0x00, 0x00, 0x23, 0x0F, 0x85, 0x05, 0x00, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
         private string wallhackAddress;
+        private string wallhack2Address;
         private bool wallhackPatched;
+        private bool wallhack2Patched;
         private bool glideEnabled = false;
         private VirtualKeyCode TPUpKey;
         private VirtualKeyCode TPDownKey;
@@ -539,6 +540,7 @@ float playerHeight
         }
         private void box_wallhack_CheckedChanged(object sender, EventArgs e)
         {
+            //first patch
             if (!wallhackPatched)
             {
                 m.WriteMemory($"{wallhackAddress}", "bytes", "90 90");
@@ -547,6 +549,17 @@ float playerHeight
             else
             {
                 m.WriteMemory($"{wallhackAddress}", "bytes", "74 0D");
+                wallhackPatched = false;
+            }
+            //second patch
+            if(!wallhack2Patched)
+            {
+                m.WriteMemory($"{wallhack2Address}", "bytes", "90 90");
+                wallhackPatched = true;
+            }
+            else
+            {
+                m.WriteMemory($"{wallhack2Address}", "bytes", "0F 84");
                 wallhackPatched = false;
             }
         }
@@ -716,6 +729,7 @@ float playerHeight
                 velocityIndAddrStr = m.AoBScan(velocityIndicatorAOB).Result.Sum().ToString("X2");
                 glideAddrString = m.AoBScan(glideAOB).Result.Sum().ToString("X2");
                 wallhackAddress = m.AoBScan(wallhackAOB).Result.Sum().ToString("X2");
+                wallhack2Address = m.AoBScan(wallhack2AOB).Result.Sum().ToString("X2");
                 infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
                 camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
 
@@ -735,6 +749,7 @@ float playerHeight
                 log_console.Invoke((MethodInvoker)delegate
                 {
                     log_console.Text = log_console.Text + $"\r\nAOB scan success";
+                    cbox_noclip.Enabled = true;
                 });
 
                 //MessageBox.Show("AOB scan success");
@@ -1335,14 +1350,6 @@ float playerHeight
                     if (isNofallKeyPressed)
                     {
                         nofallFunction();
-                        if (box_nofall.CheckState == CheckState.Unchecked)
-                        {
-                            box_nofall.CheckState = CheckState.Checked;
-                        }
-                        else
-                        {
-                            box_nofall.CheckState = CheckState.Unchecked;
-                        }
                         Thread.Sleep(200);
                     }
                     if (isGlideKeyPressed)
