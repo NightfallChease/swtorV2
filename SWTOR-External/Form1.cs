@@ -67,6 +67,16 @@ namespace SWTOR_External
         private string wallhack2AOB = "0F 84 76 02 00 00 49 8B CE";
         private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
         private string camCollisionAOB = "F3 0F 11 8F 50 03 00 00 0F";
+        private byte[] superjumpPatchedBytes = { 0xF2, 0x0F, 0x10, 0x05, 0x12, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x10, 0x15, 0x0A, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x11, 0x43, 0x0C };
+        private byte[] superjumpBytesAfterPatch;
+        private string superjumpAOB = "F2 0F 11 43 0C 8B 44 24 50";
+        private string superjumpAddrStr;
+        private string superjumpCustomHeight = "1";
+        private byte[] superjumpOriginalBytes = { 0xF2, 0x0F, 0x11, 0x43, 0x0C };
+        private UIntPtr jumpHeightUint;
+        private string jumpHeightString;
+        private bool superjumpPatched = false;
+        private bool superjumpCave = false;
         private string camCollisionAddrStr;
         private bool camCollisionEnabled = false;
         private bool infReachEnabled = false;
@@ -393,6 +403,52 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_superJump_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!superjumpCave)
+            {
+                //Create Codecave
+                UIntPtr caveAddr = m.CreateCodeCave(superjumpAddrStr, superjumpPatchedBytes, 5, 300);
+
+                //logCaveAddr
+                string caveAddrString = convertUintToHexString(caveAddr);
+                //log_console.Text = log_console.Text + "\r\n\r\nCaveAddr = " + caveAddrString;
+
+                //Add offset 0x12 to the cave addr (that's where the ptr for pbase is stored)
+                jumpHeightUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x1A); //caveAddr == UIntPtr
+
+                //log caveAddr + offset
+                jumpHeightString = convertUintToHexString(jumpHeightUint);
+                //log_console.Text = log_console.Text + "\r\n\r\nAddress of the Speed PTR = " + speedValueUIntString;
+
+                //Write Multiplier for jump height
+                m.WriteMemory(jumpHeightString, "double", superjumpCustomHeight);
+
+                Thread.Sleep(100);
+
+
+                //rest of code
+                superjumpBytesAfterPatch = m.ReadBytes(superjumpAddrStr, 5);
+                superjumpPatched = true;
+                superjumpCave = true;
+                //log_console.Text = log_console.Text + "\r\n\r\nCave Created";
+            }
+            else
+            {
+                if (superjumpPatched)
+                {
+                    m.WriteBytes(superjumpAddrStr, superjumpOriginalBytes); //write back original bytes
+                    //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
+                    superjumpPatched = false;
+                }
+                else
+                {
+                    m.WriteBytes(superjumpAddrStr, superjumpBytesAfterPatch);
+                    //log_console.Text = log_console.Text + "\r\n\r\nBytes Patched";
+                    superjumpPatched = true;
+                }
+            }
+        }
         private void box_infReach_CheckedChanged(object sender, EventArgs e)
         {
             infReachFunction();
@@ -551,16 +607,17 @@ float playerHeight
                 m.WriteMemory($"{wallhackAddress}", "bytes", "74 0D");
                 wallhackPatched = false;
             }
+
             //second patch
             if(!wallhack2Patched)
             {
                 m.WriteMemory($"{wallhack2Address}", "bytes", "90 90");
-                wallhackPatched = true;
+                wallhack2Patched = true;
             }
             else
             {
                 m.WriteMemory($"{wallhack2Address}", "bytes", "0F 84");
-                wallhackPatched = false;
+                wallhack2Patched = false;
             }
         }
         private void box_glide_CheckedChanged(object sender, EventArgs e)
@@ -732,6 +789,7 @@ float playerHeight
                 wallhack2Address = m.AoBScan(wallhack2AOB).Result.Sum().ToString("X2");
                 infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
                 camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
+                superjumpAddrStr = m.AoBScan(superjumpAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -1238,9 +1296,7 @@ float playerHeight
                     speedPatched = true;
                 }
             }
-
             Cursor.Current = Cursors.Default;
-
         }
         private void logToConsole(string textToLog)
         {
@@ -1376,6 +1432,19 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region Trackbars
+        private void trckbr_jumpHeight_Scroll(object sender, EventArgs e)
+        {
+            superjumpCustomHeight = trckbr_jumpHeight.Value.ToString();
+
+            try
+            {
+                m.WriteMemory(jumpHeightString, "double", superjumpCustomHeight);
+            }
+            catch 
+            {
+                MessageBox.Show("Something went wrong. Try to enable superjump first");
+            }
+        }
         private void trckbr_speed_Scroll(object sender, EventArgs e)
         {
             if(isSpeedhackEnabled)
@@ -1826,6 +1895,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             // Wait for the process to exit asynchronously
             await System.Threading.Tasks.Task.Run(() => process.WaitForExit());
         }
+
+
 
         #endregion
 
