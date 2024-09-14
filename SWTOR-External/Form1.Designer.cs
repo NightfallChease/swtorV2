@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btn_about = new System.Windows.Forms.Button();
             this.lbl_title = new System.Windows.Forms.Label();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.box_darkmode = new System.Windows.Forms.CheckBox();
@@ -48,7 +47,6 @@
             this.txt_YBox = new System.Windows.Forms.TextBox();
             this.txt_XBox = new System.Windows.Forms.TextBox();
             this.box_alwaysInFront = new System.Windows.Forms.CheckBox();
-            this.box_camAttach = new System.Windows.Forms.CheckBox();
             this.box_nofall = new System.Windows.Forms.CheckBox();
             this.btn_tpToCam = new System.Windows.Forms.Button();
             this.box_Freecam = new System.Windows.Forms.CheckBox();
@@ -125,7 +123,15 @@
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.lbl_credits4 = new System.Windows.Forms.Label();
+            this.lbl_credits3 = new System.Windows.Forms.Label();
+            this.pnl_creditClicker = new System.Windows.Forms.Panel();
+            this.txtbox_credits = new System.Windows.Forms.TextBox();
+            this.lbl_credits2 = new System.Windows.Forms.Label();
+            this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
+            this.lbl_credits5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -136,19 +142,8 @@
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_about
-            // 
-            this.btn_about.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_about.Location = new System.Drawing.Point(179, 327);
-            this.btn_about.Name = "btn_about";
-            this.btn_about.Size = new System.Drawing.Size(80, 27);
-            this.btn_about.TabIndex = 0;
-            this.btn_about.Text = "About";
-            this.btn_about.UseVisualStyleBackColor = true;
-            this.btn_about.Click += new System.EventHandler(this.btn_about_Click);
             // 
             // lbl_title
             // 
@@ -192,7 +187,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 282);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 256);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -204,7 +199,7 @@
             // 
             this.box_glide.AutoSize = true;
             this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_glide.Location = new System.Drawing.Point(6, 125);
+            this.box_glide.Location = new System.Drawing.Point(6, 99);
             this.box_glide.Name = "box_glide";
             this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
@@ -225,7 +220,7 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 266);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 240);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -236,7 +231,7 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 282);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 256);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -326,24 +321,11 @@
             this.box_alwaysInFront.UseVisualStyleBackColor = true;
             this.box_alwaysInFront.CheckedChanged += new System.EventHandler(this.box_alwaysInFront_CheckedChanged);
             // 
-            // box_camAttach
-            // 
-            this.box_camAttach.AutoSize = true;
-            this.box_camAttach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_camAttach.Location = new System.Drawing.Point(6, 57);
-            this.box_camAttach.Name = "box_camAttach";
-            this.box_camAttach.Size = new System.Drawing.Size(88, 17);
-            this.box_camAttach.TabIndex = 13;
-            this.box_camAttach.Text = "AttachToCam";
-            this.tipControl.SetToolTip(this.box_camAttach, "Attach your player to your camera");
-            this.box_camAttach.UseVisualStyleBackColor = true;
-            this.box_camAttach.CheckedChanged += new System.EventHandler(this.box_camAttach_CheckedChanged);
-            // 
             // box_nofall
             // 
             this.box_nofall.AutoSize = true;
             this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_nofall.Location = new System.Drawing.Point(6, 103);
+            this.box_nofall.Location = new System.Drawing.Point(6, 77);
             this.box_nofall.Name = "box_nofall";
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
@@ -786,6 +768,7 @@
             this.imageListMain.Images.SetKeyName(3, "");
             this.imageListMain.Images.SetKeyName(4, "move_icon_128800.ico");
             this.imageListMain.Images.SetKeyName(5, "portal.ico");
+            this.imageListMain.Images.SetKeyName(6, "credits.ico");
             // 
             // timer_getBase
             // 
@@ -798,6 +781,7 @@
             this.materialTabControl1.Controls.Add(this.tabPage4);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.tabPage5);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.ImageList = this.imageListMain;
@@ -823,7 +807,6 @@
             this.tabPage1.Controls.Add(this.box_darkmode);
             this.tabPage1.Controls.Add(this.log_console);
             this.tabPage1.Controls.Add(this.lbl_version);
-            this.tabPage1.Controls.Add(this.btn_about);
             this.tabPage1.Controls.Add(this.box_speedhack);
             this.tabPage1.Controls.Add(this.cbox_noclip);
             this.tabPage1.Controls.Add(this.box_glide);
@@ -835,7 +818,6 @@
             this.tabPage1.Controls.Add(this.box_Freecam);
             this.tabPage1.Controls.Add(this.btn_tpToCam);
             this.tabPage1.Controls.Add(this.box_nofall);
-            this.tabPage1.Controls.Add(this.box_camAttach);
             this.tabPage1.Controls.Add(this.box_alwaysInFront);
             this.tabPage1.ImageKey = "move_icon_128800.ico";
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
@@ -850,11 +832,11 @@
             // 
             this.box_flyMode.AutoSize = true;
             this.box_flyMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_flyMode.Location = new System.Drawing.Point(6, 80);
+            this.box_flyMode.Location = new System.Drawing.Point(6, 54);
             this.box_flyMode.Name = "box_flyMode";
-            this.box_flyMode.Size = new System.Drawing.Size(110, 17);
+            this.box_flyMode.Size = new System.Drawing.Size(66, 17);
             this.box_flyMode.TabIndex = 37;
-            this.box_flyMode.Text = "Fly Mode (Testing)";
+            this.box_flyMode.Text = "Fly Mode";
             this.tipControl.SetToolTip(this.box_flyMode, "Fly with your character instead of camera");
             this.box_flyMode.UseVisualStyleBackColor = true;
             this.box_flyMode.CheckedChanged += new System.EventHandler(this.box_flyMode_CheckedChanged);
@@ -884,7 +866,7 @@
             // 
             this.box_noAnimations.AutoSize = true;
             this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noAnimations.Location = new System.Drawing.Point(6, 194);
+            this.box_noAnimations.Location = new System.Drawing.Point(6, 168);
             this.box_noAnimations.Name = "box_noAnimations";
             this.box_noAnimations.Size = new System.Drawing.Size(91, 17);
             this.box_noAnimations.TabIndex = 34;
@@ -897,7 +879,7 @@
             // 
             this.trckbr_jumpHeight.AutoSize = false;
             this.trckbr_jumpHeight.BackColor = System.Drawing.Color.White;
-            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 240);
+            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 214);
             this.trckbr_jumpHeight.Maximum = 40;
             this.trckbr_jumpHeight.Name = "trckbr_jumpHeight";
             this.trckbr_jumpHeight.Size = new System.Drawing.Size(104, 23);
@@ -909,7 +891,7 @@
             // 
             this.box_superJump.AutoSize = true;
             this.box_superJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_superJump.Location = new System.Drawing.Point(6, 217);
+            this.box_superJump.Location = new System.Drawing.Point(6, 191);
             this.box_superJump.Name = "box_superJump";
             this.box_superJump.Size = new System.Drawing.Size(73, 17);
             this.box_superJump.TabIndex = 32;
@@ -921,7 +903,7 @@
             // 
             this.box_noCamCollision.AutoSize = true;
             this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCamCollision.Location = new System.Drawing.Point(6, 171);
+            this.box_noCamCollision.Location = new System.Drawing.Point(6, 145);
             this.box_noCamCollision.Name = "box_noCamCollision";
             this.box_noCamCollision.Size = new System.Drawing.Size(102, 17);
             this.box_noCamCollision.TabIndex = 31;
@@ -934,7 +916,7 @@
             // 
             this.box_noCollision.AutoSize = true;
             this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCollision.Location = new System.Drawing.Point(6, 148);
+            this.box_noCollision.Location = new System.Drawing.Point(6, 122);
             this.box_noCollision.Name = "box_noCollision";
             this.box_noCollision.Size = new System.Drawing.Size(78, 17);
             this.box_noCollision.TabIndex = 30;
@@ -1231,6 +1213,100 @@
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.lbl_credits5);
+            this.tabPage5.Controls.Add(this.lbl_credits4);
+            this.tabPage5.Controls.Add(this.lbl_credits3);
+            this.tabPage5.Controls.Add(this.pnl_creditClicker);
+            this.tabPage5.Controls.Add(this.txtbox_credits);
+            this.tabPage5.Controls.Add(this.lbl_credits2);
+            this.tabPage5.Controls.Add(this.lbl_credits1);
+            this.tabPage5.ImageKey = "credits.ico";
+            this.tabPage5.Location = new System.Drawing.Point(4, 23);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(428, 360);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Credits";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // lbl_credits4
+            // 
+            this.lbl_credits4.AutoSize = true;
+            this.lbl_credits4.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_credits4.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_credits4.Location = new System.Drawing.Point(237, 206);
+            this.lbl_credits4.Name = "lbl_credits4";
+            this.lbl_credits4.Size = new System.Drawing.Size(72, 19);
+            this.lbl_credits4.TabIndex = 7;
+            this.lbl_credits4.Text = "Count : 0";
+            // 
+            // lbl_credits3
+            // 
+            this.lbl_credits3.AutoSize = true;
+            this.lbl_credits3.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_credits3.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_credits3.Location = new System.Drawing.Point(237, 51);
+            this.lbl_credits3.Name = "lbl_credits3";
+            this.lbl_credits3.Size = new System.Drawing.Size(106, 19);
+            this.lbl_credits3.TabIndex = 6;
+            this.lbl_credits3.Text = "Credit clicker";
+            // 
+            // pnl_creditClicker
+            // 
+            this.pnl_creditClicker.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_creditClicker.BackgroundImage")));
+            this.pnl_creditClicker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnl_creditClicker.Location = new System.Drawing.Point(241, 73);
+            this.pnl_creditClicker.Name = "pnl_creditClicker";
+            this.pnl_creditClicker.Size = new System.Drawing.Size(120, 120);
+            this.pnl_creditClicker.TabIndex = 5;
+            this.pnl_creditClicker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // txtbox_credits
+            // 
+            this.txtbox_credits.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbox_credits.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbox_credits.HideSelection = false;
+            this.txtbox_credits.Location = new System.Drawing.Point(16, 105);
+            this.txtbox_credits.Multiline = true;
+            this.txtbox_credits.Name = "txtbox_credits";
+            this.txtbox_credits.ReadOnly = true;
+            this.txtbox_credits.Size = new System.Drawing.Size(185, 217);
+            this.txtbox_credits.TabIndex = 4;
+            this.txtbox_credits.Text = "kleretik\r\njra.\r\npoison_patch\r\nmac_2\r\ni3ennyboi";
+            // 
+            // lbl_credits2
+            // 
+            this.lbl_credits2.AutoSize = true;
+            this.lbl_credits2.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_credits2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_credits2.Location = new System.Drawing.Point(12, 73);
+            this.lbl_credits2.Name = "lbl_credits2";
+            this.lbl_credits2.Size = new System.Drawing.Size(104, 19);
+            this.lbl_credits2.TabIndex = 3;
+            this.lbl_credits2.Text = "Contributors:";
+            // 
+            // lbl_credits1
+            // 
+            this.lbl_credits1.AutoSize = true;
+            this.lbl_credits1.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_credits1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_credits1.Location = new System.Drawing.Point(12, 13);
+            this.lbl_credits1.Name = "lbl_credits1";
+            this.lbl_credits1.Size = new System.Drawing.Size(194, 23);
+            this.lbl_credits1.TabIndex = 2;
+            this.lbl_credits1.Text = "No free credits here :(";
+            // 
+            // lbl_credits5
+            // 
+            this.lbl_credits5.AutoSize = true;
+            this.lbl_credits5.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F);
+            this.lbl_credits5.Location = new System.Drawing.Point(13, 325);
+            this.lbl_credits5.Name = "lbl_credits5";
+            this.lbl_credits5.Size = new System.Drawing.Size(103, 18);
+            this.lbl_credits5.TabIndex = 8;
+            this.lbl_credits5.Text = "Made by nightfallct";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1258,14 +1334,14 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_about;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Timer mainTimer;
         private System.Windows.Forms.CheckBox cbox_noclip;
@@ -1276,7 +1352,6 @@
         private System.Windows.Forms.CheckBox box_Freecam;
         private System.Windows.Forms.Button btn_tpToCam;
         private System.Windows.Forms.CheckBox box_nofall;
-        private System.Windows.Forms.CheckBox box_camAttach;
         private System.Windows.Forms.CheckBox box_alwaysInFront;
         private System.Windows.Forms.ImageList imageListMain;
         private System.Windows.Forms.Label lbl_CoordNames;
@@ -1361,6 +1436,14 @@
         private System.Windows.Forms.TrackBar trckbar_camSpeed;
         private System.Windows.Forms.Label lbl_camSpeed;
         private System.Windows.Forms.CheckBox box_flyMode;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label lbl_credits2;
+        private System.Windows.Forms.Label lbl_credits1;
+        private System.Windows.Forms.TextBox txtbox_credits;
+        private System.Windows.Forms.Panel pnl_creditClicker;
+        private System.Windows.Forms.Label lbl_credits4;
+        private System.Windows.Forms.Label lbl_credits3;
+        private System.Windows.Forms.Label lbl_credits5;
     }
 }
 

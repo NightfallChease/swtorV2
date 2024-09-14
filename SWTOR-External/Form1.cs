@@ -35,6 +35,7 @@ namespace SWTOR_External
 
         #region vars
         private int rubberbandCount;
+        private int creditClickerCount;
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
@@ -414,6 +415,22 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_flyMode_CheckedChanged(object sender, EventArgs e)
+        {
+            toggle_FlyMode();
+
+            if (flyModeEnabled)
+            {
+                box_noCollision.Checked = true;
+                box_noCamCollision.Checked = true;
+            }
+            else
+            {
+                box_noCollision.Checked = false;
+                box_noCamCollision.Checked = false;
+            }
+
+        }
         private void box_noAnimations_CheckedChanged(object sender, EventArgs e)
         {
             if(!noAnimationPatched)
@@ -479,16 +496,7 @@ float playerHeight
         }
         private void box_noCollision_CheckedChanged(object sender, EventArgs e)
         {
-            if (!noCollisionEnabled)
-            {
-                m.WriteMemory($"{movementModeAddrStr}", "int", "6");
-                noCollisionEnabled = true;
-            }
-            else
-            {
-                m.WriteMemory($"{movementModeAddrStr}", "int", "1");
-                noCollisionEnabled = false;
-            }
+            toggleNoCollision();
         }
         private void box_darkMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -507,7 +515,9 @@ float playerHeight
                 tabPage3.BackColor = bColor;
                 tabPage3.ForeColor = fColor;                
                 tabPage4.BackColor = bColor;
-                tabPage4.ForeColor = fColor;
+                tabPage4.ForeColor = fColor;                
+                tabPage5.BackColor = bColor;
+                tabPage5.ForeColor = fColor;
                 trckbr_speed.BackColor = bColor;
                 listbox_teleportLocations.BackColor = bColor;
                 listbox_teleportLocations.ForeColor = fColor;
@@ -532,6 +542,8 @@ float playerHeight
                 tabPage3.ForeColor = fColor;
                 tabPage4.BackColor = bColor;
                 tabPage4.ForeColor = fColor;
+                tabPage5.BackColor = bColor;
+                tabPage5.ForeColor = fColor;
                 trckbr_speed.BackColor = bColor;
                 trckbr_speed.BackColor = fColor;
                 listbox_teleportLocations.BackColor = bColor;
@@ -652,15 +664,27 @@ float playerHeight
         {
             speedhackFunction();
         }
-
         private void box_noCamCollision_CheckedChanged(object sender, EventArgs e)
         {
-            camCollisionFunction();
+            toggle_camCollision();
         }
         #endregion
 
         #region Functions
-        private void camCollisionFunction()
+        private void toggleNoCollision()
+        {
+            if (!noCollisionEnabled)
+            {
+                m.WriteMemory($"{movementModeAddrStr}", "int", "6");
+                noCollisionEnabled = true;
+            }
+            else
+            {
+                m.WriteMemory($"{movementModeAddrStr}", "int", "1");
+                noCollisionEnabled = false;
+            }
+        }
+        private void toggle_camCollision()
         {
             if (!camCollisionEnabled)
             {
@@ -795,7 +819,7 @@ float playerHeight
                 freeCamEnabled = false;
             }
         }
-        private void toogle_FlyMode()
+        private void toggle_FlyMode()
         {
             if (!flyModeEnabled)
             {
@@ -1608,10 +1632,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region Buttons
-        private void btn_about_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Made by Nightfall\nDiscord: nightfallct\n\nAlso credits to Klerik for the noclip & research");
-        }
         private void btn_clearConsole_Click(object sender, EventArgs e)
         {
             log_console.Text = "";
@@ -2025,10 +2045,16 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
         #endregion
 
-        private void box_flyMode_CheckedChanged(object sender, EventArgs e)
+        #region misc
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            toogle_FlyMode();
+            creditClickerCount++;
+            lbl_credits4.Text = $"Count : {creditClickerCount}";
+            pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
+        #endregion
+
+
     }
 
 }
