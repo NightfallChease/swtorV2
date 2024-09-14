@@ -124,7 +124,7 @@ namespace SWTOR_External
         private UIntPtr floorYAddr;
         private string floorYAddrStr;
         private float floorYValue;
-        public float camSpeed = 0.05f;
+        public float camSpeed = 0.04f;
         public float speedBoostMultiplier = 2f;
         public bool isSpeedBoostActive = false;
         public string xAddrString = "";
@@ -937,6 +937,8 @@ float playerHeight
         private void FlyMode()
         {
             //based on the idea of jrazorx ;)
+
+            bool valueManipulated = false;
             float pitch = m.ReadFloat(pitchAddrString);
             float yaw = m.ReadFloat(yawAddrString);
 
@@ -967,12 +969,14 @@ float playerHeight
                 speedX = -speed * cosp * siny;
                 speedZ = -speed * cosp * cosy;
                 speedY = speed * sinp;
+                valueManipulated = true;
             }
             else if (isArrowDownPressed)
             {
                 speedX = speed * cosp * siny;
                 speedZ = speed * cosp * cosy;
                 speedY = -speed * sinp;
+                valueManipulated = true;
             }
 
             if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.RIGHT))
@@ -987,25 +991,30 @@ float playerHeight
             if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT))
             {
                 speedY += speed * 0.2f;
+                valueManipulated = true;
             }
             else if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.CONTROL))
             {
                 speedY -= speed * 0.2f;
+                valueManipulated = true;
             }
 
             playerX += speedX;
             playerY += speedY;
             playerZ += speedZ;
 
-            // Ensure the float values are converted to strings using the invariant culture
+            //ensure the float values are converted to strings using the invariant culture
             string playerXString = playerX.ToString(CultureInfo.InvariantCulture);
             string playerYString = playerY.ToString(CultureInfo.InvariantCulture);
             string playerZString = playerZ.ToString(CultureInfo.InvariantCulture);
 
-            // Write the memory
-            m.WriteMemory(xAddrString, "float", playerXString);
-            m.WriteMemory(yAddrString, "float", playerYString);
-            m.WriteMemory(zAddrString, "float", playerZString);
+            if (valueManipulated)
+            {
+                //write the memory
+                m.WriteMemory(xAddrString, "float", playerXString);
+                m.WriteMemory(yAddrString, "float", playerYString);
+                m.WriteMemory(zAddrString, "float", playerZString);
+            }
         }
         private void teleport()
         {
@@ -1542,7 +1551,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #region Trackbars
         private void trckbar_camSpeed_Scroll(object sender, EventArgs e)
         {
-            camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 20f; 
+            camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 25f; 
         }
         private void trckbr_jumpHeight_Scroll(object sender, EventArgs e)
         {
