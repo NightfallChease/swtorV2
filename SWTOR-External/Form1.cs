@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.1.sw";
-        private string currentVersion = "v8.1";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.2.sw";
+        private string currentVersion = "v8.2";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -48,6 +48,7 @@ namespace SWTOR_External
         private bool noclipCave = false;
         private bool camCave = false;
         private bool freeCamEnabled = false;
+        private bool flyModeEnabled = false;
         private bool attachToCamEnabled = false;
         private bool nofallEnabled = false;
         private bool nofallPatched = false;
@@ -369,6 +370,11 @@ float playerHeight
             if(freeCamEnabled)
             {
                 Freecam();
+            }
+
+            if (flyModeEnabled)
+            {
+                FlyMode();
             }
         }
         private void timer_getBase_Tick(object sender, EventArgs e)
@@ -789,6 +795,17 @@ float playerHeight
                 freeCamEnabled = false;
             }
         }
+        private void toogle_FlyMode()
+        {
+            if (!flyModeEnabled)
+            {
+                flyModeEnabled = true;
+            }
+            else
+            {
+                flyModeEnabled = false;
+            }
+        }
         private void scanAOB()
         {
             try
@@ -916,6 +933,79 @@ float playerHeight
                 savedZ = camz;
                 tpflag = true;
             }
+        }
+        private void FlyMode()
+        {
+            //based on the idea of jrazorx ;)
+            float pitch = m.ReadFloat(pitchAddrString);
+            float yaw = m.ReadFloat(yawAddrString);
+
+            float siny = (float)Math.Sin(yaw);
+            float cosy = (float)Math.Cos(yaw);
+            float sinp = (float)Math.Sin(pitch);
+            float cosp = (float)Math.Cos(pitch);
+
+            float playerX = m.ReadFloat(xAddrString);
+            float playerY = m.ReadFloat(yAddrString);
+            float playerZ = m.ReadFloat(zAddrString);
+
+            float speedX = 0;
+            float speedY = 0;
+            float speedZ = 0;
+
+            float speed = camSpeed;
+            if (isSpeedBoostActive)
+            {
+                speed *= speedBoostMultiplier;
+            }
+
+            bool isArrowUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.UP);
+            bool isArrowDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.DOWN);
+
+            if (isArrowUpPressed)
+            {
+                speedX = -speed * cosp * siny;
+                speedZ = -speed * cosp * cosy;
+                speedY = speed * sinp;
+            }
+            else if (isArrowDownPressed)
+            {
+                speedX = speed * cosp * siny;
+                speedZ = speed * cosp * cosy;
+                speedY = -speed * sinp;
+            }
+
+            if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.RIGHT))
+            {
+                isSpeedBoostActive = true;
+            }
+            else
+            {
+                isSpeedBoostActive = false;
+            }
+
+            if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT))
+            {
+                speedY += speed * 0.2f;
+            }
+            else if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.CONTROL))
+            {
+                speedY -= speed * 0.2f;
+            }
+
+            playerX += speedX;
+            playerY += speedY;
+            playerZ += speedZ;
+
+            // Ensure the float values are converted to strings using the invariant culture
+            string playerXString = playerX.ToString(CultureInfo.InvariantCulture);
+            string playerYString = playerY.ToString(CultureInfo.InvariantCulture);
+            string playerZString = playerZ.ToString(CultureInfo.InvariantCulture);
+
+            // Write the memory
+            m.WriteMemory(xAddrString, "float", playerXString);
+            m.WriteMemory(yAddrString, "float", playerYString);
+            m.WriteMemory(zAddrString, "float", playerZString);
         }
         private void teleport()
         {
@@ -1923,9 +2013,13 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
 
+
         #endregion
 
-
+        private void box_flyMode_CheckedChanged(object sender, EventArgs e)
+        {
+            toogle_FlyMode();
+        }
     }
 
 }

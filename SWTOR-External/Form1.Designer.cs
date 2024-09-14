@@ -96,6 +96,9 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_flyMode = new System.Windows.Forms.CheckBox();
+            this.lbl_camSpeed = new System.Windows.Forms.Label();
+            this.trckbar_camSpeed = new System.Windows.Forms.TrackBar();
             this.box_noAnimations = new System.Windows.Forms.CheckBox();
             this.trckbr_jumpHeight = new System.Windows.Forms.TrackBar();
             this.box_superJump = new System.Windows.Forms.CheckBox();
@@ -123,18 +126,16 @@
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
-            this.trckbar_camSpeed = new System.Windows.Forms.TrackBar();
-            this.lbl_camSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_about
@@ -191,7 +192,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 256);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 282);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -203,7 +204,7 @@
             // 
             this.box_glide.AutoSize = true;
             this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_glide.Location = new System.Drawing.Point(6, 99);
+            this.box_glide.Location = new System.Drawing.Point(6, 125);
             this.box_glide.Name = "box_glide";
             this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
@@ -224,7 +225,7 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 240);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 266);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -235,7 +236,7 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 256);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 282);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -329,7 +330,7 @@
             // 
             this.box_camAttach.AutoSize = true;
             this.box_camAttach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_camAttach.Location = new System.Drawing.Point(6, 54);
+            this.box_camAttach.Location = new System.Drawing.Point(6, 57);
             this.box_camAttach.Name = "box_camAttach";
             this.box_camAttach.Size = new System.Drawing.Size(88, 17);
             this.box_camAttach.TabIndex = 13;
@@ -342,7 +343,7 @@
             // 
             this.box_nofall.AutoSize = true;
             this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_nofall.Location = new System.Drawing.Point(6, 77);
+            this.box_nofall.Location = new System.Drawing.Point(6, 103);
             this.box_nofall.Name = "box_nofall";
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
@@ -811,6 +812,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.box_flyMode);
             this.tabPage1.Controls.Add(this.lbl_camSpeed);
             this.tabPage1.Controls.Add(this.trckbar_camSpeed);
             this.tabPage1.Controls.Add(this.box_noAnimations);
@@ -844,11 +846,45 @@
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // box_flyMode
+            // 
+            this.box_flyMode.AutoSize = true;
+            this.box_flyMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_flyMode.Location = new System.Drawing.Point(6, 80);
+            this.box_flyMode.Name = "box_flyMode";
+            this.box_flyMode.Size = new System.Drawing.Size(110, 17);
+            this.box_flyMode.TabIndex = 37;
+            this.box_flyMode.Text = "Fly Mode (Testing)";
+            this.tipControl.SetToolTip(this.box_flyMode, "Fly with your character instead of camera");
+            this.box_flyMode.UseVisualStyleBackColor = true;
+            this.box_flyMode.CheckedChanged += new System.EventHandler(this.box_flyMode_CheckedChanged);
+            // 
+            // lbl_camSpeed
+            // 
+            this.lbl_camSpeed.AutoSize = true;
+            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 34);
+            this.lbl_camSpeed.Name = "lbl_camSpeed";
+            this.lbl_camSpeed.Size = new System.Drawing.Size(54, 13);
+            this.lbl_camSpeed.TabIndex = 36;
+            this.lbl_camSpeed.Text = "Fly Speed";
+            // 
+            // trckbar_camSpeed
+            // 
+            this.trckbar_camSpeed.AutoSize = false;
+            this.trckbar_camSpeed.BackColor = System.Drawing.Color.White;
+            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 48);
+            this.trckbar_camSpeed.Minimum = 1;
+            this.trckbar_camSpeed.Name = "trckbar_camSpeed";
+            this.trckbar_camSpeed.Size = new System.Drawing.Size(79, 23);
+            this.trckbar_camSpeed.TabIndex = 35;
+            this.trckbar_camSpeed.Value = 1;
+            this.trckbar_camSpeed.Scroll += new System.EventHandler(this.trckbar_camSpeed_Scroll);
+            // 
             // box_noAnimations
             // 
             this.box_noAnimations.AutoSize = true;
             this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noAnimations.Location = new System.Drawing.Point(6, 168);
+            this.box_noAnimations.Location = new System.Drawing.Point(6, 194);
             this.box_noAnimations.Name = "box_noAnimations";
             this.box_noAnimations.Size = new System.Drawing.Size(91, 17);
             this.box_noAnimations.TabIndex = 34;
@@ -861,7 +897,7 @@
             // 
             this.trckbr_jumpHeight.AutoSize = false;
             this.trckbr_jumpHeight.BackColor = System.Drawing.Color.White;
-            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 214);
+            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 240);
             this.trckbr_jumpHeight.Maximum = 40;
             this.trckbr_jumpHeight.Name = "trckbr_jumpHeight";
             this.trckbr_jumpHeight.Size = new System.Drawing.Size(104, 23);
@@ -873,7 +909,7 @@
             // 
             this.box_superJump.AutoSize = true;
             this.box_superJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_superJump.Location = new System.Drawing.Point(6, 191);
+            this.box_superJump.Location = new System.Drawing.Point(6, 217);
             this.box_superJump.Name = "box_superJump";
             this.box_superJump.Size = new System.Drawing.Size(73, 17);
             this.box_superJump.TabIndex = 32;
@@ -885,7 +921,7 @@
             // 
             this.box_noCamCollision.AutoSize = true;
             this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCamCollision.Location = new System.Drawing.Point(6, 145);
+            this.box_noCamCollision.Location = new System.Drawing.Point(6, 171);
             this.box_noCamCollision.Name = "box_noCamCollision";
             this.box_noCamCollision.Size = new System.Drawing.Size(102, 17);
             this.box_noCamCollision.TabIndex = 31;
@@ -898,7 +934,7 @@
             // 
             this.box_noCollision.AutoSize = true;
             this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCollision.Location = new System.Drawing.Point(6, 122);
+            this.box_noCollision.Location = new System.Drawing.Point(6, 148);
             this.box_noCollision.Name = "box_noCollision";
             this.box_noCollision.Size = new System.Drawing.Size(78, 17);
             this.box_noCollision.TabIndex = 30;
@@ -1195,27 +1231,6 @@
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // trckbar_camSpeed
-            // 
-            this.trckbar_camSpeed.AutoSize = false;
-            this.trckbar_camSpeed.BackColor = System.Drawing.Color.White;
-            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 48);
-            this.trckbar_camSpeed.Minimum = 1;
-            this.trckbar_camSpeed.Name = "trckbar_camSpeed";
-            this.trckbar_camSpeed.Size = new System.Drawing.Size(79, 23);
-            this.trckbar_camSpeed.TabIndex = 35;
-            this.trckbar_camSpeed.Value = 1;
-            this.trckbar_camSpeed.Scroll += new System.EventHandler(this.trckbar_camSpeed_Scroll);
-            // 
-            // lbl_camSpeed
-            // 
-            this.lbl_camSpeed.AutoSize = true;
-            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 34);
-            this.lbl_camSpeed.Name = "lbl_camSpeed";
-            this.lbl_camSpeed.Size = new System.Drawing.Size(62, 13);
-            this.lbl_camSpeed.TabIndex = 36;
-            this.lbl_camSpeed.Text = "Cam Speed";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1235,6 +1250,7 @@
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -1242,7 +1258,6 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1345,6 +1360,7 @@
         private System.Windows.Forms.CheckBox box_noAnimations;
         private System.Windows.Forms.TrackBar trckbar_camSpeed;
         private System.Windows.Forms.Label lbl_camSpeed;
+        private System.Windows.Forms.CheckBox box_flyMode;
     }
 }
 
