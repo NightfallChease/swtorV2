@@ -123,6 +123,8 @@
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
+            this.trckbar_camSpeed = new System.Windows.Forms.TrackBar();
+            this.lbl_camSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -132,6 +134,7 @@
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_about
@@ -808,6 +811,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbl_camSpeed);
+            this.tabPage1.Controls.Add(this.trckbar_camSpeed);
             this.tabPage1.Controls.Add(this.box_noAnimations);
             this.tabPage1.Controls.Add(this.trckbr_jumpHeight);
             this.tabPage1.Controls.Add(this.box_superJump);
@@ -1190,6 +1195,27 @@
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // trckbar_camSpeed
+            // 
+            this.trckbar_camSpeed.AutoSize = false;
+            this.trckbar_camSpeed.BackColor = System.Drawing.Color.White;
+            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 48);
+            this.trckbar_camSpeed.Minimum = 1;
+            this.trckbar_camSpeed.Name = "trckbar_camSpeed";
+            this.trckbar_camSpeed.Size = new System.Drawing.Size(79, 23);
+            this.trckbar_camSpeed.TabIndex = 35;
+            this.trckbar_camSpeed.Value = 1;
+            this.trckbar_camSpeed.Scroll += new System.EventHandler(this.trckbar_camSpeed_Scroll);
+            // 
+            // lbl_camSpeed
+            // 
+            this.lbl_camSpeed.AutoSize = true;
+            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 34);
+            this.lbl_camSpeed.Name = "lbl_camSpeed";
+            this.lbl_camSpeed.Size = new System.Drawing.Size(62, 13);
+            this.lbl_camSpeed.TabIndex = 36;
+            this.lbl_camSpeed.Text = "Cam Speed";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1216,6 +1242,7 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1316,6 +1343,8 @@
         private System.Windows.Forms.CheckBox box_superJump;
         private System.Windows.Forms.TrackBar trckbr_jumpHeight;
         private System.Windows.Forms.CheckBox box_noAnimations;
+        private System.Windows.Forms.TrackBar trckbar_camSpeed;
+        private System.Windows.Forms.Label lbl_camSpeed;
     }
 }
 

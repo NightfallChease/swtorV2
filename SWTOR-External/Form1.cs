@@ -123,7 +123,7 @@ namespace SWTOR_External
         private UIntPtr floorYAddr;
         private string floorYAddrStr;
         private float floorYValue;
-        public float camSpeed = 0.1f;
+        public float camSpeed = 0.05f;
         public float speedBoostMultiplier = 2f;
         public bool isSpeedBoostActive = false;
         public string xAddrString = "";
@@ -1450,6 +1450,10 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region Trackbars
+        private void trckbar_camSpeed_Scroll(object sender, EventArgs e)
+        {
+            camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 20f; 
+        }
         private void trckbr_jumpHeight_Scroll(object sender, EventArgs e)
         {
             superjumpCustomHeight = trckbr_jumpHeight.Value.ToString(CultureInfo.InvariantCulture);
@@ -1920,6 +1924,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
         #endregion
+
+
     }
 
 }
