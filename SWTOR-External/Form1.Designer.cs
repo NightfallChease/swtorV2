@@ -124,6 +124,7 @@
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.lbl_credits5 = new System.Windows.Forms.Label();
             this.lbl_credits4 = new System.Windows.Forms.Label();
             this.lbl_credits3 = new System.Windows.Forms.Label();
             this.pnl_creditClicker = new System.Windows.Forms.Panel();
@@ -131,7 +132,6 @@
             this.lbl_credits2 = new System.Windows.Forms.Label();
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
-            this.lbl_credits5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -1230,6 +1230,16 @@
             this.tabPage5.Text = "Credits";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // lbl_credits5
+            // 
+            this.lbl_credits5.AutoSize = true;
+            this.lbl_credits5.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F);
+            this.lbl_credits5.Location = new System.Drawing.Point(13, 325);
+            this.lbl_credits5.Name = "lbl_credits5";
+            this.lbl_credits5.Size = new System.Drawing.Size(103, 18);
+            this.lbl_credits5.TabIndex = 8;
+            this.lbl_credits5.Text = "Made by nightfallct";
+            // 
             // lbl_credits4
             // 
             this.lbl_credits4.AutoSize = true;
@@ -1296,16 +1306,6 @@
             this.lbl_credits1.Size = new System.Drawing.Size(194, 23);
             this.lbl_credits1.TabIndex = 2;
             this.lbl_credits1.Text = "No free credits here :(";
-            // 
-            // lbl_credits5
-            // 
-            this.lbl_credits5.AutoSize = true;
-            this.lbl_credits5.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F);
-            this.lbl_credits5.Location = new System.Drawing.Point(13, 325);
-            this.lbl_credits5.Name = "lbl_credits5";
-            this.lbl_credits5.Size = new System.Drawing.Size(103, 18);
-            this.lbl_credits5.TabIndex = 8;
-            this.lbl_credits5.Text = "Made by nightfallct";
             // 
             // Form1
             // 

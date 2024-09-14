@@ -58,6 +58,7 @@ namespace SWTOR_External
         private bool devVelEnabled = false;
         private string noAnimationAddrString;
         private bool noAnimationPatched = false;
+        private string stuckAOB = "66 00 CC CC CC CC CC CC CC CC 48 8B C4 55 56";
         private string noAnimationAOB = "F3 0F 11 8B 70 02 00 00";
         private string noclipAOB = "EA 00 00 00 48 8B 01 48 8B 40 58";
         private string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
@@ -188,6 +189,9 @@ namespace SWTOR_External
         public byte[] gotoCaveBytes = { };
         public byte[] infReachAlreadyPatchedBytes = { };
         public byte[] infReachOriginalBytes = { 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
+        private bool stuckPatched = false;
+        private string stuckAddrStr;
+        private UIntPtr stuckAddrUint;
         private List<customLocation> locationList;
         string allVars = @"
 string PlayerBaseAddress 
@@ -418,6 +422,7 @@ float playerHeight
         private void box_flyMode_CheckedChanged(object sender, EventArgs e)
         {
             toggle_FlyMode();
+            patchStuck();
 
             if (flyModeEnabled)
             {
@@ -671,6 +676,23 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void patchStuck()
+        {
+            //add additional bytes to scanned location because the AOB starts earlier than the target location
+            UIntPtr addressToPatch = (stuckAddrUint + 0x0A);
+            string addressToPatchStr = convertUintToHexString(addressToPatch);
+
+            if (!stuckPatched)
+            {
+                m.WriteMemory(addressToPatchStr, "bytes", "C3 90 90");
+                stuckPatched = true;
+            }
+            else
+            {
+                m.WriteMemory(addressToPatchStr, "bytes", "48 8B C4");
+                stuckPatched = false;
+            }
+        }
         private void toggleNoCollision()
         {
             if (!noCollisionEnabled)
@@ -835,6 +857,7 @@ float playerHeight
             try
             {
                 //AOB Scans
+
                 noclipAddressStr = m.AoBScan(noclipAOB).Result.Sum().ToString("X2");
                 cameraAddress = m.AoBScan(cameraAOB).Result.Sum().ToString("X2");
                 cameraZAddress = m.AoBScan(cameraZAOB).Result.Sum().ToString("X2");
@@ -850,7 +873,9 @@ float playerHeight
                 camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
                 superjumpAddrStr = m.AoBScan(superjumpAOB).Result.Sum().ToString("X2");
                 noAnimationAddrString = m.AoBScan(noAnimationAOB).Result.Sum().ToString("X2");
+                stuckAddrStr = m.AoBScan(stuckAOB).Result.Sum().ToString("X2");
 
+                stuckAddrUint = m.Get64BitCode(stuckAddrStr);
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
 
@@ -2052,8 +2077,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
-        #endregion
 
+        #endregion
 
     }
 
