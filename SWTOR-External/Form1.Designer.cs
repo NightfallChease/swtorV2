@@ -96,6 +96,9 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_noAnimations = new System.Windows.Forms.CheckBox();
+            this.trckbr_jumpHeight = new System.Windows.Forms.TrackBar();
+            this.box_superJump = new System.Windows.Forms.CheckBox();
             this.box_noCamCollision = new System.Windows.Forms.CheckBox();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -120,17 +123,15 @@
             this.lbl_speedKey = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
-            this.box_superJump = new System.Windows.Forms.CheckBox();
-            this.trckbr_jumpHeight = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_about
@@ -187,7 +188,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 233);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 256);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -220,7 +221,7 @@
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 217);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 240);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -231,7 +232,7 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 233);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 256);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -807,6 +808,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.box_noAnimations);
             this.tabPage1.Controls.Add(this.trckbr_jumpHeight);
             this.tabPage1.Controls.Add(this.box_superJump);
             this.tabPage1.Controls.Add(this.box_noCamCollision);
@@ -836,6 +838,43 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // box_noAnimations
+            // 
+            this.box_noAnimations.AutoSize = true;
+            this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_noAnimations.Location = new System.Drawing.Point(6, 168);
+            this.box_noAnimations.Name = "box_noAnimations";
+            this.box_noAnimations.Size = new System.Drawing.Size(91, 17);
+            this.box_noAnimations.TabIndex = 34;
+            this.box_noAnimations.Text = "No Animations";
+            this.tipControl.SetToolTip(this.box_noAnimations, "Disable animations for fights");
+            this.box_noAnimations.UseVisualStyleBackColor = true;
+            this.box_noAnimations.CheckedChanged += new System.EventHandler(this.box_noAnimations_CheckedChanged);
+            // 
+            // trckbr_jumpHeight
+            // 
+            this.trckbr_jumpHeight.AutoSize = false;
+            this.trckbr_jumpHeight.BackColor = System.Drawing.Color.White;
+            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 214);
+            this.trckbr_jumpHeight.Maximum = 40;
+            this.trckbr_jumpHeight.Name = "trckbr_jumpHeight";
+            this.trckbr_jumpHeight.Size = new System.Drawing.Size(104, 23);
+            this.trckbr_jumpHeight.TabIndex = 33;
+            this.trckbr_jumpHeight.TickFrequency = 4;
+            this.trckbr_jumpHeight.Scroll += new System.EventHandler(this.trckbr_jumpHeight_Scroll);
+            // 
+            // box_superJump
+            // 
+            this.box_superJump.AutoSize = true;
+            this.box_superJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_superJump.Location = new System.Drawing.Point(6, 191);
+            this.box_superJump.Name = "box_superJump";
+            this.box_superJump.Size = new System.Drawing.Size(73, 17);
+            this.box_superJump.TabIndex = 32;
+            this.box_superJump.Text = "Superjump";
+            this.box_superJump.UseVisualStyleBackColor = true;
+            this.box_superJump.CheckedChanged += new System.EventHandler(this.box_superJump_CheckedChanged);
             // 
             // box_noCamCollision
             // 
@@ -1151,30 +1190,6 @@
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // box_superJump
-            // 
-            this.box_superJump.AutoSize = true;
-            this.box_superJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_superJump.Location = new System.Drawing.Point(6, 168);
-            this.box_superJump.Name = "box_superJump";
-            this.box_superJump.Size = new System.Drawing.Size(73, 17);
-            this.box_superJump.TabIndex = 32;
-            this.box_superJump.Text = "Superjump";
-            this.box_superJump.UseVisualStyleBackColor = true;
-            this.box_superJump.CheckedChanged += new System.EventHandler(this.box_superJump_CheckedChanged);
-            // 
-            // trckbr_jumpHeight
-            // 
-            this.trckbr_jumpHeight.AutoSize = false;
-            this.trckbr_jumpHeight.BackColor = System.Drawing.Color.White;
-            this.trckbr_jumpHeight.Location = new System.Drawing.Point(6, 191);
-            this.trckbr_jumpHeight.Maximum = 40;
-            this.trckbr_jumpHeight.Name = "trckbr_jumpHeight";
-            this.trckbr_jumpHeight.Size = new System.Drawing.Size(104, 23);
-            this.trckbr_jumpHeight.TabIndex = 33;
-            this.trckbr_jumpHeight.TickFrequency = 4;
-            this.trckbr_jumpHeight.Scroll += new System.EventHandler(this.trckbr_jumpHeight_Scroll);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1194,13 +1209,13 @@
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trckbr_jumpHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1300,6 +1315,7 @@
         private System.Windows.Forms.ToolTip tipControl;
         private System.Windows.Forms.CheckBox box_superJump;
         private System.Windows.Forms.TrackBar trckbr_jumpHeight;
+        private System.Windows.Forms.CheckBox box_noAnimations;
     }
 }
 

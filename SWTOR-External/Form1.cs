@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.sw";
-        private string currentVersion = "v8.0";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.1.sw";
+        private string currentVersion = "v8.1";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -54,6 +54,9 @@ namespace SWTOR_External
         private bool alwaysOnTop = false;
         private bool devEspEnabled = false;
         private bool devVelEnabled = false;
+        private string noAnimationAddrString;
+        private bool noAnimationPatched = false;
+        private string noAnimationAOB = "F3 0F 11 8B 70 02 00 00";
         private string noclipAOB = "EA 00 00 00 48 8B 01 48 8B 40 58";
         private string cameraAOB = "48 8B 01 48 8B 80 F0 01 00 00 FF 15 ?? ?? ?? ?? EB 07 48 8D 05 ?? ?? ?? ?? 0F";
         private string cameraYAOB = "F2 0F 11 87 28 02 00 00";
@@ -67,14 +70,16 @@ namespace SWTOR_External
         private string wallhack2AOB = "0F 84 76 02 00 00 49 8B CE";
         private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
         private string camCollisionAOB = "F3 0F 11 8F 50 03 00 00 0F";
-        private byte[] superjumpPatchedBytes = { 0xF2, 0x0F, 0x10, 0x05, 0x12, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x10, 0x15, 0x0A, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x11, 0x43, 0x0C };
+        private byte[] superjumpPatchedBytes = { 0xF2, 0x0F, 0x59, 0x05, 0x3B, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x11, 0x43, 0x0C, 0xF3, 0x0F, 0x10, 0x43, 0x10, 0xF3, 0x0F, 0x59, 0x05, 0x21, 0x00, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x43, 0x10, 0xF3, 0x0F, 0x10, 0x43, 0x14, 0xF3, 0x0F, 0x59, 0x05, 0x0F, 0x00, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x43, 0x14, 0xF2, 0x0F, 0x10, 0x43, 0x0C };
         private byte[] superjumpBytesAfterPatch;
         private string superjumpAOB = "F2 0F 11 43 0C 8B 44 24 50";
         private string superjumpAddrStr;
         private string superjumpCustomHeight = "1";
         private byte[] superjumpOriginalBytes = { 0xF2, 0x0F, 0x11, 0x43, 0x0C };
-        private UIntPtr jumpHeightUint;
-        private string jumpHeightString;
+        private UIntPtr jumpHeightFUint;
+        private UIntPtr jumpHeightDUint;
+        private string jumpHeightFString;
+        private string jumpHeightDString;
         private bool superjumpPatched = false;
         private bool superjumpCave = false;
         private string camCollisionAddrStr;
@@ -175,7 +180,7 @@ namespace SWTOR_External
         public byte[] cameraBytes = { 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x80, 0xF0, 0x01, 0x00, 0x00 };
         public byte[] speedBytes = { 0xF3, 0x0F, 0x10, 0xBE, 0xF4, 0x00, 0x00, 0x00, 0x0F, 0x28, 0xF7 };
         public byte[] cameraYBytes = { 0xF2, 0x0F, 0x11, 0x87, 0x28, 0x02, 0x00, 0x00 };
-        public byte[] cameraZBytes = { 0x89, 0x87, 0x30, 0x02, 0x00, 0x00, 0xF3 };superjumpAddrStr
+        public byte[] cameraZBytes = { 0x89, 0x87, 0x30, 0x02, 0x00, 0x00, 0xF3 };
         public byte[] patchedBytes = { 0xC7, 0x47, 0x10, 0x33, 0x33, 0x33, 0xBF, 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] originalBytes = { 0xF3, 0x44, 0x0F, 0x10, 0x4F, 0x10 };
         public byte[] gotoCaveBytes = { };
@@ -403,6 +408,19 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_noAnimations_CheckedChanged(object sender, EventArgs e)
+        {
+            if(!noAnimationPatched)
+            {
+                m.WriteMemory(noAnimationAddrString, "bytes", "90 90 90 90 90 90 90 90");
+                noAnimationPatched = true;
+            }
+            else
+            {
+                m.WriteMemory(noAnimationAddrString, "bytes", "F3 0F 11 8B 70 02 00 00");
+                noAnimationPatched = false;
+            }
+        }
         private void box_superJump_CheckedChanged(object sender, EventArgs e)
         {
             if (!superjumpCave)
@@ -412,17 +430,17 @@ float playerHeight
 
                 //logCaveAddr
                 string caveAddrString = convertUintToHexString(caveAddr);
-                //log_console.Text = log_console.Text + "\r\n\r\nCaveAddr = " + caveAddrString;
 
-                //Add offset 0x12 to the cave addr (that's where the ptr for pbase is stored)
-                jumpHeightUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x1A); //caveAddr == UIntPtr
-
-                //log caveAddr + offset
-                jumpHeightString = convertUintToHexString(jumpHeightUint);
-                //log_console.Text = log_console.Text + "\r\n\r\nAddress of the Speed PTR = " + speedValueUIntString;
+                //floats
+                jumpHeightFUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x3B); //caveAddr == UIntPtr
+                jumpHeightFString = convertUintToHexString(jumpHeightFUint);
+                //doubles
+                jumpHeightDUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x43); //caveAddr == UIntPtr
+                jumpHeightDString = convertUintToHexString(jumpHeightDUint);
 
                 //Write Multiplier for jump height
-                m.WriteMemory(jumpHeightString, "double", superjumpCustomHeight);
+                m.WriteMemory(jumpHeightDString, "double", superjumpCustomHeight);
+                m.WriteMemory(jumpHeightFString, "float", superjumpCustomHeight);
 
                 Thread.Sleep(100);
 
@@ -790,6 +808,7 @@ float playerHeight
                 infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
                 camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
                 superjumpAddrStr = m.AoBScan(superjumpAOB).Result.Sum().ToString("X2");
+                noAnimationAddrString = m.AoBScan(noAnimationAOB).Result.Sum().ToString("X2");
 
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
                 cameraZUInt = m.Get64BitCode(cameraZAddress);
@@ -1081,7 +1100,6 @@ float playerHeight
         }
         private async void onlineCheck(string url)
         {
-
            using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -1434,15 +1452,16 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #region Trackbars
         private void trckbr_jumpHeight_Scroll(object sender, EventArgs e)
         {
-            superjumpCustomHeight = trckbr_jumpHeight.Value.ToString();
+            superjumpCustomHeight = trckbr_jumpHeight.Value.ToString(CultureInfo.InvariantCulture);
 
             try
             {
-                m.WriteMemory(jumpHeightString, "double", superjumpCustomHeight);
+                m.WriteMemory(jumpHeightDString, "double", superjumpCustomHeight);
+                m.WriteMemory(jumpHeightFString, "float", superjumpCustomHeight);
             }
-            catch 
+            catch(Exception ex)
             {
-                MessageBox.Show("Something went wrong. Try to enable superjump first");
+                MessageBox.Show($"Something went wrong. Try to enable superjump first. \r\nError: {ex.Message}");
             }
         }
         private void trckbr_speed_Scroll(object sender, EventArgs e)
@@ -1898,9 +1917,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
 
+
+
         #endregion
-
-
     }
 
 }
