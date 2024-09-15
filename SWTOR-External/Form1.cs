@@ -422,7 +422,9 @@ float playerHeight
         private void box_flyMode_CheckedChanged(object sender, EventArgs e)
         {
             toggle_FlyMode();
-            patchStuck();
+
+            
+            //patchStuck();
 
             if (flyModeEnabled)
             {
