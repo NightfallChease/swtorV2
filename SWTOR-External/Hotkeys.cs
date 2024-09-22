@@ -6,6 +6,7 @@ namespace SWTOR_External
     [Serializable]
     public class HotkeySettings
     {
+        public VirtualKeyCode infJumpKey {  get; set; }
         public VirtualKeyCode TPUpKey { get; set; }
         public VirtualKeyCode TPDownKey { get; set; }
         public VirtualKeyCode TPLeftKey { get; set; }

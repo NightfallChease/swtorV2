@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace SWTOR_External 
 {
@@ -39,8 +40,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.2.sw";
-        private string currentVersion = "v8.2";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.3.sw";
+        private string currentVersion = "v8.3";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -58,6 +59,9 @@ namespace SWTOR_External
         private bool devVelEnabled = false;
         private string noAnimationAddrString;
         private bool noAnimationPatched = false;
+        private bool infJumpPatched = false;
+        private string infJumpAddrStr;
+        private string infJumpAOB = "F2 0F 11 47 0C 89 47 14 80";
         private string stuckAOB = "66 00 CC CC CC CC CC CC CC CC 48 8B C4 55 56";
         private string noAnimationAOB = "F3 0F 11 8B 70 02 00 00";
         private string noclipAOB = "EA 00 00 00 48 8B 01 48 8B 40 58";
@@ -97,6 +101,7 @@ namespace SWTOR_External
         private bool wallhackPatched;
         private bool wallhack2Patched;
         private bool glideEnabled = false;
+        private VirtualKeyCode infJumpKey;
         private VirtualKeyCode TPUpKey;
         private VirtualKeyCode TPDownKey;
         private VirtualKeyCode TPLeftKey;
@@ -419,6 +424,10 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_infJump_CheckedChanged(object sender, EventArgs e)
+        {
+            infJumpPatch();
+        }
         private void box_flyMode_CheckedChanged(object sender, EventArgs e)
         {
             toggle_FlyMode();
@@ -449,52 +458,6 @@ float playerHeight
             {
                 m.WriteMemory(noAnimationAddrString, "bytes", "F3 0F 11 8B 70 02 00 00");
                 noAnimationPatched = false;
-            }
-        }
-        private void box_superJump_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!superjumpCave)
-            {
-                //Create Codecave
-                UIntPtr caveAddr = m.CreateCodeCave(superjumpAddrStr, superjumpPatchedBytes, 5, 300);
-
-                //logCaveAddr
-                string caveAddrString = convertUintToHexString(caveAddr);
-
-                //floats
-                jumpHeightFUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x3B); //caveAddr == UIntPtr
-                jumpHeightFString = convertUintToHexString(jumpHeightFUint);
-                //doubles
-                jumpHeightDUint = (UIntPtr)UIntPtr.Add(caveAddr, 0x43); //caveAddr == UIntPtr
-                jumpHeightDString = convertUintToHexString(jumpHeightDUint);
-
-                //Write Multiplier for jump height
-                m.WriteMemory(jumpHeightDString, "double", superjumpCustomHeight);
-                m.WriteMemory(jumpHeightFString, "float", superjumpCustomHeight);
-
-                Thread.Sleep(100);
-
-
-                //rest of code
-                superjumpBytesAfterPatch = m.ReadBytes(superjumpAddrStr, 5);
-                superjumpPatched = true;
-                superjumpCave = true;
-                //log_console.Text = log_console.Text + "\r\n\r\nCave Created";
-            }
-            else
-            {
-                if (superjumpPatched)
-                {
-                    m.WriteBytes(superjumpAddrStr, superjumpOriginalBytes); //write back original bytes
-                    //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
-                    superjumpPatched = false;
-                }
-                else
-                {
-                    m.WriteBytes(superjumpAddrStr, superjumpBytesAfterPatch);
-                    //log_console.Text = log_console.Text + "\r\n\r\nBytes Patched";
-                    superjumpPatched = true;
-                }
             }
         }
         private void box_infReach_CheckedChanged(object sender, EventArgs e)
@@ -678,6 +641,21 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void infJumpPatch()
+        {
+            if (!infJumpPatched)
+            {
+                infJumpPatched = true;
+
+                m.WriteMemory(infJumpAddrStr, "bytes", "90 90 90 90 90");
+            }
+            else
+            {
+                infJumpPatched = false;
+
+                m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
+            }
+        }
         private void patchStuck()
         {
             //add additional bytes to scanned location because the AOB starts earlier than the target location
@@ -732,6 +710,7 @@ float playerHeight
                     BinaryFormatter formatter = new BinaryFormatter();
                     HotkeySettings settings = (HotkeySettings)formatter.Deserialize(fs);
 
+                    infJumpKey = settings.infJumpKey;
                     TPUpKey = settings.TPUpKey;
                     TPDownKey = settings.TPDownKey;
                     TPLeftKey = settings.TPLeftKey;
@@ -744,6 +723,7 @@ float playerHeight
                     GlideKey = settings.GlideKey;
                     SpeedKey = settings.SpeedKey;
 
+                    txtbox_infJumpKey.Text = infJumpKey.ToString();
                     txtbox_TPUpKey.Text = TPUpKey.ToString();
                     txtbox_TPDowNkey.Text = TPDownKey.ToString();
                     txtbox_TPLeftKey.Text = TPLeftKey.ToString();
@@ -860,6 +840,7 @@ float playerHeight
             {
                 //AOB Scans
 
+                infJumpAddrStr = m.AoBScan(infJumpAOB).Result.Sum().ToString("X2");
                 noclipAddressStr = m.AoBScan(noclipAOB).Result.Sum().ToString("X2");
                 cameraAddress = m.AoBScan(cameraAOB).Result.Sum().ToString("X2");
                 cameraZAddress = m.AoBScan(cameraZAOB).Result.Sum().ToString("X2");
@@ -1148,7 +1129,6 @@ float playerHeight
                 float playerXCoord = m.ReadFloat(xAddrString);
                 float playerYCoord = m.ReadFloat(yAddrString);
                 float playerZCoord = m.ReadFloat(zAddrString);
-
                 bool isTPUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPUpKey);
                 bool isTPDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPDownKey);
                 bool isTPXUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPLeftKey);
@@ -1156,6 +1136,8 @@ float playerHeight
                 bool isTPZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPForwardKey);
                 bool isTPZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPBackwardKey);
 
+
+                //numpad teleport
                 if (isTPUpPressed)
                 {
                     m.WriteMemory(yAddrString, "float", (playerYCoord + 0.5f).ToString(CultureInfo.InvariantCulture));
@@ -1553,6 +1535,8 @@ float playerHeight
         {
             while (true)
             {
+
+                bool isinfJumpKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(infJumpKey);
                 bool isFreecamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(FreecamKey);
                 bool isTPToCamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(TPToCamKey);
                 bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
@@ -1561,9 +1545,21 @@ float playerHeight
 
                 try
                 {
+
+                    if (isinfJumpKeyPressed)
+                    {
+                        //infJumpPatch();
+                        this.Invoke((MethodInvoker)delegate {
+                            box_infJump.Checked = !box_infJump.Checked;
+                        });
+                        Thread.Sleep(200);
+                    }
                     if (isFreecamKeyPressed)
                     {
-                        toggle_freecam();
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            toggle_freecam();
+                        });
                         Thread.Sleep(200);
                     }
                     if (isTPToCamKeyPressed)
@@ -1603,20 +1599,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         private void trckbar_camSpeed_Scroll(object sender, EventArgs e)
         {
             camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 25f; 
-        }
-        private void trckbr_jumpHeight_Scroll(object sender, EventArgs e)
-        {
-            superjumpCustomHeight = trckbr_jumpHeight.Value.ToString(CultureInfo.InvariantCulture);
-
-            try
-            {
-                m.WriteMemory(jumpHeightDString, "double", superjumpCustomHeight);
-                m.WriteMemory(jumpHeightFString, "float", superjumpCustomHeight);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"Something went wrong. Try to enable superjump first. \r\nError: {ex.Message}");
-            }
         }
         private void trckbr_speed_Scroll(object sender, EventArgs e)
         {
@@ -1810,6 +1792,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         private void btn_clearHotkeys_Click(object sender, EventArgs e)
         {
             // Clear the text in each textbox
+            txtbox_infJumpKey.Text = "";
             txtbox_TPUpKey.Text = "";
             txtbox_TPDowNkey.Text = "";
             txtbox_TPLeftKey.Text = "";
@@ -1821,8 +1804,10 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             txtbox_nofallKey.Text = "";
             txtbox_glideKey.Text = "";
             txtbox_speedKey.Text = "";
+            txtbox_infJumpKey.Text = "";
 
             // Reset the associated hotkey variables to a default value
+            infJumpKey = VirtualKeyCode.NONAME;
             TPUpKey = VirtualKeyCode.NONAME;
             TPDownKey = VirtualKeyCode.NONAME;
             TPLeftKey = VirtualKeyCode.NONAME;
@@ -1839,6 +1824,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             HotkeySettings settings = new HotkeySettings
             {
+                infJumpKey = infJumpKey,
                 TPUpKey = TPUpKey,
                 TPDownKey = TPDownKey,
                 TPLeftKey = TPLeftKey,
@@ -1889,6 +1875,11 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region AssignedHotkeys
+        private void txtbox_infJumpKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            infJumpKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_infJumpKey.Text = infJumpKey.ToString();
+        }
         private void txtbox_TpUpHotkey_KeyDown(object sender, KeyEventArgs e)
         {
             //TPUpKey == VirtualKeyCode
@@ -2080,8 +2071,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
 
+
         #endregion
 
-    }
 
+    }
 }
