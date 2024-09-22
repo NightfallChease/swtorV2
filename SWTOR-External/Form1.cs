@@ -28,9 +28,7 @@ namespace SWTOR_External
         InputSimulator sim = new InputSimulator();
 
         /* Todo:
-        Fly [Backspace highjump]
         MouseTP (for map and world)
-        Fix hotkeys for freecam
         Teleport to ground via ground offset?
         */
 
@@ -272,7 +270,7 @@ float playerHeight
 
             updateCheck(urlUpdate);
 
-            log_console.Text = log_console.Text + $"Welcome {userName}!\r\n"; ;
+            log_console.Text = log_console.Text + $"Welcome {userName}!\r\n";
 
             startMainTimer();
             startgetBaseTimer();
@@ -874,7 +872,7 @@ float playerHeight
 
                 log_console.Invoke((MethodInvoker)delegate
                 {
-                    log_console.Text = log_console.Text + $"\r\nAOB scan success";
+                    log_console.Text = log_console.Text + $"\r\nInitialization success";
                     cbox_noclip.Enabled = true;
                 });
 
