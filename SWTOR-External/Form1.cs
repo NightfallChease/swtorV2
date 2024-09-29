@@ -17,7 +17,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 
 namespace SWTOR_External 
 {
@@ -30,6 +29,7 @@ namespace SWTOR_External
         /* Todo:
         MouseTP (for map and world)
         Teleport to ground via ground offset?
+        Combat features?
         */
 
         #region vars
