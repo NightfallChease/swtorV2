@@ -94,6 +94,7 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_infJump = new System.Windows.Forms.CheckBox();
             this.box_flyMode = new System.Windows.Forms.CheckBox();
             this.lbl_camSpeed = new System.Windows.Forms.Label();
             this.trckbar_camSpeed = new System.Windows.Forms.TrackBar();
@@ -130,9 +131,6 @@
             this.lbl_credits2 = new System.Windows.Forms.Label();
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
-            this.box_infJump = new System.Windows.Forms.CheckBox();
-            this.lbl_infJumpKey = new System.Windows.Forms.Label();
-            this.txtbox_infJumpKey = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -827,6 +825,19 @@
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // box_infJump
+            // 
+            this.box_infJump.AutoSize = true;
+            this.box_infJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_infJump.Location = new System.Drawing.Point(6, 191);
+            this.box_infJump.Name = "box_infJump";
+            this.box_infJump.Size = new System.Drawing.Size(81, 17);
+            this.box_infJump.TabIndex = 38;
+            this.box_infJump.Text = "Infinity Jump";
+            this.tipControl.SetToolTip(this.box_infJump, "Hold space and jump as high as you want");
+            this.box_infJump.UseVisualStyleBackColor = true;
+            this.box_infJump.CheckedChanged += new System.EventHandler(this.box_infJump_CheckedChanged);
+            // 
             // box_flyMode
             // 
             this.box_flyMode.AutoSize = true;
@@ -1072,8 +1083,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.txtbox_infJumpKey);
-            this.tabPage2.Controls.Add(this.lbl_infJumpKey);
             this.tabPage2.Controls.Add(this.btn_saveHotkeys);
             this.tabPage2.Controls.Add(this.btn_clearHotkeys);
             this.tabPage2.Controls.Add(this.box_infReach);
@@ -1284,38 +1293,6 @@
             this.lbl_credits1.TabIndex = 2;
             this.lbl_credits1.Text = "No free credits here :(";
             // 
-            // box_infJump
-            // 
-            this.box_infJump.AutoSize = true;
-            this.box_infJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infJump.Location = new System.Drawing.Point(6, 191);
-            this.box_infJump.Name = "box_infJump";
-            this.box_infJump.Size = new System.Drawing.Size(81, 17);
-            this.box_infJump.TabIndex = 38;
-            this.box_infJump.Text = "Infinity Jump";
-            this.tipControl.SetToolTip(this.box_infJump, "While activated, you are able to freeze your upwards velocity to fly up to a cert" +
-        "ain height. (hotkey recommended)");
-            this.box_infJump.UseVisualStyleBackColor = true;
-            this.box_infJump.CheckedChanged += new System.EventHandler(this.box_infJump_CheckedChanged);
-            // 
-            // lbl_infJumpKey
-            // 
-            this.lbl_infJumpKey.AutoSize = true;
-            this.lbl_infJumpKey.Location = new System.Drawing.Point(237, 230);
-            this.lbl_infJumpKey.Name = "lbl_infJumpKey";
-            this.lbl_infJumpKey.Size = new System.Drawing.Size(50, 13);
-            this.lbl_infJumpKey.TabIndex = 57;
-            this.lbl_infJumpKey.Text = "Inf Jump:";
-            // 
-            // txtbox_infJumpKey
-            // 
-            this.txtbox_infJumpKey.Location = new System.Drawing.Point(289, 227);
-            this.txtbox_infJumpKey.Name = "txtbox_infJumpKey";
-            this.txtbox_infJumpKey.ReadOnly = true;
-            this.txtbox_infJumpKey.Size = new System.Drawing.Size(74, 20);
-            this.txtbox_infJumpKey.TabIndex = 58;
-            this.txtbox_infJumpKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_infJumpKey_KeyDown);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1451,8 +1428,6 @@
         private System.Windows.Forms.Label lbl_credits3;
         private System.Windows.Forms.Label lbl_credits5;
         private System.Windows.Forms.CheckBox box_infJump;
-        private System.Windows.Forms.TextBox txtbox_infJumpKey;
-        private System.Windows.Forms.Label lbl_infJumpKey;
     }
 }
 

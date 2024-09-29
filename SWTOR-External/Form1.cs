@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.3.sw";
-        private string currentVersion = "v8.3";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.4.sw";
+        private string currentVersion = "v8.4";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -99,7 +99,7 @@ namespace SWTOR_External
         private bool wallhackPatched;
         private bool wallhack2Patched;
         private bool glideEnabled = false;
-        private VirtualKeyCode infJumpKey;
+        private VirtualKeyCode infJumpKey = VirtualKeyCode.SPACE;
         private VirtualKeyCode TPUpKey;
         private VirtualKeyCode TPDownKey;
         private VirtualKeyCode TPLeftKey;
@@ -196,6 +196,8 @@ namespace SWTOR_External
         private string stuckAddrStr;
         private UIntPtr stuckAddrUint;
         private List<customLocation> locationList;
+        bool isInfJumpToggled = false;
+        bool isInfJumpActivated = false;
         string allVars = @"
 string PlayerBaseAddress 
 string CamBaseAddress 
@@ -424,7 +426,7 @@ float playerHeight
         #region Checkboxes
         private void box_infJump_CheckedChanged(object sender, EventArgs e)
         {
-            infJumpPatch();
+            isInfJumpActivated = !isInfJumpActivated;
         }
         private void box_flyMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -708,7 +710,6 @@ float playerHeight
                     BinaryFormatter formatter = new BinaryFormatter();
                     HotkeySettings settings = (HotkeySettings)formatter.Deserialize(fs);
 
-                    infJumpKey = settings.infJumpKey;
                     TPUpKey = settings.TPUpKey;
                     TPDownKey = settings.TPDownKey;
                     TPLeftKey = settings.TPLeftKey;
@@ -721,7 +722,6 @@ float playerHeight
                     GlideKey = settings.GlideKey;
                     SpeedKey = settings.SpeedKey;
 
-                    txtbox_infJumpKey.Text = infJumpKey.ToString();
                     txtbox_TPUpKey.Text = TPUpKey.ToString();
                     txtbox_TPDowNkey.Text = TPDownKey.ToString();
                     txtbox_TPLeftKey.Text = TPLeftKey.ToString();
@@ -1535,6 +1535,7 @@ float playerHeight
             {
 
                 bool isinfJumpKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(infJumpKey);
+                bool isinfJumpKeyUP = sim.InputDeviceState.IsHardwareKeyUp(infJumpKey);
                 bool isFreecamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(FreecamKey);
                 bool isTPToCamKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(TPToCamKey);
                 bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
@@ -1543,14 +1544,26 @@ float playerHeight
 
                 try
                 {
-
-                    if (isinfJumpKeyPressed)
+                    if(isInfJumpActivated)
                     {
-                        //infJumpPatch();
-                        this.Invoke((MethodInvoker)delegate {
-                            box_infJump.Checked = !box_infJump.Checked;
-                        });
-                        Thread.Sleep(200);
+                        if (isinfJumpKeyPressed && !isInfJumpToggled)
+                        {
+                            this.Invoke((MethodInvoker)delegate {
+                                //box_infJump.Checked = !box_infJump.Checked;
+                                infJumpPatch();
+                            });
+                            isInfJumpToggled = true;
+                            Thread.Sleep(200);
+                        }
+                        if (isinfJumpKeyUP && isInfJumpToggled)
+                        {
+                            this.Invoke((MethodInvoker)delegate {
+                                //box_infJump.Checked = !box_infJump.Checked;
+                                infJumpPatch();
+                            });
+                            isInfJumpToggled = false;
+                            Thread.Sleep(200);
+                        }
                     }
                     if (isFreecamKeyPressed)
                     {
@@ -1790,7 +1803,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         private void btn_clearHotkeys_Click(object sender, EventArgs e)
         {
             // Clear the text in each textbox
-            txtbox_infJumpKey.Text = "";
             txtbox_TPUpKey.Text = "";
             txtbox_TPDowNkey.Text = "";
             txtbox_TPLeftKey.Text = "";
@@ -1802,7 +1814,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             txtbox_nofallKey.Text = "";
             txtbox_glideKey.Text = "";
             txtbox_speedKey.Text = "";
-            txtbox_infJumpKey.Text = "";
 
             // Reset the associated hotkey variables to a default value
             infJumpKey = VirtualKeyCode.NONAME;
@@ -1822,7 +1833,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             HotkeySettings settings = new HotkeySettings
             {
-                infJumpKey = infJumpKey,
                 TPUpKey = TPUpKey,
                 TPDownKey = TPDownKey,
                 TPLeftKey = TPLeftKey,
@@ -1873,11 +1883,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region AssignedHotkeys
-        private void txtbox_infJumpKey_KeyDown(object sender, KeyEventArgs e)
-        {
-            infJumpKey = (VirtualKeyCode)e.KeyCode;
-            txtbox_infJumpKey.Text = infJumpKey.ToString();
-        }
         private void txtbox_TpUpHotkey_KeyDown(object sender, KeyEventArgs e)
         {
             //TPUpKey == VirtualKeyCode
