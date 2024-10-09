@@ -1351,7 +1351,7 @@ float playerHeight
                 {
                     log_console.Invoke((MethodInvoker)delegate
                     {
-                        log_console.Text = log_console.Text + $"\r\n\r\nHook failed\r\nPlease restart the game and tool\r\nError: {ex.Message}";
+                        log_console.Text = log_console.Text + $"\r\n\r\nHook failed\r\n\r\nPlease restart the game\r\n\r\nError: {ex.Message}";
                     });
                     return;
                 }
