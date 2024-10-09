@@ -75,18 +75,6 @@ namespace SWTOR_External
         private string wallhack2AOB = "0F 84 76 02 00 00 49 8B CE";
         private string infReachAOB = "56 FD FF 8B 06 89 07 41 80 0F 0C";
         private string camCollisionAOB = "F3 0F 11 8F 50 03 00 00 0F";
-        private byte[] superjumpPatchedBytes = { 0xF2, 0x0F, 0x59, 0x05, 0x3B, 0x00, 0x00, 0x00, 0xF2, 0x0F, 0x11, 0x43, 0x0C, 0xF3, 0x0F, 0x10, 0x43, 0x10, 0xF3, 0x0F, 0x59, 0x05, 0x21, 0x00, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x43, 0x10, 0xF3, 0x0F, 0x10, 0x43, 0x14, 0xF3, 0x0F, 0x59, 0x05, 0x0F, 0x00, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x43, 0x14, 0xF2, 0x0F, 0x10, 0x43, 0x0C };
-        private byte[] superjumpBytesAfterPatch;
-        private string superjumpAOB = "F2 0F 11 43 0C 8B 44 24 50";
-        private string superjumpAddrStr;
-        private string superjumpCustomHeight = "1";
-        private byte[] superjumpOriginalBytes = { 0xF2, 0x0F, 0x11, 0x43, 0x0C };
-        private UIntPtr jumpHeightFUint;
-        private UIntPtr jumpHeightDUint;
-        private string jumpHeightFString;
-        private string jumpHeightDString;
-        private bool superjumpPatched = false;
-        private bool superjumpCave = false;
         private string camCollisionAddrStr;
         private bool camCollisionEnabled = false;
         private bool infReachEnabled = false;
@@ -176,7 +164,9 @@ namespace SWTOR_External
         private bool speedPatched;
         private UIntPtr pbasecaveAddr;
         private bool isPVPEnabled = false;
-        private string PVPAOB = "50 00 56 00 45 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        private string PVPAOB = "50 00 56 00 ?? 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        private string pvpAddrStr;
+        private UIntPtr pvpAddr;
         private bool isSpeedhackEnabled = false;
         public byte[] noclipPatchedBytes = { };
         public byte[] cameraPatchedBytes = { };
@@ -276,6 +266,8 @@ float playerHeight
 
             startMainTimer();
             startgetBaseTimer();
+            startPvPTimer();
+
 
             int title = rnd.Next(999999, 9999999);
             //this.Text = title.ToString("X2");
@@ -286,7 +278,7 @@ float playerHeight
             if(PID != 0)
             {
                 m.OpenProcess(PID);
-                log_console.Text = log_console.Text + "\r\nConnected to PID: " + PID + "\r\n";
+                log_console.Text = log_console.Text + "\r\nConnected to PID: " + PID + "\r\n\r\nInitiliazing...\r\n";
             }
             else
             {
@@ -321,6 +313,22 @@ float playerHeight
         }
 
         #region Timer
+        private void pvpTimer_Tick(object sender, EventArgs e)
+        {
+            pvpAddrStr = pvpAddrStr ?? "00";
+            string isPvPEnabledAddr = convertUintToHexString(pvpAddr + 0x4);
+            if (pvpAddrStr != "00")
+            {
+                int pvpByte = m.ReadByte(isPvPEnabledAddr);
+                if(pvpByte != 0x45)
+                {
+                    pvpTimer.Stop();
+                    cbox_noclip.Checked = false;
+                    MessageBox.Show("PvP detected!\nPlease disable PvP to continue using the tool");
+                    Environment.Exit(0);
+                }
+            }
+        }
         private void mainTimer_Tick_1(object sender, EventArgs e)
         {
             //AntiDebug
@@ -836,8 +844,18 @@ float playerHeight
         {
             try
             {
-                //AOB Scans
+                //PvP Scan
+                long startingAddr = 0x0000000000000000;
+                long endingAddr = 0x7fffffffffff;
+                pvpAddrStr = m.AoBScan(startingAddr, endingAddr, PVPAOB, true, false).Result.Sum().ToString("X2");
+                pvpAddr = m.Get64BitCode(pvpAddrStr);
+                if (pvpAddrStr == "00")
+                {
+                    MessageBox.Show("Please start the tool, once you are ingame");
+                    Environment.Exit(0);
+                }
 
+                //AOB Scans
                 infJumpAddrStr = m.AoBScan(infJumpAOB).Result.Sum().ToString("X2");
                 noclipAddressStr = m.AoBScan(noclipAOB).Result.Sum().ToString("X2");
                 cameraAddress = m.AoBScan(cameraAOB).Result.Sum().ToString("X2");
@@ -852,9 +870,9 @@ float playerHeight
                 wallhack2Address = m.AoBScan(wallhack2AOB).Result.Sum().ToString("X2");
                 infReachAddressStr = m.AoBScan(infReachAOB).Result.Sum().ToString("X2");
                 camCollisionAddrStr = m.AoBScan(camCollisionAOB).Result.Sum().ToString("X2");
-                superjumpAddrStr = m.AoBScan(superjumpAOB).Result.Sum().ToString("X2");
                 noAnimationAddrString = m.AoBScan(noAnimationAOB).Result.Sum().ToString("X2");
                 stuckAddrStr = m.AoBScan(stuckAOB).Result.Sum().ToString("X2");
+
 
                 stuckAddrUint = m.Get64BitCode(stuckAddrStr);
                 cameraYUInt = m.Get64BitCode(cameraYAddress);
@@ -881,7 +899,7 @@ float playerHeight
             catch(Exception ex)
             {
                 //log_console.Text = log_console.Text + $"\r\n\r\nAOB's not found. Please restart the game";
-                MessageBox.Show($"AOB's not found. Please restart the game.\nError: {ex.Message}");
+                MessageBox.Show($"AOB's not found. Please restart the game and the tool.\nError: {ex.Message}");
             }
         }
         private void Freecam()
@@ -1285,6 +1303,17 @@ float playerHeight
                 log_console.Text = log_console.Text + ($"\r\nException in Main Thread: {ex.Message}");
             }
         }
+        private void startPvPTimer()
+        {
+            try
+            {
+                pvpTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                log_console.Text = log_console.Text + ($"\r\nException in PVP Thread: {ex.Message}");
+            }
+        }
         private void startgetBaseTimer()
         {
             try
@@ -1322,7 +1351,7 @@ float playerHeight
                 {
                     log_console.Invoke((MethodInvoker)delegate
                     {
-                        log_console.Text = log_console.Text + $"\r\n\r\nHook failed\r\nError: {ex.Message}";
+                        log_console.Text = log_console.Text + $"\r\n\r\nHook failed\r\nPlease restart the game and tool\r\nError: {ex.Message}";
                     });
                     return;
                 }
@@ -2073,6 +2102,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
+
 
 
         #endregion
