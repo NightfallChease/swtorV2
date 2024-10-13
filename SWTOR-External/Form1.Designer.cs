@@ -83,17 +83,13 @@
             this.lbl_HeightNormal = new System.Windows.Forms.Label();
             this.box_dotEsp = new System.Windows.Forms.CheckBox();
             this.box_esp = new System.Windows.Forms.CheckBox();
-            this.btn_loadScript = new System.Windows.Forms.Button();
-            this.btn_saveScript = new System.Windows.Forms.Button();
-            this.btn_showVars = new System.Windows.Forms.Button();
-            this.btn_example = new System.Windows.Forms.Button();
-            this.btn_runScript = new System.Windows.Forms.Button();
-            this.txtbox_script = new System.Windows.Forms.TextBox();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbl_wFloor = new System.Windows.Forms.Label();
+            this.trck_wFloor = new System.Windows.Forms.TrackBar();
             this.box_infJump = new System.Windows.Forms.CheckBox();
             this.box_flyMode = new System.Windows.Forms.CheckBox();
             this.lbl_camSpeed = new System.Windows.Forms.Label();
@@ -121,7 +117,6 @@
             this.box_infReach = new System.Windows.Forms.CheckBox();
             this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.lbl_speedKey = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.lbl_credits5 = new System.Windows.Forms.Label();
             this.lbl_credits4 = new System.Windows.Forms.Label();
@@ -132,16 +127,25 @@
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             this.pvpTimer = new System.Windows.Forms.Timer(this.components);
+            this.btn_example = new System.Windows.Forms.Button();
+            this.btn_showVars = new System.Windows.Forms.Button();
+            this.btn_runScript = new System.Windows.Forms.Button();
+            this.btn_saveScript = new System.Windows.Forms.Button();
+            this.txtbox_script = new System.Windows.Forms.TextBox();
+            this.btn_loadScript = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lbl_scriptsMaintenance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_wFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_title
@@ -150,10 +154,9 @@
             this.lbl_title.BackColor = System.Drawing.Color.Transparent;
             this.lbl_title.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_title.Location = new System.Drawing.Point(-90, -2);
-            this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_title.Location = new System.Drawing.Point(-60, -1);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(286, 39);
+            this.lbl_title.Size = new System.Drawing.Size(188, 25);
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "SWTOR External Beta";
             // 
@@ -166,10 +169,9 @@
             // 
             this.box_darkmode.AutoSize = true;
             this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_darkmode.Location = new System.Drawing.Point(4, 528);
-            this.box_darkmode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_darkmode.Location = new System.Drawing.Point(3, 343);
             this.box_darkmode.Name = "box_darkmode";
-            this.box_darkmode.Size = new System.Drawing.Size(104, 24);
+            this.box_darkmode.Size = new System.Drawing.Size(72, 17);
             this.box_darkmode.TabIndex = 29;
             this.box_darkmode.Text = "Darkmode";
             this.box_darkmode.UseVisualStyleBackColor = true;
@@ -178,10 +180,9 @@
             // lbl_version
             // 
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(513, 565);
-            this.lbl_version.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_version.Location = new System.Drawing.Point(342, 367);
             this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(0, 20);
+            this.lbl_version.Size = new System.Drawing.Size(0, 13);
             this.lbl_version.TabIndex = 28;
             // 
             // box_speedhack
@@ -189,10 +190,9 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(174, 394);
-            this.box_speedhack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 281);
             this.box_speedhack.Name = "box_speedhack";
-            this.box_speedhack.Size = new System.Drawing.Size(56, 24);
+            this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
             this.box_speedhack.Text = "Off";
             this.box_speedhack.UseVisualStyleBackColor = true;
@@ -202,10 +202,9 @@
             // 
             this.box_glide.AutoSize = true;
             this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_glide.Location = new System.Drawing.Point(9, 152);
-            this.box_glide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_glide.Location = new System.Drawing.Point(6, 99);
             this.box_glide.Name = "box_glide";
-            this.box_glide.Size = new System.Drawing.Size(95, 24);
+            this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
             this.box_glide.Text = "Freeze Y";
             this.tipControl.SetToolTip(this.box_glide, "Freeze your Y coordinate");
@@ -215,20 +214,18 @@
             // lbl_CusCoord
             // 
             this.lbl_CusCoord.AutoSize = true;
-            this.lbl_CusCoord.Location = new System.Drawing.Point(4, 297);
-            this.lbl_CusCoord.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_CusCoord.Location = new System.Drawing.Point(3, 193);
             this.lbl_CusCoord.Name = "lbl_CusCoord";
-            this.lbl_CusCoord.Size = new System.Drawing.Size(123, 20);
+            this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
             this.lbl_CusCoord.TabIndex = 25;
             this.lbl_CusCoord.Text = "Custom Coords:";
             // 
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(4, 369);
-            this.lbl_Speed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 265);
             this.lbl_Speed.Name = "lbl_Speed";
-            this.lbl_Speed.Size = new System.Drawing.Size(167, 20);
+            this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
             this.lbl_Speed.Text = "Custom Speed (Risky)";
             this.lbl_Speed.Click += new System.EventHandler(this.lbl_Speed_Click);
@@ -237,20 +234,18 @@
             // 
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(9, 394);
-            this.trckbr_speed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 281);
             this.trckbr_speed.Name = "trckbr_speed";
-            this.trckbr_speed.Size = new System.Drawing.Size(156, 35);
+            this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
             this.trckbr_speed.Scroll += new System.EventHandler(this.trckbr_speed_Scroll);
             // 
             // btn_cancelTP
             // 
             this.btn_cancelTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cancelTP.Location = new System.Drawing.Point(16, 200);
-            this.btn_cancelTP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cancelTP.Location = new System.Drawing.Point(11, 130);
             this.btn_cancelTP.Name = "btn_cancelTP";
-            this.btn_cancelTP.Size = new System.Drawing.Size(88, 35);
+            this.btn_cancelTP.Size = new System.Drawing.Size(59, 23);
             this.btn_cancelTP.TabIndex = 21;
             this.btn_cancelTP.Text = "Cancel TP";
             this.tipControl.SetToolTip(this.btn_cancelTP, "Cancel the current teleport (bugs out nofall and freeze Y)");
@@ -260,10 +255,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(472, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(315, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(87, 91);
+            this.pictureBox1.Size = new System.Drawing.Size(58, 59);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
@@ -273,10 +267,9 @@
             // btn_saveCustomCoords
             // 
             this.btn_saveCustomCoords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(54, 489);
-            this.btn_saveCustomCoords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(36, 318);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
-            this.btn_saveCustomCoords.Size = new System.Drawing.Size(122, 35);
+            this.btn_saveCustomCoords.Size = new System.Drawing.Size(81, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
             this.btn_saveCustomCoords.Text = "Set coords";
             this.tipControl.SetToolTip(this.btn_saveCustomCoords, "Set saved coords to custom coords");
@@ -286,39 +279,35 @@
             // lbl_CoordNames
             // 
             this.lbl_CoordNames.AutoSize = true;
-            this.lbl_CoordNames.Location = new System.Drawing.Point(38, 374);
-            this.lbl_CoordNames.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_CoordNames.Location = new System.Drawing.Point(25, 243);
             this.lbl_CoordNames.Name = "lbl_CoordNames";
-            this.lbl_CoordNames.Size = new System.Drawing.Size(24, 100);
+            this.lbl_CoordNames.Size = new System.Drawing.Size(17, 65);
             this.lbl_CoordNames.TabIndex = 18;
             this.lbl_CoordNames.Text = "X:\r\n\r\nY:\r\n\r\nZ:";
             // 
             // txt_ZBox
             // 
-            this.txt_ZBox.Location = new System.Drawing.Point(72, 449);
-            this.txt_ZBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_ZBox.Location = new System.Drawing.Point(48, 292);
             this.txt_ZBox.Name = "txt_ZBox";
-            this.txt_ZBox.Size = new System.Drawing.Size(80, 26);
+            this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
             this.tipControl.SetToolTip(this.txt_ZBox, "coord for new location");
             this.txt_ZBox.TextChanged += new System.EventHandler(this.txt_ZBox_TextChanged);
             // 
             // txt_YBox
             // 
-            this.txt_YBox.Location = new System.Drawing.Point(72, 409);
-            this.txt_YBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_YBox.Location = new System.Drawing.Point(48, 266);
             this.txt_YBox.Name = "txt_YBox";
-            this.txt_YBox.Size = new System.Drawing.Size(80, 26);
+            this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
             this.tipControl.SetToolTip(this.txt_YBox, "coord for new location");
             this.txt_YBox.TextChanged += new System.EventHandler(this.txt_YBox_TextChanged);
             // 
             // txt_XBox
             // 
-            this.txt_XBox.Location = new System.Drawing.Point(72, 369);
-            this.txt_XBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_XBox.Location = new System.Drawing.Point(48, 240);
             this.txt_XBox.Name = "txt_XBox";
-            this.txt_XBox.Size = new System.Drawing.Size(80, 26);
+            this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
             this.tipControl.SetToolTip(this.txt_XBox, "coord for new location");
             this.txt_XBox.TextChanged += new System.EventHandler(this.txt_XBox_TextChanged);
@@ -327,10 +316,9 @@
             // 
             this.box_alwaysInFront.AutoSize = true;
             this.box_alwaysInFront.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_alwaysInFront.Location = new System.Drawing.Point(4, 568);
-            this.box_alwaysInFront.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_alwaysInFront.Location = new System.Drawing.Point(3, 369);
             this.box_alwaysInFront.Name = "box_alwaysInFront";
-            this.box_alwaysInFront.Size = new System.Drawing.Size(78, 24);
+            this.box_alwaysInFront.Size = new System.Drawing.Size(56, 17);
             this.box_alwaysInFront.TabIndex = 14;
             this.box_alwaysInFront.Text = "OnTop";
             this.box_alwaysInFront.UseVisualStyleBackColor = true;
@@ -340,10 +328,9 @@
             // 
             this.box_nofall.AutoSize = true;
             this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_nofall.Location = new System.Drawing.Point(9, 118);
-            this.box_nofall.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_nofall.Location = new System.Drawing.Point(6, 77);
             this.box_nofall.Name = "box_nofall";
-            this.box_nofall.Size = new System.Drawing.Size(137, 24);
+            this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
             this.box_nofall.Text = "No Falldamage";
             this.tipControl.SetToolTip(this.box_nofall, "You fall very slow");
@@ -354,10 +341,9 @@
             // 
             this.btn_tpToCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tpToCam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_tpToCam.Location = new System.Drawing.Point(106, 52);
-            this.btn_tpToCam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_tpToCam.Location = new System.Drawing.Point(71, 34);
             this.btn_tpToCam.Name = "btn_tpToCam";
-            this.btn_tpToCam.Size = new System.Drawing.Size(46, 29);
+            this.btn_tpToCam.Size = new System.Drawing.Size(31, 19);
             this.btn_tpToCam.TabIndex = 11;
             this.btn_tpToCam.Text = "TP";
             this.tipControl.SetToolTip(this.btn_tpToCam, "Teleport to your cameras location");
@@ -368,10 +354,9 @@
             // 
             this.box_Freecam.AutoSize = true;
             this.box_Freecam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_Freecam.Location = new System.Drawing.Point(9, 52);
-            this.box_Freecam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_Freecam.Location = new System.Drawing.Point(6, 34);
             this.box_Freecam.Name = "box_Freecam";
-            this.box_Freecam.Size = new System.Drawing.Size(93, 24);
+            this.box_Freecam.Size = new System.Drawing.Size(64, 17);
             this.box_Freecam.TabIndex = 9;
             this.box_Freecam.Text = "Freecam";
             this.tipControl.SetToolTip(this.box_Freecam, "Fly around with arrow keys");
@@ -381,10 +366,9 @@
             // btn_clearConsole
             // 
             this.btn_clearConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearConsole.Location = new System.Drawing.Point(394, 505);
-            this.btn_clearConsole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clearConsole.Location = new System.Drawing.Point(263, 328);
             this.btn_clearConsole.Name = "btn_clearConsole";
-            this.btn_clearConsole.Size = new System.Drawing.Size(68, 35);
+            this.btn_clearConsole.Size = new System.Drawing.Size(45, 23);
             this.btn_clearConsole.TabIndex = 8;
             this.btn_clearConsole.Text = "Clear";
             this.btn_clearConsole.UseVisualStyleBackColor = true;
@@ -393,32 +377,29 @@
             // lbl_coords
             // 
             this.lbl_coords.AutoSize = true;
-            this.lbl_coords.Location = new System.Drawing.Point(12, 26);
-            this.lbl_coords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_coords.Location = new System.Drawing.Point(8, 17);
             this.lbl_coords.Name = "lbl_coords";
-            this.lbl_coords.Size = new System.Drawing.Size(24, 80);
+            this.lbl_coords.Size = new System.Drawing.Size(17, 52);
             this.lbl_coords.TabIndex = 5;
             this.lbl_coords.Text = "X:\r\nY:\r\nZ:\r\nV:";
             // 
             // lbl_cons
             // 
             this.lbl_cons.AutoSize = true;
-            this.lbl_cons.Location = new System.Drawing.Point(324, 65);
-            this.lbl_cons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_cons.Location = new System.Drawing.Point(216, 42);
             this.lbl_cons.Name = "lbl_cons";
-            this.lbl_cons.Size = new System.Drawing.Size(48, 20);
+            this.lbl_cons.Size = new System.Drawing.Size(33, 13);
             this.lbl_cons.TabIndex = 4;
             this.lbl_cons.Text = "Logs:";
             // 
             // log_console
             // 
-            this.log_console.Location = new System.Drawing.Point(324, 94);
-            this.log_console.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.log_console.Location = new System.Drawing.Point(216, 61);
             this.log_console.Multiline = true;
             this.log_console.Name = "log_console";
             this.log_console.ReadOnly = true;
             this.log_console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log_console.Size = new System.Drawing.Size(210, 406);
+            this.log_console.Size = new System.Drawing.Size(141, 265);
             this.log_console.TabIndex = 3;
             // 
             // cbox_noclip
@@ -428,10 +409,9 @@
             this.cbox_noclip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbox_noclip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbox_noclip.ForeColor = System.Drawing.Color.Red;
-            this.cbox_noclip.Location = new System.Drawing.Point(9, 9);
-            this.cbox_noclip.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbox_noclip.Location = new System.Drawing.Point(6, 6);
             this.cbox_noclip.Name = "cbox_noclip";
-            this.cbox_noclip.Size = new System.Drawing.Size(151, 24);
+            this.cbox_noclip.Size = new System.Drawing.Size(103, 17);
             this.cbox_noclip.TabIndex = 2;
             this.cbox_noclip.Text = "Master-Switch";
             this.tipControl.SetToolTip(this.cbox_noclip, "Hook the game and make the features work");
@@ -441,220 +421,198 @@
             // lbl_customHks
             // 
             this.lbl_customHks.AutoSize = true;
-            this.lbl_customHks.Location = new System.Drawing.Point(276, 115);
-            this.lbl_customHks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_customHks.Location = new System.Drawing.Point(184, 75);
             this.lbl_customHks.Name = "lbl_customHks";
-            this.lbl_customHks.Size = new System.Drawing.Size(130, 20);
+            this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
             this.lbl_customHks.TabIndex = 52;
             this.lbl_customHks.Text = "Custom Hotkeys:";
             // 
             // txtbox_speedKey
             // 
-            this.txtbox_speedKey.Location = new System.Drawing.Point(434, 308);
-            this.txtbox_speedKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_speedKey.Location = new System.Drawing.Point(289, 200);
             this.txtbox_speedKey.Name = "txtbox_speedKey";
             this.txtbox_speedKey.ReadOnly = true;
-            this.txtbox_speedKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_speedKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_speedKey.TabIndex = 50;
             this.txtbox_speedKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_speedKey_KeyDown);
             // 
             // lbl_glideKey
             // 
             this.lbl_glideKey.AutoSize = true;
-            this.lbl_glideKey.Location = new System.Drawing.Point(374, 278);
-            this.lbl_glideKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_glideKey.Location = new System.Drawing.Point(249, 181);
             this.lbl_glideKey.Name = "lbl_glideKey";
-            this.lbl_glideKey.Size = new System.Drawing.Size(50, 20);
+            this.lbl_glideKey.Size = new System.Drawing.Size(34, 13);
             this.lbl_glideKey.TabIndex = 49;
             this.lbl_glideKey.Text = "Glide:";
             // 
             // txtbox_glideKey
             // 
-            this.txtbox_glideKey.Location = new System.Drawing.Point(434, 274);
-            this.txtbox_glideKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_glideKey.Location = new System.Drawing.Point(289, 178);
             this.txtbox_glideKey.Name = "txtbox_glideKey";
             this.txtbox_glideKey.ReadOnly = true;
-            this.txtbox_glideKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_glideKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_glideKey.TabIndex = 48;
             this.txtbox_glideKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_glideKey_KeyDown);
             // 
             // lbl_TpToCamKey
             // 
             this.lbl_TpToCamKey.AutoSize = true;
-            this.lbl_TpToCamKey.Location = new System.Drawing.Point(334, 198);
-            this.lbl_TpToCamKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_TpToCamKey.Location = new System.Drawing.Point(223, 129);
             this.lbl_TpToCamKey.Name = "lbl_TpToCamKey";
-            this.lbl_TpToCamKey.Size = new System.Drawing.Size(87, 20);
+            this.lbl_TpToCamKey.Size = new System.Drawing.Size(60, 13);
             this.lbl_TpToCamKey.TabIndex = 47;
             this.lbl_TpToCamKey.Text = "TP to Cam:";
             // 
             // txtbox_tpToCamKey
             // 
-            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(434, 194);
-            this.txtbox_tpToCamKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(289, 126);
             this.txtbox_tpToCamKey.Name = "txtbox_tpToCamKey";
             this.txtbox_tpToCamKey.ReadOnly = true;
-            this.txtbox_tpToCamKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_tpToCamKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_tpToCamKey.TabIndex = 46;
             this.txtbox_tpToCamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_tpToCamKey_KeyDown);
             // 
             // lbl_nofallKey
             // 
             this.lbl_nofallKey.AutoSize = true;
-            this.lbl_nofallKey.Location = new System.Drawing.Point(369, 238);
-            this.lbl_nofallKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_nofallKey.Location = new System.Drawing.Point(246, 155);
             this.lbl_nofallKey.Name = "lbl_nofallKey";
-            this.lbl_nofallKey.Size = new System.Drawing.Size(53, 20);
+            this.lbl_nofallKey.Size = new System.Drawing.Size(37, 13);
             this.lbl_nofallKey.TabIndex = 45;
             this.lbl_nofallKey.Text = "Nofall:";
             // 
             // txtbox_nofallKey
             // 
-            this.txtbox_nofallKey.Location = new System.Drawing.Point(434, 234);
-            this.txtbox_nofallKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_nofallKey.Location = new System.Drawing.Point(289, 152);
             this.txtbox_nofallKey.Name = "txtbox_nofallKey";
             this.txtbox_nofallKey.ReadOnly = true;
-            this.txtbox_nofallKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_nofallKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_nofallKey.TabIndex = 44;
             this.txtbox_nofallKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_nofallKey_KeyDown);
             // 
             // lbl_freecamKey
             // 
             this.lbl_freecamKey.AutoSize = true;
-            this.lbl_freecamKey.Location = new System.Drawing.Point(348, 158);
-            this.lbl_freecamKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_freecamKey.Location = new System.Drawing.Point(232, 103);
             this.lbl_freecamKey.Name = "lbl_freecamKey";
-            this.lbl_freecamKey.Size = new System.Drawing.Size(76, 20);
+            this.lbl_freecamKey.Size = new System.Drawing.Size(51, 13);
             this.lbl_freecamKey.TabIndex = 43;
             this.lbl_freecamKey.Text = "Freecam:";
             // 
             // txtbox_freecamKey
             // 
-            this.txtbox_freecamKey.Location = new System.Drawing.Point(434, 154);
-            this.txtbox_freecamKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_freecamKey.Location = new System.Drawing.Point(289, 100);
             this.txtbox_freecamKey.Name = "txtbox_freecamKey";
             this.txtbox_freecamKey.ReadOnly = true;
-            this.txtbox_freecamKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_freecamKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_freecamKey.TabIndex = 42;
             this.txtbox_freecamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_freecamKey_KeyDown);
             // 
             // lbl_tpBackw
             // 
             this.lbl_tpBackw.AutoSize = true;
-            this.lbl_tpBackw.Location = new System.Drawing.Point(96, 358);
-            this.lbl_tpBackw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpBackw.Location = new System.Drawing.Point(64, 233);
             this.lbl_tpBackw.Name = "lbl_tpBackw";
-            this.lbl_tpBackw.Size = new System.Drawing.Size(114, 20);
+            this.lbl_tpBackw.Size = new System.Drawing.Size(80, 13);
             this.lbl_tpBackw.TabIndex = 41;
             this.lbl_tpBackw.Text = "TP Backwards:";
             // 
             // txtbox_TPBackwardKey
             // 
-            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(220, 354);
-            this.txtbox_TPBackwardKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(147, 230);
             this.txtbox_TPBackwardKey.Name = "txtbox_TPBackwardKey";
             this.txtbox_TPBackwardKey.ReadOnly = true;
-            this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPBackwardKey.TabIndex = 40;
             this.txtbox_TPBackwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPBackwardKey_KeyDown);
             // 
             // lbl_tpForward
             // 
             this.lbl_tpForward.AutoSize = true;
-            this.lbl_tpForward.Location = new System.Drawing.Point(118, 318);
-            this.lbl_tpForward.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpForward.Location = new System.Drawing.Point(79, 207);
             this.lbl_tpForward.Name = "lbl_tpForward";
-            this.lbl_tpForward.Size = new System.Drawing.Size(94, 20);
+            this.lbl_tpForward.Size = new System.Drawing.Size(65, 13);
             this.lbl_tpForward.TabIndex = 39;
             this.lbl_tpForward.Text = "TP Forward:";
             // 
             // txtbox_TPForwardKey
             // 
-            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(220, 314);
-            this.txtbox_TPForwardKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(147, 204);
             this.txtbox_TPForwardKey.Name = "txtbox_TPForwardKey";
             this.txtbox_TPForwardKey.ReadOnly = true;
-            this.txtbox_TPForwardKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPForwardKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPForwardKey.TabIndex = 38;
             this.txtbox_TPForwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPForwardKey_KeyDown);
             // 
             // lbl_tpRight
             // 
             this.lbl_tpRight.AutoSize = true;
-            this.lbl_tpRight.Location = new System.Drawing.Point(134, 278);
-            this.lbl_tpRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpRight.Location = new System.Drawing.Point(89, 181);
             this.lbl_tpRight.Name = "lbl_tpRight";
-            this.lbl_tpRight.Size = new System.Drawing.Size(78, 20);
+            this.lbl_tpRight.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpRight.TabIndex = 37;
             this.lbl_tpRight.Text = "TP Right: ";
             // 
             // txtbox_TPRightKey
             // 
-            this.txtbox_TPRightKey.Location = new System.Drawing.Point(220, 274);
-            this.txtbox_TPRightKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPRightKey.Location = new System.Drawing.Point(147, 178);
             this.txtbox_TPRightKey.Name = "txtbox_TPRightKey";
             this.txtbox_TPRightKey.ReadOnly = true;
-            this.txtbox_TPRightKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPRightKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPRightKey.TabIndex = 36;
             this.txtbox_TPRightKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPRightKey_KeyDown);
             // 
             // lbl_tpLeft
             // 
             this.lbl_tpLeft.AutoSize = true;
-            this.lbl_tpLeft.Location = new System.Drawing.Point(144, 238);
-            this.lbl_tpLeft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpLeft.Location = new System.Drawing.Point(96, 155);
             this.lbl_tpLeft.Name = "lbl_tpLeft";
-            this.lbl_tpLeft.Size = new System.Drawing.Size(64, 20);
+            this.lbl_tpLeft.Size = new System.Drawing.Size(45, 13);
             this.lbl_tpLeft.TabIndex = 35;
             this.lbl_tpLeft.Text = "TP Left:";
             // 
             // txtbox_TPLeftKey
             // 
-            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(220, 234);
-            this.txtbox_TPLeftKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(147, 152);
             this.txtbox_TPLeftKey.Name = "txtbox_TPLeftKey";
             this.txtbox_TPLeftKey.ReadOnly = true;
-            this.txtbox_TPLeftKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPLeftKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPLeftKey.TabIndex = 34;
             this.txtbox_TPLeftKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPLeftKey_KeyDown);
             // 
             // lbl_tpDown
             // 
             this.lbl_tpDown.AutoSize = true;
-            this.lbl_tpDown.Location = new System.Drawing.Point(129, 198);
-            this.lbl_tpDown.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpDown.Location = new System.Drawing.Point(86, 129);
             this.lbl_tpDown.Name = "lbl_tpDown";
-            this.lbl_tpDown.Size = new System.Drawing.Size(77, 20);
+            this.lbl_tpDown.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpDown.TabIndex = 33;
             this.lbl_tpDown.Text = "TP Down:";
             // 
             // txtbox_TPDowNkey
             // 
-            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(220, 194);
-            this.txtbox_TPDowNkey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(147, 126);
             this.txtbox_TPDowNkey.Name = "txtbox_TPDowNkey";
             this.txtbox_TPDowNkey.ReadOnly = true;
-            this.txtbox_TPDowNkey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPDowNkey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPDowNkey.TabIndex = 32;
             this.txtbox_TPDowNkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPDowNkey_KeyDown);
             // 
             // lbl_tpUp
             // 
             this.lbl_tpUp.AutoSize = true;
-            this.lbl_tpUp.Location = new System.Drawing.Point(150, 158);
-            this.lbl_tpUp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_tpUp.Location = new System.Drawing.Point(100, 103);
             this.lbl_tpUp.Name = "lbl_tpUp";
-            this.lbl_tpUp.Size = new System.Drawing.Size(57, 20);
+            this.lbl_tpUp.Size = new System.Drawing.Size(41, 13);
             this.lbl_tpUp.TabIndex = 31;
             this.lbl_tpUp.Text = "TP Up:";
             // 
             // txtbox_TPUpKey
             // 
-            this.txtbox_TPUpKey.Location = new System.Drawing.Point(220, 154);
-            this.txtbox_TPUpKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_TPUpKey.Location = new System.Drawing.Point(147, 100);
             this.txtbox_TPUpKey.Name = "txtbox_TPUpKey";
             this.txtbox_TPUpKey.ReadOnly = true;
-            this.txtbox_TPUpKey.Size = new System.Drawing.Size(109, 26);
+            this.txtbox_TPUpKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPUpKey.TabIndex = 30;
             this.txtbox_TPUpKey.TextChanged += new System.EventHandler(this.txtbox_TPUpKey_TextChanged);
             this.txtbox_TPUpKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TpUpHotkey_KeyDown);
@@ -663,13 +621,12 @@
             // 
             this.trck_opcacity.AutoSize = false;
             this.trck_opcacity.BackColor = System.Drawing.Color.White;
-            this.trck_opcacity.Location = new System.Drawing.Point(6, 435);
-            this.trck_opcacity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.trck_opcacity.Location = new System.Drawing.Point(4, 283);
             this.trck_opcacity.Maximum = 100;
             this.trck_opcacity.Minimum = 10;
             this.trck_opcacity.Name = "trck_opcacity";
             this.trck_opcacity.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trck_opcacity.Size = new System.Drawing.Size(38, 157);
+            this.trck_opcacity.Size = new System.Drawing.Size(25, 102);
             this.trck_opcacity.TabIndex = 29;
             this.trck_opcacity.Value = 100;
             this.trck_opcacity.Scroll += new System.EventHandler(this.trck_opcacity_Scroll);
@@ -677,19 +634,17 @@
             // lbl_opacity
             // 
             this.lbl_opacity.AutoSize = true;
-            this.lbl_opacity.Location = new System.Drawing.Point(2, 411);
-            this.lbl_opacity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_opacity.Location = new System.Drawing.Point(1, 267);
             this.lbl_opacity.Name = "lbl_opacity";
-            this.lbl_opacity.Size = new System.Drawing.Size(123, 20);
+            this.lbl_opacity.Size = new System.Drawing.Size(85, 13);
             this.lbl_opacity.TabIndex = 28;
             this.lbl_opacity.Text = "Window-Opacity";
             // 
             // box_playerHeight
             // 
-            this.box_playerHeight.Location = new System.Drawing.Point(70, 85);
-            this.box_playerHeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_playerHeight.Location = new System.Drawing.Point(47, 55);
             this.box_playerHeight.Name = "box_playerHeight";
-            this.box_playerHeight.Size = new System.Drawing.Size(58, 26);
+            this.box_playerHeight.Size = new System.Drawing.Size(40, 20);
             this.box_playerHeight.TabIndex = 27;
             this.box_playerHeight.Text = "1";
             this.tipControl.SetToolTip(this.box_playerHeight, "Change the player model size (client side)");
@@ -698,10 +653,9 @@
             // lbl_HeightNormal
             // 
             this.lbl_HeightNormal.AutoSize = true;
-            this.lbl_HeightNormal.Location = new System.Drawing.Point(4, 89);
-            this.lbl_HeightNormal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_HeightNormal.Location = new System.Drawing.Point(3, 58);
             this.lbl_HeightNormal.Name = "lbl_HeightNormal";
-            this.lbl_HeightNormal.Size = new System.Drawing.Size(218, 20);
+            this.lbl_HeightNormal.Size = new System.Drawing.Size(152, 13);
             this.lbl_HeightNormal.TabIndex = 26;
             this.lbl_HeightNormal.Text = "Height:                  (1 = Normal)";
             // 
@@ -709,10 +663,9 @@
             // 
             this.box_dotEsp.AutoSize = true;
             this.box_dotEsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_dotEsp.Location = new System.Drawing.Point(9, 45);
-            this.box_dotEsp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_dotEsp.Location = new System.Drawing.Point(6, 29);
             this.box_dotEsp.Name = "box_dotEsp";
-            this.box_dotEsp.Size = new System.Drawing.Size(151, 24);
+            this.box_dotEsp.Size = new System.Drawing.Size(104, 17);
             this.box_dotEsp.TabIndex = 25;
             this.box_dotEsp.Text = "Velocity Indicator";
             this.tipControl.SetToolTip(this.box_dotEsp, "Show the velocity of every enemy in shape of a pink arrow");
@@ -723,97 +676,14 @@
             // 
             this.box_esp.AutoSize = true;
             this.box_esp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_esp.Location = new System.Drawing.Point(9, 9);
-            this.box_esp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_esp.Location = new System.Drawing.Point(6, 6);
             this.box_esp.Name = "box_esp";
-            this.box_esp.Size = new System.Drawing.Size(112, 24);
+            this.box_esp.Size = new System.Drawing.Size(78, 17);
             this.box_esp.TabIndex = 24;
             this.box_esp.Text = "Target ESP";
             this.tipControl.SetToolTip(this.box_esp, "Draw a yellow/green box around the selected enemy");
             this.box_esp.UseVisualStyleBackColor = true;
             this.box_esp.CheckedChanged += new System.EventHandler(this.box_esp_CheckedChanged);
-            // 
-            // btn_loadScript
-            // 
-            this.btn_loadScript.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
-            this.btn_loadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadScript.Location = new System.Drawing.Point(490, 460);
-            this.btn_loadScript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_loadScript.Name = "btn_loadScript";
-            this.btn_loadScript.Size = new System.Drawing.Size(64, 35);
-            this.btn_loadScript.TabIndex = 5;
-            this.btn_loadScript.Text = "Load";
-            this.btn_loadScript.UseVisualStyleBackColor = true;
-            // 
-            // btn_saveScript
-            // 
-            this.btn_saveScript.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
-            this.btn_saveScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveScript.Location = new System.Drawing.Point(417, 460);
-            this.btn_saveScript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_saveScript.Name = "btn_saveScript";
-            this.btn_saveScript.Size = new System.Drawing.Size(64, 35);
-            this.btn_saveScript.TabIndex = 4;
-            this.btn_saveScript.Text = "Save";
-            this.btn_saveScript.UseVisualStyleBackColor = true;
-            // 
-            // btn_showVars
-            // 
-            this.btn_showVars.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_showVars.Cursor = System.Windows.Forms.Cursors.No;
-            this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_showVars.Location = new System.Drawing.Point(142, 460);
-            this.btn_showVars.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_showVars.Name = "btn_showVars";
-            this.btn_showVars.Size = new System.Drawing.Size(57, 35);
-            this.btn_showVars.TabIndex = 3;
-            this.btn_showVars.Text = "Vars";
-            this.btn_showVars.UseVisualStyleBackColor = true;
-            this.btn_showVars.Click += new System.EventHandler(this.btn_showVars_Click);
-            // 
-            // btn_example
-            // 
-            this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_example.Cursor = System.Windows.Forms.Cursors.No;
-            this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_example.Location = new System.Drawing.Point(4, 460);
-            this.btn_example.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_example.Name = "btn_example";
-            this.btn_example.Size = new System.Drawing.Size(132, 35);
-            this.btn_example.TabIndex = 2;
-            this.btn_example.Text = "Example Code";
-            this.btn_example.UseVisualStyleBackColor = true;
-            this.btn_example.Click += new System.EventHandler(this.btn_example_Click);
-            // 
-            // btn_runScript
-            // 
-            this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_runScript.Cursor = System.Windows.Forms.Cursors.No;
-            this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_runScript.Location = new System.Drawing.Point(244, 460);
-            this.btn_runScript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_runScript.Name = "btn_runScript";
-            this.btn_runScript.Size = new System.Drawing.Size(112, 35);
-            this.btn_runScript.TabIndex = 1;
-            this.btn_runScript.Text = "Execute";
-            this.btn_runScript.UseVisualStyleBackColor = true;
-            this.btn_runScript.Click += new System.EventHandler(this.btn_runScript_Click);
-            // 
-            // txtbox_script
-            // 
-            this.txtbox_script.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtbox_script.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbox_script.Location = new System.Drawing.Point(0, 0);
-            this.txtbox_script.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtbox_script.Multiline = true;
-            this.txtbox_script.Name = "txtbox_script";
-            this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtbox_script.Size = new System.Drawing.Size(646, 489);
-            this.txtbox_script.TabIndex = 0;
-            this.txtbox_script.Text = "MessageBox.Show(\"Hello World\");";
             // 
             // imageListMain
             // 
@@ -842,18 +712,19 @@
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.ImageList = this.imageListMain;
-            this.materialTabControl1.Location = new System.Drawing.Point(4, 98);
-            this.materialTabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(655, 595);
+            this.materialTabControl1.Size = new System.Drawing.Size(436, 387);
             this.materialTabControl1.TabIndex = 30;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbl_wFloor);
+            this.tabPage1.Controls.Add(this.trck_wFloor);
             this.tabPage1.Controls.Add(this.box_infJump);
             this.tabPage1.Controls.Add(this.box_flyMode);
             this.tabPage1.Controls.Add(this.lbl_camSpeed);
@@ -877,23 +748,41 @@
             this.tabPage1.Controls.Add(this.box_nofall);
             this.tabPage1.Controls.Add(this.box_alwaysInFront);
             this.tabPage1.ImageKey = "move_icon_128800.ico";
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(647, 562);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(428, 360);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lbl_wFloor
+            // 
+            this.lbl_wFloor.AutoSize = true;
+            this.lbl_wFloor.Location = new System.Drawing.Point(3, 226);
+            this.lbl_wFloor.Name = "lbl_wFloor";
+            this.lbl_wFloor.Size = new System.Drawing.Size(112, 13);
+            this.lbl_wFloor.TabIndex = 40;
+            this.lbl_wFloor.Text = "Walkable Floor Height";
+            // 
+            // trck_wFloor
+            // 
+            this.trck_wFloor.AutoSize = false;
+            this.trck_wFloor.BackColor = System.Drawing.Color.White;
+            this.trck_wFloor.Location = new System.Drawing.Point(6, 242);
+            this.trck_wFloor.Maximum = 5;
+            this.trck_wFloor.Name = "trck_wFloor";
+            this.trck_wFloor.Size = new System.Drawing.Size(104, 23);
+            this.trck_wFloor.TabIndex = 39;
+            this.trck_wFloor.Scroll += new System.EventHandler(this.trck_wFloor_Scroll);
             // 
             // box_infJump
             // 
             this.box_infJump.AutoSize = true;
             this.box_infJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infJump.Location = new System.Drawing.Point(9, 294);
-            this.box_infJump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_infJump.Location = new System.Drawing.Point(6, 191);
             this.box_infJump.Name = "box_infJump";
-            this.box_infJump.Size = new System.Drawing.Size(119, 24);
+            this.box_infJump.Size = new System.Drawing.Size(81, 17);
             this.box_infJump.TabIndex = 38;
             this.box_infJump.Text = "Infinity Jump";
             this.tipControl.SetToolTip(this.box_infJump, "Hold space and jump as high as you want");
@@ -904,10 +793,9 @@
             // 
             this.box_flyMode.AutoSize = true;
             this.box_flyMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_flyMode.Location = new System.Drawing.Point(9, 83);
-            this.box_flyMode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_flyMode.Location = new System.Drawing.Point(6, 54);
             this.box_flyMode.Name = "box_flyMode";
-            this.box_flyMode.Size = new System.Drawing.Size(94, 24);
+            this.box_flyMode.Size = new System.Drawing.Size(66, 17);
             this.box_flyMode.TabIndex = 37;
             this.box_flyMode.Text = "Fly Mode";
             this.tipControl.SetToolTip(this.box_flyMode, "Fly with your character instead of camera");
@@ -917,10 +805,9 @@
             // lbl_camSpeed
             // 
             this.lbl_camSpeed.AutoSize = true;
-            this.lbl_camSpeed.Location = new System.Drawing.Point(170, 52);
-            this.lbl_camSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 34);
             this.lbl_camSpeed.Name = "lbl_camSpeed";
-            this.lbl_camSpeed.Size = new System.Drawing.Size(80, 20);
+            this.lbl_camSpeed.Size = new System.Drawing.Size(54, 13);
             this.lbl_camSpeed.TabIndex = 36;
             this.lbl_camSpeed.Text = "Fly Speed";
             // 
@@ -928,11 +815,10 @@
             // 
             this.trckbar_camSpeed.AutoSize = false;
             this.trckbar_camSpeed.BackColor = System.Drawing.Color.White;
-            this.trckbar_camSpeed.Location = new System.Drawing.Point(174, 74);
-            this.trckbar_camSpeed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 48);
             this.trckbar_camSpeed.Minimum = 1;
             this.trckbar_camSpeed.Name = "trckbar_camSpeed";
-            this.trckbar_camSpeed.Size = new System.Drawing.Size(118, 35);
+            this.trckbar_camSpeed.Size = new System.Drawing.Size(79, 23);
             this.trckbar_camSpeed.TabIndex = 35;
             this.trckbar_camSpeed.Value = 1;
             this.trckbar_camSpeed.Scroll += new System.EventHandler(this.trckbar_camSpeed_Scroll);
@@ -941,10 +827,9 @@
             // 
             this.box_noAnimations.AutoSize = true;
             this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noAnimations.Location = new System.Drawing.Point(9, 258);
-            this.box_noAnimations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_noAnimations.Location = new System.Drawing.Point(6, 168);
             this.box_noAnimations.Name = "box_noAnimations";
-            this.box_noAnimations.Size = new System.Drawing.Size(133, 24);
+            this.box_noAnimations.Size = new System.Drawing.Size(91, 17);
             this.box_noAnimations.TabIndex = 34;
             this.box_noAnimations.Text = "No Animations";
             this.tipControl.SetToolTip(this.box_noAnimations, "Disable animations for fights");
@@ -955,10 +840,9 @@
             // 
             this.box_noCamCollision.AutoSize = true;
             this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCamCollision.Location = new System.Drawing.Point(9, 223);
-            this.box_noCamCollision.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_noCamCollision.Location = new System.Drawing.Point(6, 145);
             this.box_noCamCollision.Name = "box_noCamCollision";
-            this.box_noCamCollision.Size = new System.Drawing.Size(149, 24);
+            this.box_noCamCollision.Size = new System.Drawing.Size(102, 17);
             this.box_noCamCollision.TabIndex = 31;
             this.box_noCamCollision.Text = "No Cam Collision";
             this.tipControl.SetToolTip(this.box_noCamCollision, "Disable camera collision (horizontally)");
@@ -969,10 +853,9 @@
             // 
             this.box_noCollision.AutoSize = true;
             this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCollision.Location = new System.Drawing.Point(9, 188);
-            this.box_noCollision.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_noCollision.Location = new System.Drawing.Point(6, 122);
             this.box_noCollision.Name = "box_noCollision";
-            this.box_noCollision.Size = new System.Drawing.Size(112, 24);
+            this.box_noCollision.Size = new System.Drawing.Size(78, 17);
             this.box_noCollision.TabIndex = 30;
             this.box_noCollision.Text = "No Collision";
             this.tipControl.SetToolTip(this.box_noCollision, "Disable player collision (horizontally)");
@@ -1003,10 +886,9 @@
             this.tabPage4.Controls.Add(this.txt_ZBox);
             this.tabPage4.Controls.Add(this.lbl_CoordNames);
             this.tabPage4.ImageKey = "portal.ico";
-            this.tabPage4.Location = new System.Drawing.Point(4, 54);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 23);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(646, 537);
+            this.tabPage4.Size = new System.Drawing.Size(428, 360);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Teleport";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1014,10 +896,9 @@
             // btn_removeLocation
             // 
             this.btn_removeLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeLocation.Location = new System.Drawing.Point(510, 54);
-            this.btn_removeLocation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_removeLocation.Location = new System.Drawing.Point(340, 35);
             this.btn_removeLocation.Name = "btn_removeLocation";
-            this.btn_removeLocation.Size = new System.Drawing.Size(36, 35);
+            this.btn_removeLocation.Size = new System.Drawing.Size(24, 23);
             this.btn_removeLocation.TabIndex = 40;
             this.btn_removeLocation.Text = "-";
             this.tipControl.SetToolTip(this.btn_removeLocation, "Remove selected location");
@@ -1027,10 +908,9 @@
             // btn_loadLocations
             // 
             this.btn_loadLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadLocations.Location = new System.Drawing.Point(380, 534);
-            this.btn_loadLocations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_loadLocations.Location = new System.Drawing.Point(253, 347);
             this.btn_loadLocations.Name = "btn_loadLocations";
-            this.btn_loadLocations.Size = new System.Drawing.Size(122, 35);
+            this.btn_loadLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_loadLocations.TabIndex = 39;
             this.btn_loadLocations.Text = "Load fie";
             this.tipControl.SetToolTip(this.btn_loadLocations, "Load the saved locations file if it existing");
@@ -1040,10 +920,9 @@
             // btn_clearLocations
             // 
             this.btn_clearLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearLocations.Location = new System.Drawing.Point(210, 534);
-            this.btn_clearLocations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clearLocations.Location = new System.Drawing.Point(140, 347);
             this.btn_clearLocations.Name = "btn_clearLocations";
-            this.btn_clearLocations.Size = new System.Drawing.Size(122, 35);
+            this.btn_clearLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_clearLocations.TabIndex = 38;
             this.btn_clearLocations.Text = "Clear List";
             this.tipControl.SetToolTip(this.btn_clearLocations, "Clear your list");
@@ -1053,10 +932,9 @@
             // btn_saveLocations
             // 
             this.btn_saveLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocations.Location = new System.Drawing.Point(380, 489);
-            this.btn_saveLocations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_saveLocations.Location = new System.Drawing.Point(253, 318);
             this.btn_saveLocations.Name = "btn_saveLocations";
-            this.btn_saveLocations.Size = new System.Drawing.Size(122, 35);
+            this.btn_saveLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_saveLocations.TabIndex = 37;
             this.btn_saveLocations.Text = "Save to file";
             this.tipControl.SetToolTip(this.btn_saveLocations, "Save the current locations to file");
@@ -1066,20 +944,18 @@
             // lbl_savedCoords
             // 
             this.lbl_savedCoords.AutoSize = true;
-            this.lbl_savedCoords.Location = new System.Drawing.Point(100, 26);
-            this.lbl_savedCoords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_savedCoords.Location = new System.Drawing.Point(67, 17);
             this.lbl_savedCoords.Name = "lbl_savedCoords";
-            this.lbl_savedCoords.Size = new System.Drawing.Size(24, 80);
+            this.lbl_savedCoords.Size = new System.Drawing.Size(17, 52);
             this.lbl_savedCoords.TabIndex = 36;
             this.lbl_savedCoords.Text = "X:\r\nY:\r\nZ:\r\nV:";
             // 
             // btn_setSelected
             // 
             this.btn_setSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_setSelected.Location = new System.Drawing.Point(210, 489);
-            this.btn_setSelected.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_setSelected.Location = new System.Drawing.Point(140, 318);
             this.btn_setSelected.Name = "btn_setSelected";
-            this.btn_setSelected.Size = new System.Drawing.Size(122, 35);
+            this.btn_setSelected.Size = new System.Drawing.Size(81, 23);
             this.btn_setSelected.TabIndex = 35;
             this.btn_setSelected.Text = "Use selected";
             this.tipControl.SetToolTip(this.btn_setSelected, "Use the selected location from your list");
@@ -1089,10 +965,9 @@
             // btn_teleport
             // 
             this.btn_teleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_teleport.Location = new System.Drawing.Point(16, 155);
-            this.btn_teleport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_teleport.Location = new System.Drawing.Point(11, 101);
             this.btn_teleport.Name = "btn_teleport";
-            this.btn_teleport.Size = new System.Drawing.Size(88, 35);
+            this.btn_teleport.Size = new System.Drawing.Size(59, 23);
             this.btn_teleport.TabIndex = 34;
             this.btn_teleport.Text = "Teleport";
             this.tipControl.SetToolTip(this.btn_teleport, "Teleport to saved coordinates");
@@ -1102,39 +977,35 @@
             // lbl_Locs
             // 
             this.lbl_Locs.AutoSize = true;
-            this.lbl_Locs.Location = new System.Drawing.Point(206, 29);
-            this.lbl_Locs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Locs.Location = new System.Drawing.Point(137, 19);
             this.lbl_Locs.Name = "lbl_Locs";
-            this.lbl_Locs.Size = new System.Drawing.Size(141, 20);
+            this.lbl_Locs.Size = new System.Drawing.Size(94, 13);
             this.lbl_Locs.TabIndex = 33;
             this.lbl_Locs.Text = "Custom Locations:";
             // 
             // lbl_locName
             // 
             this.lbl_locName.AutoSize = true;
-            this.lbl_locName.Location = new System.Drawing.Point(6, 334);
-            this.lbl_locName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_locName.Location = new System.Drawing.Point(4, 217);
             this.lbl_locName.Name = "lbl_locName";
-            this.lbl_locName.Size = new System.Drawing.Size(55, 20);
+            this.lbl_locName.Size = new System.Drawing.Size(38, 13);
             this.lbl_locName.TabIndex = 32;
             this.lbl_locName.Text = "Name:";
             // 
             // txt_tpnameBox
             // 
-            this.txt_tpnameBox.Location = new System.Drawing.Point(72, 329);
-            this.txt_tpnameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_tpnameBox.Location = new System.Drawing.Point(48, 214);
             this.txt_tpnameBox.Name = "txt_tpnameBox";
-            this.txt_tpnameBox.Size = new System.Drawing.Size(115, 26);
+            this.txt_tpnameBox.Size = new System.Drawing.Size(78, 20);
             this.txt_tpnameBox.TabIndex = 31;
             this.tipControl.SetToolTip(this.txt_tpnameBox, "New name of your custom location");
             // 
             // btn_addCustomTP
             // 
             this.btn_addCustomTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addCustomTP.Location = new System.Drawing.Point(54, 534);
-            this.btn_addCustomTP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_addCustomTP.Location = new System.Drawing.Point(36, 347);
             this.btn_addCustomTP.Name = "btn_addCustomTP";
-            this.btn_addCustomTP.Size = new System.Drawing.Size(122, 35);
+            this.btn_addCustomTP.Size = new System.Drawing.Size(81, 23);
             this.btn_addCustomTP.TabIndex = 30;
             this.btn_addCustomTP.Text = "Add to list";
             this.tipControl.SetToolTip(this.btn_addCustomTP, "Add saved coords + name to list");
@@ -1144,20 +1015,17 @@
             // listbox_teleportLocations
             // 
             this.listbox_teleportLocations.FormattingEnabled = true;
-            this.listbox_teleportLocations.ItemHeight = 20;
-            this.listbox_teleportLocations.Location = new System.Drawing.Point(210, 54);
-            this.listbox_teleportLocations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listbox_teleportLocations.Location = new System.Drawing.Point(140, 35);
             this.listbox_teleportLocations.Name = "listbox_teleportLocations";
-            this.listbox_teleportLocations.Size = new System.Drawing.Size(289, 424);
+            this.listbox_teleportLocations.Size = new System.Drawing.Size(194, 277);
             this.listbox_teleportLocations.TabIndex = 27;
             // 
             // btn_saveLocation
             // 
             this.btn_saveLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocation.Location = new System.Drawing.Point(16, 111);
-            this.btn_saveLocation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_saveLocation.Location = new System.Drawing.Point(11, 72);
             this.btn_saveLocation.Name = "btn_saveLocation";
-            this.btn_saveLocation.Size = new System.Drawing.Size(88, 35);
+            this.btn_saveLocation.Size = new System.Drawing.Size(59, 23);
             this.btn_saveLocation.TabIndex = 26;
             this.btn_saveLocation.Text = "Save";
             this.tipControl.SetToolTip(this.btn_saveLocation, "Save current coordinates");
@@ -1200,11 +1068,10 @@
             this.tabPage2.Controls.Add(this.txtbox_TPRightKey);
             this.tabPage2.Controls.Add(this.lbl_tpRight);
             this.tabPage2.ImageKey = "death_star_wars_icon_183176.ico";
-            this.tabPage2.Location = new System.Drawing.Point(4, 54);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(646, 537);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(428, 360);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1212,10 +1079,9 @@
             // btn_saveHotkeys
             // 
             this.btn_saveHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveHotkeys.Location = new System.Drawing.Point(417, 458);
-            this.btn_saveHotkeys.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_saveHotkeys.Location = new System.Drawing.Point(278, 298);
             this.btn_saveHotkeys.Name = "btn_saveHotkeys";
-            this.btn_saveHotkeys.Size = new System.Drawing.Size(128, 35);
+            this.btn_saveHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_saveHotkeys.TabIndex = 56;
             this.btn_saveHotkeys.Text = "Save Hotkeys";
             this.btn_saveHotkeys.UseVisualStyleBackColor = true;
@@ -1224,10 +1090,9 @@
             // btn_clearHotkeys
             // 
             this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearHotkeys.Location = new System.Drawing.Point(417, 414);
-            this.btn_clearHotkeys.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clearHotkeys.Location = new System.Drawing.Point(278, 269);
             this.btn_clearHotkeys.Name = "btn_clearHotkeys";
-            this.btn_clearHotkeys.Size = new System.Drawing.Size(128, 35);
+            this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_clearHotkeys.TabIndex = 55;
             this.btn_clearHotkeys.Text = "Clear Hotkeys";
             this.btn_clearHotkeys.UseVisualStyleBackColor = true;
@@ -1237,10 +1102,9 @@
             // 
             this.box_infReach.AutoSize = true;
             this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infReach.Location = new System.Drawing.Point(174, 45);
-            this.box_infReach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_infReach.Location = new System.Drawing.Point(116, 29);
             this.box_infReach.Name = "box_infReach";
-            this.box_infReach.Size = new System.Drawing.Size(207, 24);
+            this.box_infReach.Size = new System.Drawing.Size(140, 17);
             this.box_infReach.TabIndex = 54;
             this.box_infReach.Text = "Inf Attackrange (Vertical)";
             this.tipControl.SetToolTip(this.box_infReach, "You can attack enemies from any VERTICAL distance");
@@ -1251,10 +1115,9 @@
             // 
             this.box_wallhack.AutoSize = true;
             this.box_wallhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_wallhack.Location = new System.Drawing.Point(174, 9);
-            this.box_wallhack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.box_wallhack.Location = new System.Drawing.Point(116, 6);
             this.box_wallhack.Name = "box_wallhack";
-            this.box_wallhack.Size = new System.Drawing.Size(94, 24);
+            this.box_wallhack.Size = new System.Drawing.Size(68, 17);
             this.box_wallhack.TabIndex = 53;
             this.box_wallhack.Text = "Wallhack";
             this.tipControl.SetToolTip(this.box_wallhack, "Draw player & npc names through walls");
@@ -1264,30 +1127,11 @@
             // lbl_speedKey
             // 
             this.lbl_speedKey.AutoSize = true;
-            this.lbl_speedKey.Location = new System.Drawing.Point(369, 312);
-            this.lbl_speedKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_speedKey.Location = new System.Drawing.Point(246, 203);
             this.lbl_speedKey.Name = "lbl_speedKey";
-            this.lbl_speedKey.Size = new System.Drawing.Size(60, 20);
+            this.lbl_speedKey.Size = new System.Drawing.Size(41, 13);
             this.lbl_speedKey.TabIndex = 51;
             this.lbl_speedKey.Text = "Speed:";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btn_loadScript);
-            this.tabPage3.Controls.Add(this.txtbox_script);
-            this.tabPage3.Controls.Add(this.btn_saveScript);
-            this.tabPage3.Controls.Add(this.btn_runScript);
-            this.tabPage3.Controls.Add(this.btn_showVars);
-            this.tabPage3.Controls.Add(this.btn_example);
-            this.tabPage3.Cursor = System.Windows.Forms.Cursors.No;
-            this.tabPage3.ImageKey = "feather_38326.ico";
-            this.tabPage3.Location = new System.Drawing.Point(4, 54);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(646, 537);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Scripts";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -1299,10 +1143,9 @@
             this.tabPage5.Controls.Add(this.lbl_credits2);
             this.tabPage5.Controls.Add(this.lbl_credits1);
             this.tabPage5.ImageKey = "credits.ico";
-            this.tabPage5.Location = new System.Drawing.Point(4, 54);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage5.Location = new System.Drawing.Point(4, 23);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(646, 537);
+            this.tabPage5.Size = new System.Drawing.Size(428, 360);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Credits";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1311,10 +1154,9 @@
             // 
             this.lbl_credits5.AutoSize = true;
             this.lbl_credits5.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F);
-            this.lbl_credits5.Location = new System.Drawing.Point(20, 500);
-            this.lbl_credits5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_credits5.Location = new System.Drawing.Point(13, 325);
             this.lbl_credits5.Name = "lbl_credits5";
-            this.lbl_credits5.Size = new System.Drawing.Size(160, 28);
+            this.lbl_credits5.Size = new System.Drawing.Size(103, 18);
             this.lbl_credits5.TabIndex = 8;
             this.lbl_credits5.Text = "Made by nightfallct";
             // 
@@ -1323,10 +1165,9 @@
             this.lbl_credits4.AutoSize = true;
             this.lbl_credits4.BackColor = System.Drawing.Color.Transparent;
             this.lbl_credits4.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_credits4.Location = new System.Drawing.Point(356, 317);
-            this.lbl_credits4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_credits4.Location = new System.Drawing.Point(237, 206);
             this.lbl_credits4.Name = "lbl_credits4";
-            this.lbl_credits4.Size = new System.Drawing.Size(105, 29);
+            this.lbl_credits4.Size = new System.Drawing.Size(72, 19);
             this.lbl_credits4.TabIndex = 7;
             this.lbl_credits4.Text = "Count : 0";
             // 
@@ -1335,10 +1176,9 @@
             this.lbl_credits3.AutoSize = true;
             this.lbl_credits3.BackColor = System.Drawing.Color.Transparent;
             this.lbl_credits3.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_credits3.Location = new System.Drawing.Point(356, 78);
-            this.lbl_credits3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_credits3.Location = new System.Drawing.Point(237, 51);
             this.lbl_credits3.Name = "lbl_credits3";
-            this.lbl_credits3.Size = new System.Drawing.Size(157, 29);
+            this.lbl_credits3.Size = new System.Drawing.Size(106, 19);
             this.lbl_credits3.TabIndex = 6;
             this.lbl_credits3.Text = "Credit clicker";
             // 
@@ -1346,10 +1186,9 @@
             // 
             this.pnl_creditClicker.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_creditClicker.BackgroundImage")));
             this.pnl_creditClicker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnl_creditClicker.Location = new System.Drawing.Point(362, 112);
-            this.pnl_creditClicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnl_creditClicker.Location = new System.Drawing.Point(241, 73);
             this.pnl_creditClicker.Name = "pnl_creditClicker";
-            this.pnl_creditClicker.Size = new System.Drawing.Size(180, 185);
+            this.pnl_creditClicker.Size = new System.Drawing.Size(120, 120);
             this.pnl_creditClicker.TabIndex = 5;
             this.pnl_creditClicker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -1358,12 +1197,11 @@
             this.txtbox_credits.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbox_credits.Font = new System.Drawing.Font("Bahnschrift Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbox_credits.HideSelection = false;
-            this.txtbox_credits.Location = new System.Drawing.Point(24, 162);
-            this.txtbox_credits.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtbox_credits.Location = new System.Drawing.Point(16, 105);
             this.txtbox_credits.Multiline = true;
             this.txtbox_credits.Name = "txtbox_credits";
             this.txtbox_credits.ReadOnly = true;
-            this.txtbox_credits.Size = new System.Drawing.Size(276, 333);
+            this.txtbox_credits.Size = new System.Drawing.Size(185, 217);
             this.txtbox_credits.TabIndex = 4;
             this.txtbox_credits.Text = "kleretik\r\njra.\r\npoison_patch\r\nmac_2\r\ni3ennyboi";
             // 
@@ -1372,10 +1210,9 @@
             this.lbl_credits2.AutoSize = true;
             this.lbl_credits2.BackColor = System.Drawing.Color.Transparent;
             this.lbl_credits2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_credits2.Location = new System.Drawing.Point(18, 112);
-            this.lbl_credits2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_credits2.Location = new System.Drawing.Point(12, 73);
             this.lbl_credits2.Name = "lbl_credits2";
-            this.lbl_credits2.Size = new System.Drawing.Size(152, 29);
+            this.lbl_credits2.Size = new System.Drawing.Size(104, 19);
             this.lbl_credits2.TabIndex = 3;
             this.lbl_credits2.Text = "Contributors:";
             // 
@@ -1384,10 +1221,9 @@
             this.lbl_credits1.AutoSize = true;
             this.lbl_credits1.BackColor = System.Drawing.Color.Transparent;
             this.lbl_credits1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_credits1.Location = new System.Drawing.Point(18, 20);
-            this.lbl_credits1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_credits1.Location = new System.Drawing.Point(12, 13);
             this.lbl_credits1.Name = "lbl_credits1";
-            this.lbl_credits1.Size = new System.Drawing.Size(301, 35);
+            this.lbl_credits1.Size = new System.Drawing.Size(194, 23);
             this.lbl_credits1.TabIndex = 2;
             this.lbl_credits1.Text = "No free credits here :(";
             // 
@@ -1396,20 +1232,126 @@
             this.pvpTimer.Interval = 10000;
             this.pvpTimer.Tick += new System.EventHandler(this.pvpTimer_Tick);
             // 
+            // btn_example
+            // 
+            this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_example.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_example.Location = new System.Drawing.Point(23, 318);
+            this.btn_example.Name = "btn_example";
+            this.btn_example.Size = new System.Drawing.Size(88, 23);
+            this.btn_example.TabIndex = 2;
+            this.btn_example.Text = "Example Code";
+            this.btn_example.UseVisualStyleBackColor = true;
+            this.btn_example.Visible = false;
+            this.btn_example.Click += new System.EventHandler(this.btn_example_Click);
+            // 
+            // btn_showVars
+            // 
+            this.btn_showVars.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_showVars.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_showVars.Location = new System.Drawing.Point(115, 318);
+            this.btn_showVars.Name = "btn_showVars";
+            this.btn_showVars.Size = new System.Drawing.Size(38, 23);
+            this.btn_showVars.TabIndex = 3;
+            this.btn_showVars.Text = "Vars";
+            this.btn_showVars.UseVisualStyleBackColor = true;
+            this.btn_showVars.Visible = false;
+            this.btn_showVars.Click += new System.EventHandler(this.btn_showVars_Click);
+            // 
+            // btn_runScript
+            // 
+            this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_runScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_runScript.Location = new System.Drawing.Point(183, 318);
+            this.btn_runScript.Name = "btn_runScript";
+            this.btn_runScript.Size = new System.Drawing.Size(75, 23);
+            this.btn_runScript.TabIndex = 1;
+            this.btn_runScript.Text = "Execute";
+            this.btn_runScript.UseVisualStyleBackColor = true;
+            this.btn_runScript.Visible = false;
+            this.btn_runScript.Click += new System.EventHandler(this.btn_runScript_Click);
+            // 
+            // btn_saveScript
+            // 
+            this.btn_saveScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_saveScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_saveScript.Location = new System.Drawing.Point(298, 318);
+            this.btn_saveScript.Name = "btn_saveScript";
+            this.btn_saveScript.Size = new System.Drawing.Size(43, 23);
+            this.btn_saveScript.TabIndex = 4;
+            this.btn_saveScript.Text = "Save";
+            this.btn_saveScript.UseVisualStyleBackColor = true;
+            this.btn_saveScript.Visible = false;
+            // 
+            // txtbox_script
+            // 
+            this.txtbox_script.Cursor = System.Windows.Forms.Cursors.No;
+            this.txtbox_script.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbox_script.Location = new System.Drawing.Point(0, 0);
+            this.txtbox_script.Multiline = true;
+            this.txtbox_script.Name = "txtbox_script";
+            this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtbox_script.Size = new System.Drawing.Size(428, 292);
+            this.txtbox_script.TabIndex = 0;
+            // 
+            // btn_loadScript
+            // 
+            this.btn_loadScript.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
+            this.btn_loadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_loadScript.Location = new System.Drawing.Point(347, 318);
+            this.btn_loadScript.Name = "btn_loadScript";
+            this.btn_loadScript.Size = new System.Drawing.Size(43, 23);
+            this.btn_loadScript.TabIndex = 5;
+            this.btn_loadScript.Text = "Load";
+            this.btn_loadScript.UseVisualStyleBackColor = true;
+            this.btn_loadScript.Visible = false;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.lbl_scriptsMaintenance);
+            this.tabPage3.Controls.Add(this.btn_loadScript);
+            this.tabPage3.Controls.Add(this.txtbox_script);
+            this.tabPage3.Controls.Add(this.btn_saveScript);
+            this.tabPage3.Controls.Add(this.btn_runScript);
+            this.tabPage3.Controls.Add(this.btn_showVars);
+            this.tabPage3.Controls.Add(this.btn_example);
+            this.tabPage3.Cursor = System.Windows.Forms.Cursors.No;
+            this.tabPage3.ImageKey = "feather_38326.ico";
+            this.tabPage3.Location = new System.Drawing.Point(4, 23);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(428, 360);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Scripts";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lbl_scriptsMaintenance
+            // 
+            this.lbl_scriptsMaintenance.AutoSize = true;
+            this.lbl_scriptsMaintenance.Font = new System.Drawing.Font("Impact", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_scriptsMaintenance.Location = new System.Drawing.Point(3, 295);
+            this.lbl_scriptsMaintenance.Name = "lbl_scriptsMaintenance";
+            this.lbl_scriptsMaintenance.Size = new System.Drawing.Size(284, 60);
+            this.lbl_scriptsMaintenance.TabIndex = 6;
+            this.lbl_scriptsMaintenance.Text = "Maintenance";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 698);
+            this.ClientSize = new System.Drawing.Size(442, 454);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.lbl_title);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl1;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(4, 98, 4, 5);
             this.Sizable = false;
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1417,15 +1359,16 @@
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trck_wFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1486,18 +1429,11 @@
         private System.Windows.Forms.TextBox txtbox_freecamKey;
         private System.Windows.Forms.TextBox txtbox_speedKey;
         private System.Windows.Forms.Label lbl_customHks;
-        private System.Windows.Forms.Button btn_runScript;
-        private System.Windows.Forms.TextBox txtbox_script;
-        private System.Windows.Forms.Button btn_example;
-        private System.Windows.Forms.Button btn_showVars;
-        private System.Windows.Forms.Button btn_loadScript;
-        private System.Windows.Forms.Button btn_saveScript;
         private System.Windows.Forms.Label lbl_version;
         private System.Windows.Forms.CheckBox box_darkmode;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label lbl_speedKey;
         private System.Windows.Forms.CheckBox box_wallhack;
         private System.Windows.Forms.CheckBox box_noCollision;
@@ -1534,6 +1470,16 @@
         private System.Windows.Forms.Label lbl_credits5;
         private System.Windows.Forms.CheckBox box_infJump;
         private System.Windows.Forms.Timer pvpTimer;
+        private System.Windows.Forms.Label lbl_wFloor;
+        private System.Windows.Forms.TrackBar trck_wFloor;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btn_loadScript;
+        private System.Windows.Forms.TextBox txtbox_script;
+        private System.Windows.Forms.Button btn_saveScript;
+        private System.Windows.Forms.Button btn_runScript;
+        private System.Windows.Forms.Button btn_showVars;
+        private System.Windows.Forms.Button btn_example;
+        private System.Windows.Forms.Label lbl_scriptsMaintenance;
     }
 }
 

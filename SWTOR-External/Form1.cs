@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.4.sw";
-        private string currentVersion = "v8.4";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.5.sw";
+        private string currentVersion = "v8.5";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -133,6 +133,8 @@ namespace SWTOR_External
         public string speedHackAddrString;
         public string yawAddrString;
         public string pitchAddrString;
+        private string wFloorAddrStr;
+        private float walkableFloor;
         public float savedX = 0;
         public float savedY = 0;
         public float savedZ = 0;
@@ -164,7 +166,9 @@ namespace SWTOR_External
         private bool speedPatched;
         private UIntPtr pbasecaveAddr;
         private bool isPVPEnabled = false;
-        private string PVPAOB = "50 00 56 00 ?? 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
+        private string PbaseUintString;
+        //private string PVPAOB = "50 00 56 00 ?? 00 00 00 ?? ?? ?? ?? ?? ?? 00 00";
+        //private string PVPAOB = "50 00 56 00 ?? 00 00 00 ?? ?? ?? ?? ?? 7D 00 00 ?? ?? ?? ?? ??";
         private string pvpAddrStr;
         private UIntPtr pvpAddr;
         private bool isSpeedhackEnabled = false;
@@ -262,11 +266,9 @@ float playerHeight
 
             updateCheck(urlUpdate);
 
-            log_console.Text = log_console.Text + $"Welcome {userName}!\r\n";
-
             startMainTimer();
             startgetBaseTimer();
-            startPvPTimer();
+            //startPvPTimer();
 
 
             int title = rnd.Next(999999, 9999999);
@@ -274,8 +276,11 @@ float playerHeight
 
             int PID = m.GetProcIdFromName("swtor");
 
+            log_console.Text = log_console.Text + $"Welcome {userName}!\r\n";
+
+
             //Connect To Process
-            if(PID != 0)
+            if (PID != 0)
             {
                 m.OpenProcess(PID);
                 log_console.Text = log_console.Text + "\r\nConnected to PID: " + PID + "\r\n\r\nInitiliazing...\r\n";
@@ -303,6 +308,8 @@ float playerHeight
 
             this.Text = materialTabControl1.SelectedTab.Text;
             box_darkmode.Checked = true;
+
+
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
@@ -334,66 +341,77 @@ float playerHeight
             //AntiDebug
             //PreventProgramFromBeingDebuged();
 
-            xAddr = playerBaseUInt + 0x68;
-            xAddrString = convertUintToHexString(xAddr);
-            
-            movementModeAddr = playerBaseUInt + 0x3d0;
-            movementModeAddrStr = convertUintToHexString(movementModeAddr);
 
-            yAddr = playerBaseUInt + 0x6C;
-            yAddrString = convertUintToHexString(yAddr);
 
-            zAddr = playerBaseUInt + 0x70;
-            zAddrString = convertUintToHexString(zAddr);
-
-            yVelocityAddr = playerBaseUInt + 0x668;
-            yVelocityAddrString = convertUintToHexString(yVelocityAddr);
-
-            zCamAddr = camBaseUInt + 0x230;
-            zCamAddrString = convertUintToHexString(zCamAddr);
-
-            yCamAddr = camBaseUInt + 0x22C;
-            yCamAddrString = convertUintToHexString(yCamAddr);
-
-            xCamAddr = camBaseUInt + 0x228;
-            xCamAddrString = convertUintToHexString(xCamAddr);
-
-            pitchAddr = camBaseUInt + 0x234;
-            pitchAddrString = convertUintToHexString(pitchAddr);
-
-            yawAddr = camBaseUInt + 0x238;
-            yawAddrString = convertUintToHexString(yawAddr);
-
-            heightAddr = playerBaseUInt + 0x84;
-            heightAddrString = convertUintToHexString(heightAddr);
-
-            floorYAddr = camBaseUInt + 0x858;
-            floorYAddrStr = convertUintToHexString(floorYAddr);
-
-            xCoord = m.ReadFloat(xAddrString);
-            yCoord = m.ReadFloat(yAddrString);
-            zCoord = m.ReadFloat(zAddrString);
-
-            floorYValue = m.ReadFloat(floorYAddrStr);
-            playerHeight = m.ReadFloat(heightAddrString);
-
-            lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
-            lbl_savedCoords.Text = $"X: {savedX}\nY: {savedY}\nZ: {savedZ}";
-
-            if(tpflag == true)
+            if(PbaseUintString != null)
             {
-                teleport();
+                xAddr = playerBaseUInt + 0x68;
+                xAddrString = convertUintToHexString(xAddr);
+
+                movementModeAddr = playerBaseUInt + 0x3d0;
+                movementModeAddrStr = convertUintToHexString(movementModeAddr);
+
+                yAddr = playerBaseUInt + 0x6C;
+                yAddrString = convertUintToHexString(yAddr);
+
+                zAddr = playerBaseUInt + 0x70;
+                zAddrString = convertUintToHexString(zAddr);
+
+                yVelocityAddr = playerBaseUInt + 0x668;
+                yVelocityAddrString = convertUintToHexString(yVelocityAddr);
+
+                zCamAddr = camBaseUInt + 0x230;
+                zCamAddrString = convertUintToHexString(zCamAddr);
+
+                yCamAddr = camBaseUInt + 0x22C;
+                yCamAddrString = convertUintToHexString(yCamAddr);
+
+                xCamAddr = camBaseUInt + 0x228;
+                xCamAddrString = convertUintToHexString(xCamAddr);
+
+                pitchAddr = camBaseUInt + 0x234;
+                pitchAddrString = convertUintToHexString(pitchAddr);
+
+                yawAddr = camBaseUInt + 0x238;
+                yawAddrString = convertUintToHexString(yawAddr);
+
+                heightAddr = playerBaseUInt + 0x84;
+                heightAddrString = convertUintToHexString(heightAddr);
+
+                floorYAddr = camBaseUInt + 0x858;
+                floorYAddrStr = convertUintToHexString(floorYAddr);
+
+                UIntPtr wFloorAddr = m.Get64BitCode($"{PbaseUintString},0x330,0x2E0");
+                wFloorAddrStr = convertUintToHexString(wFloorAddr);
+                walkableFloor = m.ReadFloat(wFloorAddrStr);
+
+                xCoord = m.ReadFloat(xAddrString);
+                yCoord = m.ReadFloat(yAddrString);
+                zCoord = m.ReadFloat(zAddrString);
+
+                floorYValue = m.ReadFloat(floorYAddrStr);
+                playerHeight = m.ReadFloat(heightAddrString);
+
+                lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
+                lbl_savedCoords.Text = $"X: {savedX}\nY: {savedY}\nZ: {savedZ}";
+
+                if (tpflag == true)
+                {
+                    teleport();
+                }
+
+                if (freeCamEnabled)
+                {
+                    Freecam();
+                }
+
+                if (flyModeEnabled)
+                {
+                    FlyMode();
+                }
             }
 
-            if(freeCamEnabled)
-            {
-                Freecam();
-            }
 
-            if (flyModeEnabled)
-            {
-                FlyMode();
-            }
         }
         private void timer_getBase_Tick(object sender, EventArgs e)
         {
@@ -418,7 +436,7 @@ float playerHeight
                 playerBaseUInt = (UIntPtr)UIntPtr.Add(pbasecaveAddr, 0x20); //caveAddr == UIntPtr
 
                 //log caveAddr + offset
-                string PbaseUintString = convertUintToHexString(playerBaseUInt);
+                PbaseUintString = convertUintToHexString(playerBaseUInt);
                 //log_console.Text = log_console.Text + "\r\n\r\nAddress of the PTR = " + PbaseUintString;
 
                 //readValue & convert to hex string
@@ -845,15 +863,15 @@ float playerHeight
             try
             {
                 //PvP Scan
-                long startingAddr = 0x0000000000000000;
-                long endingAddr = 0x7fffffffffff;
-                pvpAddrStr = m.AoBScan(startingAddr, endingAddr, PVPAOB, true, false).Result.Sum().ToString("X2");
-                pvpAddr = m.Get64BitCode(pvpAddrStr);
-                if (pvpAddrStr == "00")
-                {
-                    MessageBox.Show("Please start the tool, once you are ingame");
-                    Environment.Exit(0);
-                }
+                //long startingAddr = 0x000000000000;
+                //long endingAddr = 0x7fffffffffff;
+                //pvpAddrStr = m.AoBScan(startingAddr, endingAddr, PVPAOB, true, false).Result.Sum().ToString("X2");
+                //pvpAddr = m.Get64BitCode(pvpAddrStr);
+                //if (pvpAddrStr == "00")
+                //{
+                //    MessageBox.Show("Please start the tool, once you are ingame");
+                //    Environment.Exit(0);
+                //}
 
                 //AOB Scans
                 infJumpAddrStr = m.AoBScan(infJumpAOB).Result.Sum().ToString("X2");
@@ -1636,6 +1654,20 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         #endregion
 
         #region Trackbars
+        private void trck_wFloor_Scroll(object sender, EventArgs e)
+        {
+            switch (trck_wFloor.Value)
+            {
+                case 0:
+                    m.WriteMemory(wFloorAddrStr, "float", "0.01999999955");
+                break;
+
+                default:
+                    m.WriteMemory(wFloorAddrStr, "float", $"{((float)trck_wFloor.Value / 2).ToString()}");
+                break;
+            }
+        }
+
         private void trckbar_camSpeed_Scroll(object sender, EventArgs e)
         {
             camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 25f; 
@@ -2102,6 +2134,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
+
 
 
 
