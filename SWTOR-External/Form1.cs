@@ -149,13 +149,19 @@ namespace SWTOR_External
         public UIntPtr yawAddr;
         public UIntPtr cameraYUInt;
         public UIntPtr cameraZUInt;
-        public UIntPtr yVelocityAddr;
         public UIntPtr heightAddr;
         public UIntPtr movementModeAddr;
-        public string movementModeAddrStr;
+        public float playerXVelocity;
         public float playerYVelocity;
+        public float playerZVelocity;
+        public int throwbackValue;
+        public float throwSavedX;
+        public float throwSavedY;
+        public float throwSavedZ;
+        public bool throwBackSaved;
+        public DateTime lastThrowbackTime = DateTime.Now;
+        public string movementModeAddrStr;
         public string heightAddrString;
-        public string yVelocityAddrString;
         public bool tpflag = false;
         public bool saveflag = false;
         public bool speedHackCave;
@@ -191,6 +197,7 @@ namespace SWTOR_External
         private UIntPtr stuckAddrUint;
         private List<customLocation> locationList;
         bool isInfJumpToggled = false;
+        bool noKnockbackEnabled = false;
         bool isInfJumpActivated = false;
         string allVars = @"
 string PlayerBaseAddress 
@@ -341,8 +348,6 @@ float playerHeight
             //AntiDebug
             //PreventProgramFromBeingDebuged();
 
-
-
             if(PbaseUintString != null)
             {
                 xAddr = playerBaseUInt + 0x68;
@@ -356,9 +361,6 @@ float playerHeight
 
                 zAddr = playerBaseUInt + 0x70;
                 zAddrString = convertUintToHexString(zAddr);
-
-                yVelocityAddr = playerBaseUInt + 0x668;
-                yVelocityAddrString = convertUintToHexString(yVelocityAddr);
 
                 zCamAddr = camBaseUInt + 0x230;
                 zCamAddrString = convertUintToHexString(zCamAddr);
@@ -385,6 +387,15 @@ float playerHeight
                 wFloorAddrStr = convertUintToHexString(wFloorAddr);
                 walkableFloor = m.ReadFloat(wFloorAddrStr);
 
+                UIntPtr velocityBaseAddr = m.Get64BitCode($"{PbaseUintString},0x470");
+                string velocityBaseAddrStr = convertUintToHexString(velocityBaseAddr);
+
+                playerXVelocity = m.ReadFloat($"{velocityBaseAddrStr},0x0C");
+                playerYVelocity = m.ReadFloat($"{velocityBaseAddrStr},0x10");
+                playerZVelocity = m.ReadFloat($"{velocityBaseAddrStr},0x14");
+
+                throwbackValue = m.ReadInt($"{PbaseUintString},0x64C");
+
                 xCoord = m.ReadFloat(xAddrString);
                 yCoord = m.ReadFloat(yAddrString);
                 zCoord = m.ReadFloat(zAddrString);
@@ -395,7 +406,7 @@ float playerHeight
                 lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
                 lbl_savedCoords.Text = $"X: {savedX}\nY: {savedY}\nZ: {savedZ}";
 
-                if (tpflag == true)
+                if (tpflag)
                 {
                     teleport();
                 }
@@ -409,9 +420,41 @@ float playerHeight
                 {
                     FlyMode();
                 }
+
+                if (noKnockbackEnabled)
+                {
+
+                    if (throwbackValue == 256)
+                    {
+                        // Update the last time throwbackValue was 256
+                        lastThrowbackTime = DateTime.Now;
+
+                        Thread.Sleep(100);
+                        if (!throwBackSaved)
+                        {
+                            throwSavedX = xCoord;
+                            throwSavedY = yCoord;
+                            throwSavedZ = zCoord;
+                            throwBackSaved = true;
+                        }
+                        m.WriteMemory(xAddrString, "float", throwSavedX.ToString());
+                        m.WriteMemory(yAddrString, "float", throwSavedY.ToString());
+                        m.WriteMemory(zAddrString, "float", throwSavedZ.ToString());
+                    }
+                    else
+                    {
+                        // Check if three seconds have passed since the last time throwbackValue was 256
+                        if ((DateTime.Now - lastThrowbackTime).TotalSeconds >= 3)
+                        {
+                            // Reset throwSaved values and throwBackSaved flag
+                            throwSavedX = 0;
+                            throwSavedY = 0;
+                            throwSavedZ = 0;
+                            throwBackSaved = false;
+                        }
+                    }
+                }
             }
-
-
         }
         private void timer_getBase_Tick(object sender, EventArgs e)
         {
@@ -2138,8 +2181,12 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
 
+
         #endregion
 
-
+        private void box_noKnockback_CheckedChanged(object sender, EventArgs e)
+        {
+            noKnockbackEnabled = !noKnockbackEnabled;
+        }
     }
 }
