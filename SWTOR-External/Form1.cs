@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.5.sw";
-        private string currentVersion = "v8.5";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.6.sw";
+        private string currentVersion = "v8.6";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -309,13 +309,15 @@ float playerHeight
                 loadLocations();
             }catch { }
 
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
+
+
             aobThread.Start();
             NumpadTeleportThread.Start();
             HotkeyThread.Start();
 
             this.Text = materialTabControl1.SelectedTab.Text;
             box_darkmode.Checked = true;
-
 
 
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
@@ -547,6 +549,7 @@ float playerHeight
                 MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.DARK;
                 this.BackColor = bColor;
                 this.ForeColor = fColor;
+
                 tabPage1.BackColor = bColor;
                 tabPage1.ForeColor = fColor;
                 tabPage2.BackColor = bColor;
@@ -710,6 +713,31 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void OnProcessExit(Object sender, EventArgs e)
+        {
+            try
+            {
+                restoreOriginalCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Restoring code failed! Please restart the game.");
+            }
+
+        }
+        private void restoreOriginalCode()
+        {
+            m.WriteBytes(noclipAddressStr, noclipBytes);
+            noclipPatched = false;
+
+            m.WriteBytes(cameraAddress, cameraBytes);
+            //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
+            cameraPatched = false;
+
+            m.WriteBytes(speedHackAddrString, speedBytes);
+            //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
+            speedPatched = false;
+        }
         private void infJumpPatch()
         {
             if (!infJumpPatched)
@@ -2188,5 +2216,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             noKnockbackEnabled = !noKnockbackEnabled;
         }
+
+  
     }
 }

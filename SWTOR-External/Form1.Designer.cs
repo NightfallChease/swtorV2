@@ -88,6 +88,7 @@
             this.timer_getBase = new System.Windows.Forms.Timer(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.box_noKnockback = new System.Windows.Forms.CheckBox();
             this.lbl_wFloor = new System.Windows.Forms.Label();
             this.trck_wFloor = new System.Windows.Forms.TrackBar();
             this.box_infJump = new System.Windows.Forms.CheckBox();
@@ -135,7 +136,6 @@
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             this.pvpTimer = new System.Windows.Forms.Timer(this.components);
-            this.box_noKnockback = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -758,6 +758,19 @@
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // box_noKnockback
+            // 
+            this.box_noKnockback.AutoSize = true;
+            this.box_noKnockback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_noKnockback.Location = new System.Drawing.Point(106, 77);
+            this.box_noKnockback.Name = "box_noKnockback";
+            this.box_noKnockback.Size = new System.Drawing.Size(95, 17);
+            this.box_noKnockback.TabIndex = 41;
+            this.box_noKnockback.Text = "No Knockback";
+            this.tipControl.SetToolTip(this.box_noKnockback, "You fall very slow");
+            this.box_noKnockback.UseVisualStyleBackColor = true;
+            this.box_noKnockback.CheckedChanged += new System.EventHandler(this.box_noKnockback_CheckedChanged);
+            // 
             // lbl_wFloor
             // 
             this.lbl_wFloor.AutoSize = true;
@@ -1340,19 +1353,6 @@
             // 
             this.pvpTimer.Interval = 10000;
             this.pvpTimer.Tick += new System.EventHandler(this.pvpTimer_Tick);
-            // 
-            // box_noKnockback
-            // 
-            this.box_noKnockback.AutoSize = true;
-            this.box_noKnockback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noKnockback.Location = new System.Drawing.Point(106, 77);
-            this.box_noKnockback.Name = "box_noKnockback";
-            this.box_noKnockback.Size = new System.Drawing.Size(95, 17);
-            this.box_noKnockback.TabIndex = 41;
-            this.box_noKnockback.Text = "No Knockback";
-            this.tipControl.SetToolTip(this.box_noKnockback, "You fall very slow");
-            this.box_noKnockback.UseVisualStyleBackColor = true;
-            this.box_noKnockback.CheckedChanged += new System.EventHandler(this.box_noKnockback_CheckedChanged);
             // 
             // Form1
             // 

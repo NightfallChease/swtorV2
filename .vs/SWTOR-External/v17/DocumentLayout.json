@@ -7,6 +7,9 @@
       "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nightfall\\AppData\\Local\\Temp\\.vsdbgsrc\\d36e61faa0c4df2722e9a0a7d24cb8bdfc8ed5d4f24b551a7a2d33ba4397f849\\Control.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -18,11 +21,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeDocumentMoniker": "SWTOR-External\\Form1.cs",
@@ -35,13 +38,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Control.cs",
+              "DocumentMoniker": "C:\\Users\\nightfall\\AppData\\Local\\Temp\\.vsdbgsrc\\d36e61faa0c4df2722e9a0a7d24cb8bdfc8ed5d4f24b551a7a2d33ba4397f849\\Control.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\d36e61faa0c4df2722e9a0a7d24cb8bdfc8ed5d4f24b551a7a2d33ba4397f849\\Control.cs",
+              "ToolTip": "C:\\Users\\nightfall\\AppData\\Local\\Temp\\.vsdbgsrc\\d36e61faa0c4df2722e9a0a7d24cb8bdfc8ed5d4f24b551a7a2d33ba4397f849\\Control.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\d36e61faa0c4df2722e9a0a7d24cb8bdfc8ed5d4f24b551a7a2d33ba4397f849\\Control.cs [Read Only]",
+              "ViewState": "AQIAADwqAAAAAAAAAADwv04qAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T11:36:06.212Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeDocumentMoniker": "SWTOR-External\\Form1.cs",
               "ToolTip": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeToolTip": "SWTOR-External\\Form1.cs",
-              "ViewState": "AQIAAKMBAAAAAAAAAAAswL4BAABRAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAQwC0AAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-05T17:02:25.657Z",
               "EditorCaption": ""
