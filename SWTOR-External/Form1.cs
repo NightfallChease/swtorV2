@@ -382,7 +382,7 @@ float playerHeight
                 heightAddr = playerBaseUInt + 0x84;
                 heightAddrString = convertUintToHexString(heightAddr);
 
-                floorYAddr = camBaseUInt + 0x858;
+                floorYAddr = playerBaseUInt + 0x348;
                 floorYAddrStr = convertUintToHexString(floorYAddr);
 
                 UIntPtr wFloorAddr = m.Get64BitCode($"{PbaseUintString},0x330,0x2E0");
@@ -407,6 +407,7 @@ float playerHeight
 
                 lbl_coords.Text = $"X: {xCoord}\nY: {yCoord}\nZ: {zCoord}";
                 lbl_savedCoords.Text = $"X: {savedX}\nY: {savedY}\nZ: {savedZ}";
+                lbl_yFloorValue.Text = $"FloorY: {floorYValue}";
 
                 if (tpflag)
                 {
@@ -710,6 +711,11 @@ float playerHeight
         {
             toggle_camCollision();
         }
+        private void box_noKnockback_CheckedChanged(object sender, EventArgs e)
+        {
+            noKnockbackEnabled = !noKnockbackEnabled;
+        }
+
         #endregion
 
         #region Functions
@@ -1197,9 +1203,13 @@ float playerHeight
                 //if player is already close to the destination tp directly
                 m.WriteMemory(xAddrString, "float", (savedX).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(yAddrString, "float", (savedY).ToString(CultureInfo.InvariantCulture));
-                //m.WriteMemory(yAddrString, "float", (floorYValue).ToString(CultureInfo.InvariantCulture)); //bad idea (freecamtp)
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(movementModeAddrStr, "int", "1");
+
+                Thread.Sleep(100);
+
+                m.WriteMemory(yAddrString, "float", (floorYValue).ToString(CultureInfo.InvariantCulture)); //bad idea (freecamtp)
+
                 isArrived = true;
                 doglide();
             }
@@ -1211,16 +1221,15 @@ float playerHeight
                 float moveZ = (savedZ - zCoord) / distance;
 
                 //move towards the saved coordinates using normalized values
-                m.WriteMemory(xAddrString, "float", (xCoord + moveX).ToString());
-                m.WriteMemory(yAddrString, "float", (yCoord + moveY).ToString());
-                m.WriteMemory(zAddrString, "float", (zCoord + moveZ).ToString());
+                m.WriteMemory(xAddrString, "float", (xCoord + moveX).ToString(CultureInfo.InvariantCulture));
+                m.WriteMemory(yAddrString, "float", (yCoord + moveY).ToString(CultureInfo.InvariantCulture));
+                m.WriteMemory(zAddrString, "float", (zCoord + moveZ).ToString(CultureInfo.InvariantCulture));
 
                 Thread.Sleep(100);
 
                 //check if the player has arrived
                 isArrived = (distance <= 1.0f);
             }
-
             if (isArrived)
             {
                 isArrived = false;
@@ -1290,7 +1299,7 @@ float playerHeight
             {
                 if (!nofallPatched)
                 {
-                    m.CreateCodeCave(nofallAddrString, patchedBytes, 6, 300);
+                    m.CreateCodeCave(nofallAddrString, patchedBytes, 6, 120);
 
                     gotoCaveBytes = m.ReadBytes(nofallAddrString, 6);
 
@@ -1423,7 +1432,7 @@ float playerHeight
                     byte[] patched_bytes = { 0x83, 0xB9, 0x24, 0x03, 0x00, 0x00, 0x02, 0x0F, 0x85, 0x07, 0x00, 0x00, 0x00, 0x48, 0x89, 0x0D, 0x0C, 0x00, 0x00, 0x00, 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x40, 0x58 };
 
                     //Create Codecave
-                    pbasecaveAddr = m.CreateCodeCave(noclipAddressStr, patched_bytes, 7, 300);
+                    pbasecaveAddr = m.CreateCodeCave(noclipAddressStr, patched_bytes, 7, 120);
 
                     log_console.Invoke((MethodInvoker)delegate
                     {
@@ -1476,7 +1485,7 @@ float playerHeight
                 byte[] patched_bytes = { 0x48, 0x89, 0x0D, 0x0F, 0x00, 0x00, 0x00, 0x48, 0x8B, 0x01, 0x48, 0x8B, 0x80, 0xF0, 0x01, 0x00, 0x00 }; // patched bytes from the asm above
 
                 //Create Codecave
-                UIntPtr caveAddr = m.CreateCodeCave(cameraAddress, patched_bytes, 10, 300);
+                UIntPtr caveAddr = m.CreateCodeCave(cameraAddress, patched_bytes, 10, 120);
 
                 //logCaveAddr
                 string caveAddrString = convertUintToHexString(caveAddr);
@@ -1526,7 +1535,7 @@ float playerHeight
                 byte[] patched_bytes = { 0x83, 0x3D, 0x23, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x84, 0x10, 0x00, 0x00, 0x00, 0x53, 0x48, 0x8B, 0x1D, 0x15, 0x00, 0x00, 0x00, 0x48, 0x89, 0x9E, 0xF4, 0x00, 0x00, 0x00, 0x5B, 0xF3, 0x0F, 0x10, 0xBE, 0xF4, 0x00, 0x00, 0x00 }; // patched bytes from the asm above
 
                 //Create Codecave
-                UIntPtr caveAddr = m.CreateCodeCave(speedHackAddrString, patched_bytes, 8, 300);
+                UIntPtr caveAddr = m.CreateCodeCave(speedHackAddrString, patched_bytes, 8, 120);
 
                 //logCaveAddr
                 string caveAddrString = convertUintToHexString(caveAddr);
@@ -1539,7 +1548,6 @@ float playerHeight
                 //log_console.Text = log_console.Text + "\r\n\r\nAddress of the Speed PTR = " + speedValueUIntString;
 
                 Thread.Sleep(100);
-
 
                 //rest of code
                 speedPatchedBytes = m.ReadBytes(speedHackAddrString, 8);
@@ -2211,12 +2219,5 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
         #endregion
-
-        private void box_noKnockback_CheckedChanged(object sender, EventArgs e)
-        {
-            noKnockbackEnabled = !noKnockbackEnabled;
-        }
-
-  
     }
 }

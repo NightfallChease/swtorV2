@@ -136,6 +136,7 @@
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             this.pvpTimer = new System.Windows.Forms.Timer(this.components);
+            this.lbl_yFloorValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -244,7 +245,7 @@
             // btn_cancelTP
             // 
             this.btn_cancelTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cancelTP.Location = new System.Drawing.Point(11, 130);
+            this.btn_cancelTP.Location = new System.Drawing.Point(16, 139);
             this.btn_cancelTP.Name = "btn_cancelTP";
             this.btn_cancelTP.Size = new System.Drawing.Size(59, 23);
             this.btn_cancelTP.TabIndex = 21;
@@ -378,7 +379,7 @@
             // lbl_coords
             // 
             this.lbl_coords.AutoSize = true;
-            this.lbl_coords.Location = new System.Drawing.Point(8, 17);
+            this.lbl_coords.Location = new System.Drawing.Point(13, 26);
             this.lbl_coords.Name = "lbl_coords";
             this.lbl_coords.Size = new System.Drawing.Size(17, 52);
             this.lbl_coords.TabIndex = 5;
@@ -878,6 +879,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.lbl_yFloorValue);
             this.tabPage4.Controls.Add(this.btn_removeLocation);
             this.tabPage4.Controls.Add(this.btn_loadLocations);
             this.tabPage4.Controls.Add(this.btn_clearLocations);
@@ -958,7 +960,7 @@
             // lbl_savedCoords
             // 
             this.lbl_savedCoords.AutoSize = true;
-            this.lbl_savedCoords.Location = new System.Drawing.Point(67, 17);
+            this.lbl_savedCoords.Location = new System.Drawing.Point(72, 26);
             this.lbl_savedCoords.Name = "lbl_savedCoords";
             this.lbl_savedCoords.Size = new System.Drawing.Size(17, 52);
             this.lbl_savedCoords.TabIndex = 36;
@@ -979,7 +981,7 @@
             // btn_teleport
             // 
             this.btn_teleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_teleport.Location = new System.Drawing.Point(11, 101);
+            this.btn_teleport.Location = new System.Drawing.Point(16, 110);
             this.btn_teleport.Name = "btn_teleport";
             this.btn_teleport.Size = new System.Drawing.Size(59, 23);
             this.btn_teleport.TabIndex = 34;
@@ -1037,7 +1039,7 @@
             // btn_saveLocation
             // 
             this.btn_saveLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocation.Location = new System.Drawing.Point(11, 72);
+            this.btn_saveLocation.Location = new System.Drawing.Point(16, 81);
             this.btn_saveLocation.Name = "btn_saveLocation";
             this.btn_saveLocation.Size = new System.Drawing.Size(59, 23);
             this.btn_saveLocation.TabIndex = 26;
@@ -1354,6 +1356,15 @@
             this.pvpTimer.Interval = 10000;
             this.pvpTimer.Tick += new System.EventHandler(this.pvpTimer_Tick);
             // 
+            // lbl_yFloorValue
+            // 
+            this.lbl_yFloorValue.AutoSize = true;
+            this.lbl_yFloorValue.Location = new System.Drawing.Point(13, 6);
+            this.lbl_yFloorValue.Name = "lbl_yFloorValue";
+            this.lbl_yFloorValue.Size = new System.Drawing.Size(43, 13);
+            this.lbl_yFloorValue.TabIndex = 41;
+            this.lbl_yFloorValue.Text = "FloorY: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1495,6 +1506,7 @@
         private System.Windows.Forms.Button btn_example;
         private System.Windows.Forms.Label lbl_scriptsMaintenance;
         private System.Windows.Forms.CheckBox box_noKnockback;
+        private System.Windows.Forms.Label lbl_yFloorValue;
     }
 }
 
