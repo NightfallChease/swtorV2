@@ -720,16 +720,45 @@ float playerHeight
         }
         private void restoreOriginalCode()
         {
-            m.WriteBytes(noclipAddressStr, noclipBytes);
-            noclipPatched = false;
+            try
+            {
+                m.WriteBytes(noclipAddressStr, noclipBytes);
+                noclipPatched = false;
 
-            m.WriteBytes(cameraAddress, cameraBytes);
-            //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
-            cameraPatched = false;
+                m.WriteBytes(cameraAddress, cameraBytes);
+                cameraPatched = false;
 
-            m.WriteBytes(speedHackAddrString, speedBytes);
-            //log_console.Text = log_console.Text + "\r\n\r\nBytes Restored";
-            speedPatched = false;
+                m.WriteBytes(speedHackAddrString, speedBytes);
+                speedPatched = false;
+
+                m.WriteBytes(nofallAddr, originalBytes);
+                nofallEnabled = false;
+
+                m.WriteMemory(glideAddrString, "bytes", glideAOB);
+                glideEnabled = false;
+
+                m.WriteMemory(camCollisionAddrStr, "bytes", "F3 0F 11 8F 50 03 00 00");
+                camCollisionEnabled = false;
+
+                m.WriteMemory(noAnimationAddrString, "bytes", "F3 0F 11 8B 70 02 00 00");
+                noAnimationPatched = false;
+
+                m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
+                infJumpPatched = false;
+
+                m.WriteBytes(cameraYUInt, cameraYBytes);
+                cameraYPatched = false;
+
+                m.WriteBytes(cameraZUInt, cameraZBytes);
+                cameraZPatched = false;
+
+                m.WriteMemory(movementModeAddrStr, "int", "1");
+            }
+            catch
+            {
+                MessageBox.Show("Code restoration failed. You might want to restart your game.");
+            }
+
         }
         private void infJumpPatch()
         {
@@ -742,7 +771,6 @@ float playerHeight
             else
             {
                 infJumpPatched = false;
-
                 m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
             }
         }
@@ -787,7 +815,6 @@ float playerHeight
             else
             {
                 camCollisionEnabled = false;
-
                 m.WriteMemory(camCollisionAddrStr, "bytes", "F3 0F 11 8F 50 03 00 00");
             }
         }
@@ -901,7 +928,6 @@ float playerHeight
             else
             {
                 m.WriteBytes(cameraZUInt, cameraZBytes);
-                //log_console.Text = log_console.Text + "\r\n\r\nCamXBytes Patched";
                 cameraZPatched = false;
             }
             //Dont touch code above, important for freecam

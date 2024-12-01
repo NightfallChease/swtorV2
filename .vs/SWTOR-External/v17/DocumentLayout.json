@@ -11,9 +11,6 @@
       "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|SWTOR-External||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -25,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -43,17 +40,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "SWTOR-External",
-              "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\SWTOR-External.csproj",
-              "RelativeDocumentMoniker": "SWTOR-External\\SWTOR-External.csproj",
-              "ToolTip": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\SWTOR-External.csproj",
-              "RelativeToolTip": "SWTOR-External\\SWTOR-External.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-12-01T22:06:52.404Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Hotkeys.cs",
               "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Hotkeys.cs",
               "RelativeDocumentMoniker": "SWTOR-External\\Hotkeys.cs",
@@ -72,7 +58,7 @@
               "RelativeDocumentMoniker": "SWTOR-External\\Form1.cs",
               "ToolTip": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeToolTip": "SWTOR-External\\Form1.cs",
-              "ViewState": "AQIAAFAHAAAAAAAAAAA1wLQIAAAjAAAA",
+              "ViewState": "AQIAAMACAAAAAAAAAAAIwNsCAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-05T17:02:25.657Z",
               "EditorCaption": ""
