@@ -38,7 +38,7 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.72.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.7.sw";
         private string currentVersion = "v8.7";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
@@ -1195,7 +1195,7 @@ float playerHeight
                 m.WriteMemory(xAddrString, "float", (savedX).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(yAddrString, "float", (savedY).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString(CultureInfo.InvariantCulture));
-                Thread.Sleep(100);
+                Thread.Sleep(500);
                 m.WriteMemory(yAddrString, "float", (floorYValue).ToString(CultureInfo.InvariantCulture)); //bad idea (freecamtp)
                 m.WriteMemory(movementModeAddrStr, "int", "1");
 
@@ -1761,6 +1761,15 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             // Wait for the process to exit asynchronously
             System.Threading.Tasks.Task.Run(() => process.WaitForExit());
         }
+        private void saveLocations()
+        {
+            using (FileStream fs = new FileStream("locations.dat", FileMode.Create))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, locationList);
+            }
+            MessageBox.Show("Saved locations");
+        }
         #endregion
 
         #region Trackbars
@@ -1831,6 +1840,10 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             savedX = xCoord;
             savedY = yCoord;
             savedZ = zCoord;
+
+            txt_XBox.Text = xCoord.ToString(CultureInfo.InvariantCulture);
+            txt_YBox.Text = yCoord.ToString(CultureInfo.InvariantCulture);
+            txt_ZBox.Text = zCoord.ToString(CultureInfo.InvariantCulture);
 
             log_console.Text = log_console.Text + $"\r\n\r\nPosition saved at\r\nX: {savedX}\r\nY: {savedY}\r\nZ: {savedZ}\r\n";
             //BottomScroll
@@ -2033,12 +2046,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             try
             {
-                using (FileStream fs = new FileStream("locations.dat", FileMode.Create))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(fs, locationList);
-                }
-                MessageBox.Show("Saved locations");
+                saveLocations();
             }
             catch{}
         }
@@ -2218,6 +2226,12 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         {
             openDiscord();
         }
+        private void listbox_teleportLocations_DoubleClick(object sender, EventArgs e)
+        {
+            savedX = locationList[listbox_teleportLocations.SelectedIndex].customX;
+            savedY = locationList[listbox_teleportLocations.SelectedIndex].customY;
+            savedZ = locationList[listbox_teleportLocations.SelectedIndex].customZ;
+        }
         #endregion
 
         #region misc
@@ -2227,6 +2241,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
+
         #endregion
 
 

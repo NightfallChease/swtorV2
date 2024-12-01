@@ -114,6 +114,10 @@
             this.listbox_teleportLocations = new System.Windows.Forms.ListBox();
             this.btn_saveLocation = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbl_flyBackwards = new System.Windows.Forms.Label();
+            this.txtbox_flybackwardskey = new System.Windows.Forms.TextBox();
+            this.lbl_flyForwardKey = new System.Windows.Forms.Label();
+            this.txtbox_flyforwardskey = new System.Windows.Forms.TextBox();
             this.btn_saveHotkeys = new System.Windows.Forms.Button();
             this.btn_clearHotkeys = new System.Windows.Forms.Button();
             this.box_infReach = new System.Windows.Forms.CheckBox();
@@ -137,10 +141,6 @@
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             this.pvpTimer = new System.Windows.Forms.Timer(this.components);
-            this.lbl_flyForwardKey = new System.Windows.Forms.Label();
-            this.txtbox_flyforwardskey = new System.Windows.Forms.TextBox();
-            this.lbl_flyBackwards = new System.Windows.Forms.Label();
-            this.txtbox_flybackwardskey = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -1077,6 +1077,7 @@
             this.listbox_teleportLocations.Name = "listbox_teleportLocations";
             this.listbox_teleportLocations.Size = new System.Drawing.Size(194, 277);
             this.listbox_teleportLocations.TabIndex = 27;
+            this.listbox_teleportLocations.DoubleClick += new System.EventHandler(this.listbox_teleportLocations_DoubleClick);
             // 
             // btn_saveLocation
             // 
@@ -1137,6 +1138,42 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lbl_flyBackwards
+            // 
+            this.lbl_flyBackwards.AutoSize = true;
+            this.lbl_flyBackwards.Location = new System.Drawing.Point(14, 288);
+            this.lbl_flyBackwards.Name = "lbl_flyBackwards";
+            this.lbl_flyBackwards.Size = new System.Drawing.Size(78, 13);
+            this.lbl_flyBackwards.TabIndex = 60;
+            this.lbl_flyBackwards.Text = "Fly backwards:";
+            // 
+            // txtbox_flybackwardskey
+            // 
+            this.txtbox_flybackwardskey.Location = new System.Drawing.Point(95, 285);
+            this.txtbox_flybackwardskey.Name = "txtbox_flybackwardskey";
+            this.txtbox_flybackwardskey.ReadOnly = true;
+            this.txtbox_flybackwardskey.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flybackwardskey.TabIndex = 59;
+            this.txtbox_flybackwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flybackwardskey_KeyDown);
+            // 
+            // lbl_flyForwardKey
+            // 
+            this.lbl_flyForwardKey.AutoSize = true;
+            this.lbl_flyForwardKey.Location = new System.Drawing.Point(174, 258);
+            this.lbl_flyForwardKey.Name = "lbl_flyForwardKey";
+            this.lbl_flyForwardKey.Size = new System.Drawing.Size(66, 13);
+            this.lbl_flyForwardKey.TabIndex = 58;
+            this.lbl_flyForwardKey.Text = "Fly forwards:";
+            // 
+            // txtbox_flyforwardskey
+            // 
+            this.txtbox_flyforwardskey.Location = new System.Drawing.Point(242, 255);
+            this.txtbox_flyforwardskey.Name = "txtbox_flyforwardskey";
+            this.txtbox_flyforwardskey.ReadOnly = true;
+            this.txtbox_flyforwardskey.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flyforwardskey.TabIndex = 57;
+            this.txtbox_flyforwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyforwardskey_KeyDown);
             // 
             // btn_saveHotkeys
             // 
@@ -1400,42 +1437,6 @@
             // 
             this.pvpTimer.Interval = 10000;
             this.pvpTimer.Tick += new System.EventHandler(this.pvpTimer_Tick);
-            // 
-            // lbl_flyForwardKey
-            // 
-            this.lbl_flyForwardKey.AutoSize = true;
-            this.lbl_flyForwardKey.Location = new System.Drawing.Point(174, 258);
-            this.lbl_flyForwardKey.Name = "lbl_flyForwardKey";
-            this.lbl_flyForwardKey.Size = new System.Drawing.Size(66, 13);
-            this.lbl_flyForwardKey.TabIndex = 58;
-            this.lbl_flyForwardKey.Text = "Fly forwards:";
-            // 
-            // txtbox_flyforwardskey
-            // 
-            this.txtbox_flyforwardskey.Location = new System.Drawing.Point(242, 255);
-            this.txtbox_flyforwardskey.Name = "txtbox_flyforwardskey";
-            this.txtbox_flyforwardskey.ReadOnly = true;
-            this.txtbox_flyforwardskey.Size = new System.Drawing.Size(74, 20);
-            this.txtbox_flyforwardskey.TabIndex = 57;
-            this.txtbox_flyforwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyforwardskey_KeyDown);
-            // 
-            // lbl_flyBackwards
-            // 
-            this.lbl_flyBackwards.AutoSize = true;
-            this.lbl_flyBackwards.Location = new System.Drawing.Point(14, 288);
-            this.lbl_flyBackwards.Name = "lbl_flyBackwards";
-            this.lbl_flyBackwards.Size = new System.Drawing.Size(78, 13);
-            this.lbl_flyBackwards.TabIndex = 60;
-            this.lbl_flyBackwards.Text = "Fly backwards:";
-            // 
-            // txtbox_flybackwardskey
-            // 
-            this.txtbox_flybackwardskey.Location = new System.Drawing.Point(95, 285);
-            this.txtbox_flybackwardskey.Name = "txtbox_flybackwardskey";
-            this.txtbox_flybackwardskey.ReadOnly = true;
-            this.txtbox_flybackwardskey.Size = new System.Drawing.Size(74, 20);
-            this.txtbox_flybackwardskey.TabIndex = 59;
-            this.txtbox_flybackwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flybackwardskey_KeyDown);
             // 
             // Form1
             // 

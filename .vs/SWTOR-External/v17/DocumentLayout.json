@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|SWTOR-External||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B717814-63EF-41AB-9ADF-FE98E7DB2C89}|SWTOR-External\\SWTOR-External.csproj|solutionrelative:swtor-external\\hotkeys.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +29,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeDocumentMoniker": "SWTOR-External\\Form1.cs",
@@ -53,7 +53,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Hotkeys.cs",
               "DocumentMoniker": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Hotkeys.cs",
               "RelativeDocumentMoniker": "SWTOR-External\\Hotkeys.cs",
@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "SWTOR-External\\Form1.cs",
               "ToolTip": "C:\\Users\\nightfall\\Documents\\C#\\MyProjects\\SWTOR-External\\SWTOR-External\\Form1.cs",
               "RelativeToolTip": "SWTOR-External\\Form1.cs",
-              "ViewState": "AQIAAN4DAAAAAAAAAAAiwFgFAAAUAAAA",
+              "ViewState": "AQIAAFAHAAAAAAAAAAA1wLQIAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-05T17:02:25.657Z",
               "EditorCaption": ""
