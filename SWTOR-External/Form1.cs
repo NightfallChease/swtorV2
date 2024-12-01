@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace SWTOR_External 
 {
@@ -715,48 +716,6 @@ float playerHeight
             catch (Exception ex)
             {
                 MessageBox.Show($"Restoring code failed! Please restart the game.");
-            }
-
-        }
-        private void restoreOriginalCode()
-        {
-            try
-            {
-                m.WriteBytes(noclipAddressStr, noclipBytes);
-                noclipPatched = false;
-
-                m.WriteBytes(cameraAddress, cameraBytes);
-                cameraPatched = false;
-
-                m.WriteBytes(speedHackAddrString, speedBytes);
-                speedPatched = false;
-
-                m.WriteBytes(nofallAddr, originalBytes);
-                nofallEnabled = false;
-
-                m.WriteMemory(glideAddrString, "bytes", glideAOB);
-                glideEnabled = false;
-
-                m.WriteMemory(camCollisionAddrStr, "bytes", "F3 0F 11 8F 50 03 00 00");
-                camCollisionEnabled = false;
-
-                m.WriteMemory(noAnimationAddrString, "bytes", "F3 0F 11 8B 70 02 00 00");
-                noAnimationPatched = false;
-
-                m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
-                infJumpPatched = false;
-
-                m.WriteBytes(cameraYUInt, cameraYBytes);
-                cameraYPatched = false;
-
-                m.WriteBytes(cameraZUInt, cameraZBytes);
-                cameraZPatched = false;
-
-                m.WriteMemory(movementModeAddrStr, "int", "1");
-            }
-            catch
-            {
-                MessageBox.Show("Code restoration failed. You might want to restart your game.");
             }
 
         }
@@ -1795,6 +1754,48 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 formatter.Serialize(fs, locationList);
             }
             MessageBox.Show("Saved locations");
+        }
+        private void restoreOriginalCode()
+        {
+            try
+            {
+                m.WriteBytes(noclipAddressStr, noclipBytes);
+                noclipPatched = false;
+
+                m.WriteBytes(cameraAddress, cameraBytes);
+                cameraPatched = false;
+
+                m.WriteBytes(speedHackAddrString, speedBytes);
+                speedPatched = false;
+
+                m.WriteMemory(nofallAddrString, "bytes", "F3 44 0F 10 4F 10 44 0F 28 DF");
+                nofallEnabled = false;
+
+                m.WriteMemory(glideAddrString, "bytes", glideAOB);
+                glideEnabled = false;
+
+                m.WriteMemory(camCollisionAddrStr, "bytes", "F3 0F 11 8F 50 03 00 00");
+                camCollisionEnabled = false;
+
+                m.WriteMemory(noAnimationAddrString, "bytes", "F3 0F 11 8B 70 02 00 00");
+                noAnimationPatched = false;
+
+                m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
+                infJumpPatched = false;
+
+                m.WriteBytes(cameraYUInt, cameraYBytes);
+                cameraYPatched = false;
+
+                m.WriteBytes(cameraZUInt, cameraZBytes);
+                cameraZPatched = false;
+
+                m.WriteMemory(movementModeAddrStr, "int", "1");
+            }
+            catch
+            {
+                MessageBox.Show("Code restoration failed. You might want to restart your game.");
+            }
+
         }
         #endregion
 
