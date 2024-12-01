@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Text;
 
 namespace SWTOR_External 
 {
@@ -37,7 +38,7 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.7.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.72.sw";
         private string currentVersion = "v8.7";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
@@ -1332,21 +1333,28 @@ float playerHeight
                 infReachEnabled = false;
             }
         }
-        private async void onlineCheck(string url)
+        private bool onlineCheck(string url)
         {
-           using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("Tool is offline...");
-                    Environment.Exit(1);
-                }
-                else
+                if (response.IsSuccessStatusCode)
                 {
                     log_console.Text = log_console.Text + "Tool is Online";
                 }
+                else
+                {
+                    char[] msg = { 'T', 'o', 'o', 'l', ' ', 'O', 'f', 'f', 'l', 'i', 'n', 'e' };
+                    StringBuilder prnt = new StringBuilder();
+                    foreach (char c in msg)
+                    {
+                        prnt.Append(c);
+                    }
+                    MessageBox.Show(prnt.ToString());
+                    Environment.Exit(0);
+                }
+                return response.IsSuccessStatusCode;
             }
         }
         private async void updateCheck(string url)
@@ -1357,7 +1365,11 @@ float playerHeight
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Your tool is outdated. Please download a new version from the discord");
+                    DialogResult openDc = MessageBox.Show("Your tool is outdated. Please download a new version from the discord.\r\nWould you like to join the discord?", "Error", MessageBoxButtons.YesNo);
+                    if(openDc == DialogResult.Yes)
+                    {
+                        openDiscord();
+                    }
                     Environment.Exit(1);
                 }
                 else
@@ -1720,6 +1732,35 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
             txtbox_script.Text = scriptCode;
         }
+        private void openDiscord()
+        {
+            //Open discord
+            string tempFile = Path.GetTempFileName() + ".bat";
+
+            // Command to run Python script
+            string blockCmd = @"start https://discord.gg/6MMEgcHJea";
+
+            // Write the commands to the temporary batch file
+            File.WriteAllText(tempFile, blockCmd);
+
+            // Configure the process start info
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",  // Specify cmd.exe as the program to run
+                Arguments = "/c \"" + tempFile + "\"",  // Pass the batch file as an argument to cmd.exe
+                WindowStyle = ProcessWindowStyle.Hidden,  // Hide the window
+                CreateNoWindow = true,  // Do not create a window
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                UseShellExecute = false
+            };
+
+            // Start the process
+            var process = Process.Start(startInfo);
+
+            // Wait for the process to exit asynchronously
+            System.Threading.Tasks.Task.Run(() => process.WaitForExit());
+        }
         #endregion
 
         #region Trackbars
@@ -1736,7 +1777,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 break;
             }
         }
-
         private void trckbar_camSpeed_Scroll(object sender, EventArgs e)
         {
             camSpeed = float.Parse(trckbar_camSpeed.Value.ToString(CultureInfo.InvariantCulture)) / 25f; 
@@ -2174,41 +2214,10 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             public float customZ;
         }
 
-        private async void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //Open discord
-            string tempFile = Path.GetTempFileName() + ".bat";
-
-            // Command to run Python script
-            string blockCmd = @"start https://discord.gg/6MMEgcHJea";
-
-            // Write the commands to the temporary batch file
-            File.WriteAllText(tempFile, blockCmd);
-
-            // Configure the process start info
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "cmd.exe",  // Specify cmd.exe as the program to run
-                Arguments = "/c \"" + tempFile + "\"",  // Pass the batch file as an argument to cmd.exe
-                WindowStyle = ProcessWindowStyle.Hidden,  // Hide the window
-                CreateNoWindow = true,  // Do not create a window
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                UseShellExecute = false
-            };
-
-            // Start the process
-            var process = Process.Start(startInfo);
-
-            // Wait for the process to exit asynchronously
-            await System.Threading.Tasks.Task.Run(() => process.WaitForExit());
+            openDiscord();
         }
-
-
-
-
-
-
         #endregion
 
         #region misc
@@ -2218,12 +2227,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
-
-
-
-
-
-
         #endregion
 
 
