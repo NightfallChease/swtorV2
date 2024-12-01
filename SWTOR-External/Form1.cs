@@ -28,7 +28,6 @@ namespace SWTOR_External
 
         /* Todo:
         MouseTP (for map and world)
-        Teleport to ground via ground offset?
         Combat features?
         */
 
@@ -39,7 +38,7 @@ namespace SWTOR_External
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.6.sw";
-        private string currentVersion = "v8.6";
+        private string currentVersion = "v8.7";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -99,6 +98,8 @@ namespace SWTOR_External
         private VirtualKeyCode NofallKey;
         private VirtualKeyCode GlideKey;
         private VirtualKeyCode SpeedKey;
+        private VirtualKeyCode forwardsKey;
+        private VirtualKeyCode backwardsKey;
         public string PlayerBaseAddress = "";
         public string CamBaseAddress = "";
         public UIntPtr playerBaseUInt;
@@ -264,28 +265,19 @@ float playerHeight
             Thread NumpadTeleportThread = new Thread(teleportNumpad) { IsBackground = true };
             Thread HotkeyThread = new Thread(hotkeysFunction) { IsBackground = true };
             //Thread pvpThread = new Thread(checkForPvP) { IsBackground = true , Priority = ThreadPriority.Lowest};
-
             //Design stuff 
             MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green900, Accent.Green700, TextShade.WHITE);
-            //Design stuff 
-
+            //online checks 
             onlineCheck(urlRunning);
-
             updateCheck(urlUpdate);
-
+            //start timers
             startMainTimer();
             startgetBaseTimer();
             //startPvPTimer();
-
-
             int title = rnd.Next(999999, 9999999);
             //this.Text = title.ToString("X2");
-
             int PID = m.GetProcIdFromName("swtor");
-
             log_console.Text = log_console.Text + $"Welcome {userName}!\r\n";
-
-
             //Connect To Process
             if (PID != 0)
             {
@@ -297,10 +289,8 @@ float playerHeight
                 MessageBox.Show("SWTOR must be running...");
                 Environment.Exit(0);
             }
-
             //setVersionLabel
             lbl_version.Text = currentVersion;
-
             try
             {
                 //load hotkeys from .dat file
@@ -308,18 +298,14 @@ float playerHeight
                 //load locationList .dat file
                 loadLocations();
             }catch { }
-
+            //patch on process exit
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-
-
+            //start threads
             aobThread.Start();
             NumpadTeleportThread.Start();
             HotkeyThread.Start();
-
             this.Text = materialTabControl1.SelectedTab.Text;
             box_darkmode.Checked = true;
-
-
             //log_console.Text = log_console.Text + "\r\nPBase MemLoc: " + noclipAddress + "\r\n\r\n" + "Camera MemLoc: " + cameraAddress + "\r\n\r\n" + "CameraY MemLoc: " + cameraYAddress + "\r\n\r\n" + "Camera ZMemLoc: " + cameraZAddress;
         }
         //ICard for scripting
@@ -759,23 +745,23 @@ float playerHeight
                 m.WriteMemory(infJumpAddrStr, "bytes", "F2 0F 11 47 0C");
             }
         }
-        private void patchStuck()
-        {
-            //add additional bytes to scanned location because the AOB starts earlier than the target location
-            UIntPtr addressToPatch = (stuckAddrUint + 0x0A);
-            string addressToPatchStr = convertUintToHexString(addressToPatch);
-
-            if (!stuckPatched)
-            {
-                m.WriteMemory(addressToPatchStr, "bytes", "C3 90 90");
-                stuckPatched = true;
-            }
-            else
-            {
-                m.WriteMemory(addressToPatchStr, "bytes", "48 8B C4");
-                stuckPatched = false;
-            }
-        }
+        //private void patchStuck()
+        //{
+        //    //add additional bytes to scanned location because the AOB starts earlier than the target location
+        //    UIntPtr addressToPatch = (stuckAddrUint + 0x0A);
+        //    string addressToPatchStr = convertUintToHexString(addressToPatch);
+        //
+        //    if (!stuckPatched)
+        //    {
+        //        m.WriteMemory(addressToPatchStr, "bytes", "C3 90 90");
+        //        stuckPatched = true;
+        //    }
+        //    else
+        //    {
+        //        m.WriteMemory(addressToPatchStr, "bytes", "48 8B C4");
+        //        stuckPatched = false;
+        //    }
+        //}
         private void toggleNoCollision()
         {
             if (!noCollisionEnabled)
@@ -824,6 +810,8 @@ float playerHeight
                     NofallKey = settings.NofallKey;
                     GlideKey = settings.GlideKey;
                     SpeedKey = settings.SpeedKey;
+                    forwardsKey = settings.flyforwardsKey;
+                    backwardsKey = settings.flybackwardsKey;
 
                     txtbox_TPUpKey.Text = TPUpKey.ToString();
                     txtbox_TPDowNkey.Text = TPDownKey.ToString();
@@ -836,11 +824,13 @@ float playerHeight
                     txtbox_nofallKey.Text = NofallKey.ToString();
                     txtbox_glideKey.Text = GlideKey.ToString();
                     txtbox_speedKey.Text = SpeedKey.ToString();
+                    txtbox_flyforwardskey.Text = forwardsKey.ToString();
+                    txtbox_flybackwardskey.Text = backwardsKey.ToString();
                 }
             }
             else
             {
-                //logToConsole("No hotkey settings found.");
+                logToConsole("No hotkey settings found.");
             }
         }
         private void loadLocations()
@@ -1021,8 +1011,8 @@ float playerHeight
                 speed *= speedBoostMultiplier;
             }
 
-            bool isArrowUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.UP);
-            bool isArrowDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.DOWN);
+            bool isArrowUpPressed = sim.InputDeviceState.IsHardwareKeyDown(forwardsKey);
+            bool isArrowDownPressed = sim.InputDeviceState.IsHardwareKeyDown(backwardsKey);
 
             if (isArrowUpPressed)
             {
@@ -1104,8 +1094,8 @@ float playerHeight
                 speed *= speedBoostMultiplier;
             }
 
-            bool isArrowUpPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.UP);
-            bool isArrowDownPressed = sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.DOWN);
+            bool isArrowUpPressed = sim.InputDeviceState.IsHardwareKeyDown(forwardsKey);
+            bool isArrowDownPressed = sim.InputDeviceState.IsHardwareKeyDown(backwardsKey);
 
             if (isArrowUpPressed)
             {
@@ -1204,11 +1194,9 @@ float playerHeight
                 m.WriteMemory(xAddrString, "float", (savedX).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(yAddrString, "float", (savedY).ToString(CultureInfo.InvariantCulture));
                 m.WriteMemory(zAddrString, "float", (savedZ).ToString(CultureInfo.InvariantCulture));
-                m.WriteMemory(movementModeAddrStr, "int", "1");
-
                 Thread.Sleep(100);
-
                 m.WriteMemory(yAddrString, "float", (floorYValue).ToString(CultureInfo.InvariantCulture)); //bad idea (freecamtp)
+                m.WriteMemory(movementModeAddrStr, "int", "1");
 
                 isArrived = true;
                 doglide();
@@ -1667,6 +1655,8 @@ float playerHeight
                 bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
                 bool isGlideKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(GlideKey);
                 bool isSpeedKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(SpeedKey);
+                bool isFlyForwardKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(forwardsKey);
+                bool isFlyBackwardsKeyPressed = sim.InputDeviceState.IsHardwareKeyDown (backwardsKey);
 
                 try
                 {
@@ -1954,6 +1944,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             txtbox_nofallKey.Text = "";
             txtbox_glideKey.Text = "";
             txtbox_speedKey.Text = "";
+            txtbox_flybackwardskey.Text = "";
+            txtbox_flyforwardskey.Text = "";
 
             // Reset the associated hotkey variables to a default value
             infJumpKey = VirtualKeyCode.NONAME;
@@ -1968,6 +1960,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             NofallKey = VirtualKeyCode.NONAME;
             GlideKey = VirtualKeyCode.NONAME;
             SpeedKey = VirtualKeyCode.NONAME;
+            forwardsKey = VirtualKeyCode.NONAME;
+            backwardsKey = VirtualKeyCode.NONAME;
         }
         private void btn_saveHotkeys_Click(object sender, EventArgs e)
         {
@@ -1983,7 +1977,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 TPToCamKey = TPToCamKey,
                 NofallKey = NofallKey,
                 GlideKey = GlideKey,
-                SpeedKey = SpeedKey
+                SpeedKey = SpeedKey,
+                flyforwardsKey = forwardsKey,
+                flybackwardsKey = backwardsKey
             };
 
             using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
@@ -2079,7 +2075,16 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             SpeedKey = (VirtualKeyCode)e.KeyCode;
             txtbox_speedKey.Text = SpeedKey.ToString();
         }
-
+        private void txtbox_flyforwardskey_KeyDown(object sender, KeyEventArgs e)
+        {
+            forwardsKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_flyforwardskey.Text = forwardsKey.ToString();
+        }
+        private void txtbox_flybackwardskey_KeyDown(object sender, KeyEventArgs e)
+        {
+            backwardsKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_flybackwardskey.Text = backwardsKey.ToString();
+        }
 
         #endregion
 
@@ -2218,6 +2223,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
 
+
         #endregion
+
+
     }
 }

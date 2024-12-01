@@ -99,6 +99,7 @@
             this.box_noCamCollision = new System.Windows.Forms.CheckBox();
             this.box_noCollision = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lbl_yFloorValue = new System.Windows.Forms.Label();
             this.btn_removeLocation = new System.Windows.Forms.Button();
             this.btn_loadLocations = new System.Windows.Forms.Button();
             this.btn_clearLocations = new System.Windows.Forms.Button();
@@ -136,7 +137,10 @@
             this.lbl_credits1 = new System.Windows.Forms.Label();
             this.tipControl = new System.Windows.Forms.ToolTip(this.components);
             this.pvpTimer = new System.Windows.Forms.Timer(this.components);
-            this.lbl_yFloorValue = new System.Windows.Forms.Label();
+            this.lbl_flyForwardKey = new System.Windows.Forms.Label();
+            this.txtbox_flyforwardskey = new System.Windows.Forms.TextBox();
+            this.lbl_flyBackwards = new System.Windows.Forms.Label();
+            this.txtbox_flybackwardskey = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).BeginInit();
@@ -169,9 +173,10 @@
             // 
             // box_darkmode
             // 
+            this.box_darkmode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.box_darkmode.AutoSize = true;
             this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_darkmode.Location = new System.Drawing.Point(3, 343);
+            this.box_darkmode.Location = new System.Drawing.Point(3, 387);
             this.box_darkmode.Name = "box_darkmode";
             this.box_darkmode.Size = new System.Drawing.Size(72, 17);
             this.box_darkmode.TabIndex = 29;
@@ -181,18 +186,21 @@
             // 
             // lbl_version
             // 
+            this.lbl_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_version.AutoSize = true;
-            this.lbl_version.Location = new System.Drawing.Point(342, 367);
+            this.lbl_version.Location = new System.Drawing.Point(395, 387);
             this.lbl_version.Name = "lbl_version";
-            this.lbl_version.Size = new System.Drawing.Size(0, 13);
+            this.lbl_version.Size = new System.Drawing.Size(41, 13);
             this.lbl_version.TabIndex = 28;
+            this.lbl_version.Text = "version";
             // 
             // box_speedhack
             // 
+            this.box_speedhack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 281);
+            this.box_speedhack.Location = new System.Drawing.Point(116, 330);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -204,7 +212,7 @@
             // 
             this.box_glide.AutoSize = true;
             this.box_glide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_glide.Location = new System.Drawing.Point(6, 99);
+            this.box_glide.Location = new System.Drawing.Point(6, 94);
             this.box_glide.Name = "box_glide";
             this.box_glide.Size = new System.Drawing.Size(65, 17);
             this.box_glide.TabIndex = 26;
@@ -215,8 +223,9 @@
             // 
             // lbl_CusCoord
             // 
+            this.lbl_CusCoord.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_CusCoord.AutoSize = true;
-            this.lbl_CusCoord.Location = new System.Drawing.Point(3, 193);
+            this.lbl_CusCoord.Location = new System.Drawing.Point(8, 194);
             this.lbl_CusCoord.Name = "lbl_CusCoord";
             this.lbl_CusCoord.Size = new System.Drawing.Size(81, 13);
             this.lbl_CusCoord.TabIndex = 25;
@@ -224,8 +233,9 @@
             // 
             // lbl_Speed
             // 
+            this.lbl_Speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 265);
+            this.lbl_Speed.Location = new System.Drawing.Point(3, 314);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -234,9 +244,10 @@
             // 
             // trckbr_speed
             // 
+            this.trckbr_speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 281);
+            this.trckbr_speed.Location = new System.Drawing.Point(6, 330);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -245,7 +256,7 @@
             // btn_cancelTP
             // 
             this.btn_cancelTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cancelTP.Location = new System.Drawing.Point(16, 139);
+            this.btn_cancelTP.Location = new System.Drawing.Point(16, 135);
             this.btn_cancelTP.Name = "btn_cancelTP";
             this.btn_cancelTP.Size = new System.Drawing.Size(59, 23);
             this.btn_cancelTP.TabIndex = 21;
@@ -256,8 +267,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(315, -1);
+            this.pictureBox1.Location = new System.Drawing.Point(381, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(58, 59);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -268,8 +280,9 @@
             // 
             // btn_saveCustomCoords
             // 
+            this.btn_saveCustomCoords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveCustomCoords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveCustomCoords.Location = new System.Drawing.Point(36, 318);
+            this.btn_saveCustomCoords.Location = new System.Drawing.Point(107, 321);
             this.btn_saveCustomCoords.Name = "btn_saveCustomCoords";
             this.btn_saveCustomCoords.Size = new System.Drawing.Size(81, 23);
             this.btn_saveCustomCoords.TabIndex = 19;
@@ -280,8 +293,9 @@
             // 
             // lbl_CoordNames
             // 
+            this.lbl_CoordNames.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_CoordNames.AutoSize = true;
-            this.lbl_CoordNames.Location = new System.Drawing.Point(25, 243);
+            this.lbl_CoordNames.Location = new System.Drawing.Point(30, 244);
             this.lbl_CoordNames.Name = "lbl_CoordNames";
             this.lbl_CoordNames.Size = new System.Drawing.Size(17, 65);
             this.lbl_CoordNames.TabIndex = 18;
@@ -289,7 +303,8 @@
             // 
             // txt_ZBox
             // 
-            this.txt_ZBox.Location = new System.Drawing.Point(48, 292);
+            this.txt_ZBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_ZBox.Location = new System.Drawing.Point(53, 293);
             this.txt_ZBox.Name = "txt_ZBox";
             this.txt_ZBox.Size = new System.Drawing.Size(55, 20);
             this.txt_ZBox.TabIndex = 17;
@@ -298,7 +313,8 @@
             // 
             // txt_YBox
             // 
-            this.txt_YBox.Location = new System.Drawing.Point(48, 266);
+            this.txt_YBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_YBox.Location = new System.Drawing.Point(53, 267);
             this.txt_YBox.Name = "txt_YBox";
             this.txt_YBox.Size = new System.Drawing.Size(55, 20);
             this.txt_YBox.TabIndex = 16;
@@ -307,7 +323,8 @@
             // 
             // txt_XBox
             // 
-            this.txt_XBox.Location = new System.Drawing.Point(48, 240);
+            this.txt_XBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_XBox.Location = new System.Drawing.Point(53, 241);
             this.txt_XBox.Name = "txt_XBox";
             this.txt_XBox.Size = new System.Drawing.Size(55, 20);
             this.txt_XBox.TabIndex = 15;
@@ -316,9 +333,10 @@
             // 
             // box_alwaysInFront
             // 
+            this.box_alwaysInFront.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.box_alwaysInFront.AutoSize = true;
             this.box_alwaysInFront.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_alwaysInFront.Location = new System.Drawing.Point(3, 369);
+            this.box_alwaysInFront.Location = new System.Drawing.Point(3, 372);
             this.box_alwaysInFront.Name = "box_alwaysInFront";
             this.box_alwaysInFront.Size = new System.Drawing.Size(56, 17);
             this.box_alwaysInFront.TabIndex = 14;
@@ -330,7 +348,7 @@
             // 
             this.box_nofall.AutoSize = true;
             this.box_nofall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_nofall.Location = new System.Drawing.Point(6, 77);
+            this.box_nofall.Location = new System.Drawing.Point(6, 72);
             this.box_nofall.Name = "box_nofall";
             this.box_nofall.Size = new System.Drawing.Size(94, 17);
             this.box_nofall.TabIndex = 12;
@@ -343,7 +361,7 @@
             // 
             this.btn_tpToCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tpToCam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_tpToCam.Location = new System.Drawing.Point(71, 34);
+            this.btn_tpToCam.Location = new System.Drawing.Point(71, 29);
             this.btn_tpToCam.Name = "btn_tpToCam";
             this.btn_tpToCam.Size = new System.Drawing.Size(31, 19);
             this.btn_tpToCam.TabIndex = 11;
@@ -356,7 +374,7 @@
             // 
             this.box_Freecam.AutoSize = true;
             this.box_Freecam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_Freecam.Location = new System.Drawing.Point(6, 34);
+            this.box_Freecam.Location = new System.Drawing.Point(6, 29);
             this.box_Freecam.Name = "box_Freecam";
             this.box_Freecam.Size = new System.Drawing.Size(64, 17);
             this.box_Freecam.TabIndex = 9;
@@ -367,8 +385,9 @@
             // 
             // btn_clearConsole
             // 
+            this.btn_clearConsole.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_clearConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearConsole.Location = new System.Drawing.Point(263, 328);
+            this.btn_clearConsole.Location = new System.Drawing.Point(329, 356);
             this.btn_clearConsole.Name = "btn_clearConsole";
             this.btn_clearConsole.Size = new System.Drawing.Size(45, 23);
             this.btn_clearConsole.TabIndex = 8;
@@ -379,7 +398,7 @@
             // lbl_coords
             // 
             this.lbl_coords.AutoSize = true;
-            this.lbl_coords.Location = new System.Drawing.Point(13, 26);
+            this.lbl_coords.Location = new System.Drawing.Point(13, 22);
             this.lbl_coords.Name = "lbl_coords";
             this.lbl_coords.Size = new System.Drawing.Size(17, 52);
             this.lbl_coords.TabIndex = 5;
@@ -387,8 +406,9 @@
             // 
             // lbl_cons
             // 
+            this.lbl_cons.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbl_cons.AutoSize = true;
-            this.lbl_cons.Location = new System.Drawing.Point(216, 42);
+            this.lbl_cons.Location = new System.Drawing.Point(282, 70);
             this.lbl_cons.Name = "lbl_cons";
             this.lbl_cons.Size = new System.Drawing.Size(33, 13);
             this.lbl_cons.TabIndex = 4;
@@ -396,7 +416,8 @@
             // 
             // log_console
             // 
-            this.log_console.Location = new System.Drawing.Point(216, 61);
+            this.log_console.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.log_console.Location = new System.Drawing.Point(282, 89);
             this.log_console.Multiline = true;
             this.log_console.Name = "log_console";
             this.log_console.ReadOnly = true;
@@ -423,7 +444,7 @@
             // lbl_customHks
             // 
             this.lbl_customHks.AutoSize = true;
-            this.lbl_customHks.Location = new System.Drawing.Point(184, 75);
+            this.lbl_customHks.Location = new System.Drawing.Point(137, 100);
             this.lbl_customHks.Name = "lbl_customHks";
             this.lbl_customHks.Size = new System.Drawing.Size(87, 13);
             this.lbl_customHks.TabIndex = 52;
@@ -431,7 +452,7 @@
             // 
             // txtbox_speedKey
             // 
-            this.txtbox_speedKey.Location = new System.Drawing.Point(289, 200);
+            this.txtbox_speedKey.Location = new System.Drawing.Point(242, 229);
             this.txtbox_speedKey.Name = "txtbox_speedKey";
             this.txtbox_speedKey.ReadOnly = true;
             this.txtbox_speedKey.Size = new System.Drawing.Size(74, 20);
@@ -441,7 +462,7 @@
             // lbl_glideKey
             // 
             this.lbl_glideKey.AutoSize = true;
-            this.lbl_glideKey.Location = new System.Drawing.Point(249, 181);
+            this.lbl_glideKey.Location = new System.Drawing.Point(202, 210);
             this.lbl_glideKey.Name = "lbl_glideKey";
             this.lbl_glideKey.Size = new System.Drawing.Size(34, 13);
             this.lbl_glideKey.TabIndex = 49;
@@ -449,7 +470,7 @@
             // 
             // txtbox_glideKey
             // 
-            this.txtbox_glideKey.Location = new System.Drawing.Point(289, 178);
+            this.txtbox_glideKey.Location = new System.Drawing.Point(242, 207);
             this.txtbox_glideKey.Name = "txtbox_glideKey";
             this.txtbox_glideKey.ReadOnly = true;
             this.txtbox_glideKey.Size = new System.Drawing.Size(74, 20);
@@ -459,7 +480,7 @@
             // lbl_TpToCamKey
             // 
             this.lbl_TpToCamKey.AutoSize = true;
-            this.lbl_TpToCamKey.Location = new System.Drawing.Point(223, 129);
+            this.lbl_TpToCamKey.Location = new System.Drawing.Point(176, 158);
             this.lbl_TpToCamKey.Name = "lbl_TpToCamKey";
             this.lbl_TpToCamKey.Size = new System.Drawing.Size(60, 13);
             this.lbl_TpToCamKey.TabIndex = 47;
@@ -467,7 +488,7 @@
             // 
             // txtbox_tpToCamKey
             // 
-            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(289, 126);
+            this.txtbox_tpToCamKey.Location = new System.Drawing.Point(242, 155);
             this.txtbox_tpToCamKey.Name = "txtbox_tpToCamKey";
             this.txtbox_tpToCamKey.ReadOnly = true;
             this.txtbox_tpToCamKey.Size = new System.Drawing.Size(74, 20);
@@ -477,7 +498,7 @@
             // lbl_nofallKey
             // 
             this.lbl_nofallKey.AutoSize = true;
-            this.lbl_nofallKey.Location = new System.Drawing.Point(246, 155);
+            this.lbl_nofallKey.Location = new System.Drawing.Point(199, 184);
             this.lbl_nofallKey.Name = "lbl_nofallKey";
             this.lbl_nofallKey.Size = new System.Drawing.Size(37, 13);
             this.lbl_nofallKey.TabIndex = 45;
@@ -485,7 +506,7 @@
             // 
             // txtbox_nofallKey
             // 
-            this.txtbox_nofallKey.Location = new System.Drawing.Point(289, 152);
+            this.txtbox_nofallKey.Location = new System.Drawing.Point(242, 181);
             this.txtbox_nofallKey.Name = "txtbox_nofallKey";
             this.txtbox_nofallKey.ReadOnly = true;
             this.txtbox_nofallKey.Size = new System.Drawing.Size(74, 20);
@@ -495,7 +516,7 @@
             // lbl_freecamKey
             // 
             this.lbl_freecamKey.AutoSize = true;
-            this.lbl_freecamKey.Location = new System.Drawing.Point(232, 103);
+            this.lbl_freecamKey.Location = new System.Drawing.Point(185, 132);
             this.lbl_freecamKey.Name = "lbl_freecamKey";
             this.lbl_freecamKey.Size = new System.Drawing.Size(51, 13);
             this.lbl_freecamKey.TabIndex = 43;
@@ -503,7 +524,7 @@
             // 
             // txtbox_freecamKey
             // 
-            this.txtbox_freecamKey.Location = new System.Drawing.Point(289, 100);
+            this.txtbox_freecamKey.Location = new System.Drawing.Point(242, 129);
             this.txtbox_freecamKey.Name = "txtbox_freecamKey";
             this.txtbox_freecamKey.ReadOnly = true;
             this.txtbox_freecamKey.Size = new System.Drawing.Size(74, 20);
@@ -513,7 +534,7 @@
             // lbl_tpBackw
             // 
             this.lbl_tpBackw.AutoSize = true;
-            this.lbl_tpBackw.Location = new System.Drawing.Point(64, 233);
+            this.lbl_tpBackw.Location = new System.Drawing.Point(12, 262);
             this.lbl_tpBackw.Name = "lbl_tpBackw";
             this.lbl_tpBackw.Size = new System.Drawing.Size(80, 13);
             this.lbl_tpBackw.TabIndex = 41;
@@ -521,7 +542,7 @@
             // 
             // txtbox_TPBackwardKey
             // 
-            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(147, 230);
+            this.txtbox_TPBackwardKey.Location = new System.Drawing.Point(95, 259);
             this.txtbox_TPBackwardKey.Name = "txtbox_TPBackwardKey";
             this.txtbox_TPBackwardKey.ReadOnly = true;
             this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(74, 20);
@@ -531,7 +552,7 @@
             // lbl_tpForward
             // 
             this.lbl_tpForward.AutoSize = true;
-            this.lbl_tpForward.Location = new System.Drawing.Point(79, 207);
+            this.lbl_tpForward.Location = new System.Drawing.Point(27, 236);
             this.lbl_tpForward.Name = "lbl_tpForward";
             this.lbl_tpForward.Size = new System.Drawing.Size(65, 13);
             this.lbl_tpForward.TabIndex = 39;
@@ -539,7 +560,7 @@
             // 
             // txtbox_TPForwardKey
             // 
-            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(147, 204);
+            this.txtbox_TPForwardKey.Location = new System.Drawing.Point(95, 233);
             this.txtbox_TPForwardKey.Name = "txtbox_TPForwardKey";
             this.txtbox_TPForwardKey.ReadOnly = true;
             this.txtbox_TPForwardKey.Size = new System.Drawing.Size(74, 20);
@@ -549,7 +570,7 @@
             // lbl_tpRight
             // 
             this.lbl_tpRight.AutoSize = true;
-            this.lbl_tpRight.Location = new System.Drawing.Point(89, 181);
+            this.lbl_tpRight.Location = new System.Drawing.Point(37, 210);
             this.lbl_tpRight.Name = "lbl_tpRight";
             this.lbl_tpRight.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpRight.TabIndex = 37;
@@ -557,7 +578,7 @@
             // 
             // txtbox_TPRightKey
             // 
-            this.txtbox_TPRightKey.Location = new System.Drawing.Point(147, 178);
+            this.txtbox_TPRightKey.Location = new System.Drawing.Point(95, 207);
             this.txtbox_TPRightKey.Name = "txtbox_TPRightKey";
             this.txtbox_TPRightKey.ReadOnly = true;
             this.txtbox_TPRightKey.Size = new System.Drawing.Size(74, 20);
@@ -567,7 +588,7 @@
             // lbl_tpLeft
             // 
             this.lbl_tpLeft.AutoSize = true;
-            this.lbl_tpLeft.Location = new System.Drawing.Point(96, 155);
+            this.lbl_tpLeft.Location = new System.Drawing.Point(44, 184);
             this.lbl_tpLeft.Name = "lbl_tpLeft";
             this.lbl_tpLeft.Size = new System.Drawing.Size(45, 13);
             this.lbl_tpLeft.TabIndex = 35;
@@ -575,7 +596,7 @@
             // 
             // txtbox_TPLeftKey
             // 
-            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(147, 152);
+            this.txtbox_TPLeftKey.Location = new System.Drawing.Point(95, 181);
             this.txtbox_TPLeftKey.Name = "txtbox_TPLeftKey";
             this.txtbox_TPLeftKey.ReadOnly = true;
             this.txtbox_TPLeftKey.Size = new System.Drawing.Size(74, 20);
@@ -585,7 +606,7 @@
             // lbl_tpDown
             // 
             this.lbl_tpDown.AutoSize = true;
-            this.lbl_tpDown.Location = new System.Drawing.Point(86, 129);
+            this.lbl_tpDown.Location = new System.Drawing.Point(34, 158);
             this.lbl_tpDown.Name = "lbl_tpDown";
             this.lbl_tpDown.Size = new System.Drawing.Size(55, 13);
             this.lbl_tpDown.TabIndex = 33;
@@ -593,7 +614,7 @@
             // 
             // txtbox_TPDowNkey
             // 
-            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(147, 126);
+            this.txtbox_TPDowNkey.Location = new System.Drawing.Point(95, 155);
             this.txtbox_TPDowNkey.Name = "txtbox_TPDowNkey";
             this.txtbox_TPDowNkey.ReadOnly = true;
             this.txtbox_TPDowNkey.Size = new System.Drawing.Size(74, 20);
@@ -603,7 +624,7 @@
             // lbl_tpUp
             // 
             this.lbl_tpUp.AutoSize = true;
-            this.lbl_tpUp.Location = new System.Drawing.Point(100, 103);
+            this.lbl_tpUp.Location = new System.Drawing.Point(48, 132);
             this.lbl_tpUp.Name = "lbl_tpUp";
             this.lbl_tpUp.Size = new System.Drawing.Size(41, 13);
             this.lbl_tpUp.TabIndex = 31;
@@ -611,7 +632,7 @@
             // 
             // txtbox_TPUpKey
             // 
-            this.txtbox_TPUpKey.Location = new System.Drawing.Point(147, 100);
+            this.txtbox_TPUpKey.Location = new System.Drawing.Point(95, 129);
             this.txtbox_TPUpKey.Name = "txtbox_TPUpKey";
             this.txtbox_TPUpKey.ReadOnly = true;
             this.txtbox_TPUpKey.Size = new System.Drawing.Size(74, 20);
@@ -623,12 +644,12 @@
             // 
             this.trck_opcacity.AutoSize = false;
             this.trck_opcacity.BackColor = System.Drawing.Color.White;
-            this.trck_opcacity.Location = new System.Drawing.Point(4, 283);
+            this.trck_opcacity.Location = new System.Drawing.Point(355, 15);
             this.trck_opcacity.Maximum = 100;
             this.trck_opcacity.Minimum = 10;
             this.trck_opcacity.Name = "trck_opcacity";
             this.trck_opcacity.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trck_opcacity.Size = new System.Drawing.Size(25, 102);
+            this.trck_opcacity.Size = new System.Drawing.Size(25, 101);
             this.trck_opcacity.TabIndex = 29;
             this.trck_opcacity.Value = 100;
             this.trck_opcacity.Scroll += new System.EventHandler(this.trck_opcacity_Scroll);
@@ -636,11 +657,11 @@
             // lbl_opacity
             // 
             this.lbl_opacity.AutoSize = true;
-            this.lbl_opacity.Location = new System.Drawing.Point(1, 267);
+            this.lbl_opacity.Location = new System.Drawing.Point(295, 0);
             this.lbl_opacity.Name = "lbl_opacity";
-            this.lbl_opacity.Size = new System.Drawing.Size(85, 13);
+            this.lbl_opacity.Size = new System.Drawing.Size(88, 13);
             this.lbl_opacity.TabIndex = 28;
-            this.lbl_opacity.Text = "Window-Opacity";
+            this.lbl_opacity.Text = "Window-Opacity:";
             // 
             // box_playerHeight
             // 
@@ -719,7 +740,7 @@
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(436, 387);
+            this.materialTabControl1.Size = new System.Drawing.Size(450, 416);
             this.materialTabControl1.TabIndex = 30;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -754,7 +775,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(428, 360);
+            this.tabPage1.Size = new System.Drawing.Size(442, 389);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Movement";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -763,19 +784,20 @@
             // 
             this.box_noKnockback.AutoSize = true;
             this.box_noKnockback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noKnockback.Location = new System.Drawing.Point(106, 77);
+            this.box_noKnockback.Location = new System.Drawing.Point(106, 72);
             this.box_noKnockback.Name = "box_noKnockback";
             this.box_noKnockback.Size = new System.Drawing.Size(95, 17);
             this.box_noKnockback.TabIndex = 41;
             this.box_noKnockback.Text = "No Knockback";
-            this.tipControl.SetToolTip(this.box_noKnockback, "You fall very slow");
+            this.tipControl.SetToolTip(this.box_noKnockback, "Outdated atm");
             this.box_noKnockback.UseVisualStyleBackColor = true;
             this.box_noKnockback.CheckedChanged += new System.EventHandler(this.box_noKnockback_CheckedChanged);
             // 
             // lbl_wFloor
             // 
+            this.lbl_wFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_wFloor.AutoSize = true;
-            this.lbl_wFloor.Location = new System.Drawing.Point(3, 226);
+            this.lbl_wFloor.Location = new System.Drawing.Point(3, 275);
             this.lbl_wFloor.Name = "lbl_wFloor";
             this.lbl_wFloor.Size = new System.Drawing.Size(112, 13);
             this.lbl_wFloor.TabIndex = 40;
@@ -783,9 +805,10 @@
             // 
             // trck_wFloor
             // 
+            this.trck_wFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trck_wFloor.AutoSize = false;
             this.trck_wFloor.BackColor = System.Drawing.Color.White;
-            this.trck_wFloor.Location = new System.Drawing.Point(6, 242);
+            this.trck_wFloor.Location = new System.Drawing.Point(6, 291);
             this.trck_wFloor.Name = "trck_wFloor";
             this.trck_wFloor.Size = new System.Drawing.Size(104, 23);
             this.trck_wFloor.TabIndex = 39;
@@ -795,7 +818,7 @@
             // 
             this.box_infJump.AutoSize = true;
             this.box_infJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infJump.Location = new System.Drawing.Point(6, 191);
+            this.box_infJump.Location = new System.Drawing.Point(6, 186);
             this.box_infJump.Name = "box_infJump";
             this.box_infJump.Size = new System.Drawing.Size(81, 17);
             this.box_infJump.TabIndex = 38;
@@ -808,7 +831,7 @@
             // 
             this.box_flyMode.AutoSize = true;
             this.box_flyMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_flyMode.Location = new System.Drawing.Point(6, 54);
+            this.box_flyMode.Location = new System.Drawing.Point(6, 49);
             this.box_flyMode.Name = "box_flyMode";
             this.box_flyMode.Size = new System.Drawing.Size(66, 17);
             this.box_flyMode.TabIndex = 37;
@@ -820,7 +843,7 @@
             // lbl_camSpeed
             // 
             this.lbl_camSpeed.AutoSize = true;
-            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 34);
+            this.lbl_camSpeed.Location = new System.Drawing.Point(113, 29);
             this.lbl_camSpeed.Name = "lbl_camSpeed";
             this.lbl_camSpeed.Size = new System.Drawing.Size(54, 13);
             this.lbl_camSpeed.TabIndex = 36;
@@ -830,7 +853,7 @@
             // 
             this.trckbar_camSpeed.AutoSize = false;
             this.trckbar_camSpeed.BackColor = System.Drawing.Color.White;
-            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 48);
+            this.trckbar_camSpeed.Location = new System.Drawing.Point(116, 43);
             this.trckbar_camSpeed.Minimum = 1;
             this.trckbar_camSpeed.Name = "trckbar_camSpeed";
             this.trckbar_camSpeed.Size = new System.Drawing.Size(79, 23);
@@ -842,7 +865,7 @@
             // 
             this.box_noAnimations.AutoSize = true;
             this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noAnimations.Location = new System.Drawing.Point(6, 168);
+            this.box_noAnimations.Location = new System.Drawing.Point(6, 163);
             this.box_noAnimations.Name = "box_noAnimations";
             this.box_noAnimations.Size = new System.Drawing.Size(91, 17);
             this.box_noAnimations.TabIndex = 34;
@@ -855,7 +878,7 @@
             // 
             this.box_noCamCollision.AutoSize = true;
             this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCamCollision.Location = new System.Drawing.Point(6, 145);
+            this.box_noCamCollision.Location = new System.Drawing.Point(6, 140);
             this.box_noCamCollision.Name = "box_noCamCollision";
             this.box_noCamCollision.Size = new System.Drawing.Size(102, 17);
             this.box_noCamCollision.TabIndex = 31;
@@ -868,7 +891,7 @@
             // 
             this.box_noCollision.AutoSize = true;
             this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_noCollision.Location = new System.Drawing.Point(6, 122);
+            this.box_noCollision.Location = new System.Drawing.Point(6, 117);
             this.box_noCollision.Name = "box_noCollision";
             this.box_noCollision.Size = new System.Drawing.Size(78, 17);
             this.box_noCollision.TabIndex = 30;
@@ -904,15 +927,25 @@
             this.tabPage4.ImageKey = "portal.ico";
             this.tabPage4.Location = new System.Drawing.Point(4, 23);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(428, 360);
+            this.tabPage4.Size = new System.Drawing.Size(442, 389);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Teleport";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // lbl_yFloorValue
+            // 
+            this.lbl_yFloorValue.AutoSize = true;
+            this.lbl_yFloorValue.Location = new System.Drawing.Point(13, 6);
+            this.lbl_yFloorValue.Name = "lbl_yFloorValue";
+            this.lbl_yFloorValue.Size = new System.Drawing.Size(43, 13);
+            this.lbl_yFloorValue.TabIndex = 41;
+            this.lbl_yFloorValue.Text = "FloorY: ";
+            // 
             // btn_removeLocation
             // 
+            this.btn_removeLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_removeLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeLocation.Location = new System.Drawing.Point(340, 35);
+            this.btn_removeLocation.Location = new System.Drawing.Point(411, 38);
             this.btn_removeLocation.Name = "btn_removeLocation";
             this.btn_removeLocation.Size = new System.Drawing.Size(24, 23);
             this.btn_removeLocation.TabIndex = 40;
@@ -923,8 +956,9 @@
             // 
             // btn_loadLocations
             // 
+            this.btn_loadLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_loadLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadLocations.Location = new System.Drawing.Point(253, 347);
+            this.btn_loadLocations.Location = new System.Drawing.Point(324, 350);
             this.btn_loadLocations.Name = "btn_loadLocations";
             this.btn_loadLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_loadLocations.TabIndex = 39;
@@ -935,8 +969,9 @@
             // 
             // btn_clearLocations
             // 
+            this.btn_clearLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clearLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearLocations.Location = new System.Drawing.Point(140, 347);
+            this.btn_clearLocations.Location = new System.Drawing.Point(211, 350);
             this.btn_clearLocations.Name = "btn_clearLocations";
             this.btn_clearLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_clearLocations.TabIndex = 38;
@@ -947,8 +982,9 @@
             // 
             // btn_saveLocations
             // 
+            this.btn_saveLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveLocations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocations.Location = new System.Drawing.Point(253, 318);
+            this.btn_saveLocations.Location = new System.Drawing.Point(324, 321);
             this.btn_saveLocations.Name = "btn_saveLocations";
             this.btn_saveLocations.Size = new System.Drawing.Size(81, 23);
             this.btn_saveLocations.TabIndex = 37;
@@ -960,7 +996,7 @@
             // lbl_savedCoords
             // 
             this.lbl_savedCoords.AutoSize = true;
-            this.lbl_savedCoords.Location = new System.Drawing.Point(72, 26);
+            this.lbl_savedCoords.Location = new System.Drawing.Point(72, 22);
             this.lbl_savedCoords.Name = "lbl_savedCoords";
             this.lbl_savedCoords.Size = new System.Drawing.Size(17, 52);
             this.lbl_savedCoords.TabIndex = 36;
@@ -968,8 +1004,9 @@
             // 
             // btn_setSelected
             // 
+            this.btn_setSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_setSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_setSelected.Location = new System.Drawing.Point(140, 318);
+            this.btn_setSelected.Location = new System.Drawing.Point(211, 321);
             this.btn_setSelected.Name = "btn_setSelected";
             this.btn_setSelected.Size = new System.Drawing.Size(81, 23);
             this.btn_setSelected.TabIndex = 35;
@@ -981,7 +1018,7 @@
             // btn_teleport
             // 
             this.btn_teleport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_teleport.Location = new System.Drawing.Point(16, 110);
+            this.btn_teleport.Location = new System.Drawing.Point(16, 106);
             this.btn_teleport.Name = "btn_teleport";
             this.btn_teleport.Size = new System.Drawing.Size(59, 23);
             this.btn_teleport.TabIndex = 34;
@@ -992,8 +1029,9 @@
             // 
             // lbl_Locs
             // 
+            this.lbl_Locs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_Locs.AutoSize = true;
-            this.lbl_Locs.Location = new System.Drawing.Point(137, 19);
+            this.lbl_Locs.Location = new System.Drawing.Point(208, 22);
             this.lbl_Locs.Name = "lbl_Locs";
             this.lbl_Locs.Size = new System.Drawing.Size(94, 13);
             this.lbl_Locs.TabIndex = 33;
@@ -1001,8 +1039,9 @@
             // 
             // lbl_locName
             // 
+            this.lbl_locName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_locName.AutoSize = true;
-            this.lbl_locName.Location = new System.Drawing.Point(4, 217);
+            this.lbl_locName.Location = new System.Drawing.Point(9, 218);
             this.lbl_locName.Name = "lbl_locName";
             this.lbl_locName.Size = new System.Drawing.Size(38, 13);
             this.lbl_locName.TabIndex = 32;
@@ -1010,7 +1049,8 @@
             // 
             // txt_tpnameBox
             // 
-            this.txt_tpnameBox.Location = new System.Drawing.Point(48, 214);
+            this.txt_tpnameBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_tpnameBox.Location = new System.Drawing.Point(53, 215);
             this.txt_tpnameBox.Name = "txt_tpnameBox";
             this.txt_tpnameBox.Size = new System.Drawing.Size(78, 20);
             this.txt_tpnameBox.TabIndex = 31;
@@ -1018,8 +1058,9 @@
             // 
             // btn_addCustomTP
             // 
+            this.btn_addCustomTP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_addCustomTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addCustomTP.Location = new System.Drawing.Point(36, 347);
+            this.btn_addCustomTP.Location = new System.Drawing.Point(107, 350);
             this.btn_addCustomTP.Name = "btn_addCustomTP";
             this.btn_addCustomTP.Size = new System.Drawing.Size(81, 23);
             this.btn_addCustomTP.TabIndex = 30;
@@ -1030,8 +1071,9 @@
             // 
             // listbox_teleportLocations
             // 
+            this.listbox_teleportLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listbox_teleportLocations.FormattingEnabled = true;
-            this.listbox_teleportLocations.Location = new System.Drawing.Point(140, 35);
+            this.listbox_teleportLocations.Location = new System.Drawing.Point(211, 38);
             this.listbox_teleportLocations.Name = "listbox_teleportLocations";
             this.listbox_teleportLocations.Size = new System.Drawing.Size(194, 277);
             this.listbox_teleportLocations.TabIndex = 27;
@@ -1039,7 +1081,7 @@
             // btn_saveLocation
             // 
             this.btn_saveLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveLocation.Location = new System.Drawing.Point(16, 81);
+            this.btn_saveLocation.Location = new System.Drawing.Point(16, 77);
             this.btn_saveLocation.Name = "btn_saveLocation";
             this.btn_saveLocation.Size = new System.Drawing.Size(59, 23);
             this.btn_saveLocation.TabIndex = 26;
@@ -1050,6 +1092,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbl_flyBackwards);
+            this.tabPage2.Controls.Add(this.txtbox_flybackwardskey);
+            this.tabPage2.Controls.Add(this.lbl_flyForwardKey);
+            this.tabPage2.Controls.Add(this.txtbox_flyforwardskey);
             this.tabPage2.Controls.Add(this.btn_saveHotkeys);
             this.tabPage2.Controls.Add(this.btn_clearHotkeys);
             this.tabPage2.Controls.Add(this.box_infReach);
@@ -1087,15 +1133,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(428, 360);
+            this.tabPage2.Size = new System.Drawing.Size(442, 389);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btn_saveHotkeys
             // 
+            this.btn_saveHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveHotkeys.Location = new System.Drawing.Point(278, 298);
+            this.btn_saveHotkeys.Location = new System.Drawing.Point(140, 312);
             this.btn_saveHotkeys.Name = "btn_saveHotkeys";
             this.btn_saveHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_saveHotkeys.TabIndex = 56;
@@ -1105,8 +1152,9 @@
             // 
             // btn_clearHotkeys
             // 
+            this.btn_clearHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearHotkeys.Location = new System.Drawing.Point(278, 269);
+            this.btn_clearHotkeys.Location = new System.Drawing.Point(231, 312);
             this.btn_clearHotkeys.Name = "btn_clearHotkeys";
             this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_clearHotkeys.TabIndex = 55;
@@ -1143,7 +1191,7 @@
             // lbl_speedKey
             // 
             this.lbl_speedKey.AutoSize = true;
-            this.lbl_speedKey.Location = new System.Drawing.Point(246, 203);
+            this.lbl_speedKey.Location = new System.Drawing.Point(199, 232);
             this.lbl_speedKey.Name = "lbl_speedKey";
             this.lbl_speedKey.Size = new System.Drawing.Size(41, 13);
             this.lbl_speedKey.TabIndex = 51;
@@ -1162,7 +1210,7 @@
             this.tabPage3.ImageKey = "feather_38326.ico";
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(428, 360);
+            this.tabPage3.Size = new System.Drawing.Size(442, 389);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Scripts";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1171,7 +1219,7 @@
             // 
             this.lbl_scriptsMaintenance.AutoSize = true;
             this.lbl_scriptsMaintenance.Font = new System.Drawing.Font("Impact", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_scriptsMaintenance.Location = new System.Drawing.Point(3, 295);
+            this.lbl_scriptsMaintenance.Location = new System.Drawing.Point(13, 318);
             this.lbl_scriptsMaintenance.Name = "lbl_scriptsMaintenance";
             this.lbl_scriptsMaintenance.Size = new System.Drawing.Size(255, 60);
             this.lbl_scriptsMaintenance.TabIndex = 6;
@@ -1179,12 +1227,11 @@
             // 
             // btn_loadScript
             // 
-            this.btn_loadScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_loadScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_loadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_loadScript.Location = new System.Drawing.Point(347, 318);
+            this.btn_loadScript.Location = new System.Drawing.Point(350, 328);
             this.btn_loadScript.Name = "btn_loadScript";
-            this.btn_loadScript.Size = new System.Drawing.Size(43, 23);
+            this.btn_loadScript.Size = new System.Drawing.Size(43, 43);
             this.btn_loadScript.TabIndex = 5;
             this.btn_loadScript.Text = "Load";
             this.btn_loadScript.UseVisualStyleBackColor = true;
@@ -1193,23 +1240,21 @@
             // txtbox_script
             // 
             this.txtbox_script.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtbox_script.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtbox_script.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbox_script.Location = new System.Drawing.Point(0, 0);
             this.txtbox_script.Multiline = true;
             this.txtbox_script.Name = "txtbox_script";
             this.txtbox_script.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtbox_script.Size = new System.Drawing.Size(428, 292);
+            this.txtbox_script.Size = new System.Drawing.Size(428, 312);
             this.txtbox_script.TabIndex = 0;
             // 
             // btn_saveScript
             // 
-            this.btn_saveScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_saveScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_saveScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveScript.Location = new System.Drawing.Point(298, 318);
+            this.btn_saveScript.Location = new System.Drawing.Point(301, 328);
             this.btn_saveScript.Name = "btn_saveScript";
-            this.btn_saveScript.Size = new System.Drawing.Size(43, 23);
+            this.btn_saveScript.Size = new System.Drawing.Size(43, 43);
             this.btn_saveScript.TabIndex = 4;
             this.btn_saveScript.Text = "Save";
             this.btn_saveScript.UseVisualStyleBackColor = true;
@@ -1220,7 +1265,7 @@
             this.btn_runScript.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_runScript.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_runScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_runScript.Location = new System.Drawing.Point(183, 318);
+            this.btn_runScript.Location = new System.Drawing.Point(183, 328);
             this.btn_runScript.Name = "btn_runScript";
             this.btn_runScript.Size = new System.Drawing.Size(75, 23);
             this.btn_runScript.TabIndex = 1;
@@ -1234,7 +1279,7 @@
             this.btn_showVars.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_showVars.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_showVars.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_showVars.Location = new System.Drawing.Point(115, 318);
+            this.btn_showVars.Location = new System.Drawing.Point(115, 328);
             this.btn_showVars.Name = "btn_showVars";
             this.btn_showVars.Size = new System.Drawing.Size(38, 23);
             this.btn_showVars.TabIndex = 3;
@@ -1248,7 +1293,7 @@
             this.btn_example.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_example.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_example.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_example.Location = new System.Drawing.Point(23, 318);
+            this.btn_example.Location = new System.Drawing.Point(23, 328);
             this.btn_example.Name = "btn_example";
             this.btn_example.Size = new System.Drawing.Size(88, 23);
             this.btn_example.TabIndex = 2;
@@ -1269,7 +1314,7 @@
             this.tabPage5.ImageKey = "credits.ico";
             this.tabPage5.Location = new System.Drawing.Point(4, 23);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(428, 360);
+            this.tabPage5.Size = new System.Drawing.Size(442, 389);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Credits";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1356,20 +1401,47 @@
             this.pvpTimer.Interval = 10000;
             this.pvpTimer.Tick += new System.EventHandler(this.pvpTimer_Tick);
             // 
-            // lbl_yFloorValue
+            // lbl_flyForwardKey
             // 
-            this.lbl_yFloorValue.AutoSize = true;
-            this.lbl_yFloorValue.Location = new System.Drawing.Point(13, 6);
-            this.lbl_yFloorValue.Name = "lbl_yFloorValue";
-            this.lbl_yFloorValue.Size = new System.Drawing.Size(43, 13);
-            this.lbl_yFloorValue.TabIndex = 41;
-            this.lbl_yFloorValue.Text = "FloorY: ";
+            this.lbl_flyForwardKey.AutoSize = true;
+            this.lbl_flyForwardKey.Location = new System.Drawing.Point(174, 258);
+            this.lbl_flyForwardKey.Name = "lbl_flyForwardKey";
+            this.lbl_flyForwardKey.Size = new System.Drawing.Size(66, 13);
+            this.lbl_flyForwardKey.TabIndex = 58;
+            this.lbl_flyForwardKey.Text = "Fly forwards:";
+            // 
+            // txtbox_flyforwardskey
+            // 
+            this.txtbox_flyforwardskey.Location = new System.Drawing.Point(242, 255);
+            this.txtbox_flyforwardskey.Name = "txtbox_flyforwardskey";
+            this.txtbox_flyforwardskey.ReadOnly = true;
+            this.txtbox_flyforwardskey.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flyforwardskey.TabIndex = 57;
+            this.txtbox_flyforwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyforwardskey_KeyDown);
+            // 
+            // lbl_flyBackwards
+            // 
+            this.lbl_flyBackwards.AutoSize = true;
+            this.lbl_flyBackwards.Location = new System.Drawing.Point(14, 288);
+            this.lbl_flyBackwards.Name = "lbl_flyBackwards";
+            this.lbl_flyBackwards.Size = new System.Drawing.Size(78, 13);
+            this.lbl_flyBackwards.TabIndex = 60;
+            this.lbl_flyBackwards.Text = "Fly backwards:";
+            // 
+            // txtbox_flybackwardskey
+            // 
+            this.txtbox_flybackwardskey.Location = new System.Drawing.Point(95, 285);
+            this.txtbox_flybackwardskey.Name = "txtbox_flybackwardskey";
+            this.txtbox_flybackwardskey.ReadOnly = true;
+            this.txtbox_flybackwardskey.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flybackwardskey.TabIndex = 59;
+            this.txtbox_flybackwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flybackwardskey_KeyDown);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 454);
+            this.ClientSize = new System.Drawing.Size(456, 483);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.lbl_title);
             this.DrawerShowIconsWhenHidden = true;
@@ -1377,7 +1449,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Sizable = false;
             ((System.ComponentModel.ISupportInitialize)(this.trckbr_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trck_opcacity)).EndInit();
@@ -1507,6 +1578,10 @@
         private System.Windows.Forms.Label lbl_scriptsMaintenance;
         private System.Windows.Forms.CheckBox box_noKnockback;
         private System.Windows.Forms.Label lbl_yFloorValue;
+        private System.Windows.Forms.Label lbl_flyForwardKey;
+        private System.Windows.Forms.TextBox txtbox_flyforwardskey;
+        private System.Windows.Forms.Label lbl_flyBackwards;
+        private System.Windows.Forms.TextBox txtbox_flybackwardskey;
     }
 }
 

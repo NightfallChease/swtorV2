@@ -18,5 +18,7 @@ namespace SWTOR_External
         public VirtualKeyCode NofallKey { get; set; }
         public VirtualKeyCode GlideKey { get; set; }
         public VirtualKeyCode SpeedKey { get; set; }
+        public VirtualKeyCode flyforwardsKey { get; set; }
+        public VirtualKeyCode flybackwardsKey { get; set; }
     }
 }
