@@ -102,6 +102,8 @@ namespace SWTOR_External
         private VirtualKeyCode SpeedKey;
         private VirtualKeyCode forwardsKey;
         private VirtualKeyCode backwardsKey;
+        private VirtualKeyCode flyUpKey;
+        private VirtualKeyCode flyDownKey;
         public string PlayerBaseAddress = "";
         public string CamBaseAddress = "";
         public UIntPtr playerBaseUInt;
@@ -799,6 +801,8 @@ float playerHeight
                     SpeedKey = settings.SpeedKey;
                     forwardsKey = settings.flyforwardsKey;
                     backwardsKey = settings.flybackwardsKey;
+                    flyDownKey = settings.flyDownKey;
+                    flyUpKey = settings.flyupKey;
 
                     txtbox_TPUpKey.Text = TPUpKey.ToString();
                     txtbox_TPDowNkey.Text = TPDownKey.ToString();
@@ -813,6 +817,8 @@ float playerHeight
                     txtbox_speedKey.Text = SpeedKey.ToString();
                     txtbox_flyforwardskey.Text = forwardsKey.ToString();
                     txtbox_flybackwardskey.Text = backwardsKey.ToString();
+                    txtbox_flyDown.Text = flyDownKey.ToString();
+                    txtbox_flyUp.Text = flyUpKey.ToString();
                 }
             }
             else
@@ -1022,11 +1028,11 @@ float playerHeight
                 isSpeedBoostActive = false;
             }
 
-            if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT))
+            if (sim.InputDeviceState.IsHardwareKeyDown(flyUpKey))
             {
                 speedY += speed * 0.2f;
             }
-            else if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.CONTROL))
+            else if (sim.InputDeviceState.IsHardwareKeyDown(flyDownKey))
             {
                 speedY -= speed * 0.2f;
             }
@@ -1107,12 +1113,12 @@ float playerHeight
                 isSpeedBoostActive = false;
             }
 
-            if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.SHIFT))
+            if (sim.InputDeviceState.IsHardwareKeyDown(flyUpKey))
             {
                 speedY += speed * 0.2f;
                 valueManipulated = true;
             }
-            else if (sim.InputDeviceState.IsHardwareKeyDown(WindowsInput.Native.VirtualKeyCode.CONTROL))
+            else if (sim.InputDeviceState.IsHardwareKeyDown(flyDownKey))
             {
                 speedY -= speed * 0.2f;
                 valueManipulated = true;
@@ -1652,8 +1658,6 @@ float playerHeight
                 bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
                 bool isGlideKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(GlideKey);
                 bool isSpeedKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(SpeedKey);
-                bool isFlyForwardKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(forwardsKey);
-                bool isFlyBackwardsKeyPressed = sim.InputDeviceState.IsHardwareKeyDown (backwardsKey);
 
                 try
                 {
@@ -2026,6 +2030,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             txtbox_speedKey.Text = "";
             txtbox_flybackwardskey.Text = "";
             txtbox_flyforwardskey.Text = "";
+            txtbox_flyUp.Text = "";
+            txtbox_flyDown.Text = "";
 
             // Reset the associated hotkey variables to a default value
             infJumpKey = VirtualKeyCode.NONAME;
@@ -2042,6 +2048,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             SpeedKey = VirtualKeyCode.NONAME;
             forwardsKey = VirtualKeyCode.NONAME;
             backwardsKey = VirtualKeyCode.NONAME;
+            flyDownKey = VirtualKeyCode.NONAME;
+            flyUpKey = VirtualKeyCode.NONAME;
         }
         private void btn_saveHotkeys_Click(object sender, EventArgs e)
         {
@@ -2059,7 +2067,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 GlideKey = GlideKey,
                 SpeedKey = SpeedKey,
                 flyforwardsKey = forwardsKey,
-                flybackwardsKey = backwardsKey
+                flybackwardsKey = backwardsKey,
+                flyDownKey = flyDownKey,
+                flyupKey = flyUpKey
             };
 
             using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
@@ -2160,7 +2170,16 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             backwardsKey = (VirtualKeyCode)e.KeyCode;
             txtbox_flybackwardskey.Text = backwardsKey.ToString();
         }
-
+        private void txtbox_flyDown_KeyDown(object sender, KeyEventArgs e)
+        {
+            flyDownKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_flyDown.Text = flyDownKey.ToString();
+        }
+        private void txtbox_flyUp_KeyDown(object sender, KeyEventArgs e)
+        {
+            flyUpKey = (VirtualKeyCode)e.KeyCode;
+            txtbox_flyUp.Text = flyUpKey.ToString();
+        }
         #endregion
 
         #region Scripting
@@ -2268,6 +2287,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             lbl_credits4.Text = $"Count : {creditClickerCount}";
             pnl_creditClicker.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
         }
+
 
         #endregion
 

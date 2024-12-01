@@ -114,6 +114,10 @@
             this.listbox_teleportLocations = new System.Windows.Forms.ListBox();
             this.btn_saveLocation = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbl_flyUp = new System.Windows.Forms.Label();
+            this.txtbox_flyUp = new System.Windows.Forms.TextBox();
+            this.lbl_flyDown = new System.Windows.Forms.Label();
+            this.txtbox_flyDown = new System.Windows.Forms.TextBox();
             this.lbl_flyBackwards = new System.Windows.Forms.Label();
             this.txtbox_flybackwardskey = new System.Windows.Forms.TextBox();
             this.lbl_flyForwardKey = new System.Windows.Forms.Label();
@@ -1093,6 +1097,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbl_flyUp);
+            this.tabPage2.Controls.Add(this.txtbox_flyUp);
+            this.tabPage2.Controls.Add(this.lbl_flyDown);
+            this.tabPage2.Controls.Add(this.txtbox_flyDown);
             this.tabPage2.Controls.Add(this.lbl_flyBackwards);
             this.tabPage2.Controls.Add(this.txtbox_flybackwardskey);
             this.tabPage2.Controls.Add(this.lbl_flyForwardKey);
@@ -1139,6 +1147,42 @@
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lbl_flyUp
+            // 
+            this.lbl_flyUp.AutoSize = true;
+            this.lbl_flyUp.Location = new System.Drawing.Point(54, 314);
+            this.lbl_flyUp.Name = "lbl_flyUp";
+            this.lbl_flyUp.Size = new System.Drawing.Size(38, 13);
+            this.lbl_flyUp.TabIndex = 64;
+            this.lbl_flyUp.Text = "Fly up:";
+            // 
+            // txtbox_flyUp
+            // 
+            this.txtbox_flyUp.Location = new System.Drawing.Point(95, 311);
+            this.txtbox_flyUp.Name = "txtbox_flyUp";
+            this.txtbox_flyUp.ReadOnly = true;
+            this.txtbox_flyUp.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flyUp.TabIndex = 63;
+            this.txtbox_flyUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyUp_KeyDown);
+            // 
+            // lbl_flyDown
+            // 
+            this.lbl_flyDown.AutoSize = true;
+            this.lbl_flyDown.Location = new System.Drawing.Point(188, 288);
+            this.lbl_flyDown.Name = "lbl_flyDown";
+            this.lbl_flyDown.Size = new System.Drawing.Size(52, 13);
+            this.lbl_flyDown.TabIndex = 62;
+            this.lbl_flyDown.Text = "Fly down:";
+            // 
+            // txtbox_flyDown
+            // 
+            this.txtbox_flyDown.Location = new System.Drawing.Point(242, 285);
+            this.txtbox_flyDown.Name = "txtbox_flyDown";
+            this.txtbox_flyDown.ReadOnly = true;
+            this.txtbox_flyDown.Size = new System.Drawing.Size(74, 20);
+            this.txtbox_flyDown.TabIndex = 61;
+            this.txtbox_flyDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyDown_KeyDown);
+            // 
             // lbl_flyBackwards
             // 
             this.lbl_flyBackwards.AutoSize = true;
@@ -1179,7 +1223,7 @@
             // 
             this.btn_saveHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveHotkeys.Location = new System.Drawing.Point(140, 312);
+            this.btn_saveHotkeys.Location = new System.Drawing.Point(107, 340);
             this.btn_saveHotkeys.Name = "btn_saveHotkeys";
             this.btn_saveHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_saveHotkeys.TabIndex = 56;
@@ -1191,7 +1235,7 @@
             // 
             this.btn_clearHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clearHotkeys.Location = new System.Drawing.Point(231, 312);
+            this.btn_clearHotkeys.Location = new System.Drawing.Point(198, 340);
             this.btn_clearHotkeys.Name = "btn_clearHotkeys";
             this.btn_clearHotkeys.Size = new System.Drawing.Size(85, 23);
             this.btn_clearHotkeys.TabIndex = 55;
@@ -1583,6 +1627,10 @@
         private System.Windows.Forms.TextBox txtbox_flyforwardskey;
         private System.Windows.Forms.Label lbl_flyBackwards;
         private System.Windows.Forms.TextBox txtbox_flybackwardskey;
+        private System.Windows.Forms.Label lbl_flyUp;
+        private System.Windows.Forms.TextBox txtbox_flyUp;
+        private System.Windows.Forms.Label lbl_flyDown;
+        private System.Windows.Forms.TextBox txtbox_flyDown;
     }
 }
 

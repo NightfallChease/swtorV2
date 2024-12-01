@@ -20,5 +20,8 @@ namespace SWTOR_External
         public VirtualKeyCode SpeedKey { get; set; }
         public VirtualKeyCode flyforwardsKey { get; set; }
         public VirtualKeyCode flybackwardsKey { get; set; }
+        public VirtualKeyCode flyDownKey { get; set; }
+        public VirtualKeyCode flyupKey { get; set; }
+
     }
 }
