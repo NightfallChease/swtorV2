@@ -38,8 +38,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.7.sw";
-        private string currentVersion = "v8.7";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.8.sw";
+        private string currentVersion = "v8.8";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
