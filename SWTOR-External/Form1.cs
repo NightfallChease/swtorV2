@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
-using System.Runtime.InteropServices;
 
 namespace SWTOR_External 
 {
@@ -826,49 +825,21 @@ float playerHeight
                 logToConsole("No hotkey settings found.");
             }
         }
-        private void loadLocations()
-        {
-            try
+        private void SetControlColors(Control.ControlCollection controls, Color backColor, Color foreColor)
             {
-                if (File.Exists("locations.dat"))
+                foreach (Control control in controls)
                 {
-                    using (FileStream fs = new FileStream("locations.dat", FileMode.Open))
+                    if (control is Button || control is TextBox || control is TrackBar)
                     {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        List<customLocation> savedList = (List<customLocation>)formatter.Deserialize(fs);
-
-                        locationList = savedList;
-                        // Sort the list by customName
-                        locationList = locationList.OrderBy(loc => loc.customName).ToList();
-                        // Update the listbox
-                        listbox_teleportLocations.Items.Clear(); // Clear existing items to avoid duplicates
-                        foreach (customLocation loc in locationList)
-                        {
-                            listbox_teleportLocations.Items.Add(loc.customName);
-                        }
+                        control.BackColor = backColor;
+                        control.ForeColor = foreColor;
+                    }
+                    else if (control.HasChildren)
+                    {
+                        SetControlColors(control.Controls, backColor, foreColor);
                     }
                 }
-                else
-                {
-                    //logToConsole("No location settings found.");
-                }
-            }catch { }
-        }
-        private void SetControlColors(Control.ControlCollection controls, Color backColor, Color foreColor)
-        {
-            foreach (Control control in controls)
-            {
-                if (control is Button || control is TextBox || control is TrackBar)
-                {
-                    control.BackColor = backColor;
-                    control.ForeColor = foreColor;
-                }
-                else if (control.HasChildren)
-                {
-                    SetControlColors(control.Controls, backColor, foreColor);
-                }
             }
-        }
         private void toggle_freecam()
         {
             if (!cameraYPatched)
@@ -1750,15 +1721,61 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             // Wait for the process to exit asynchronously
             System.Threading.Tasks.Task.Run(() => process.WaitForExit());
         }
+        //private void saveLocations()
+        //{
+        //    using (FileStream fs = new FileStream("locations.dat", FileMode.Create))
+        //    {
+        //        BinaryFormatter formatter = new BinaryFormatter();
+        //        formatter.Serialize(fs, locationList);
+        //    }
+        //    MessageBox.Show("Saved locations");
+        //}
         private void saveLocations()
         {
-            using (FileStream fs = new FileStream("locations.dat", FileMode.Create))
+            try
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, locationList);
+                using (StreamWriter writer = new StreamWriter("locations.xml"))
+                {
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<customLocation>));
+                    serializer.Serialize(writer, locationList);
+                }
+
+                MessageBox.Show("Saved locations");
             }
-            MessageBox.Show("Saved locations");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving locations: {ex.Message}");
+            }
         }
+        private void loadLocations()
+        {
+            try
+            {
+                if (File.Exists("locations.xml"))
+                {
+                    using (StreamReader reader = new StreamReader("locations.xml"))
+                    {
+                        var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<customLocation>));
+                        locationList = (List<customLocation>)serializer.Deserialize(reader);
+
+                        // Sort the list by customName
+                        locationList = locationList.OrderBy(loc => loc.customName).ToList();
+
+                        // Update the listbox
+                        listbox_teleportLocations.Items.Clear();
+                        foreach (var loc in locationList)
+                        {
+                            listbox_teleportLocations.Items.Add(loc.customName);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading locations: {ex.Message}");
+            }
+        }
+
         private void restoreOriginalCode()
         {
             try
@@ -2293,4 +2310,12 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
     }
+    public class customLocation
+    {
+        public string customName { get; set; } // The name of the location
+        public double X { get; set; }          // X-coordinate of the location
+        public double Y { get; set; }          // Y-coordinate of the location
+    }
+
+
 }
