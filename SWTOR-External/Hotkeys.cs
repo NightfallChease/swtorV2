@@ -22,6 +22,7 @@ namespace SWTOR_External
         public VirtualKeyCode flybackwardsKey { get; set; }
         public VirtualKeyCode flyDownKey { get; set; }
         public VirtualKeyCode flyupKey { get; set; }
+        public VirtualKeyCode enableSpamKey { get; set; }
 
     }
 }

@@ -33,6 +33,11 @@ namespace SWTOR_External
         */
 
         #region vars
+        private bool moveAfterMsg = false;
+        private bool msgSpamFlag = false;
+        private bool enableSpam = false;
+        private DateTime dateTimeBuffer = DateTime.Now;
+        private bool antiAFK = false;
         private int rubberbandCount;
         private int creditClickerCount;
         private Vector3 lastPos;
@@ -103,6 +108,7 @@ namespace SWTOR_External
         private VirtualKeyCode backwardsKey;
         private VirtualKeyCode flyUpKey;
         private VirtualKeyCode flyDownKey;
+        private VirtualKeyCode enableSpamKey;
         public string PlayerBaseAddress = "";
         public string CamBaseAddress = "";
         public UIntPtr playerBaseUInt;
@@ -446,6 +452,11 @@ float playerHeight
                         }
                     }
                 }
+
+                if (antiAFK)
+                {
+                    antiAFKfunc();
+                }
             }
         }
         private void timer_getBase_Tick(object sender, EventArgs e)
@@ -485,6 +496,29 @@ float playerHeight
         #endregion
 
         #region Checkboxes
+        private void box_chatSpamMove_CheckedChanged(object sender, EventArgs e)
+        {
+            moveAfterMsg = !moveAfterMsg;
+        }
+        private void box_chatSpammer_CheckedChanged(object sender, EventArgs e)
+        {
+            Thread msgSpammerThread = new Thread(chatSpamLoop) { IsBackground = true };
+            msgSpamFlag = !msgSpamFlag;
+
+            if (msgSpamFlag)
+            {
+                msgSpammerThread.Start();
+            }
+        }
+        private void box_antiAfk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!antiAFK)
+            {
+                MessageBox.Show("Make sure you are tabbed into the game", "Quick tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            antiAFK = !antiAFK;
+            dateTimeBuffer = DateTime.Now;
+        }
         private void box_infJump_CheckedChanged(object sender, EventArgs e)
         {
             isInfJumpActivated = !isInfJumpActivated;
@@ -550,6 +584,8 @@ float playerHeight
                 tabPage4.ForeColor = fColor;                
                 tabPage5.BackColor = bColor;
                 tabPage5.ForeColor = fColor;
+                tabPage6.ForeColor = fColor;
+                tabPage6.BackColor = bColor;
                 trckbr_speed.BackColor = bColor;
                 listbox_teleportLocations.BackColor = bColor;
                 listbox_teleportLocations.ForeColor = fColor;
@@ -708,6 +744,59 @@ float playerHeight
         #endregion
 
         #region Functions
+        private void chatSpamLoop()
+        {
+            while (true)
+            {
+                if (enableSpam)
+                {
+                    lbl_chatspamstatus.Invoke((MethodInvoker)delegate
+                    {
+                        lbl_chatspamstatus.Text = "On";
+                        lbl_chatspamstatus.ForeColor = Color.Green;
+                    });
+
+
+                    if (!box_chatSpammer.Checked) break;
+
+                    sim.Keyboard.KeyPress(VirtualKeyCode.RETURN); // go into chat
+                    Thread.Sleep(100);
+
+                    foreach (char c in txtbox_chatSpammer.Text)   // type every char of string
+                    {
+                        sim.Keyboard.TextEntry(c);
+                        Thread.Sleep(10);
+                    }
+
+                    sim.Keyboard.KeyPress(VirtualKeyCode.RETURN); // send message
+
+                    if (moveAfterMsg)
+                    {
+                        Thread.Sleep(50);
+                        sim.Keyboard.KeyDown(VirtualKeyCode.VK_W);
+                        Thread.Sleep(50);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.VK_W);
+                    }
+
+                    try
+                    {
+                        Thread.Sleep(int.Parse(txtbox_chatSpamDelay.Text));
+                    }
+                    catch
+                    {
+                        Thread.Sleep(2000);
+                    }
+                }
+                else
+                {
+                    lbl_chatspamstatus.Invoke((MethodInvoker)delegate
+                    {
+                        lbl_chatspamstatus.Text = "Off";
+                        lbl_chatspamstatus.ForeColor = Color.Red;
+                    });
+                }
+            }
+        }
         private void OnProcessExit(Object sender, EventArgs e)
         {
             try
@@ -802,6 +891,7 @@ float playerHeight
                     backwardsKey = settings.flybackwardsKey;
                     flyDownKey = settings.flyDownKey;
                     flyUpKey = settings.flyupKey;
+                    enableSpamKey = settings.enableSpamKey;
 
                     txtbox_TPUpKey.Text = TPUpKey.ToString();
                     txtbox_TPDowNkey.Text = TPDownKey.ToString();
@@ -818,6 +908,7 @@ float playerHeight
                     txtbox_flybackwardskey.Text = backwardsKey.ToString();
                     txtbox_flyDown.Text = flyDownKey.ToString();
                     txtbox_flyUp.Text = flyUpKey.ToString();
+                    txt_hotkeySpam.Text = enableSpamKey.ToString();
                 }
             }
             else
@@ -1201,7 +1292,6 @@ float playerHeight
                 bool isTPZUpPressed = sim.InputDeviceState.IsHardwareKeyDown(TPForwardKey);
                 bool isTPZDownPressed = sim.InputDeviceState.IsHardwareKeyDown(TPBackwardKey);
 
-
                 //numpad teleport
                 if (isTPUpPressed)
                 {
@@ -1227,7 +1317,7 @@ float playerHeight
                 {
                     m.WriteMemory(zAddrString, "float", (playerZCoord - 0.25f).ToString(CultureInfo.InvariantCulture));
                 }
-                Thread.Sleep(200);
+                Thread.Sleep(100);
             }
         }
         private string convertUintToHexString(UIntPtr uintToConvert)
@@ -1629,10 +1719,16 @@ float playerHeight
                 bool isNofallKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(NofallKey);
                 bool isGlideKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(GlideKey);
                 bool isSpeedKeyPressed = sim.InputDeviceState.IsHardwareKeyDown(SpeedKey);
+                bool spamKeyPressed = sim.InputDeviceState.IsKeyDown(enableSpamKey);
 
                 try
                 {
-                    if(isInfJumpActivated)
+                    if (spamKeyPressed)
+                    {
+                        enableSpam = !enableSpam;
+                        Thread.Sleep(200);
+                    }
+                    if (isInfJumpActivated)
                     {
                         if (isinfJumpKeyPressed && !isInfJumpToggled)
                         {
@@ -1775,7 +1871,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 MessageBox.Show($"Error loading locations: {ex.Message}");
             }
         }
-
         private void restoreOriginalCode()
         {
             try
@@ -1818,10 +1913,25 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             }
 
         }
-        #endregion
+        private void antiAFKfunc()
+        {
+            var timePassed = DateTime.Now - dateTimeBuffer;  // Calculate the time difference
+
+            if(timePassed.TotalMinutes > 5)
+            {
+                sim.Keyboard.KeyDown(VirtualKeyCode.VK_W);
+                Thread.Sleep(100);
+                sim.Keyboard.KeyUp(VirtualKeyCode.VK_W);
+
+                dateTimeBuffer = DateTime.Now;
+            }
+
+        }
+    
+    #endregion
 
         #region Trackbars
-        private void trck_wFloor_Scroll(object sender, EventArgs e)
+    private void trck_wFloor_Scroll(object sender, EventArgs e)
         {
             switch (trck_wFloor.Value)
             {
@@ -2049,6 +2159,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             txtbox_flyforwardskey.Text = "";
             txtbox_flyUp.Text = "";
             txtbox_flyDown.Text = "";
+            txt_hotkeySpam.Text = "";
 
             // Reset the associated hotkey variables to a default value
             infJumpKey = VirtualKeyCode.NONAME;
@@ -2067,6 +2178,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             backwardsKey = VirtualKeyCode.NONAME;
             flyDownKey = VirtualKeyCode.NONAME;
             flyUpKey = VirtualKeyCode.NONAME;
+            enableSpamKey = VirtualKeyCode.NONAME;
         }
         private void btn_saveHotkeys_Click(object sender, EventArgs e)
         {
@@ -2086,7 +2198,8 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 flyforwardsKey = forwardsKey,
                 flybackwardsKey = backwardsKey,
                 flyDownKey = flyDownKey,
-                flyupKey = flyUpKey
+                flyupKey = flyUpKey,
+                enableSpamKey = enableSpamKey
             };
 
             using (FileStream fs = new FileStream("hotkeys.dat", FileMode.Create))
@@ -2197,6 +2310,11 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
             flyUpKey = (VirtualKeyCode)e.KeyCode;
             txtbox_flyUp.Text = flyUpKey.ToString();
         }
+        private void txt_hotkeySpam_KeyDown(object sender, KeyEventArgs e)
+        {
+            enableSpamKey = (VirtualKeyCode)e.KeyCode;
+            txt_hotkeySpam.Text = enableSpamKey.ToString();
+        }
         #endregion
 
         #region Scripting
@@ -2306,6 +2424,9 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         }
 
 
+
+
+
         #endregion
 
 
@@ -2316,6 +2437,4 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
         public double X { get; set; }          // X-coordinate of the location
         public double Y { get; set; }          // Y-coordinate of the location
     }
-
-
 }
