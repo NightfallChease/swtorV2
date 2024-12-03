@@ -562,10 +562,10 @@ float playerHeight
             {
                 MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green900, Accent.Green700, TextShade.WHITE);
                 MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT;
-                this.BackColor = Color.FromArgb(240, 240, 250);
+                this.BackColor = Color.FromArgb(255, 255, 255);
                 this.ForeColor = Color.FromArgb(0, 0, 0);
-                Color fColor = Color.FromArgb(250, 250, 250);
-                Color bColor = Color.FromArgb(0, 0, 0);
+                Color fColor = Color.FromArgb(0, 0, 0);
+                Color bColor = Color.FromArgb(255, 255, 255);
                 tabPage1.BackColor = bColor;
                 tabPage1.ForeColor = fColor;
                 tabPage2.BackColor = bColor;

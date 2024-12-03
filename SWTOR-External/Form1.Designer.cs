@@ -180,7 +180,7 @@
             this.box_darkmode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.box_darkmode.AutoSize = true;
             this.box_darkmode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_darkmode.Location = new System.Drawing.Point(3, 387);
+            this.box_darkmode.Location = new System.Drawing.Point(3, 356);
             this.box_darkmode.Name = "box_darkmode";
             this.box_darkmode.Size = new System.Drawing.Size(72, 17);
             this.box_darkmode.TabIndex = 29;
@@ -204,7 +204,7 @@
             this.box_speedhack.AutoSize = true;
             this.box_speedhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_speedhack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_speedhack.Location = new System.Drawing.Point(116, 330);
+            this.box_speedhack.Location = new System.Drawing.Point(119, 324);
             this.box_speedhack.Name = "box_speedhack";
             this.box_speedhack.Size = new System.Drawing.Size(40, 17);
             this.box_speedhack.TabIndex = 27;
@@ -239,7 +239,7 @@
             // 
             this.lbl_Speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(3, 314);
+            this.lbl_Speed.Location = new System.Drawing.Point(6, 308);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(111, 13);
             this.lbl_Speed.TabIndex = 23;
@@ -251,7 +251,7 @@
             this.trckbr_speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trckbr_speed.AutoSize = false;
             this.trckbr_speed.BackColor = System.Drawing.Color.White;
-            this.trckbr_speed.Location = new System.Drawing.Point(6, 330);
+            this.trckbr_speed.Location = new System.Drawing.Point(9, 324);
             this.trckbr_speed.Name = "trckbr_speed";
             this.trckbr_speed.Size = new System.Drawing.Size(104, 23);
             this.trckbr_speed.TabIndex = 22;
@@ -801,7 +801,7 @@
             // 
             this.lbl_wFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_wFloor.AutoSize = true;
-            this.lbl_wFloor.Location = new System.Drawing.Point(3, 275);
+            this.lbl_wFloor.Location = new System.Drawing.Point(6, 269);
             this.lbl_wFloor.Name = "lbl_wFloor";
             this.lbl_wFloor.Size = new System.Drawing.Size(112, 13);
             this.lbl_wFloor.TabIndex = 40;
@@ -812,7 +812,7 @@
             this.trck_wFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trck_wFloor.AutoSize = false;
             this.trck_wFloor.BackColor = System.Drawing.Color.White;
-            this.trck_wFloor.Location = new System.Drawing.Point(6, 291);
+            this.trck_wFloor.Location = new System.Drawing.Point(9, 285);
             this.trck_wFloor.Name = "trck_wFloor";
             this.trck_wFloor.Size = new System.Drawing.Size(104, 23);
             this.trck_wFloor.TabIndex = 39;
