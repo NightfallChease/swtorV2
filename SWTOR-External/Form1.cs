@@ -44,7 +44,7 @@ namespace SWTOR_External
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
         private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.8.sw";
-        private string currentVersion = "v8.8";
+        private string currentVersion = "v8.9";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -86,7 +86,7 @@ namespace SWTOR_External
         private bool infReachPatched = false;
         private string infReachAddressStr;
         private UIntPtr infReachAddress;
-        private byte[] infReachPatchedBytes = { 0x83, 0xBC, 0x24, 0xA8, 0x00, 0x00, 0x00, 0x23, 0x0F, 0x85, 0x05, 0x00, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
+        private byte[] infReachPatchedBytes = { 0x81, 0x7C, 0x24, 0x1C, 0xF0, 0x7D, 0x00, 0x00, 0x0F, 0x8C, 0x13, 0x00, 0x00, 0x00, 0x81, 0x7C, 0x24, 0x1C, 0x2C, 0x7E, 0x00, 0x00, 0x0F, 0x87, 0x05, 0x00, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x07, 0x41, 0x80, 0x0F, 0x0C };
         private string wallhackAddress;
         private string wallhack2Address;
         private bool wallhackPatched;
@@ -457,6 +457,17 @@ float playerHeight
                 {
                     antiAFKfunc();
                 }
+
+                if (enableSpam)
+                {
+                    lbl_chatspamstatus.Text = "On";
+                    lbl_chatspamstatus.ForeColor = Color.Green;
+                }
+                else
+                {
+                    lbl_chatspamstatus.Text = "Off";
+                    lbl_chatspamstatus.ForeColor = Color.Red;
+                }
             }
         }
         private void timer_getBase_Tick(object sender, EventArgs e)
@@ -750,13 +761,6 @@ float playerHeight
             {
                 if (enableSpam)
                 {
-                    lbl_chatspamstatus.Invoke((MethodInvoker)delegate
-                    {
-                        lbl_chatspamstatus.Text = "On";
-                        lbl_chatspamstatus.ForeColor = Color.Green;
-                    });
-
-
                     if (!box_chatSpammer.Checked) break;
 
                     sim.Keyboard.KeyPress(VirtualKeyCode.RETURN); // go into chat
@@ -789,11 +793,7 @@ float playerHeight
                 }
                 else
                 {
-                    lbl_chatspamstatus.Invoke((MethodInvoker)delegate
-                    {
-                        lbl_chatspamstatus.Text = "Off";
-                        lbl_chatspamstatus.ForeColor = Color.Red;
-                    });
+
                 }
             }
         }
@@ -1906,12 +1906,13 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 cameraZPatched = false;
 
                 m.WriteMemory(movementModeAddrStr, "int", "1");
+
+                m.WriteBytes(infReachAddressStr, infReachOriginalBytes);
             }
             catch
             {
                 MessageBox.Show("Code restoration failed. You might want to restart your game.");
             }
-
         }
         private void antiAFKfunc()
         {
