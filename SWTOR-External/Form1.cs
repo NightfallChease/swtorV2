@@ -751,7 +751,6 @@ float playerHeight
         {
             noKnockbackEnabled = !noKnockbackEnabled;
         }
-
         #endregion
 
         #region Functions
@@ -2429,8 +2428,6 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
         #endregion
-
-
     }
     public class customLocation
     {
