@@ -43,7 +43,7 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.8.sw";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.9.sw";
         private string currentVersion = "v8.9";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
@@ -1904,6 +1904,12 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
                 m.WriteBytes(cameraZUInt, cameraZBytes);
                 cameraZPatched = false;
 
+                m.WriteMemory($"{wallhackAddress}", "bytes", "74 0D");
+                wallhackPatched = false;
+
+                m.WriteMemory($"{wallhack2Address}", "bytes", "0F 84");
+                wallhack2Patched = false;
+
                 m.WriteMemory(movementModeAddrStr, "int", "1");
 
                 m.WriteBytes(infReachAddressStr, infReachOriginalBytes);
@@ -2428,6 +2434,7 @@ MessageBox.Show($""xCoord: {tool.xCoord}, yCoord: {tool.yCoord}, zCoord: {tool.z
 
 
         #endregion
+
     }
     public class customLocation
     {

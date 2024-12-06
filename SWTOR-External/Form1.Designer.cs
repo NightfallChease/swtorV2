@@ -1003,6 +1003,7 @@
             this.txtbox_flyUp.ReadOnly = true;
             this.txtbox_flyUp.Size = new System.Drawing.Size(74, 20);
             this.txtbox_flyUp.TabIndex = 96;
+            this.txtbox_flyUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyUp_KeyDown);
             // 
             // lbl_flyDown
             // 
@@ -1020,6 +1021,7 @@
             this.txtbox_flyDown.ReadOnly = true;
             this.txtbox_flyDown.Size = new System.Drawing.Size(74, 20);
             this.txtbox_flyDown.TabIndex = 94;
+            this.txtbox_flyDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyDown_KeyDown);
             // 
             // lbl_flyBackwards
             // 
@@ -1037,6 +1039,7 @@
             this.txtbox_flybackwardskey.ReadOnly = true;
             this.txtbox_flybackwardskey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_flybackwardskey.TabIndex = 92;
+            this.txtbox_flybackwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flybackwardskey_KeyDown);
             // 
             // lbl_flyForwardKey
             // 
@@ -1054,11 +1057,10 @@
             this.txtbox_flyforwardskey.ReadOnly = true;
             this.txtbox_flyforwardskey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_flyforwardskey.TabIndex = 90;
+            this.txtbox_flyforwardskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_flyforwardskey_KeyDown);
             // 
             // btn_saveHotkeys
             // 
-            this.btn_saveHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveHotkeys.Location = new System.Drawing.Point(137, 354);
             this.btn_saveHotkeys.Name = "btn_saveHotkeys";
@@ -1066,11 +1068,10 @@
             this.btn_saveHotkeys.TabIndex = 89;
             this.btn_saveHotkeys.Text = "Save Hotkeys";
             this.btn_saveHotkeys.UseVisualStyleBackColor = true;
+            this.btn_saveHotkeys.Click += new System.EventHandler(this.btn_saveHotkeys_Click);
             // 
             // btn_clearHotkeys
             // 
-            this.btn_clearHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clearHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_clearHotkeys.Location = new System.Drawing.Point(228, 354);
             this.btn_clearHotkeys.Name = "btn_clearHotkeys";
@@ -1078,6 +1079,7 @@
             this.btn_clearHotkeys.TabIndex = 88;
             this.btn_clearHotkeys.Text = "Clear Hotkeys";
             this.btn_clearHotkeys.UseVisualStyleBackColor = true;
+            this.btn_clearHotkeys.Click += new System.EventHandler(this.btn_clearHotkeys_Click);
             // 
             // lbl_speedKey
             // 
@@ -1104,6 +1106,7 @@
             this.txtbox_speedKey.ReadOnly = true;
             this.txtbox_speedKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_speedKey.TabIndex = 85;
+            this.txtbox_speedKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_speedKey_KeyDown);
             // 
             // lbl_glideKey
             // 
@@ -1121,6 +1124,7 @@
             this.txtbox_glideKey.ReadOnly = true;
             this.txtbox_glideKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_glideKey.TabIndex = 83;
+            this.txtbox_glideKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_glideKey_KeyDown);
             // 
             // lbl_TpToCamKey
             // 
@@ -1138,6 +1142,7 @@
             this.txtbox_tpToCamKey.ReadOnly = true;
             this.txtbox_tpToCamKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_tpToCamKey.TabIndex = 81;
+            this.txtbox_tpToCamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_tpToCamKey_KeyDown);
             // 
             // lbl_nofallKey
             // 
@@ -1155,6 +1160,7 @@
             this.txtbox_nofallKey.ReadOnly = true;
             this.txtbox_nofallKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_nofallKey.TabIndex = 79;
+            this.txtbox_nofallKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_nofallKey_KeyDown);
             // 
             // txtbox_TPUpKey
             // 
@@ -1163,6 +1169,7 @@
             this.txtbox_TPUpKey.ReadOnly = true;
             this.txtbox_TPUpKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPUpKey.TabIndex = 65;
+            this.txtbox_TPUpKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TpUpHotkey_KeyDown);
             // 
             // lbl_freecamKey
             // 
@@ -1189,6 +1196,7 @@
             this.txtbox_freecamKey.ReadOnly = true;
             this.txtbox_freecamKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_freecamKey.TabIndex = 77;
+            this.txtbox_freecamKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_freecamKey_KeyDown);
             // 
             // txtbox_TPDowNkey
             // 
@@ -1197,6 +1205,7 @@
             this.txtbox_TPDowNkey.ReadOnly = true;
             this.txtbox_TPDowNkey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPDowNkey.TabIndex = 67;
+            this.txtbox_TPDowNkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPDowNkey_KeyDown);
             // 
             // lbl_tpBackw
             // 
@@ -1223,6 +1232,7 @@
             this.txtbox_TPBackwardKey.ReadOnly = true;
             this.txtbox_TPBackwardKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPBackwardKey.TabIndex = 75;
+            this.txtbox_TPBackwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPBackwardKey_KeyDown);
             // 
             // txtbox_TPLeftKey
             // 
@@ -1231,6 +1241,7 @@
             this.txtbox_TPLeftKey.ReadOnly = true;
             this.txtbox_TPLeftKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPLeftKey.TabIndex = 69;
+            this.txtbox_TPLeftKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPLeftKey_KeyDown);
             // 
             // lbl_tpForward
             // 
@@ -1257,6 +1268,7 @@
             this.txtbox_TPForwardKey.ReadOnly = true;
             this.txtbox_TPForwardKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPForwardKey.TabIndex = 73;
+            this.txtbox_TPForwardKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPForwardKey_KeyDown);
             // 
             // txtbox_TPRightKey
             // 
@@ -1265,6 +1277,7 @@
             this.txtbox_TPRightKey.ReadOnly = true;
             this.txtbox_TPRightKey.Size = new System.Drawing.Size(74, 20);
             this.txtbox_TPRightKey.TabIndex = 71;
+            this.txtbox_TPRightKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_TPRightKey_KeyDown);
             // 
             // lbl_tpRight
             // 
