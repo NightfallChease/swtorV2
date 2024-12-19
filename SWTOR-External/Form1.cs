@@ -29,7 +29,6 @@ namespace SWTOR_External
 
         /* Todo:
         MouseTP (for map and world)
-        Combat features?
         */
 
         #region vars
@@ -43,8 +42,8 @@ namespace SWTOR_External
         private Vector3 lastPos;
         private bool darkmodeEnabled = false;
         private string urlRunning = "https://github.com/NightfallChease/s/blob/main/isRunning.sw";
-        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version8.9.sw";
-        private string currentVersion = "v8.9";
+        private string urlUpdate = "https://github.com/NightfallChease/s/blob/main/version9.1.sw";
+        private string currentVersion = "v9.1";
         private bool noclipPatched = false;
         private bool cameraPatched = false;
         private bool cameraZPatched = false;
@@ -350,9 +349,6 @@ float playerHeight
                 xAddr = playerBaseUInt + 0x68;
                 xAddrString = convertUintToHexString(xAddr);
 
-                movementModeAddr = playerBaseUInt + 0x3d0;
-                movementModeAddrStr = convertUintToHexString(movementModeAddr);
-
                 yAddr = playerBaseUInt + 0x6C;
                 yAddrString = convertUintToHexString(yAddr);
 
@@ -368,10 +364,13 @@ float playerHeight
                 xCamAddr = camBaseUInt + 0x228;
                 xCamAddrString = convertUintToHexString(xCamAddr);
 
-                pitchAddr = camBaseUInt + 0x234;
+                pitchAddr = camBaseUInt + 0x244;
                 pitchAddrString = convertUintToHexString(pitchAddr);
 
-                yawAddr = camBaseUInt + 0x238;
+                movementModeAddr = playerBaseUInt + 0x390;
+                movementModeAddrStr = convertUintToHexString(movementModeAddr);
+
+                yawAddr = camBaseUInt + 0x24C;
                 yawAddrString = convertUintToHexString(yawAddr);
 
                 heightAddr = playerBaseUInt + 0x84;

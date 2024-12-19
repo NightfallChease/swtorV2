@@ -92,6 +92,16 @@
             this.btn_addCustomTP = new System.Windows.Forms.Button();
             this.listbox_teleportLocations = new System.Windows.Forms.ListBox();
             this.btn_saveLocation = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbl_chatspamstatus = new System.Windows.Forms.Label();
+            this.box_chatSpamMove = new System.Windows.Forms.CheckBox();
+            this.lbl_chatSpam2 = new System.Windows.Forms.Label();
+            this.txtbox_chatSpamDelay = new System.Windows.Forms.TextBox();
+            this.lbl_chatSpam = new System.Windows.Forms.Label();
+            this.txtbox_chatSpammer = new System.Windows.Forms.TextBox();
+            this.box_chatSpammer = new System.Windows.Forms.CheckBox();
+            this.box_infReach = new System.Windows.Forms.CheckBox();
+            this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.lbl_hotkeyspam = new System.Windows.Forms.Label();
             this.txt_hotkeySpam = new System.Windows.Forms.TextBox();
@@ -128,16 +138,6 @@
             this.txtbox_TPForwardKey = new System.Windows.Forms.TextBox();
             this.txtbox_TPRightKey = new System.Windows.Forms.TextBox();
             this.lbl_tpRight = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lbl_chatspamstatus = new System.Windows.Forms.Label();
-            this.box_chatSpamMove = new System.Windows.Forms.CheckBox();
-            this.lbl_chatSpam2 = new System.Windows.Forms.Label();
-            this.txtbox_chatSpamDelay = new System.Windows.Forms.TextBox();
-            this.lbl_chatSpam = new System.Windows.Forms.Label();
-            this.txtbox_chatSpammer = new System.Windows.Forms.TextBox();
-            this.box_chatSpammer = new System.Windows.Forms.CheckBox();
-            this.box_infReach = new System.Windows.Forms.CheckBox();
-            this.box_wallhack = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lbl_scriptsMaintenance = new System.Windows.Forms.Label();
             this.btn_loadScript = new System.Windows.Forms.Button();
@@ -164,8 +164,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trck_wFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
@@ -389,6 +389,7 @@
             // box_Freecam
             // 
             this.box_Freecam.AutoSize = true;
+            this.box_Freecam.Cursor = System.Windows.Forms.Cursors.No;
             this.box_Freecam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_Freecam.Location = new System.Drawing.Point(6, 29);
             this.box_Freecam.Name = "box_Freecam";
@@ -616,6 +617,7 @@
             // box_noKnockback
             // 
             this.box_noKnockback.AutoSize = true;
+            this.box_noKnockback.Cursor = System.Windows.Forms.Cursors.No;
             this.box_noKnockback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_noKnockback.Location = new System.Drawing.Point(106, 72);
             this.box_noKnockback.Name = "box_noKnockback";
@@ -663,6 +665,7 @@
             // box_flyMode
             // 
             this.box_flyMode.AutoSize = true;
+            this.box_flyMode.Cursor = System.Windows.Forms.Cursors.No;
             this.box_flyMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_flyMode.Location = new System.Drawing.Point(6, 49);
             this.box_flyMode.Name = "box_flyMode";
@@ -697,6 +700,7 @@
             // box_noAnimations
             // 
             this.box_noAnimations.AutoSize = true;
+            this.box_noAnimations.Cursor = System.Windows.Forms.Cursors.No;
             this.box_noAnimations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_noAnimations.Location = new System.Drawing.Point(6, 163);
             this.box_noAnimations.Name = "box_noAnimations";
@@ -710,6 +714,7 @@
             // box_noCamCollision
             // 
             this.box_noCamCollision.AutoSize = true;
+            this.box_noCamCollision.Cursor = System.Windows.Forms.Cursors.No;
             this.box_noCamCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_noCamCollision.Location = new System.Drawing.Point(6, 140);
             this.box_noCamCollision.Name = "box_noCamCollision";
@@ -723,6 +728,7 @@
             // box_noCollision
             // 
             this.box_noCollision.AutoSize = true;
+            this.box_noCollision.Cursor = System.Windows.Forms.Cursors.Default;
             this.box_noCollision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.box_noCollision.Location = new System.Drawing.Point(6, 117);
             this.box_noCollision.Name = "box_noCollision";
@@ -923,6 +929,132 @@
             this.tipControl.SetToolTip(this.btn_saveLocation, "Save current coordinates");
             this.btn_saveLocation.UseVisualStyleBackColor = true;
             this.btn_saveLocation.Click += new System.EventHandler(this.btn_saveLocation_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lbl_chatspamstatus);
+            this.tabPage2.Controls.Add(this.box_chatSpamMove);
+            this.tabPage2.Controls.Add(this.lbl_chatSpam2);
+            this.tabPage2.Controls.Add(this.txtbox_chatSpamDelay);
+            this.tabPage2.Controls.Add(this.lbl_chatSpam);
+            this.tabPage2.Controls.Add(this.txtbox_chatSpammer);
+            this.tabPage2.Controls.Add(this.box_chatSpammer);
+            this.tabPage2.Controls.Add(this.box_infReach);
+            this.tabPage2.Controls.Add(this.box_wallhack);
+            this.tabPage2.Controls.Add(this.trck_opcacity);
+            this.tabPage2.Controls.Add(this.lbl_opacity);
+            this.tabPage2.Controls.Add(this.box_esp);
+            this.tabPage2.Controls.Add(this.box_playerHeight);
+            this.tabPage2.Controls.Add(this.box_dotEsp);
+            this.tabPage2.Controls.Add(this.lbl_HeightNormal);
+            this.tabPage2.ImageKey = "death_star_wars_icon_183176.ico";
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(442, 389);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Misc";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lbl_chatspamstatus
+            // 
+            this.lbl_chatspamstatus.AutoSize = true;
+            this.lbl_chatspamstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_chatspamstatus.ForeColor = System.Drawing.Color.Red;
+            this.lbl_chatspamstatus.Location = new System.Drawing.Point(104, 95);
+            this.lbl_chatspamstatus.Name = "lbl_chatspamstatus";
+            this.lbl_chatspamstatus.Size = new System.Drawing.Size(24, 13);
+            this.lbl_chatspamstatus.TabIndex = 61;
+            this.lbl_chatspamstatus.Text = "Off";
+            // 
+            // box_chatSpamMove
+            // 
+            this.box_chatSpamMove.AutoSize = true;
+            this.box_chatSpamMove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_chatSpamMove.Location = new System.Drawing.Point(21, 115);
+            this.box_chatSpamMove.Name = "box_chatSpamMove";
+            this.box_chatSpamMove.Size = new System.Drawing.Size(119, 17);
+            this.box_chatSpamMove.TabIndex = 60;
+            this.box_chatSpamMove.Text = "Move after message";
+            this.tipControl.SetToolTip(this.box_chatSpamMove, "Moves your chracter after the chat message was sent");
+            this.box_chatSpamMove.UseVisualStyleBackColor = true;
+            this.box_chatSpamMove.CheckedChanged += new System.EventHandler(this.box_chatSpamMove_CheckedChanged);
+            // 
+            // lbl_chatSpam2
+            // 
+            this.lbl_chatSpam2.AutoSize = true;
+            this.lbl_chatSpam2.Location = new System.Drawing.Point(2, 170);
+            this.lbl_chatSpam2.Name = "lbl_chatSpam2";
+            this.lbl_chatSpam2.Size = new System.Drawing.Size(64, 13);
+            this.lbl_chatSpam2.TabIndex = 59;
+            this.lbl_chatSpam2.Text = "Delay in ms:";
+            // 
+            // txtbox_chatSpamDelay
+            // 
+            this.txtbox_chatSpamDelay.Location = new System.Drawing.Point(66, 167);
+            this.txtbox_chatSpamDelay.Name = "txtbox_chatSpamDelay";
+            this.txtbox_chatSpamDelay.Size = new System.Drawing.Size(43, 20);
+            this.txtbox_chatSpamDelay.TabIndex = 58;
+            this.txtbox_chatSpamDelay.Text = "100";
+            this.tipControl.SetToolTip(this.txtbox_chatSpamDelay, "Delay between every message");
+            // 
+            // lbl_chatSpam
+            // 
+            this.lbl_chatSpam.AutoSize = true;
+            this.lbl_chatSpam.Location = new System.Drawing.Point(2, 141);
+            this.lbl_chatSpam.Name = "lbl_chatSpam";
+            this.lbl_chatSpam.Size = new System.Drawing.Size(53, 13);
+            this.lbl_chatSpam.TabIndex = 57;
+            this.lbl_chatSpam.Text = "Message:";
+            // 
+            // txtbox_chatSpammer
+            // 
+            this.txtbox_chatSpammer.Location = new System.Drawing.Point(66, 138);
+            this.txtbox_chatSpammer.Name = "txtbox_chatSpammer";
+            this.txtbox_chatSpammer.Size = new System.Drawing.Size(104, 20);
+            this.txtbox_chatSpammer.TabIndex = 56;
+            this.tipControl.SetToolTip(this.txtbox_chatSpammer, "Enter the message or command you want to write");
+            // 
+            // box_chatSpammer
+            // 
+            this.box_chatSpammer.AutoSize = true;
+            this.box_chatSpammer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_chatSpammer.Location = new System.Drawing.Point(6, 93);
+            this.box_chatSpammer.Name = "box_chatSpammer";
+            this.box_chatSpammer.Size = new System.Drawing.Size(92, 17);
+            this.box_chatSpammer.TabIndex = 55;
+            this.box_chatSpammer.Text = "Chat Spammer";
+            this.tipControl.SetToolTip(this.box_chatSpammer, "Auto write chat messages (use the hotkey to enable)");
+            this.box_chatSpammer.UseVisualStyleBackColor = true;
+            this.box_chatSpammer.CheckedChanged += new System.EventHandler(this.box_chatSpammer_CheckedChanged);
+            // 
+            // box_infReach
+            // 
+            this.box_infReach.AutoSize = true;
+            this.box_infReach.Cursor = System.Windows.Forms.Cursors.No;
+            this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_infReach.Location = new System.Drawing.Point(116, 29);
+            this.box_infReach.Name = "box_infReach";
+            this.box_infReach.Size = new System.Drawing.Size(140, 17);
+            this.box_infReach.TabIndex = 54;
+            this.box_infReach.Text = "Inf Attackrange (Vertical)";
+            this.tipControl.SetToolTip(this.box_infReach, "You can attack enemies from any VERTICAL distance");
+            this.box_infReach.UseVisualStyleBackColor = true;
+            this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
+            // 
+            // box_wallhack
+            // 
+            this.box_wallhack.AutoSize = true;
+            this.box_wallhack.Cursor = System.Windows.Forms.Cursors.No;
+            this.box_wallhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.box_wallhack.Location = new System.Drawing.Point(116, 6);
+            this.box_wallhack.Name = "box_wallhack";
+            this.box_wallhack.Size = new System.Drawing.Size(68, 17);
+            this.box_wallhack.TabIndex = 53;
+            this.box_wallhack.Text = "Wallhack";
+            this.tipControl.SetToolTip(this.box_wallhack, "Draw player & npc names through walls");
+            this.box_wallhack.UseVisualStyleBackColor = true;
+            this.box_wallhack.CheckedChanged += new System.EventHandler(this.box_wallhack_CheckedChanged);
             // 
             // tabPage6
             // 
@@ -1288,130 +1420,6 @@
             this.lbl_tpRight.TabIndex = 72;
             this.lbl_tpRight.Text = "TP Right: ";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.lbl_chatspamstatus);
-            this.tabPage2.Controls.Add(this.box_chatSpamMove);
-            this.tabPage2.Controls.Add(this.lbl_chatSpam2);
-            this.tabPage2.Controls.Add(this.txtbox_chatSpamDelay);
-            this.tabPage2.Controls.Add(this.lbl_chatSpam);
-            this.tabPage2.Controls.Add(this.txtbox_chatSpammer);
-            this.tabPage2.Controls.Add(this.box_chatSpammer);
-            this.tabPage2.Controls.Add(this.box_infReach);
-            this.tabPage2.Controls.Add(this.box_wallhack);
-            this.tabPage2.Controls.Add(this.trck_opcacity);
-            this.tabPage2.Controls.Add(this.lbl_opacity);
-            this.tabPage2.Controls.Add(this.box_esp);
-            this.tabPage2.Controls.Add(this.box_playerHeight);
-            this.tabPage2.Controls.Add(this.box_dotEsp);
-            this.tabPage2.Controls.Add(this.lbl_HeightNormal);
-            this.tabPage2.ImageKey = "death_star_wars_icon_183176.ico";
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(442, 389);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Misc";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lbl_chatspamstatus
-            // 
-            this.lbl_chatspamstatus.AutoSize = true;
-            this.lbl_chatspamstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_chatspamstatus.ForeColor = System.Drawing.Color.Red;
-            this.lbl_chatspamstatus.Location = new System.Drawing.Point(104, 95);
-            this.lbl_chatspamstatus.Name = "lbl_chatspamstatus";
-            this.lbl_chatspamstatus.Size = new System.Drawing.Size(24, 13);
-            this.lbl_chatspamstatus.TabIndex = 61;
-            this.lbl_chatspamstatus.Text = "Off";
-            // 
-            // box_chatSpamMove
-            // 
-            this.box_chatSpamMove.AutoSize = true;
-            this.box_chatSpamMove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_chatSpamMove.Location = new System.Drawing.Point(21, 115);
-            this.box_chatSpamMove.Name = "box_chatSpamMove";
-            this.box_chatSpamMove.Size = new System.Drawing.Size(119, 17);
-            this.box_chatSpamMove.TabIndex = 60;
-            this.box_chatSpamMove.Text = "Move after message";
-            this.tipControl.SetToolTip(this.box_chatSpamMove, "Moves your chracter after the chat message was sent");
-            this.box_chatSpamMove.UseVisualStyleBackColor = true;
-            this.box_chatSpamMove.CheckedChanged += new System.EventHandler(this.box_chatSpamMove_CheckedChanged);
-            // 
-            // lbl_chatSpam2
-            // 
-            this.lbl_chatSpam2.AutoSize = true;
-            this.lbl_chatSpam2.Location = new System.Drawing.Point(2, 170);
-            this.lbl_chatSpam2.Name = "lbl_chatSpam2";
-            this.lbl_chatSpam2.Size = new System.Drawing.Size(64, 13);
-            this.lbl_chatSpam2.TabIndex = 59;
-            this.lbl_chatSpam2.Text = "Delay in ms:";
-            // 
-            // txtbox_chatSpamDelay
-            // 
-            this.txtbox_chatSpamDelay.Location = new System.Drawing.Point(66, 167);
-            this.txtbox_chatSpamDelay.Name = "txtbox_chatSpamDelay";
-            this.txtbox_chatSpamDelay.Size = new System.Drawing.Size(43, 20);
-            this.txtbox_chatSpamDelay.TabIndex = 58;
-            this.txtbox_chatSpamDelay.Text = "100";
-            this.tipControl.SetToolTip(this.txtbox_chatSpamDelay, "Delay between every message");
-            // 
-            // lbl_chatSpam
-            // 
-            this.lbl_chatSpam.AutoSize = true;
-            this.lbl_chatSpam.Location = new System.Drawing.Point(2, 141);
-            this.lbl_chatSpam.Name = "lbl_chatSpam";
-            this.lbl_chatSpam.Size = new System.Drawing.Size(53, 13);
-            this.lbl_chatSpam.TabIndex = 57;
-            this.lbl_chatSpam.Text = "Message:";
-            // 
-            // txtbox_chatSpammer
-            // 
-            this.txtbox_chatSpammer.Location = new System.Drawing.Point(66, 138);
-            this.txtbox_chatSpammer.Name = "txtbox_chatSpammer";
-            this.txtbox_chatSpammer.Size = new System.Drawing.Size(104, 20);
-            this.txtbox_chatSpammer.TabIndex = 56;
-            this.tipControl.SetToolTip(this.txtbox_chatSpammer, "Enter the message or command you want to write");
-            // 
-            // box_chatSpammer
-            // 
-            this.box_chatSpammer.AutoSize = true;
-            this.box_chatSpammer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_chatSpammer.Location = new System.Drawing.Point(6, 93);
-            this.box_chatSpammer.Name = "box_chatSpammer";
-            this.box_chatSpammer.Size = new System.Drawing.Size(92, 17);
-            this.box_chatSpammer.TabIndex = 55;
-            this.box_chatSpammer.Text = "Chat Spammer";
-            this.tipControl.SetToolTip(this.box_chatSpammer, "Auto write chat messages (use the hotkey to enable)");
-            this.box_chatSpammer.UseVisualStyleBackColor = true;
-            this.box_chatSpammer.CheckedChanged += new System.EventHandler(this.box_chatSpammer_CheckedChanged);
-            // 
-            // box_infReach
-            // 
-            this.box_infReach.AutoSize = true;
-            this.box_infReach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_infReach.Location = new System.Drawing.Point(116, 29);
-            this.box_infReach.Name = "box_infReach";
-            this.box_infReach.Size = new System.Drawing.Size(140, 17);
-            this.box_infReach.TabIndex = 54;
-            this.box_infReach.Text = "Inf Attackrange (Vertical)";
-            this.tipControl.SetToolTip(this.box_infReach, "You can attack enemies from any VERTICAL distance");
-            this.box_infReach.UseVisualStyleBackColor = true;
-            this.box_infReach.CheckedChanged += new System.EventHandler(this.box_infReach_CheckedChanged);
-            // 
-            // box_wallhack
-            // 
-            this.box_wallhack.AutoSize = true;
-            this.box_wallhack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_wallhack.Location = new System.Drawing.Point(116, 6);
-            this.box_wallhack.Name = "box_wallhack";
-            this.box_wallhack.Size = new System.Drawing.Size(68, 17);
-            this.box_wallhack.TabIndex = 53;
-            this.box_wallhack.Text = "Wallhack";
-            this.tipControl.SetToolTip(this.box_wallhack, "Draw player & npc names through walls");
-            this.box_wallhack.UseVisualStyleBackColor = true;
-            this.box_wallhack.CheckedChanged += new System.EventHandler(this.box_wallhack_CheckedChanged);
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.lbl_scriptsMaintenance);
@@ -1638,10 +1646,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.trckbar_camSpeed)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
